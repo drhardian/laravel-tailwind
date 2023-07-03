@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('auth')->controller(AuthController::class)->group(function() {
+    Route::post('process', 'authProcess')->name('auth.process');
+});
+
+Route::prefix('dashboard')->controller(DashboardController::class)->group(function() {
+    Route::get('/', 'index');
+});
+
+Route::resource('client', ClientController::class);
