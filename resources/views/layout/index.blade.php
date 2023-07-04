@@ -9,6 +9,33 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="{{ asset('theme/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('theme/fontawesome/css/fontawesome.min.css') }}">
+    
+    <!-- Datatables -->
+    <link rel="stylesheet" href="{{ asset('theme/datatables/css/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('theme/datatables/css/responsive.dataTables.css') }}">
+
+    <!-- Custom Style -->
+    <style>
+        .dataTables_wrapper .dataTables_length select {
+            padding-right: 35px;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            padding: 0.2em 0.7em;
+        }
+
+        table.dataTable {
+            padding-top: 10px;
+        }
+
+        table.dataTable thead>tr>th.sorting {
+            text-align: center;
+        }
+    </style>
+
     @yield('css')
 </head>
 
@@ -21,9 +48,6 @@
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
             </a>
             <div class="flex md:order-2">
-                <button type="button"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get
-                    started</button>
                 <button data-collapse-toggle="navbar-sticky" type="button"
                     class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                     aria-controls="navbar-sticky" aria-expanded="false">
@@ -77,8 +101,13 @@
             </div>
         </div>
     </header>
+    
     @yield('content')
+
+    <script type="text/javascript" src="{{ asset('theme/jquery/jquery-3.7.0.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('theme/datatables/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('theme/datatables/js/dataTables.responsive.js') }}"></script>
+
     @yield('js')
 </body>
-
 </html>

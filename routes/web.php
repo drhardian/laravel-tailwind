@@ -29,3 +29,6 @@ Route::prefix('dashboard')->controller(DashboardController::class)->group(functi
 });
 
 Route::resource('client', ClientController::class);
+Route::prefix('client')->controller(ClientController::class)->group(function() {
+    Route::get('show/datatable', 'showDatatable')->name('client.main.table');
+});

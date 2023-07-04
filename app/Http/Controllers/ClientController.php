@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class ClientController extends Controller
 {
@@ -85,5 +86,12 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         //
+    }
+
+    public function showDatatable()
+    {
+        $model = Client::all();
+
+        return DataTables::of($model)->make(true);
     }
 }
