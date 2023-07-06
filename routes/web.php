@@ -28,7 +28,7 @@ Route::prefix('dashboard')->controller(DashboardController::class)->group(functi
     Route::get('/', 'index');
 });
 
-Route::resource('client', ClientController::class);
+Route::resource('client', ClientController::class)->except('create','edit');
 Route::prefix('client')->controller(ClientController::class)->group(function() {
     Route::get('show/datatable', 'showDatatable')->name('client.main.table');
 });
