@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClientStoreRequest;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 
 class ClientController extends Controller
 {
     protected $pageTitle;
+    protected $pageProfile;
 
     public function __construct()
     {
         $this->pageTitle = 'Customers';
+        $this->pageProfile = 'Profile';
     }
     /**
      * Display a listing of the resource.
@@ -51,11 +56,27 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Client $client)
+    public function store(ClientStoreRequest $request)
     {
-        $client->create($request->all());
+        DB::beginTransaction();
 
-        return redirect()->route('client.index');
+        try {
+            $client = Client::create($request->all());
+            
+            DB::commit();
+
+            return response()->json([
+                'url' => route('client.show', [$client->id])
+            ], 200);
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            DB::rollBack();
+
+            return response()->json([
+                'error' => 'error'
+            ], 500);
+        }
+
     }
 
     /**
@@ -63,7 +84,32 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        $breadcrumbs = [
+            [
+                'title' => 'Dashboard',
+                'status' => 'active',
+                'url' => 'dashboard',
+                'icon' => 'fa-solid fa-house fa-sm',
+            ],
+            [
+                'title' => $this->pageTitle,
+                'status' => 'active',
+                'url' => 'client',
+                'icon' => '',
+            ],
+            [
+                'title' => $this->pageProfile,
+                'status' => '',
+                'url' => '',
+                'icon' => '',
+            ],
+        ];
+
+        return view('customer.profile', [
+            'breadcrumbs' => $breadcrumbs,
+            'title' => $this->pageProfile,
+            'customer' => $client
+        ]);
     }
 
     /**

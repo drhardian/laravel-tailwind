@@ -188,10 +188,10 @@
                 url: "{{ route('client.store') }}",
                 data: $('#customerForm').serialize(),
                 success: function (response) {
-                    console.log(response);
+                    window.location.href = response.url;
                 },
                 error: function (response) {
-                    
+                    console.log(response);
                 }
             });
         }
