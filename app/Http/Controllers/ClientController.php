@@ -94,7 +94,7 @@ class ClientController extends Controller
             [
                 'title' => $this->pageTitle,
                 'status' => 'active',
-                'url' => 'client',
+                'url' => route('client.index'),
                 'icon' => '',
             ],
             [
@@ -140,6 +140,18 @@ class ClientController extends Controller
     {
         $model = Client::all();
 
-        return DataTables::of($model)->make(true);
+        return DataTables::of($model)
+            ->addColumn('actions', function($model) {
+                $show = '<a href="'.route('client.show', [ $model->id ]).'"><i class="fa-solid fa-eye cursor-pointer"></i></a>';
+                $edit = '';
+                $delete = '';
+                $actions = '<div class="row flex">'.
+                    $show.        
+                    '</div>';
+
+                return $actions;
+            })
+            ->rawColumns(['actions'])
+            ->make(true);
     }
 }

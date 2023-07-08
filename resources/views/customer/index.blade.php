@@ -49,6 +49,7 @@
                             <th>Phone</th>
                             <th>Email</th>
                             <th>Last Update</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -171,6 +172,13 @@
                         data: 'updated_at',
                         name: 'updated_at',
                         class: ['text-center', 'min-tablet']
+                    },
+                    {
+                        data: 'actions',
+                        name: 'actions',
+                        class: ['text-center', 'min-tablet'],
+                        orderable: false,
+                        sortable: false,
                     },
                 ]
             });
