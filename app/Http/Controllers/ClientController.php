@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ClientStoreRequest;
 use App\Models\Client;
+use App\Models\ClientContract;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -105,10 +107,13 @@ class ClientController extends Controller
             ],
         ];
 
+        $contracts = ClientContract::where('client_id', $client->id)->get();
+
         return view('customer.profile', [
             'breadcrumbs' => $breadcrumbs,
             'title' => $this->pageProfile,
-            'customer' => $client
+            'customer' => $client,
+            'contracts' => $contracts
         ]);
     }
 
@@ -150,6 +155,9 @@ class ClientController extends Controller
                     '</div>';
 
                 return $actions;
+            })
+            ->editColumn('updated_at', function($model) {
+                return Carbon::parse($model->updated_at)->format('d/m/Y H:i:s');
             })
             ->rawColumns(['actions'])
             ->make(true);
