@@ -21,6 +21,7 @@ class ClientController extends Controller
         $this->pageTitle = 'Customers';
         $this->pageProfile = 'Profile';
     }
+
     /**
      * Display a listing of the resource.
      */

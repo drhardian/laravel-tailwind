@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClientContractController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
+use App\Models\ClientContract;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,4 +33,8 @@ Route::prefix('dashboard')->controller(DashboardController::class)->group(functi
 Route::resource('client', ClientController::class)->except('create','edit');
 Route::prefix('client')->controller(ClientController::class)->group(function() {
     Route::get('show/datatable', 'showDatatable')->name('client.main.table');
+});
+
+Route::prefix('contract')->controller(ClientContractController::class)->group(function() {
+    Route::get('show/{client}', 'show')->name('contract.show');
 });

@@ -33,11 +33,6 @@
                             @endforeach
                         </ol>
                     </nav>
-                    {{-- <button type="button" id="newContractBtn"
-                        class="text-white bg-blue-700 hidden sm:block hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        data-modal-target="newContractModal" data-modal-toggle="newContractModal">
-                        <i class="fa-solid fa-plus mr-2"></i>New Contract
-                    </button> --}}
                 </div>
             @endunless
 
@@ -70,12 +65,12 @@
                         <div
                             class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                             <a href="#">
-                                <h6 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><small>Contract No. </small>{{ $contract->contract_number }}</h6>
+                                <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><small>Contract No. </small>{{ $contract->contract_number }}</h5>
                             </a>
                             <p class="font-normal text-gray-700 dark:text-gray-400">{{ $contract->description }}</p>
                             <small>Period: {{ \Carbon\Carbon::parse($contract->start_date)->format('d/m/Y') }}</small>
                             <p class="my-10 font-normal text-gray-700 dark:text-gray-400">{{ $contract->details }}</p>
-                            <a href="{{ route('contract.show', $contract->id) }}"
+                            <a href="#"
                                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 More details
                                 <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
