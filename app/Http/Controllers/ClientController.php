@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ClientStoreRequest;
 use App\Models\Client;
-use App\Models\ClientContract;
+use App\Models\Contract;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -108,7 +108,7 @@ class ClientController extends Controller
             ],
         ];
 
-        $contracts = ClientContract::where('client_id', $client->id)->get();
+        $contracts = Contract::where('client_id', $client->id)->get();
 
         return view('customer.profile', [
             'breadcrumbs' => $breadcrumbs,
@@ -144,7 +144,7 @@ class ClientController extends Controller
 
     public function showDatatable()
     {
-        $model = Client::all();
+        $model = Client::select('id','name','address','phone_number','email','updated_at');
 
         return DataTables::of($model)
             ->addColumn('actions', function($model) {

@@ -5,43 +5,13 @@
         <div class="p-4 mt-2">
             <h3 class="mb-2 hidden md:block text-2xl font-medium text-gray-900 dark:text-white">{{ $title }}</h3>
 
-            @unless (count($breadcrumbs) === 0)
-                <div class="flex justify-between">
-                    <nav class="flex" aria-label="Breadcrumb">
-                        <ol class="inline-flex items-center">
-                            @foreach ($breadcrumbs as $breadcrumb)
-                                <li class="inline-flex items-center">
-                                    @if ($breadcrumb['status'] === 'active')
-                                        <a href="{{ $breadcrumb['url'] }}"
-                                            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                                            @if ($breadcrumb['icon'])
-                                                <i class="{{ $breadcrumb['icon'] }} mr-2"></i>
-                                            @endif
-                                            {{ $breadcrumb['title'] }}
-                                        </a>
-                                        <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor"
-                                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                                clip-rule="evenodd"></path>
-                                        </svg>
-                                    @else
-                                        <span
-                                            class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ $breadcrumb['title'] }}</span>
-                                    @endif
-                                </li>
-                            @endforeach
-                        </ol>
-                    </nav>
-                    {{-- <button type="button" id="newContractBtn"
-                        class="text-white bg-blue-700 hidden sm:block hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        data-modal-target="newContractModal" data-modal-toggle="newContractModal">
-                        <i class="fa-solid fa-plus mr-2"></i>New Contract
-                    </button> --}}
-                </div>
-            @endunless
-
-            <div class="mt-7 sm:flex sm:justify-center justify-start">
+            <div class="flex justify-between mb-7">
+                @unless (count($breadcrumbs) === 0)
+                    @include('layout.breadcrumbs')
+                @endunless
+            </div>
+            
+            <div class="sm:flex sm:justify-center justify-start">
                 <div class="grid sm:grid-cols-2 w-3/4 h-40">
                     <div class="sm:flex items-center justify-end mr-20 hidden">
                         <img class="rounded-full w-36 h-36 ring-2 ring-gray-300 p-1"

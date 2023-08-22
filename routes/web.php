@@ -1,10 +1,15 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ClientContractController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ContractActivityController;
+use App\Http\Controllers\ContractController;
+use App\Http\Controllers\CostingController;
 use App\Http\Controllers\DashboardController;
-use App\Models\ClientContract;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\ItemTypeController;
+use App\Http\Controllers\UnitRateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +40,40 @@ Route::prefix('client')->controller(ClientController::class)->group(function() {
     Route::get('show/datatable', 'showDatatable')->name('client.main.table');
 });
 
-Route::prefix('contract')->controller(ClientContractController::class)->group(function() {
-    Route::get('show/{client}', 'show')->name('contract.show');
+Route::prefix('contract')->controller(ContractController::class)->group(function() {
+    Route::get('show/{contract}', 'show')->name('contract.show');
+});
+
+Route::resource('itemtype', ItemTypeController::class)->only('index','store','edit','update','destroy');
+Route::prefix('itemtype')->controller(ItemTypeController::class)->group(function() {
+    Route::get('show/datatable', 'showDatatable')->name('itemtype.main.table');
+});
+
+Route::resource('item', ItemController::class)->only('index','store','edit','update','destroy');
+Route::prefix('item')->controller(ItemController::class)->group(function() {
+    Route::get('show/dropdown', 'showOnDropdown')->name('item.show.dropdown');
+    Route::get('show/datatable', 'showDatatable')->name('item.main.table');
+});
+
+Route::resource('unitrate', UnitRateController::class)->only('index','store','edit','update','destroy');
+Route::prefix('unitrate')->controller(UnitRateController::class)->group(function() {
+    Route::get('show/dropdown', 'showOnDropdown')->name('unitrate.show.dropdown');
+    Route::get('activity/show/dropdown', 'showActivityUnitrateOnDropdown')->name('unitrate.activity.show.dropdown');
+    Route::get('show/datatable', 'showDatatable')->name('unitrate.main.table');
+});
+
+Route::resource('activity', ActivityController::class)->only('index','store','edit','update','destroy');
+Route::prefix('activity')->controller(ActivityController::class)->group(function() {
+    Route::get('show/dropdown', 'showOnDropdown')->name('activity.show.dropdown');
+    Route::get('show/datatable', 'showDatatable')->name('activity.main.table');
+});
+
+Route::resource('costing', CostingController::class)->only('store','edit','update','destroy');
+Route::prefix('costing')->controller(CostingController::class)->group(function() {
+    Route::get('show/datatable', 'showDatatable')->name('costing.table');
+});
+
+Route::resource('contractactivity', ContractActivityController::class)->only('store','edit','update','destroy');
+Route::prefix('contractactivity')->controller(ContractActivityController::class)->group(function() {
+    Route::get('show/datatable', 'showDatatable')->name('contractactivity.table');
 });

@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <section class="bg-gray-50 min-h-screen flex items-center justify-center">
+    <section class="min-h-screen flex items-center justify-center bg-center bg-no-repeat bg-[url('/public/theme/assets/images/login-bg-image.jpeg')]">
         <div>
             @if ($errors->all())
                 <div class="mb-3">
@@ -38,11 +38,6 @@
                             </div>
                         </div>
                         <div>
-                            {{-- <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" data-dismiss-target="alert-1" aria>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg> --}}
                             <button type="button"
                             class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"
                             data-dismiss-target="#alert-1" aria-label="Close">

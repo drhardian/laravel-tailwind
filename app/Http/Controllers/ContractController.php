@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ClientContract;
-use Illuminate\Http\Request;
+use App\Models\Contract;
 
-class ClientContractController extends Controller
+class ContractController extends Controller
 {
     protected $pageTitle;
     protected $pageProfile;
@@ -16,7 +15,7 @@ class ClientContractController extends Controller
         $this->pageProfile = 'Profile';
     }
 
-    public function show(ClientContract $client)
+    public function show(Contract $contract)
     {
         $breadcrumbs = [
             [
@@ -24,6 +23,12 @@ class ClientContractController extends Controller
                 'status' => 'active',
                 'url' => 'dashboard',
                 'icon' => 'fa-solid fa-house fa-sm',
+            ],
+            [
+                'title' => $contract->client->name,
+                'status' => 'active',
+                'url' => route('client.show', $contract->client_id),
+                'icon' => '',
             ],
             [
                 'title' => $this->pageTitle,
@@ -35,7 +40,8 @@ class ClientContractController extends Controller
 
         return view('contract.index', [
             'breadcrumbs' => $breadcrumbs,
-            'title' => $this->pageTitle
+            'title' => $this->pageTitle,
+            'contract' => $contract
         ]);
     }
 }
