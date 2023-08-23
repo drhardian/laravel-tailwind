@@ -42,4 +42,14 @@ class Activity extends Model
     {
         return $this->hasOne(ContractActivity::class, 'activity_id', 'id');
     }
+
+    /**
+     * Get all of the requestorderactivities for the Activity
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orderactivities(): HasMany
+    {
+        return $this->hasMany(RequestOrderActivity::class, 'activity_code', 'id');
+    }
 }
