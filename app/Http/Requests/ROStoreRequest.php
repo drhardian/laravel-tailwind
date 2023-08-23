@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ItemtypeStoreRequest extends FormRequest
+class ROStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,13 @@ class ItemtypeStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'activity_id' => 'required|integer|exists:master_activity,id',
-            'type_name' => 'required|string'
+            'contract_id' => 'required|integer',
+            'ro_number' => 'required|max:255',
+            'activity_code' => 'required|integer',
+            'start_date' => 'required|date_format:d/m/Y',
+            'end_date' => 'required|date_format:d/m/Y|after:start_date',
+            'so_number' => 'required|max:255',
+            'status' => 'required|integer'
         ];
     }
 }

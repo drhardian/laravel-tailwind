@@ -27,4 +27,14 @@ class Contract extends Model
     {
         return $this->hasMany(ContractActivity::class, 'contract_id', 'id');
     }
+
+    /**
+     * Get all of the requestorders for the Contract
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function requestorders(): HasMany
+    {
+        return $this->hasMany(RequestOrder::class, 'contract_id', 'id');
+    }
 }
