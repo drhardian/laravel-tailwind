@@ -39,7 +39,7 @@ class ItemTypeController extends Controller
             ],
         ];
 
-        return view('itemtype.index', [
+        return view('request_order.itemtype.index', [
             'breadcrumbs' => $breadcrumbs,
             'title' => $this->pageTitle
         ]);
@@ -124,6 +124,7 @@ class ItemTypeController extends Controller
         }
     }
 
+    # Display a listing of the resource on datatable.
     public function showDatatable()
     {
         $model = ItemType::with('activity')
@@ -150,5 +151,27 @@ class ItemTypeController extends Controller
             })
             ->rawColumns(['actions'])
             ->make(true);
-    }    
+    }
+    
+    # Display a listing of the resource on selectbox.
+    public function showOnDropdown()
+    {
+        $queries = ItemType::select('id', 'type_name')
+            ->where('activity_id', request('activity_id'))
+            ->when(request('search', false), function ($query) {
+                $query->where('type_name', 'like', '%' . request('search') . '%');
+            })
+            ->get();
+
+        $response = [];
+
+        foreach ($queries as $query) {
+            $response[] = array(
+                "id" => $query->id,
+                "text" => $query->type_name,
+            );
+        }
+
+        return response()->json($response);
+    }
 }

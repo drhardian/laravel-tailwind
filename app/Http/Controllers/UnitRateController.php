@@ -41,7 +41,7 @@ class UnitRateController extends Controller
             ],
         ];
 
-        return view('unitrate.index', [
+        return view('request_order.unitrate.index', [
             'breadcrumbs' => $breadcrumbs,
             'title' => $this->pageTitle
         ]);
@@ -165,6 +165,7 @@ class UnitRateController extends Controller
         return response()->json($response);
     }
 
+    # Display a listing of the resource on datatable.
     public function showDatatable()
     {
         $model = UnitRate::select('id', 'rate_name', 'updated_at');

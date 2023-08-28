@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Contract extends Model
+class RequestOrder extends Model
 {
     use HasFactory;
-    protected $table = 'client_contract';
+    protected $table = 'request_order';
     protected $guarded = [];
 
     protected static function boot() {
@@ -28,28 +29,43 @@ class Contract extends Model
         });
     }
 
+    /**
+     * Get the contract that owns the RequestOrder
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function contract(): BelongsTo
+    {
+        return $this->belongsTo(Contract::class, 'contract_id', 'id');
+    }
+
+    /**
+     * Get the client that owns the RequestOrder
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class, 'client_id', 'id');
     }
 
     /**
-     * Get all of the contractactivities for the Contract
+     * Get the orderactivity associated with the RequestOrder
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function contractactivities(): HasMany
+    public function orderactivity(): HasOne
     {
-        return $this->hasMany(ContractActivity::class, 'contract_id', 'id');
+        return $this->hasOne(RequestOrderActivity::class, 'request_order_id', 'id');
     }
 
     /**
-     * Get all of the requestorders for the Contract
+     * Get all of the orderdetails for the RequestOrder
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function requestorders(): HasMany
+    public function orderdetails(): HasMany
     {
-        return $this->hasMany(RequestOrder::class, 'contract_id', 'id');
+        return $this->hasMany(RequestOrderTransaction::class, 'request_order_id', 'id');
     }
 }

@@ -42,18 +42,10 @@ class ClientController extends Controller
             ],
         ];
 
-        return view('customer.index', [
+        return view('request_order.customer.index', [
             'breadcrumbs' => $breadcrumbs,
             'title' => $this->pageTitle
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -64,7 +56,7 @@ class ClientController extends Controller
         DB::beginTransaction();
 
         try {
-            $client = Client::create($request->all());
+            $client = Client::create($request->only('name','address','phone_number','email'));
             
             DB::commit();
 
@@ -108,9 +100,9 @@ class ClientController extends Controller
             ],
         ];
 
-        $contracts = Contract::where('client_id', $client->id)->get();
+        $contracts = ContractController::showAsCards($client->id);
 
-        return view('customer.profile', [
+        return view('request_order.customer.profile', [
             'breadcrumbs' => $breadcrumbs,
             'title' => $this->pageProfile,
             'customer' => $client,
@@ -123,15 +115,40 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        return response()->json([
+            'form' => [
+                ['name', $client->name],
+                ['address', $client->address],
+                ['phone_number', $client->phone_number],
+                ['email', $client->email],
+            ],
+            'update_url' => route('client.update', ['client' => $client->id])
+        ], 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Client $client)
+    public function update(ClientStoreRequest $request, Client $client)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $client->update($request->only('name','address','phone_number','email'));
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'Customer successfully updated'
+            ], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+
+            return response()->json([
+                'message' => 'The server encountered an error and could not complete your request'
+            ], 500);
+        }
     }
 
     /**
@@ -139,20 +156,45 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $client->delete();
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'Customer successfully deleted'
+            ], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+
+            return response()->json([
+                'message' => 'The server encountered an error and could not complete your request'
+            ], 500);
+        }
     }
 
     public function showDatatable()
     {
-        $model = Client::select('id','name','address','phone_number','email','updated_at');
+        $model = Client::with('contracts')
+        ->select(
+            'id',
+            'name',
+            'address',
+            'phone_number',
+            'email',
+            'updated_at'
+        );
 
         return DataTables::of($model)
             ->addColumn('actions', function($model) {
                 $show = '<a href="'.route('client.show', [ $model->id ]).'"><i class="fa-solid fa-eye cursor-pointer"></i></a>';
-                $edit = '';
-                $delete = '';
+                $edit = '<a href="#" class="px-2" onclick="editRecord(\'' . route('client.edit', ['client' => $model->id]) . '\')"><i class="fa-solid fa-pen-to-square cursor-pointer"></i></a>';
+                $delete = $model->contracts->count() == 0 ? '<a href="#" class="" onclick="deleteRecord(\'' . route('client.destroy', ['client' => $model->id]) . '\')"><i class="fa-solid fa-trash cursor-pointer"></i></a>' : '';
                 $actions = '<div class="row flex">'.
-                    $show.        
+                    $show.$edit.$delete.
                     '</div>';
 
                 return $actions;
@@ -161,6 +203,7 @@ class ClientController extends Controller
                 return Carbon::parse($model->updated_at)->format('d/m/Y H:i:s');
             })
             ->rawColumns(['actions'])
+            ->removeColumn('contracts')
             ->make(true);
     }
 }

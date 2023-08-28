@@ -10,7 +10,7 @@
                     @include('layout.breadcrumbs')
                 @endunless
 
-                <button type="button" id="newActivityBtn"
+                <button type="button"
                     onclick="openForm(`{{ route('unitrate.store') }}`)"
                     class="text-white bg-blue-700 hidden sm:block hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     <i class="fa-solid fa-plus mr-2"></i>New
@@ -54,6 +54,7 @@
                 </div>
                 <!-- Modal body -->
                 <div class="px-6 space-y-6">
+                    <!-- Alert Message Area -->
                     <div id="alert-frame">
                         <div id="warning-alert"
                             class="hidden items-center p-4 my-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
@@ -108,7 +109,7 @@
 @endsection
 
 @section('js')
-    <script type="text/javascript" src="{{ asset('core/js/unitrate-custom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('core/js/request_order/unitrate-custom.js') }}"></script>
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 

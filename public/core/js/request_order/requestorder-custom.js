@@ -6,7 +6,7 @@ let closeIco = document.getElementById('closeIco');
 
 openForm = (url) => {
     modalShowAndReset();
-    $('.modal-title').text('New Item Type');
+    $('.modal-title').text('New Request Order');
     $('#form_url').val(url);
 }
 
@@ -17,6 +17,7 @@ modalShowAndReset = () => {
 
 formReset = () => {
     $("#mainForm select,input").val(null).trigger('change');
+    $('#mainForm').attr('method', 'POST');
 }
 
 closeIco.onclick = function() {
@@ -87,7 +88,7 @@ saveRecord = () => {
 
 editRecord = (url) => {
     modalShowAndReset();
-    $('.modal-title').text('Edit Item Type');
+    $('.modal-title').text('Edit Request Order');
 
     $('#warning-alert').removeClass('flex').addClass('hidden');
 
@@ -99,11 +100,18 @@ editRecord = (url) => {
         url: url,
         dataType: "json",
         success: function (response) {
-            var activityOptions = new Option(response.activity[1], response.activity[0], true, true);
-            $('#activity_id').append(activityOptions).trigger('change');
-            
-            $('#type_name').val(response.type_name);
+            $.each(response.form, function (index, value) { 
+                $('#' + value[0]).val(value[1]);
+            });
 
+            var contractOptions = new Option(response.dropdown.contract[1], response.dropdown.contract[0], true, true);
+            $('#contract_id').append(contractOptions).trigger('change');
+            
+            var activityOptions = new Option(response.dropdown.activity[1], response.dropdown.activity[0], true, true);
+            $('#activity_code').append(activityOptions).trigger('change');
+            
+            $('#status').val(response.dropdown.status).trigger('change');
+            
             $('#form_url').val(response.update_url);
             $('#mainForm').attr('method', 'PUT');
         }
@@ -138,16 +146,21 @@ deleteRecord = (url) => {
                     toastr.success(response.message);
                     $('#main-table').DataTable().ajax.reload();
                 },
-                error: function(response) {
+                error: function (response) {
                     Swal.close();
 
-                    $('#warning-alert').removeClass('hidden').addClass('flex');
-
-                    $('.warning-alert-message').html('');
-                    $('.warning-alert-title').text('');
-
-                    $('.warning-alert-title').text('Well, this is unexpected..');
-                    $('.warning-alert-message').append('<li>'+response.responseJSON.message+'</li>');
+                    if (response.status != 406) {
+    
+                        $('#warning-alert').removeClass('hidden').addClass('flex');
+    
+                        $('.warning-alert-message').html('');
+                        $('.warning-alert-title').text('');
+    
+                        $('.warning-alert-title').text('Well, this is unexpected..');
+                        $('.warning-alert-message').append('<li>' + response.responseJSON.message + '</li>');
+                    } else {
+                        toastr.error( response.responseJSON.message );
+                    }
                 }
             });
         }

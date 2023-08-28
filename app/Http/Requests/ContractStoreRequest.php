@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ItemtypeStoreRequest extends FormRequest
+class ContractStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,12 @@ class ItemtypeStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'activity_id' => 'required|integer|exists:master_activity,id',
-            'type_name' => 'required|string'
+            'client_id' => 'required|integer|exists:client,id',
+            'contract_number' => 'required|max:100',
+            'description' => 'required|max:255',
+            'start_date' => 'required|date_format:d/m/Y',
+            'end_date' => 'required|date_format:d/m/Y|after:start_date',
+            'details' => 'required|max:255',
         ];
     }
 }
