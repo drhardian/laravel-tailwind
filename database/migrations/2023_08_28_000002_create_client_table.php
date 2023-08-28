@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contract_scopeofwork_details', function (Blueprint $table) {
+        Schema::create('client', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('contract_scopeofwork_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('scopeof_work_id')->constrained()->cascadeOnDelete();
-            $table->double('scope_weight');
+            $table->string('name');
+            $table->string('address');
+            $table->string('phone_number');
+            $table->string('email')->unique();
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contract_scopeofwork_details');
+        Schema::dropIfExists('client');
     }
 };

@@ -10,16 +10,16 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+    /*
+        1 -> Received
+        2 -> Work in progress
+        3 -> Work completed
+        4 -> Invoiced
+        9 -> Paid
+    */
+
     public function indexInternal()
     {
-        /*
-            1 -> Received
-            2 -> Work in progress
-            3 -> Work completed
-            4 -> Invoiced
-            9 -> Paid
-        */
-
         $customersTotal = Client::get()->count();
         $contractsTotal = Contract::get()->count();
         $roTotal = RequestOrder::get()->count();
@@ -119,5 +119,28 @@ class DashboardController extends Controller
             'labels' => $rostatusTitle,
             'series' => $rostatusTotal,
         ], 200);
+    }
+
+    public function indexExternal()
+    {
+        $customersTotal = Client::get()->count();
+        $contractsTotal = Contract::get()->count();
+        $roTotal = RequestOrder::get()->count();
+        $roOnProgressTotal = RequestOrder::where('status',2)->get()->count();
+        $roCompletedTotal = RequestOrder::where('status',3)->get()->count();
+        $roInvoicedTotal = RequestOrder::where('status',4)->get()->count();
+        $roPaidTotal = RequestOrder::where('status',9)->get()->count();
+
+        return view('request_order.dashboard.internal.index', 
+            compact(
+                'customersTotal',
+                'contractsTotal',
+                'roTotal',
+                'roOnProgressTotal',
+                'roCompletedTotal',
+                'roInvoicedTotal',
+                'roPaidTotal',
+            )
+        );
     }
 }

@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('activities', function (Blueprint $table) {
+        Schema::create('master_item_type', function (Blueprint $table) {
             $table->id();
-            $table->string('activity_code', 10);
-            $table->string('activity_name', 50);
+            $table->unsignedBigInteger('activity_id');
+            $table->string('type_name');
             $table->timestamps();
+            $table->foreign('activity_id')->references('id')->on('master_activity');
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('activities');
+        Schema::dropIfExists('master_item_type');
     }
 };

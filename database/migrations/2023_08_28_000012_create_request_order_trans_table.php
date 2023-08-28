@@ -11,17 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('request_order_costings', function (Blueprint $table) {
+        Schema::create('request_order_trans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('request_order_id');
             $table->unsignedBigInteger('costing_id');
-            $table->integer('quantity');
-            $table->decimal('unit_price', 18, 2);
-            $table->decimal('sub_total', 18, 2);
+            $table->double('quantity');
+            $table->double('unit_price');
+            $table->double('sub_total');
             $table->timestamps();
-
-            $table->foreign('request_order_id')->references('id')->on('request_orders')->onDelete('cascade');
-            $table->foreign('costing_id')->references('id')->on('client_contract_costings')->onDelete('cascade');
+            $table->foreign('request_order_id')->references('id')->on('request_order');
+            $table->foreign('costing_id')->references('id')->on('costing');
         });
     }
 
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('request_order_costings');
+        Schema::dropIfExists('request_order_trans');
     }
 };
