@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('unit_rates', function (Blueprint $table) {
+        Schema::create('activity_unit_rate', function (Blueprint $table) {
             $table->id();
-            $table->string('rate_name');
+            $table->unsignedBigInteger('unit_rate_id');
+            $table->unsignedBigInteger('activity_code');
             $table->timestamps();
+            $table->foreign('unit_rate_id')->references('id')->on('unit_rate');
+            $table->foreign('activity_code')->references('id')->on('master_activity');
         });
     }
 
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('unit_rates');
+        Schema::dropIfExists('activity_unit_rate');
     }
 };

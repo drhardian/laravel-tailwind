@@ -38,6 +38,7 @@ Route::prefix('request_order')->group(function() {
         Route::get('internal', 'indexInternal')->name('ro.dashboard.internal');
         Route::get('internal/rostatus', 'getRequestOrderStatus')->name('ro.dashboard.rostatus');
         Route::get('internal/roamount', 'getRequestOrderAmountStatus')->name('ro.dashboard.roamount');
+        Route::get('external', 'indexExternal')->name('ro.dashboard.external');
     });
 });
 
