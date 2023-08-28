@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('scopeof_works', function (Blueprint $table) {
+        Schema::create('unit_rate', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('rate_name');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('scopeof_works');
+        Schema::dropIfExists('unit_rate');
     }
 };

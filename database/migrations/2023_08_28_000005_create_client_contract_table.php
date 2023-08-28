@@ -14,15 +14,13 @@ return new class extends Migration
         Schema::create('client_contract', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('client_id');
-            $table->string('contract_number', 255);
-            $table->string('description', 255);
-            $table->string('details', 255);
+            $table->string('contract_number');
+            $table->string('description');
+            $table->string('details');
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();
-
-            $table->foreign('client_id')->references('id')->on('client')->onDelete('cascade');
-
+            $table->foreign('client_id')->references('id')->on('client');
         });
     }
 

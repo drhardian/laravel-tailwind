@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('activityunitrates', function (Blueprint $table) {
+        Schema::create('contract_activity_value', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('contract_id');
             $table->unsignedBigInteger('activity_id');
-            $table->unsignedBigInteger('unitrate_id');
+            $table->double('value');
             $table->timestamps();
-            
-            $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
-            $table->foreign('unitrate_id')->references('id')->on('unit_rates')->onDelete('cascade');
+            $table->foreign('contract_id')->references('id')->on('client_contract');
+            $table->foreign('activity_id')->references('id')->on('master_activity');
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('activityunitrates');
+        Schema::dropIfExists('contract_activity_value');
     }
 };
