@@ -17,6 +17,7 @@ modalShowAndReset = () => {
 
 formReset = () => {
     $("#mainForm select,input").val(null).trigger('change');
+    $('#mainForm').attr('method', 'POST');
 }
 
 closeIco.onclick = function() {

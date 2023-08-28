@@ -42,7 +42,7 @@ class ClientController extends Controller
             ],
         ];
 
-        return view('customer.index', [
+        return view('request_order.customer.index', [
             'breadcrumbs' => $breadcrumbs,
             'title' => $this->pageTitle
         ]);
@@ -100,9 +100,9 @@ class ClientController extends Controller
             ],
         ];
 
-        $contracts = Contract::where('client_id', $client->id)->get();
+        $contracts = ContractController::showAsCards($client->id);
 
-        return view('customer.profile', [
+        return view('request_order.customer.profile', [
             'breadcrumbs' => $breadcrumbs,
             'title' => $this->pageProfile,
             'customer' => $client,

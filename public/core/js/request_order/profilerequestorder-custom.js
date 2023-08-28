@@ -6,7 +6,7 @@ let closeIco = document.getElementById('closeIco');
 
 openForm = (url) => {
     modalShowAndReset();
-    $('.modal-title').text('New Customer');
+    $('.modal-title').text('New Item');
     $('#form_url').val(url);
 }
 
@@ -17,6 +17,7 @@ modalShowAndReset = () => {
 
 formReset = () => {
     $("#mainForm select,input").val(null).trigger('change');
+    $('#mainForm').attr('method', 'POST');
 }
 
 closeIco.onclick = function() {
@@ -32,7 +33,7 @@ modalHideAndReset = () => {
     formReset();    
 }
 
-saveRecord = () => {
+saveRecord = (id) => {
     Swal.fire({
         template: '#create-template',
     }).then((result) => {
@@ -40,7 +41,7 @@ saveRecord = () => {
             $.ajax({
                 type: "post",
                 url: $('#form_url').val(),
-                data: $('#mainForm').serialize() + '&_token=' + CSRF_TOKEN + '&_method=' + $('#mainForm').attr('method'),
+                data: $('#mainForm').serialize() + '&_token=' + CSRF_TOKEN + '&_method=' + $('#mainForm').attr('method') + '&request_order_id=' + id,
                 beforeSend: function() {
                     Swal.fire({
                         title: 'Please wait...',
@@ -55,7 +56,8 @@ saveRecord = () => {
                     Swal.close();
                     modalHideAndReset();
                     toastr.success(response.message);
-                    $('#main-table').DataTable().ajax.reload();
+
+                    $('#item-table').DataTable().ajax.reload();
                 },
                 error: function(response) {
                     Swal.close();
@@ -87,7 +89,7 @@ saveRecord = () => {
 
 editRecord = (url) => {
     modalShowAndReset();
-    $('.modal-title').text('Edit Unit Rate');
+    $('.modal-title').text('Edit Item');
 
     $('#warning-alert').removeClass('flex').addClass('hidden');
 
@@ -99,6 +101,11 @@ editRecord = (url) => {
         url: url,
         dataType: "json",
         success: function (response) {
+            console.log(response);
+
+            var costingItemsOptions = new Option(response.costing_id[1], response.costing_id[0], true, true);
+            $('#costing_id').append(costingItemsOptions).trigger('change');
+
             $.each(response.form, function (index, value) { 
                 $('#' + value[0]).val(value[1]);
             });
@@ -135,7 +142,8 @@ deleteRecord = (url) => {
                     Swal.close();
 
                     toastr.success(response.message);
-                    $('#main-table').DataTable().ajax.reload();
+
+                    $('#item-table').DataTable().ajax.reload();
                 },
                 error: function(response) {
                     Swal.close();
@@ -149,6 +157,22 @@ deleteRecord = (url) => {
                     $('.warning-alert-message').append('<li>'+response.responseJSON.message+'</li>');
                 }
             });
+        }
+    });
+}
+
+updateTotalAmount = (url, requestorder_id) => {
+    $.ajax({
+        type: "get",
+        url: url,
+        data: {
+            requestorder_id: requestorder_id
+        },
+        success: function (response) {
+            $('.request-order-amount').text(response);
+        },
+        error: function (response) {
+            toastr.error(response);
         }
     });
 }

@@ -6,7 +6,7 @@ let closeIco = document.getElementById('closeIco');
 
 openForm = (url) => {
     modalShowAndReset();
-    $('.modal-title').text('New Unit Rate');
+    $('.modal-title').text('New Item Type');
     $('#form_url').val(url);
 }
 
@@ -17,6 +17,7 @@ modalShowAndReset = () => {
 
 formReset = () => {
     $("#mainForm select,input").val(null).trigger('change');
+    $('#mainForm').attr('method', 'POST');
 }
 
 closeIco.onclick = function() {
@@ -87,7 +88,7 @@ saveRecord = () => {
 
 editRecord = (url) => {
     modalShowAndReset();
-    $('.modal-title').text('Edit Unit Rate');
+    $('.modal-title').text('Edit Item Type');
 
     $('#warning-alert').removeClass('flex').addClass('hidden');
 
@@ -99,9 +100,10 @@ editRecord = (url) => {
         url: url,
         dataType: "json",
         success: function (response) {
-            $.each(response.form, function (index, value) { 
-                $('#' + value[0]).val(value[1]);
-            });
+            var activityOptions = new Option(response.activity[1], response.activity[0], true, true);
+            $('#activity_id').append(activityOptions).trigger('change');
+            
+            $('#type_name').val(response.type_name);
 
             $('#form_url').val(response.update_url);
             $('#mainForm').attr('method', 'PUT');

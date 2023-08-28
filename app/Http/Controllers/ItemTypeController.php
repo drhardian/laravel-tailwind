@@ -39,7 +39,7 @@ class ItemTypeController extends Controller
             ],
         ];
 
-        return view('itemtype.index', [
+        return view('request_order.itemtype.index', [
             'breadcrumbs' => $breadcrumbs,
             'title' => $this->pageTitle
         ]);

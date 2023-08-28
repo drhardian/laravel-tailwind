@@ -41,7 +41,7 @@ class UnitRateController extends Controller
             ],
         ];
 
-        return view('unitrate.index', [
+        return view('request_order.unitrate.index', [
             'breadcrumbs' => $breadcrumbs,
             'title' => $this->pageTitle
         ]);

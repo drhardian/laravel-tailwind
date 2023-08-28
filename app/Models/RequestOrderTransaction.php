@@ -12,6 +12,20 @@ class RequestOrderTransaction extends Model
     protected $table = 'request_order_trans';
     protected $guarded = [];
 
+    protected static function boot() {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->unit_price = str_replace(",","",request('unit_price'));
+            $model->sub_total = str_replace(",","",request('sub_total'));
+        });
+
+        static::updating(function ($model) {
+            $model->unit_price = str_replace(",","",request('unit_price'));
+            $model->sub_total = str_replace(",","",request('sub_total'));
+        });
+    }
+
     /**
      * Get the order that owns the RequestOrderTransaction
      *

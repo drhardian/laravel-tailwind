@@ -107,7 +107,7 @@ class ContractActivityController extends Controller
                 'master_activity.activity_name'
             )
             ->where([
-                ['contract_id', '=', '6']
+                ['contract_id', '=', request('contractId')]
             ]);
 
         return DataTables::of($model)

@@ -108,14 +108,69 @@ class CostingController extends Controller
         }
     }
     
+    # Display a listing of the resource on selectbox.
+    public function showOnDropdown()
+    {
+        $queries = Costing::with([
+            'item:id,size,class,description,master_activity_code,item_type_id',
+            'item.activity:id,activity_name',
+            'item.itemtype:id,type_name', 
+            'unitrate:id,rate_name'
+        ])
+        ->select(
+            'costing.id',
+            'costing.item_id',
+            'costing.unit_rate_id',
+            'costing.price'
+        )
+        ->where('contract_id', request('contractId'))
+        ->when(request('search',false), function($query) {
+            $query->where(function($query) {
+                $query->orWhereHas('item', function($q) {
+                    $q->where('size', 'like', '%'.request('search').'%')
+                    ->orWhere('class', 'like', '%'.request('search').'%')
+                    ->orWhere('description', 'like', '%'.request('search').'%');
+                })
+                ->orWhereHas('item.activity', function($q) {
+                    $q->where('activity_name','like','%'.request('search').'%');
+                })
+                ->orWhereHas('item.itemtype', function($q) {
+                    $q->where('type_name','like','%'.request('search').'%');
+                })
+                ->orWhereHas('unitrate', function($q) {
+                    $q->where('rate_name','like','%'.request('search').'%');
+                });
+            });
+        }, function($query) {
+            return $query->limit(50);
+        })
+        ->get();
+
+        $response = [];
+
+        foreach($queries as $query) {
+            $response[] = array(
+                "id" => $query->id,
+                "text" => $query->item->size,
+                "class" => $query->item->class,
+                "activity" => $query->item->activity->activity_name,
+                "itemtype" => $query->item->itemtype->type_name,
+                "unitrate" => $query->unitrate->rate_name,
+                "price" => number_format($query->price)
+            );
+        }
+
+        return response()->json($response);
+    }
+
     # show costing item on datatable
     public function showDatatable()
     {
         $model = Costing::with('unitrate','item','item.activity','item.itemtype')
             ->select('costing.id','client_id','contract_id','item_id','unit_rate_id','price','costing.created_at','costing.updated_at')
             ->where([
-                ['client_id', '=', '2'],
-                ['contract_id', '=', '6']
+                ['client_id', request('clientId')],
+                ['contract_id', request('contractId')]
             ])
             ->orderByDesc('created_at');
 
