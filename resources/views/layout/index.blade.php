@@ -95,16 +95,17 @@
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                 <ul
                     class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                    <!-- Asset Manager -->
                     <li>
                         <a href="#"
-                            class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
-                            aria-current="page">Asset Manager</a>
+                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Asset Manager</a>
                     </li>
+                    <!-- Maintenance Manager -->
                     <li>
                         <a href="#"
-                            class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
-                            aria-current="page">Maintenance Manager</a>
+                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Maintenance Manager</a>
                     </li>
+                    <!-- Contract Manager -->
                     <li>
                         <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbarCM"
                             class="flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Contract
@@ -120,13 +121,9 @@
                             class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                             <ul class="py-2 text-sm text-gray-700 dark:text-gray-400"
                                 aria-labelledby="dropdownLargeButton">
-                                <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Customers
-                                        Dashboard</a>
-                                </li>
+                                <!-- Request Order -->
                                 <li aria-labelledby="dropdownNavbarLink">
-                                    <button id="doubleDropdownButton" data-dropdown-toggle="doubleDropdown"
+                                    <button id="requestOrderDropdownButton" data-dropdown-toggle="requestOrderDropdown"
                                         data-dropdown-placement="right-start" type="button"
                                         class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Request
                                         Order<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
@@ -134,18 +131,40 @@
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                                 stroke-width="2" d="m1 1 4 4 4-4" />
                                         </svg></button>
-                                    <div id="doubleDropdown"
+                                    <div id="requestOrderDropdown"
                                         class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                            aria-labelledby="doubleDropdownButton">
+                                        <ul class="pt-2 text-sm text-gray-700 dark:text-gray-200">
                                             <li>
-                                                <a href="{{ route('requestorder.index') }}"
-                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Overview</a>
+                                                <button id="requestOrderDashboardDropdownButton" data-dropdown-toggle="requestOrderDashboardDropdown"
+                                                    data-dropdown-placement="right-start" type="button"
+                                                    class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="m1 1 4 4 4-4" />
+                                                    </svg></button>
+                                                <div id="requestOrderDashboardDropdown"
+                                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                                    <ul class="text-sm text-gray-700 dark:text-gray-200">
+                                                        <li>
+                                                            <a href="{{ route('ro.dashboard.internal') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Internal</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">External</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </li>
                                         </ul>
-                                        <div class="py-1">
-                                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                            aria-labelledby="doubleDropdownButton">
+                                        <div>
+                                            <ul class="text-sm text-gray-700 dark:text-gray-200">
+                                                <li>
+                                                    <a href="{{ route('requestorder.index') }}"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Overview</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <ul class="text-sm text-gray-700 dark:text-gray-200">
                                                 <li>
                                                     <a href="{{ route('client.index') }}"
                                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Customers</a>
@@ -170,34 +189,42 @@
                                         </div>
                                     </div>
                                 </li>
+                                <!-- SLA/KPI -->
                                 <li>
                                     <a href="#"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">SLA/KPI</a>
                                 </li>
+                                <!-- HSE -->
                                 <li>
                                     <a href="#"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">HSE</a>
                                 </li>
+                                <!-- Human Resource -->
                                 <li>
                                     <a href="#"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Human Resource</a>
                                 </li>
+                                <!-- Engineering -->
                                 <li>
                                     <a href="#"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Engineering</a>
                                 </li>
+                                <!-- Work Progress -->
                                 <li>
                                     <a href="#"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Work Progress</a>
                                 </li>
+                                <!-- Customer Asset -->
                                 <li>
                                     <a href="#"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Customer Asset</a>
                                 </li>
+                                <!-- Reporting/Doc.Control -->
                                 <li>
                                     <a href="#"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reporting/Doc. Control</a>
                                 </li>
+                                <!-- TKDN Monitoring -->
                                 <li>
                                     <a href="#"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">TKDN Monitoring</a>
@@ -205,6 +232,7 @@
                             </ul>
                         </div>
                     </li>
+                    <!-- Operation Manager -->
                     <li>
                         <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbarOM"
                             class="flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Operation
@@ -264,6 +292,7 @@
                             </ul>
                         </div>
                     </li>
+                    <!-- Setup -->
                     <li>
                         <a href="#"
                             class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Setup</a>
@@ -315,7 +344,8 @@
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
 
     <script>
         $(document).ready(function() {

@@ -322,7 +322,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/datepicker.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js">
     </script>
-    <script type="text/javascript" src="{{ asset('core/js/contract-custom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('core/js/request_order/contract-custom.js') }}"></script>
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
@@ -336,8 +336,13 @@
                 serverSide: true,
                 deferRender: true,
                 searching: true,
+                bAutoWidth: false,
                 ajax: {
                     url: "{{ route('costing.table') }}",
+                    data: function (d) {
+                        d.clientId= $('#clientid').text();
+                        d.contractId= $('#contractid').text();
+                    }
                 },
                 columns: [{
                         data: 'rate_type',
@@ -418,16 +423,20 @@
                         target: [0, 1, 2, 3, 4]
                     },
                     {
+                        target: [0],
+                        width: "17%",
+                    },
+                    {
+                        target: [2],
+                        width: "17%",
+                    },
+                    {
                         target: [3, 4],
-                        width: "8%",
+                        width: "11%",
                     },
                     {
                         target: [5],
                         width: "5%",
-                    },
-                    {
-                        target: [2],
-                        width: "18%",
                     },
                 ]
             });
@@ -559,8 +568,12 @@
                 serverSide: true,
                 deferRender: true,
                 searching: true,
+                bAutoWidth: false,
                 ajax: {
                     url: "{{ route('contractactivity.table') }}",
+                    data: function (d) {
+                        d.contractId= $('#contractid').text();
+                    }
                 },
                 columns: [{
                         data: 'activity_name',
@@ -596,38 +609,29 @@
                         orderable: false,
                         sortable: false,
                         searchable: false,
+                        width: "5%",
                     },
-                    // {
-                    //     data: 'item.activity.activity_name',
-                    // },
-                    // {
-                    //     data: 'item.itemtype.type_name',
-                    // },
-                    // {
-                    //     data: 'item.size',
-                    // },
-                    // {
-                    //     data: 'item.class',
-                    // },
-                    // {
-                    //     data: 'price',
-                    // },
                 ],
                 search: {
                     regex: true
                 },
                 columnDefs: [
-                    // {
-                    //     target: [6, 7, 8, 9, 10],
-                    //     visible: false,
-                    // },
                     {
+                        className: "dt-body-center",
+                        target: [2,3]
+                    },
+                    {
+                        target: [1],
+                        width: "20%",
+                    },
+                    {
+                        target: [2],
                         className: "dt-head-center",
-                        target: [0, 1, 2]
+                        width: "10%",
                     },
                     {
                         target: [3],
-                        width: "5%",
+                        width: "5px",
                     },
                 ]
             });

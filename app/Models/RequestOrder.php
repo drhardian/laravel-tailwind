@@ -19,8 +19,13 @@ class RequestOrder extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            $model->start_date = Carbon::parse(strtotime(request('start_date')))->format('Y-m-d');
-            $model->end_date = Carbon::parse(strtotime(request('end_date')))->format('Y-m-d');
+            $model->start_date = Carbon::createFromFormat('d/m/Y', request('start_date'))->format('Y-m-d');
+            $model->end_date = Carbon::createFromFormat('d/m/Y', request('end_date'))->format('Y-m-d');
+        });
+
+        static::updating(function ($model) {
+            $model->start_date = Carbon::createFromFormat('d/m/Y', request('start_date'))->format('Y-m-d');
+            $model->end_date = Carbon::createFromFormat('d/m/Y', request('end_date'))->format('Y-m-d');
         });
     }
 

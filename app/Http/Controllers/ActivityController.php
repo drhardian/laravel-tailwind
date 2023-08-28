@@ -42,7 +42,7 @@ class ActivityController extends Controller
             ],
         ];
 
-        return view('activity.index', [
+        return view('request_order.activity.index', [
             'breadcrumbs' => $breadcrumbs,
             'title' => $this->pageTitle
         ]);

@@ -17,6 +17,7 @@ modalShowAndReset = () => {
 
 formReset = () => {
     $("#mainForm select,input").val(null).trigger('change');
+    $('#mainForm').attr('method', 'POST');
 }
 
 closeIco.onclick = function() {
@@ -99,8 +100,6 @@ editRecord = (url) => {
         url: url,
         dataType: "json",
         success: function (response) {
-            console.log(response);
-
             $.each(response.form, function (index, value) { 
                 $('#' + value[0]).val(value[1]);
             });
@@ -111,7 +110,6 @@ editRecord = (url) => {
             var activityOptions = new Option(response.dropdown.activity[1], response.dropdown.activity[0], true, true);
             $('#activity_code').append(activityOptions).trigger('change');
             
-            // var activityOptions = new Option(response.dropdown.activity[1], response.dropdown.activity[0], true, true);
             $('#status').val(response.dropdown.status).trigger('change');
             
             $('#form_url').val(response.update_url);
@@ -148,16 +146,21 @@ deleteRecord = (url) => {
                     toastr.success(response.message);
                     $('#main-table').DataTable().ajax.reload();
                 },
-                error: function(response) {
+                error: function (response) {
                     Swal.close();
 
-                    $('#warning-alert').removeClass('hidden').addClass('flex');
-
-                    $('.warning-alert-message').html('');
-                    $('.warning-alert-title').text('');
-
-                    $('.warning-alert-title').text('Well, this is unexpected..');
-                    $('.warning-alert-message').append('<li>'+response.responseJSON.message+'</li>');
+                    if (response.status != 406) {
+    
+                        $('#warning-alert').removeClass('hidden').addClass('flex');
+    
+                        $('.warning-alert-message').html('');
+                        $('.warning-alert-title').text('');
+    
+                        $('.warning-alert-title').text('Well, this is unexpected..');
+                        $('.warning-alert-message').append('<li>' + response.responseJSON.message + '</li>');
+                    } else {
+                        toastr.error( response.responseJSON.message );
+                    }
                 }
             });
         }

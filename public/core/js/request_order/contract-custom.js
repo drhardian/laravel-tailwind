@@ -174,6 +174,7 @@ modalActivityShowAndReset = () => {
 
 activityFormReset = () => {
     $("#activityForm select,input").val(null).trigger('change');
+    $('#activityForm').attr('method', 'POST');
 }
 
 closeActivityIco.onclick = function() {

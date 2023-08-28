@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,6 +13,20 @@ class Contract extends Model
     use HasFactory;
     protected $table = 'client_contract';
     protected $guarded = [];
+
+    protected static function boot() {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->start_date = Carbon::createFromFormat('d/m/Y', request('start_date'))->format('Y-m-d');
+            $model->end_date = Carbon::createFromFormat('d/m/Y', request('end_date'))->format('Y-m-d');
+        });
+
+        static::updating(function ($model) {
+            $model->start_date = Carbon::createFromFormat('d/m/Y', request('start_date'))->format('Y-m-d');
+            $model->end_date = Carbon::createFromFormat('d/m/Y', request('end_date'))->format('Y-m-d');
+        });
+    }
 
     public function client(): BelongsTo
     {
