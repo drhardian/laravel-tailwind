@@ -1,17 +1,17 @@
 <?php
 
-use App\Http\Controllers\ActivityController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ClientController;
-use App\Http\Controllers\ContractActivityController;
-use App\Http\Controllers\ContractController;
-use App\Http\Controllers\CostingController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ItemController;
-use App\Http\Controllers\ItemTypeController;
-use App\Http\Controllers\RequestOrderController;
-use App\Http\Controllers\RequestOrderItemController;
-use App\Http\Controllers\UnitRateController;
+use App\Http\Controllers\RequestOrder\ActivityController;
+use App\Http\Controllers\RequestOrder\AuthController;
+use App\Http\Controllers\RequestOrder\ClientController;
+use App\Http\Controllers\RequestOrder\ContractActivityController;
+use App\Http\Controllers\RequestOrder\ContractController;
+use App\Http\Controllers\RequestOrder\CostingController;
+use App\Http\Controllers\RequestOrder\DashboardController;
+use App\Http\Controllers\RequestOrder\ItemController;
+use App\Http\Controllers\RequestOrder\ItemTypeController;
+use App\Http\Controllers\RequestOrder\RequestOrderController;
+use App\Http\Controllers\RequestOrder\RequestOrderItemController;
+use App\Http\Controllers\RequestOrder\UnitRateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +39,8 @@ Route::prefix('request_order')->group(function() {
         Route::get('internal/rostatus', 'getRequestOrderStatus')->name('ro.dashboard.rostatus');
         Route::get('internal/roamount', 'getRequestOrderAmountStatus')->name('ro.dashboard.roamount');
         Route::get('external', 'indexExternal')->name('ro.dashboard.external');
+        Route::get('external/chart/activities', 'getDataChartActivities')->name('ro.dashboard.external.chart.activities');
+        Route::get('external/chart/activities/detail', 'getDetailChartActivities')->name('ro.dashboard.external.chart.activities.detail');
     });
 });
 
@@ -92,10 +94,12 @@ Route::prefix('contractactivity')->controller(ContractActivityController::class)
 Route::resource('requestorder', RequestOrderController::class)->except('create');
 Route::prefix('requestorder')->controller(RequestOrderController::class)->group(function() {
     Route::get('show/datatable', 'showDatatable')->name('requestorder.main.table');
+    Route::get('bycontract/show/datatable', 'showDatatableByContract')->name('requestorder.bycontract.main.table');
 });
 
 Route::resource('requestorderitem', RequestOrderItemController::class)->except('create');
 Route::prefix('requestorderitem')->controller(RequestOrderItemController::class)->group(function() {
     Route::get('show/datatable', 'showDatatable')->name('requestorderitem.main.table');
+    Route::get('show/datatable/dashboard/external', 'showDatatableOnDashboardExternal')->name('requestorderitem.main.dashboard.external.table');
     Route::get('show/totalamount', 'showTotalAmount')->name('requestorderitem.totalamount');
 });

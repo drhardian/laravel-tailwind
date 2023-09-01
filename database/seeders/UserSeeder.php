@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@ptcs.co.id',
             'password' => bcrypt('1234567890'),
+            'status' => true,
         ]);
     }
 }
