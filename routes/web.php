@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerAsset\ProductController;
 use App\Http\Controllers\RequestOrder\ActivityController;
 use App\Http\Controllers\RequestOrder\AuthController;
 use App\Http\Controllers\RequestOrder\ClientController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\RequestOrder\ItemTypeController;
 use App\Http\Controllers\RequestOrder\RequestOrderController;
 use App\Http\Controllers\RequestOrder\RequestOrderItemController;
 use App\Http\Controllers\RequestOrder\UnitRateController;
+use App\Http\Controllers\MappingTable\MappingTableController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -102,4 +104,17 @@ Route::prefix('requestorderitem')->controller(RequestOrderItemController::class)
     Route::get('show/datatable', 'showDatatable')->name('requestorderitem.main.table');
     Route::get('show/datatable/dashboard/external', 'showDatatableOnDashboardExternal')->name('requestorderitem.main.dashboard.external.table');
     Route::get('show/totalamount', 'showTotalAmount')->name('requestorderitem.totalamount');
+});
+
+Route::resource('tablemap', MappingTableController::class)->except('show');
+Route::prefix('tablemap')->controller(MappingTableController::class)->group(function() {
+    Route::get('show/datatable', 'showDatatable')->name('tablemap.main.table');
+});
+
+Route::resource('products', ProductController::class);
+Route::prefix('products')->controller(ProductController::class)->group(function() {
+    Route::get('show/datatable', 'showDatatable')->name('products.main.table');
+    Route::get('export', [ProductController::class, 'export'])->name('products.export');
+    Route::post('import', [ProductController::class, 'import'])->name('products.import');
+    // Route::post('import', [ProductController::class, 'handleImport'])->name('products.handleImport');
 });
