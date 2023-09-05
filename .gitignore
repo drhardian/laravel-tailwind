@@ -19,3 +19,4 @@ yarn-error.log
 /.vscode
 # postcss.config.js
 # tailwind.config.js
+package-lock.json

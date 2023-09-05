@@ -14,6 +14,7 @@ use App\Http\Controllers\RequestOrder\RequestOrderController;
 use App\Http\Controllers\RequestOrder\RequestOrderItemController;
 use App\Http\Controllers\RequestOrder\UnitRateController;
 use App\Http\Controllers\MappingTable\MappingTableController;
+use App\Http\Controllers\ValveRepair\RepairReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -117,4 +118,9 @@ Route::prefix('products')->controller(ProductController::class)->group(function(
     Route::get('export', [ProductController::class, 'export'])->name('products.export');
     Route::post('import', [ProductController::class, 'import'])->name('products.import');
     // Route::post('import', [ProductController::class, 'handleImport'])->name('products.handleImport');
+});
+
+Route::resource('valverepair', RepairReportController::class);
+Route::prefix('valverepair')->controller(RepairReportController::class)->group(function() {
+    // Route::get('show/datatable', 'showDatatable')->name('tablemap.main.table');
 });
