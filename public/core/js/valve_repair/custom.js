@@ -36,107 +36,324 @@ modalHideAndReset = () => {
 function showHideDiv() {
     var select = document.getElementById("order_type");
     var div = document.getElementById("ltsa_div");
-
-    if (select.value === "LTSA") {
+    if (select.options[select.selectedIndex].text === "LTSA") {
         div.style.display = "block";
-        div.scrollIntoView({ behavior: "smooth" });
+        // div.scrollIntoView({ behavior: "smooth" });
+    } else {
+        div.style.display = "none";
+    }
+}
+
+var deviceDetailTab = document.getElementById("deviceDetail-tab");
+// Add an onclick event handler
+deviceDetailTab.onclick = function () {
+    var saveButtonAction = document.getElementById("saveButtonAction");
+    var deviceDetailButton = document.getElementById("deviceDetailButton");
+    var generalInformationButton = document.getElementById(
+        "generalInformationButton"
+    );
+    deviceDetailButton.style.display = "none";
+    saveButtonAction.style.display = "block";
+    generalInformationButton.style.display = "block";
+};
+
+var deviceDetailTab = document.getElementById("generalInformation-tab");
+// Add an onclick event handler
+deviceDetailTab.onclick = function () {
+    var saveButtonAction = document.getElementById("saveButtonAction");
+    var deviceDetailButton = document.getElementById("deviceDetailButton");
+    var generalInformationButton = document.getElementById(
+        "generalInformationButton"
+    );
+    deviceDetailButton.style.display = "block";
+    saveButtonAction.style.display = "none";
+    generalInformationButton.style.display = "none";
+};
+
+function goToDeviceInfo() {
+    var button = document.getElementById("deviceDetail-tab");
+    if (button) {
+        button.click();
+    }
+}
+
+function goToGeneralInformation() {
+    var button = document.getElementById("generalInformation-tab");
+    if (button) {
+        button.click();
+    }
+}
+
+function scope_of_workDiv() {
+    var select = document.getElementById("scope_of_work");
+    var div = document.getElementById("repair_type_div");
+    if (select.options[select.selectedIndex].text === "Repair") {
+        div.style.display = "block";
     } else {
         div.style.display = "none";
     }
 }
 
 saveRecord = () => {
-    Swal.fire({
-        template: "#create-template",
-    }).then((result) => {
-        if (result.isConfirmed) {
-            console.log($("#mainForm").serialize());
-            // $.ajax({
-            //     type: "post",
-            //     url: $("#form_url").val(),
-            //     data:
-            //         $("#mainForm").serialize() +
-            //         "&_token=" +
-            //         CSRF_TOKEN +
-            //         "&_method=" +
-            //         $("#mainForm").attr("method"),
-            //     beforeSend: function () {
-            //         Swal.fire({
-            //             title: "Please wait...",
-            //             allowOutsideClick: false,
-            //             allowEscapeKey: false,
-            //             didOpen: () => {
-            //                 Swal.showLoading();
-            //             },
-            //         });
-            //     },
-            //     success: function (response) {
-            //         Swal.close();
-            //         modalHideAndReset();
-            //         toastr.success(response.message);
-            //         $("#main-table").DataTable().ajax.reload();
-            //     },
-            //     error: function (response) {
-            //         Swal.close();
+    const mainForm = document.getElementById("mainForm");
+    const requiredFields = getRequiredFields("mainForm");
+    const inputElements = document.querySelectorAll("#mainForm input");
 
-            //         $("#warning-alert").removeClass("hidden").addClass("flex");
+    // const classInputOriginal = '';
+    // const additionalClass = 'bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500';
 
-            //         $(".warning-alert-message").html("");
-            //         $(".warning-alert-title").text("");
-
-            //         if (response.status === 422) {
-            //             $(".warning-alert-title").text(
-            //                 "Ensure that these requirements are met:"
-            //             );
-
-            //             $.each(
-            //                 response.responseJSON.errors,
-            //                 function (indexInArray, valueOfElement) {
-            //                     $(".warning-alert-message").append(
-            //                         "<li>" + valueOfElement[0] + "</li>"
-            //                     );
-            //                 }
-            //             );
-            //         } else {
-            //             $(".warning-alert-title").text(
-            //                 "Well, this is unexpected.."
-            //             );
-            //             $(".warning-alert-message").append(
-            //                 "<li>" + response.responseJSON.message + "</li>"
-            //             );
-            //         }
-            //     },
-            // });
-        }
+    const emptyRequiredFields = requiredFields.filter((field) => {
+        return !field.value; // Check if the field is empty
     });
+
+    requiredFields.forEach((field) => {
+        field.classList.remove(
+            "bg-red-50",
+            // "border",
+            "border-red-500",
+            "text-red-900",
+            "placeholder-red-700",
+            // "text-sm",
+            // "rounded-lg",
+            "focus:ring-red-500",
+            "dark:bg-gray-700",
+            "focus:border-red-500",
+            // "block",
+            // "w-full",
+            // "p-2.5",
+            "dark:text-red-500",
+            "dark:placeholder-red-500",
+            "dark:border-red-500"
+        );
+    });
+
+    if (emptyRequiredFields.length === 0) {
+        Swal.fire({
+            template: "#create-template",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var fromInput = $("#mainForm")[0];
+                var formData = new FormData(fromInput);
+                // Append the serialized form data to formData
+                // formData.append("mainFormData", $("#mainForm").serialize());
+                var ins = document.getElementById('photo_devices').files.length;
+                for (var x = 0; x < ins; x++) {
+                    formData.append("fileToUpload[]", document.getElementById('photo_devices').files[x]);
+                }
+                // Append the image file to formData (assuming you have an input field with the ID "imageInput")
+                // formData.append("files", $("#photo_devices")[0].files);
+                $.ajax({
+                    type: "post",
+                    url: $("#form_url").val(),
+                    data: formData,
+                    processData: false, // Prevent jQuery from processing the data
+                    contentType: false, // Set the content type to false to let the browser handle it
+                    enctype: 'multipart/form-data',
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        ),
+                    },
+                    beforeSend: function () {
+                        Swal.fire({
+                            title: "Please wait...",
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            },
+                        });
+                    },
+                    success: function (response) {
+                        Swal.close();
+                        modalHideAndReset();
+                        toastr.success(response.message);
+                        $("#main-table").DataTable().ajax.reload();
+                    },
+                    error: function (response) {
+                        Swal.close();
+
+                        $("#warning-alert")
+                            .removeClass("hidden")
+                            .addClass("flex");
+
+                        $(".warning-alert-message").html("");
+                        $(".warning-alert-title").text("");
+
+                        if (response.status === 422) {
+                            $(".warning-alert-title").text(
+                                "Ensure that these requirements are met:"
+                            );
+
+                            $.each(
+                                response.responseJSON.errors,
+                                function (indexInArray, valueOfElement) {
+                                    $(".warning-alert-message").append(
+                                        "<li>" + valueOfElement[0] + "</li>"
+                                    );
+                                }
+                            );
+                        } else {
+                            $(".warning-alert-title").text(
+                                "Well, this is unexpected.."
+                            );
+                            $(".warning-alert-message").append(
+                                "<li>" + response.responseJSON.message + "</li>"
+                            );
+                        }
+                    },
+                });
+            }
+        });
+    } else {
+        console.log("Required Fields:", emptyRequiredFields);
+
+        // // Get all input elements in the form
+        // const inputElements = document.querySelectorAll("#mainForm input");
+
+        // // Define the new class
+        // const newClass =
+        //     "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500";
+
+        // // Loop through each input and add the new class
+        // inputElements.forEach((input) => {
+        //     input.classList.add(newClass);
+        // });
+        emptyRequiredFields.forEach((field) => {
+            // field.className = '';
+
+            field.classList.add(
+                "bg-red-50",
+                "border",
+                "border-red-500",
+                "text-red-900",
+                "placeholder-red-700",
+                "text-sm",
+                "rounded-lg",
+                "focus:ring-red-500",
+                "dark:bg-gray-700",
+                "focus:border-red-500",
+                "block",
+                "w-full",
+                "p-2.5",
+                "dark:text-red-500",
+                "dark:placeholder-red-500",
+                "dark:border-red-500"
+            );
+        });
+        // You can also display an alert or handle it as needed
+        alert("Please fill in all required fields.");
+    }
 };
 
-// const step1Form = document.getElementById('step-1-form');
-// const step2Form = document.getElementById('step-2-form');
-// const step3Form = document.getElementById('step-3-form');
-// const step2 = document.getElementById('step-2');
-// const step3 = document.getElementById('step-3');
-// const nextStep1Btn = document.getElementById('next-step-1');
-// const prevStep2Btn = document.getElementById('prev-step-2');
-// const nextStep2Btn = document.getElementById('next-step-2');
-// const prevStep3Btn = document.getElementById('prev-step-3');
+function getRequiredFields(formId) {
+    const form = document.getElementById(formId);
+    const requiredFields = [];
 
-// nextStep1Btn.addEventListener('click', () => {
-// step1Form.style.display = 'none';
-// step2.style.display = 'block';
-// });
+    // Iterate through the form's elements
+    for (let i = 0; i < form.elements.length; i++) {
+        const element = form.elements[i];
 
-// prevStep2Btn.addEventListener('click', () => {
-// step2Form.style.display = 'none';
-// step1Form.style.display = 'block';
-// });
+        // Check if the element has the 'required' attribute
+        if (element.hasAttribute("required")) {
+            // Add the element to the list of required fields
+            requiredFields.push(element);
+        }
+    }
 
-// nextStep2Btn.addEventListener('click', () => {
-// step2Form.style.display = 'none';
-// step3.style.display = 'block';
-// });
+    return requiredFields;
+}
 
-// prevStep3Btn.addEventListener('click', () => {
-// step3Form.style.display = 'none';
-// step2.style.display = 'block';
-// });
+// const convertBase64 = (file) => {
+//     const fileReader = new FileReader();
+//     fileReader.readAsDataURL(file);
+
+//     fileReader.onload = () => {
+//         return fileReader.result;
+//     };
+
+//     fileReader.onerror = (error) => {
+//         return error;
+//     };
+// };
+
+function convertToBase64(file, callback) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        const base64String = reader.result.split(",")[1]; // Get the base64 data
+        console.log(base64String);
+        callback(base64String);
+    };
+}
+
+// function preview_image() {
+//     var total_file = document.getElementById("photo_devices").files.length;
+//     for (var i = 0; i < total_file; i++) {
+//         var imageId = "image-item-" + i;
+//         // const file = URL.createObjectURL(event.target.files[i]);
+//         // const base64 = convertToBase64(ev ent.target.files[i]);
+//         const file = event.target.files[i];
+
+//         convertToBase64(file, function (base64) {
+//             // Do something with the base64 string, e.g., assign it to 'base64' variable
+//             $("#image_preview").append(
+//                 "<div id='" +
+//                     imageId +
+//                     "' class='image-item flex flex-col items-center'><img src='data:image/png;base64," +
+//                     base64 +
+//                     "' alt='Preview' class='max-w-full h-auto'><input type='text' name='descriptions[]' placeholder='Image Description' class='mt-2 p-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>                    <button class='delete-button mt-2 text-red-500' onclick=\"delete_image('" +
+//                     imageId +
+//                     "')\">Delete</button>    </div>"
+//             );
+//         });
+//     }
+// }
+
+// function delete_image(imageId) {
+//     $("#" + imageId).remove();
+// }
+function preview_image() {
+    var total_file = document.getElementById("photo_devices").files.length;
+    for (var i = 0; i < total_file; i++) {
+        var nameFile = event.target.files[i].name;
+        var nameFileSpaces = nameFile.replace(/\s/g, "");
+        var fileNameWithoutExtension = nameFileSpaces.replace(/\.[^/.]+$/, "");
+
+        var imageId = "image-item-" + fileNameWithoutExtension;
+        var imageIdArray = i;
+
+        $("#image_preview").append(
+            "<div id='" +
+                imageId +
+                "' class='image-item flex flex-col items-center'><img src='" +
+                URL.createObjectURL(event.target.files[i]) +
+                "' alt='Preview' class='max-w-full h-auto'><input type='text' name='input-" +
+                imageId +
+                "' placeholder='Image Description' class='mt-2 p-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'><button class='delete-button mt-2 text-red-500' onclick=\"delete_image('" +
+                nameFile +
+                "','" +
+                imageId +
+                "')\">Delete</button>    </div>"
+        );
+    }
+}
+
+function delete_image(nameFile, imageId) {
+    // event.preventDefault()
+    // Remove the image and its associated input field
+    removeFile(nameFile);
+    $("#" + imageId).remove();
+}
+
+function removeFile(name) {
+    var attachments = document.getElementById("photo_devices").files; // <-- reference your file input here
+    var fileBuffer = new DataTransfer();
+    // append the file list to an array iteratively
+    for (let i = 0; i < attachments.length; i++) {
+        // Exclude file in specified index
+        if (name !== attachments[i].name) fileBuffer.items.add(attachments[i]);
+    }
+    // Assign buffer to file input
+    document.getElementById("photo_devices").files = fileBuffer.files; // <-- according to your file input reference
+}

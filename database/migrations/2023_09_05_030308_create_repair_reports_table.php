@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('email_address')->nullable();
             $table->string('end_user')->nullable();
-            $table->string('so_reference')->unique();
+            $table->string('so_reference')->nullable();
             $table->string('project')->nullable();
             $table->unsignedBigInteger('work_type')->nullable();
             $table->unsignedBigInteger('order_type')->nullable();

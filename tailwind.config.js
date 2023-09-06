@@ -18,8 +18,9 @@ export default {
     {
       pattern: /bg-(red|green|blue|yellow)-(100|400|800)/,
     },
-    { pattern: /text-(red|green|blue|yellow)-(100|400|800)/ },
-    { pattern: /border-(red|green|blue|yellow)-(100|400|800)/ },
+    { pattern: /text-(red|green|blue|yellow)-(100|400|800|900)/ },
+    { pattern: /border-(red|green|blue|yellow)-(100|400|800|500)/ },
+    { pattern: /placeholder-(red|green|blue|yellow)-(100|400|800|500|700)/ },
     { pattern: /px-(2|2.5|3)/ },
     { pattern: /py-(1.5|2|2.5|3)/ },
   ],
