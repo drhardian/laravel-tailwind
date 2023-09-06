@@ -13,14 +13,14 @@
                 @unless (count($breadcrumbs) === 0)
                     @include('layout.breadcrumbs')
                 @endunless
-                <button type="button" id="newBtn" onclick="openForm"
+                {{-- <button type="button" id="newBtn" onclick="openForm"
                     class="text-white bg-green-700 hidden sm:block hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-md text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                     <i class="fa-solid fa-file-import"></i> Import
                 </button>
                 <button type="button" id="newBtn" onclick="openForm"
                     class="text-white bg-yellow-400 hidden sm:block hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-md text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
                     <i class="fa-solid fa-file-export"></i> Export
-                </button>
+                </button> --}}
                 <button type="button" id="newBtn" onclick="openForm(`{{ route('condi.store') }}`)"
                     class="text-white bg-blue-700 hidden sm:block hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     <i class="fa-solid fa-plus"></i> New
@@ -263,15 +263,15 @@
                     },
                 ],
                 columnDefs: [{
-                        target: [0, 1, 2, 3, 4, 5, 6],
+                        target: [0, 1, 2, 3, 4, 5],
                         className: "dt-head-center",
                     },
                     {
-                        target: [6],
+                        target: [5],
                         width: "5%",
                     },
                     {
-                        target: [0, 1, 3, 5, 6],
+                        target: [0, 1, 3, 5],
                         className: "dt-center",
                     },
                 ]
@@ -280,7 +280,7 @@
             $('#newBtn').on('click', function(e) {
                 e.preventDefault();
 
-                $('.modal-title').text('New Process Information');
+                $('.modal-title').text('New Condition Replacement');
             });
         });
     </script>

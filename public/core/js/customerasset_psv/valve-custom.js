@@ -103,6 +103,8 @@ editRecord = (url) => {
             // console.log(response);
             var size_inOptions = new Option(response.dropdown.size_in, response.dropdown.size_in, true, true);
             $('#size_in').append(size_inOptions).trigger('change');
+            var size_outOptions = new Option(response.dropdown.size_out, response.dropdown.size_out, true, true);
+            $('#size_out').append(size_outOptions).trigger('change');
             
             $.each(response.form, function (index, value) { 
                 $('#' + value[0]).val(value[1]);

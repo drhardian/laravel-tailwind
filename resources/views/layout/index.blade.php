@@ -247,7 +247,7 @@
                                                             <a href="{{ route('process.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Process Condition</a>
                                                         </li>
                                                         <li>
-                                                            <a href="{{ route('ro.dashboard.external') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Condition Replacement</a>
+                                                            <a href="{{ route('condi.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Condition Replacement</a>
                                                         </li>
                                                     </ul>
                                                 </div>

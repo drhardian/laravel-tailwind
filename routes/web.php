@@ -15,6 +15,8 @@ use App\Http\Controllers\UnitRateController;
 use App\Http\Controllers\PsvMasterData\GeneralController;
 use App\Http\Controllers\PsvMasterData\ValveController;
 use App\Http\Controllers\PsvMasterData\ProcessController;
+use App\Http\Controllers\PsvMasterData\CondiController;
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -122,8 +124,15 @@ Route::prefix('valve')->controller(ValveController::class)->group(function() {
     // Route::post('valve/import', 'PsvMasterData\ValveController@importExcel')->name('valve.import');
 
 });
+
 Route::resource('process', ProcessController::class);
 Route::prefix('process')->controller(ProcessController::class)->group(function() {
     Route::get('show/dropdown', 'showOnDropdown')->name('process.show.dropdown');
     Route::get('show/datatable', 'showDatatable')->name('process.main.table');
+});
+
+Route::resource('condi', CondiController::class);
+Route::prefix('condi')->controller(CondiController::class)->group(function() {
+    Route::get('show/dropdown', 'showOnDropdown')->name('condi.show.dropdown');
+    Route::get('show/datatable', 'showDatatable')->name('condi.main.table');
 });
