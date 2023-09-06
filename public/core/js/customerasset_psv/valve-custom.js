@@ -100,11 +100,15 @@ editRecord = (url) => {
         url: url,
         dataType: "json",
         success: function (response) {
-            // console.log(response);
+            console.log(response);
             var size_inOptions = new Option(response.dropdown.size_in, response.dropdown.size_in, true, true);
             $('#size_in').append(size_inOptions).trigger('change');
+            var rating_inOptions = new Option(response.dropdown.rating_in, response.dropdown.rating_in, true, true);
+            $('#rating_in').append(rating_inOptions).trigger('change');
             var size_outOptions = new Option(response.dropdown.size_out, response.dropdown.size_out, true, true);
             $('#size_out').append(size_outOptions).trigger('change');
+            var rating_outOptions = new Option(response.dropdown.rating_out, response.dropdown.rating_out, true, true);
+            $('#rating_out').append(rating_outOptions).trigger('change');
             
             $.each(response.form, function (index, value) { 
                 $('#' + value[0]).val(value[1]);

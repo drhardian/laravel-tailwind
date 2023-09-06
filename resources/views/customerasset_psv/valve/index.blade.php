@@ -168,9 +168,15 @@
                                 <div class="sm:w-1/2 w-full sm:pr-2">
                                     <label for="rating_in"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rating In</label>
-                                        <input type="text" id="rating_in" name="rating_in"
-                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        required placeholder="rating in">
+                                        <select class="select2-ajax" id="rating_in" name="rating_in">
+                                            <option disabled>Search here..</option>
+                                            <option>150</option>
+                                            <option>300</option>
+                                            <option>600</option>
+                                            <option>900</option>
+                                            <option>1500</option>
+                                            <option>2500</option>
+                                        </select>
                                 </div>
                                 <div class="sm:w-1/2 w-full sm:pr-2">
                                     <label for="size_out"
@@ -194,6 +200,7 @@
                                             <option>16</option>
                                             <option>24</option>
                                         </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="mb-6">
@@ -201,9 +208,15 @@
                                     <div class="sm:w-1/2 w-full sm:pr-2">
                                         <label for="rating_out"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rating Out</label>
-                                            <input type="text" id="rating_out" name="rating_out"
-                                            class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            required placeholder="rating out">
+                                            <select class="select2-ajax" id="rating_out" name="rating_out">
+                                            <option disabled>Search here..</option>
+                                            <option>150</option>
+                                            <option>300</option>
+                                            <option>600</option>
+                                            <option>900</option>
+                                            <option>1500</option>
+                                            <option>2500</option>
+                                        </select>
                                     </div>
                                     <div class="sm:w-1/2 w-full sm:pr-2">
                                         <label for="press"
@@ -213,197 +226,203 @@
                                         required placeholder="press">
                                     </div>
                                 </div>
-                                <div class="mb-6">
-                                    <div class="row sm:flex">
-                                        <div class="sm:w-1/2 w-full sm:pr-2">
-                                            <label for="vacuum"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vacuum Setting (psi)</label>
-                                                <input type="text" id="vacuum" name="vacuum"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="vacuum">
-                                        </div>
-                                        <div class="sm:w-1/2 w-full sm:pr-2">
-                                            <label for="psv"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PSV Style</label>
-                                            <input type="text" id="psv" name="psv"
+                            </div>
+                            <div class="mb-6">
+                                <div class="row sm:flex">
+                                    <div class="sm:w-1/2 w-full sm:pr-2">
+                                        <label for="vacuum"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vacuum Setting (psi)</label>
+                                            <input type="text" id="vacuum" name="vacuum"
                                             class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            required placeholder="psv">
+                                            required placeholder="vacuum">
+                                    </div>
+                                    <div class="sm:w-1/2 w-full sm:pr-2">
+                                        <label for="psv"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PSV Style</label>
+                                        <input type="text" id="psv" name="psv"
+                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required placeholder="psv">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <div class="row sm:flex">
+                                    <div class="sm:w-1/2 w-full sm:pr-2">
+                                        <label for="design"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Orifice Design</label>
+                                            <input type="text" id="design" name="design"
+                                            class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            required placeholder="design">
+                                    </div>
+                                    <div class="sm:w-1/2 w-full sm:pr-2">
+                                        <label for="selection"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Orifice Selection</label>
+                                        <input type="text" id="selection" name="selection"
+                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required placeholder="selection">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <div class="row sm:flex">
+                                    <div class="sm:w-1/2 w-full sm:pr-2">
+                                        <label for="psv_capacity"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PSV Capacity</label>
+                                            <input type="text" id="psv_capacity" name="psv_capacity"
+                                            class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            required placeholder="psv capacity">
+                                    </div>
+                                    <div class="sm:w-1/2 w-full sm:pr-2">
+                                        <label for="psv_capacityunit"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PSV Capacity Unit</label>
+                                        <input type="text" id="psv_capacityunit" name="psv_capacityunit"
+                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required placeholder="psv capacityunit">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <div class="row sm:flex">
+                                    <div class="sm:w-1/2 w-full sm:pr-2">
+                                        <label for="bonnet"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bonnet Type</label>
+                                            <input type="text" id="bonnet" name="bonnet"
+                                            class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            required placeholder="bonnet">
+                                    </div>
+                                    <div class="sm:w-1/2 w-full sm:pr-2">
+                                        <label for="seat"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seat Type</label>
+                                        <input type="text" id="seat" name="seat"
+                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required placeholder="seat">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <div class="row sm:flex">
+                                    <div class="sm:w-1/2 w-full sm:pr-2">
+                                        <label for="CAP"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CAP Type</label>
+                                            <input type="text" id="CAP" name="CAP"
+                                            class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            required placeholder="CAP">
+                                    </div>
+                                    <div class="sm:w-1/2 w-full sm:pr-2">
+                                        <label for="body_bonnet"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Body Bonnet Material</label>
+                                        <input type="text" id="body_bonnet" name="body_bonnet"
+                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required placeholder="body bonnet">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <div class="row sm:flex">
+                                    <div class="sm:w-1/2 w-full sm:pr-2">
+                                        <label for="disc_material"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Disc Material</label>
+                                            <input type="text" id="disc_material" name="disc_material"
+                                            class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            required placeholder="disc material">
+                                    </div>
+                                    <div class="sm:w-1/2 w-full sm:pr-2">
+                                        <label for="spring_material"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Spring Material</label>
+                                        <input type="text" id="spring_material" name="spring_material"
+                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required placeholder="spring material">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <div class="row sm:flex">
+                                    <div class="sm:w-1/2 w-full sm:pr-2">
+                                        <label for="guide_material"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Guide Material</label>
+                                            <input type="text" id="guide_material" name="guide_material"
+                                            class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            required placeholder="guide material">
+                                    </div>
+                                    <div class="sm:w-1/2 w-full sm:pr-2">
+                                        <label for="resilient_seat"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Resilient Seat</label>
+                                        <input type="text" id="resilient_seat" name="resilient_seat"
+                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required placeholder="resilient seat">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                {{-- <div class="row sm:flex"> --}}
+                                    <label for="bellow_material"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bellow Material</label>
+                                        <input type="text" id="bellow_material" name="bellow_material"
+                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required placeholder="bellow material">
+                            </div>
+                            <div class="row sm:flex">
+                                <div class="sm:w-1/2 w-full sm:pr-2">
+                                    <label for="year_build"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year Build</label>
+                                    <div class="relative max-w-sm">
+                                        <div
+                                            class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                viewBox="0 0 20 20">
+                                                <path
+                                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                            </svg>
+                                        </div>
+                                        <input 
+                                            datepicker 
+                                            id="year_build" 
+                                            datepicker-format="dd/mm/yyyy" 
+                                            name="year_build" 
+                                            type="text"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="Select date">
+                                    </div>
+                                </div>
+                                <div class="sm:w-1/2 w-full sm:pr-2">
+                                    <label for="year_install"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year Install</label>
+                                    <div class="relative max-w-sm">
+                                        <div
+                                            class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                viewBox="0 0 20 20">
+                                                <path
+                                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                            </svg>
+                                        </div>
+                                        <input 
+                                            datepicker 
+                                            id="year_install" 
+                                            datepicker-format="dd/mm/yyyy" 
+                                            name="year_install" 
+                                            type="text"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="Select date">
                                         </div>
                                     </div>
-                                    <div class="mb-6">
-                                        <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
-                                                <label for="design"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Orifice Design</label>
-                                                    <input type="text" id="design" name="design"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="design">
-                                            </div>
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
-                                                <label for="selection"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Orifice Selection</label>
-                                                <input type="text" id="selection" name="selection"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="selection">
-                                            </div>
-                                        </div>
-                                        <div class="mb-6">
-                                            <div class="row sm:flex">
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
-                                                    <label for="psv_capacity"
-                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PSV Capacity</label>
-                                                        <input type="text" id="psv_capacity" name="psv_capacity"
-                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                        required placeholder="psv capacity">
-                                                </div>
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
-                                                    <label for="psv_capacityunit"
-                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PSV Capacity Unit</label>
-                                                    <input type="text" id="psv_capacityunit" name="psv_capacityunit"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="psv capacityunit">
-                                                </div>
-                                            </div>
-                                            <div class="mb-6">
-                                                <div class="row sm:flex">
-                                                    <div class="sm:w-1/2 w-full sm:pr-2">
-                                                        <label for="bonnet"
-                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bonnet Type</label>
-                                                            <input type="text" id="bonnet" name="bonnet"
-                                                            class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                            required placeholder="bonnet">
-                                                    </div>
-                                                    <div class="sm:w-1/2 w-full sm:pr-2">
-                                                        <label for="seat"
-                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seat Type</label>
-                                                        <input type="text" id="seat" name="seat"
-                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                        required placeholder="seat">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-6">
-                                                    <div class="row sm:flex">
-                                                        <div class="sm:w-1/2 w-full sm:pr-2">
-                                                            <label for="CAP"
-                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CAP Type</label>
-                                                                <input type="text" id="CAP" name="CAP"
-                                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                required placeholder="CAP">
-                                                        </div>
-                                                        <div class="sm:w-1/2 w-full sm:pr-2">
-                                                            <label for="body_bonnet"
-                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Body Bonnet Material</label>
-                                                            <input type="text" id="body_bonnet" name="body_bonnet"
-                                                            class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                            required placeholder="body bonnet">
-                                                        </div>
-                                                    </div>
-                                                        <div class="mb-6">
-                                                            <div class="row sm:flex">
-                                                                <div class="sm:w-1/2 w-full sm:pr-2">
-                                                                    <label for="disc_material"
-                                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Disc Material</label>
-                                                                        <input type="text" id="disc_material" name="disc_material"
-                                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                        required placeholder="disc material">
-                                                                </div>
-                                                                <div class="sm:w-1/2 w-full sm:pr-2">
-                                                                    <label for="spring_material"
-                                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Spring Material</label>
-                                                                    <input type="text" id="spring_material" name="spring_material"
-                                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                    required placeholder="spring material">
-                                                                </div>
-                                                            </div>
-                                                            <div class="mb-6">
-                                                                <div class="row sm:flex">
-                                                                    <div class="sm:w-1/2 w-full sm:pr-2">
-                                                                        <label for="guide_material"
-                                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Guide Material</label>
-                                                                            <input type="text" id="guide_material" name="guide_material"
-                                                                            class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                            required placeholder="guide material">
-                                                                    </div>
-                                                                    <div class="sm:w-1/2 w-full sm:pr-2">
-                                                                        <label for="resilient_seat"
-                                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Resilient Seat</label>
-                                                                        <input type="text" id="resilient_seat" name="resilient_seat"
-                                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                        required placeholder="resilient seat">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="mb-6">
-                                                                            <label for="bellow_material"
-                                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bellow Material</label>
-                                                                                <input type="text" id="bellow_material" name="bellow_material"
-                                                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                                required placeholder="bellow material">
-                                                                        </div>
-                                                                    </div>
-                                                                <div class="row sm:flex">
-                                                                    <div class="sm:w-1/2 w-full sm:pr-2">
-                                                                        <label for="year_build"
-                                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year Build</label>
-                                                                        <div class="relative max-w-sm">
-                                                                            <div
-                                                                                class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                                                    viewBox="0 0 20 20">
-                                                                                    <path
-                                                                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                                                </svg>
-                                                                            </div>
-                                                                            <input 
-                                                                                datepicker 
-                                                                                id="year_build" 
-                                                                                datepicker-format="dd/mm/yyyy" 
-                                                                                name="year_build" 
-                                                                                type="text"
-                                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                                placeholder="Select date">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="sm:w-1/2 w-full sm:pr-2">
-                                                                        <label for="year_install"
-                                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year Install</label>
-                                                                        <div class="relative max-w-sm">
-                                                                            <div
-                                                                                class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                                                    viewBox="0 0 20 20">
-                                                                                    <path
-                                                                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                                                </svg>
-                                                                            </div>
-                                                                            <input 
-                                                                                datepicker 
-                                                                                id="year_install" 
-                                                                                datepicker-format="dd/mm/yyyy" 
-                                                                                name="year_install" 
-                                                                                type="text"
-                                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                                placeholder="Select date">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                <!-- Modal footer -->
-                <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600 py-4">
-                    <button type="button"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        onClick="saveRecord()">Save</button>
-                    <button id="cancelBtn" type="button"
-                        class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600 py-4">
+                            <button type="button"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                onClick="saveRecord()">Save</button>
+                            <button id="cancelBtn" type="button"
+                                class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-@endsection
+        @endsection
 
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/datepicker.min.js"></script>
@@ -584,7 +603,23 @@
                 minimumResultsForSearch: -1
             });
 
+            $('#rating_in').select2({
+                allowClear: true,
+                width: 'resolve',
+                placeholder: 'Select here..',
+                dropdownCssClass: 'bigdrop',
+                minimumResultsForSearch: -1
+            });
+
             $('#size_out').select2({
+                allowClear: true,
+                width: 'resolve',
+                placeholder: 'Select here..',
+                dropdownCssClass: 'bigdrop',
+                minimumResultsForSearch: -1
+            });
+
+            $('#rating_out').select2({
                 allowClear: true,
                 width: 'resolve',
                 placeholder: 'Select here..',
