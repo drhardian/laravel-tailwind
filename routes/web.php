@@ -12,6 +12,11 @@ use App\Http\Controllers\ItemTypeController;
 use App\Http\Controllers\RequestOrderController;
 use App\Http\Controllers\RequestOrderItemController;
 use App\Http\Controllers\UnitRateController;
+use App\Http\Controllers\PsvMasterData\GeneralController;
+use App\Http\Controllers\PsvMasterData\ValveController;
+use App\Http\Controllers\PsvMasterData\ProcessController;
+
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -98,4 +103,27 @@ Route::resource('requestorderitem', RequestOrderItemController::class)->except('
 Route::prefix('requestorderitem')->controller(RequestOrderItemController::class)->group(function() {
     Route::get('show/datatable', 'showDatatable')->name('requestorderitem.main.table');
     Route::get('show/totalamount', 'showTotalAmount')->name('requestorderitem.totalamount');
+});
+
+Route::resource('general', GeneralController::class);
+Route::prefix('general')->controller(GeneralController::class)->group(function() {
+    Route::get('show/dropdown', 'showOnDropdown')->name('general.show.dropdown');
+    Route::get('show/datatable', 'showDatatable')->name('general.main.table');
+    Route::get('general/export', 'PsvMasterData\GeneralController@exportExcel')->name('general.export');
+    Route::post('general/import', 'PsvMasterData\GeneralController@importExcel')->name('general.import');
+
+});
+
+Route::resource('valve', ValveController::class);
+Route::prefix('valve')->controller(ValveController::class)->group(function() {
+    Route::get('show/dropdown', 'showOnDropdown')->name('valve.show.dropdown');
+    Route::get('show/datatable', 'showDatatable')->name('valve.main.table');
+    // Route::get('valve/export', 'PsvMasterData\ValveController@exportExcel')->name('valve.export');
+    // Route::post('valve/import', 'PsvMasterData\ValveController@importExcel')->name('valve.import');
+
+});
+Route::resource('process', ProcessController::class);
+Route::prefix('process')->controller(ProcessController::class)->group(function() {
+    Route::get('show/dropdown', 'showOnDropdown')->name('process.show.dropdown');
+    Route::get('show/datatable', 'showDatatable')->name('process.main.table');
 });
