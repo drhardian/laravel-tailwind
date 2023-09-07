@@ -62,22 +62,6 @@ class ProductController extends Controller
             'breadcrumbs' => $breadcrumbs,
             'title' => $this->pageTitle
         ]);
-
-        // $row = (int) request('row', 10);
-
-        // if ($row < 1 || $row > 100) {
-        //     abort(400, 'The per-page parameter must be an integer between 1 and 100.');
-        // }
-
-        // $products = Product::with([])
-        //     ->filter(request(['search']))
-        //     ->sortable()
-        //     ->paginate($row)
-        //     ->appends(request()->query());
-
-        // return view('customer_asset.products.index', [
-        //     'products' => $products,
-        // ]);
     }
 
     /**
@@ -85,7 +69,33 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create', []);
+        $this->pageTitle = 'New';
+
+        $breadcrumbs = [
+            [
+                'title' => 'Dashboard',
+                'status' => 'active',
+                'url' => 'dashboard',
+                'icon' => 'fa-solid fa-house fa-sm',
+            ],
+            [
+                'title' => 'Spare Unit - Valve',
+                'status' => 'active',
+                'url' => route('products.index'),
+                'icon' => '',
+            ],
+            [
+                'title' => $this->pageTitle,
+                'status' => '',
+                'url' => '',
+                'icon' => '',
+            ],
+        ];
+
+        return view('customer_asset.products.create', [
+            'breadcrumbs' => $breadcrumbs,
+            'title' => $this->pageTitle
+        ]);
     }
 
     /**
@@ -439,7 +449,6 @@ class ProductController extends Controller
      */
     public function import(Request $request)
     {
-        dd($request->file());
         $file = $request->file('filexls');
 
         try {
@@ -451,11 +460,9 @@ class ProductController extends Controller
         } catch (\Exception $ex) {
             Log::error($ex->getMessage());
 
-            if (strpos($ex->getMessage(), 'array key') > 0) {
-                return back()->withError($ex->getMessage() . ', please check your file format');
-            } else {
-                return back()->withError('Something went wrong, check your file');
-            }
+            return response()->json([
+                'message' => $ex->getMessage()
+            ],500);
         }
     }
 
@@ -697,6 +704,7 @@ class ProductController extends Controller
     public function showDatatable()
     {
         $model = Product::select(
+            'id',
             'product_status',
             'product_newassetID',
             'product_type',
@@ -717,14 +725,15 @@ class ProductController extends Controller
             ->addColumn('actions', function ($model) {
                 $show = '<a href="' . route('products.show', [$model->id]) . '"><i class="fa-solid fa-eye cursor-pointer"></i></a>';
                 $edit = '<a href="#" class="px-2" onclick="editRecord(\'' . route('products.edit', ['product' => $model->id]) . '\')"><i class="fa-solid fa-pen-to-square cursor-pointer"></i></a>';
-                $delete = $model->contracts->count() == 0 ? '<a href="#" class="" onclick="deleteRecord(\'' . route('products.destroy', ['product' => $model->id]) . '\')"><i class="fa-solid fa-trash cursor-pointer"></i></a>' : '';
-                $actions = '<div class="row flex">' .
-                    $show . $edit . $delete .
-                    '</div>';
+                $delete = '<a href="#" class="" onclick="deleteRecord(\'' . route('products.destroy', ['product' => $model->id]) . '\')"><i class="fa-solid fa-trash cursor-pointer"></i></a>';
+                $actions = '<div class="row flex">' . $show . $edit . $delete . '</div>';
 
                 return $actions;
             })
-            ->rawColumns(['actions'])
+            ->editColumn('product_status', function ($model) {
+                return $model->product_status ? $model->status : '<span class="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-1 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-500">Unknown</span>';
+            })
+            ->rawColumns(['actions','product_status','product_docout'])
             ->make(true);
     }
 }
