@@ -40,6 +40,7 @@
     <script type="text/javascript" src="{{ asset('core/js/valve_repair/custom.js') }}"></script>
     <script>
         var CSRF_TOKEN = $('[name="csrf-token"]').attr('content');
+        var array_dropdown = @json($vrr_dropdown);
     </script>
     {{-- <script>
 

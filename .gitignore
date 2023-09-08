@@ -20,3 +20,4 @@ yarn-error.log
 # postcss.config.js
 # tailwind.config.js
 package-lock.json
+public/images/ValveRepair/*

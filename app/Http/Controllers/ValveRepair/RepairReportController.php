@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\ValveRepair;
 
 use App\Http\Controllers\Controller;
+use App\Models\FileUpload;
+use App\Models\ValveRepair\DeviceDetail;
 use App\Models\ValveRepair\Ltsa;
 use App\Models\ValveRepair\RepairReport;
 use App\Models\ValveRepair\ValveRepairDropdown;
@@ -58,31 +60,12 @@ class RepairReportController extends Controller
         // dd($request->file('photo_devices'));
 
         $request->validate([
-            'fileToUpload.*' => 'image|mimes:jpeg,png,jpg|max:8048', // Use image.* to validate each file in a multi-upload field
+            'photo_devices.*' => 'image|mimes:jpeg,png,jpg|max:8048', // Use image.* to validate each file in a multi-upload field
         ]);
 
-        // Retrieve the form data
-        $formData = $request->input('mainFormData');
-        $mainFormData = json_decode($request->input('mainFormData'), true);
-
         // Retrieve the uploaded image file
-        $imageFiles = $request->file('fileToUpload');
+        $imageFiles = $request->file('photo_devices');
 
-        $path = 'images/'; // Folder within the storage directory where you want to store the files
-        if ($imageFiles) {
-            foreach ($imageFiles as $key => $value) {
-                // $fileData = $this->uploads($value, $path);
-                // Generate a unique filename for each uploaded file
-                $filename = time() . '_' . $value->getClientOriginalName();
-                // Store the file in the specified folder
-                $value->storeAs($path, $filename);
-
-                // If you want to get the full path to the stored file, you can use Storage::url
-                $fullPath = Storage::url("$path/$filename");
-            }
-        }
-
-        die;
         DB::beginTransaction();
 
         try {
@@ -110,6 +93,43 @@ class RepairReportController extends Controller
                 ]);
             }
 
+            $device_detail = DeviceDetail::create([
+                'repair_report_id' => $repair_report->id,
+                'device_type' => $request->input('device_type'),
+                'device_type_selected_type' => $request->input('selected_device_type'),
+                'tag_number' => $request->input('tag_number'),
+                'serial_number' => $request->input('serial_number'),
+                'process' => $request->input('process'),
+            ]);
+
+            $path = 'images/ValveRepair/' . $repair_report->id; // Folder within the storage directory where you want to store the files
+            if ($imageFiles) {
+                foreach ($imageFiles as $key => $value) {
+                    // Generate a unique filename for each uploaded file
+                    $filename = time() . '_' . $value->getClientOriginalName();
+                    // Store the file in the specified folder
+                    $value->storeAs($path, $filename);
+                    // If you want to get the full path to the stored file, you can use Storage::url
+                    $fullPath = Storage::url("$path/$filename");
+                    $nameFileSpaces = preg_replace('/\s/', '', $value->getClientOriginalName());
+                    // $fileNameWithoutExtension = preg_replace('/\.[^/.]+$/', '', $nameFileSpaces);
+                    $fileNameWithoutExtension = pathinfo($nameFileSpaces, PATHINFO_FILENAME);
+                    // dd($fileNameWithoutExtension);
+
+                    $file_type = $value->getClientOriginalExtension();
+                    $size = $this->fileSize($value);
+                    $fileUpload = FileUpload::create([
+                        'reference_id' => $repair_report->id,
+                        'name' => $filename,
+                        'path' => $fullPath,
+                        'size' => $size,
+                        'type' => $file_type,
+                        'prefix' => 'valve_repair',
+                        'description' =>  $request->input('input-image-item-'.$fileNameWithoutExtension),
+                    ]);
+                }
+            }
+
             DB::commit();
 
             return response()->json(
@@ -134,15 +154,37 @@ class RepairReportController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(RepairReport $repairReport)
+    public function show(RepairReport $valverepair)
     {
-        //
+
+        $breadcrumbs = [
+            [
+                'title' => 'Valve Repair Report',
+                'status' => 'active',
+                'url' => route('valverepair.index'),
+                'icon' => 'fa-solid fa-house fa-sm',
+            ],
+            [
+                'title' => 'Show',
+                'status' => 'active',
+                'url' => '',
+                'icon' => '',
+            ],
+        ];
+
+        $vrr_dropdown = ValveRepairDropdown::all();
+        return view('Valve_repair.show', [
+            'title' => $this->pageTitle,
+            'breadcrumbs' => $breadcrumbs,
+            'vrr_dropdown' => $vrr_dropdown,
+            'valverepair' => $valverepair,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(RepairReport $repairReport)
+    public function edit(RepairReport $valverepair)
     {
         //
     }
@@ -150,7 +192,7 @@ class RepairReportController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, RepairReport $repairReport)
+    public function update(Request $request, RepairReport $valverepair)
     {
         //
     }
@@ -158,8 +200,22 @@ class RepairReportController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RepairReport $repairReport)
+    public function destroy(RepairReport $valverepair)
     {
         //
+    }
+
+    public function fileSize($file, $precision = 2)
+    {
+        $size = $file->getSize();
+
+        if ($size > 0) {
+            $size = (int) $size;
+            $base = log($size) / log(1024);
+            $suffixes = [' bytes', ' KB', ' MB', ' GB', ' TB'];
+            return round(pow(1024, $base - floor($base)), $precision) . $suffixes[floor($base)];
+        }
+
+        return $size;
     }
 }

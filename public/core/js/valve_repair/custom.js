@@ -33,6 +33,41 @@ modalHideAndReset = () => {
     formReset();
 };
 
+onChangeDeviceType = (selected_id=null) => {
+    var select = document.getElementById("device_type");
+
+    var val = select.options[select.selectedIndex].text;
+    const lowercaseString = val.toLowerCase();
+    const underscoreString = lowercaseString.replaceAll(" ", "_");
+
+    var filteredData = array_dropdown.filter(function (item) {
+        return item.dropdown_category === underscoreString + "_device_type"; // Replace 'work_type' with the category you want to filter by
+    });
+    // Assuming you have a select element with the id 'device_type'
+    var selectElement = document.getElementById("selected_device_type");
+
+    // Clear any existing options
+    selectElement.innerHTML = "";
+
+    var defaultOption = document.createElement("option");
+    defaultOption.value = ""; // Set the value to an empty string
+    defaultOption.text = "Select Device Type"; // Set the default text
+    defaultOption.selected = true; // Set it as the selected option
+    defaultOption.disabled = true; // Disable the default option
+    selectElement.appendChild(defaultOption);
+
+    // Populate the select element with the filtered data
+    filteredData.forEach(function (item) {
+        var option = document.createElement("option");
+        option.value = item.id; // Set the value of the option to the 'id' property
+        if(selected_id !== null && item.id == selected_id){
+            option.selected = true; // Set it as the selected option
+        }
+        option.text = item.dropdown_label; // Set the text of the option to the 'dropdown_label' property
+        selectElement.appendChild(option);
+    });
+};
+
 function showHideDiv() {
     var select = document.getElementById("order_type");
     var div = document.getElementById("ltsa_div");
@@ -136,9 +171,12 @@ saveRecord = () => {
                 var formData = new FormData(fromInput);
                 // Append the serialized form data to formData
                 // formData.append("mainFormData", $("#mainForm").serialize());
-                var ins = document.getElementById('photo_devices').files.length;
+                var ins = document.getElementById("photo_devices").files.length;
                 for (var x = 0; x < ins; x++) {
-                    formData.append("fileToUpload[]", document.getElementById('photo_devices').files[x]);
+                    formData.append(
+                        "fileToUpload[]",
+                        document.getElementById("photo_devices").files[x]
+                    );
                 }
                 // Append the image file to formData (assuming you have an input field with the ID "imageInput")
                 // formData.append("files", $("#photo_devices")[0].files);
@@ -148,7 +186,7 @@ saveRecord = () => {
                     data: formData,
                     processData: false, // Prevent jQuery from processing the data
                     contentType: false, // Set the content type to false to let the browser handle it
-                    enctype: 'multipart/form-data',
+                    enctype: "multipart/form-data",
                     headers: {
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
                             "content"
@@ -356,4 +394,33 @@ function removeFile(name) {
     }
     // Assign buffer to file input
     document.getElementById("photo_devices").files = fileBuffer.files; // <-- according to your file input reference
+}
+
+editRecord = (url) => {
+    // modalShowAndReset();
+    var selected_device_id_type = document.getElementById("selected_device_type_value").value;
+    modal.show();
+    showHideDiv();
+    scope_of_workDiv();
+    onChangeDeviceType(selected_device_id_type);
+    $('.modal-title').text('Edit Valve Repair Request');
+
+    $('#warning-alert').removeClass('flex').addClass('hidden');
+
+    $('.warning-alert-message').html('');
+    $('.warning-alert-title').text('');
+
+    // $.ajax({
+    //     type: "get",
+    //     url: url,
+    //     dataType: "json",
+    //     success: function (response) {
+    //         $.each(response.form, function (index, value) {
+    //             $('#' + value[0]).val(value[1]);
+    //         });
+
+    //         $('#form_url').val(response.update_url);
+    //         $('#mainForm').attr('method', 'PUT');
+    //     }
+    // });
 }

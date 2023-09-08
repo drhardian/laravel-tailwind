@@ -120,7 +120,7 @@ Route::prefix('products')->controller(ProductController::class)->group(function(
     // Route::post('import', [ProductController::class, 'handleImport'])->name('products.handleImport');
 });
 
-Route::resource('valverepair', RepairReportController::class);
+Route::resource('valverepair', RepairReportController::class)->except('create');
 Route::prefix('valverepair')->controller(RepairReportController::class)->group(function() {
     // Route::get('show/datatable', 'showDatatable')->name('tablemap.main.table');
 });

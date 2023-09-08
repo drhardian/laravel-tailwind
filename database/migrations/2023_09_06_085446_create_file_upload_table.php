@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('size');
             $table->string('type');
             $table->string('prefix');
+            $table->text('description');
             $table->timestamps();
         });
     }
