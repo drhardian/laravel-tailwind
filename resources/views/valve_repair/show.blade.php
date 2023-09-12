@@ -19,7 +19,8 @@
                                 information</h5>
                         </div>
                         <div class="justify-end px-4">
-                            <i class="fa-solid fa-pen hover:text-blue-500" onclick="editRecord(`{{ route('valverepair.edit', ['valverepair' => $valverepair->id]) }}`)"></i>
+                            <i class="fa-solid fa-pen hover:text-blue-500"
+                                onclick="editRecord(`{{ route('valverepair.edit', ['valverepair' => $valverepair->id]) }}`)"></i>
                         </div>
                     </div>
 
@@ -67,7 +68,8 @@
                             </div>
                             <div class="text-sm">
                                 <p class="font-semibold">Repair Type :</p>
-                                <p>{{ isset($valverepair->repairType->dropdown_label)? $valverepair->repairType->dropdown_label: "" }}</p>
+                                <p>{{ isset($valverepair->repairType->dropdown_label) ? $valverepair->repairType->dropdown_label : '' }}
+                                </p>
                             </div>
                             <div class="text-sm">
                                 <p class="font-semibold">Performed by* :</p>
@@ -125,12 +127,12 @@
                         <div id="indicators-carousel" class="relative w-96" data-carousel="static">
                             <!-- Carousel wrapper -->
                             <div class="relative h-11 overflow-hidden rounded-lg md:h-48">
-                                @foreach ($valverepair->Files as $images )
-                                <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-                                    <img src="{{asset('images/ValveRepair/'.$valverepair->id.'/'.$images->name)}}"
-                                        class="absolute block w-36 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                        alt="{{$images->name}}">
-                                </div>
+                                @foreach ($valverepair->Files as $images)
+                                    <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+                                        <img src="{{ asset('images/ValveRepair/' . $valverepair->id . '/' . $images->name) }}"
+                                            class="absolute block w-36 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                            alt="{{ $images->name }}">
+                                    </div>
                                 @endforeach
                                 <!-- Item 1 -->
                             </div>
@@ -190,28 +192,50 @@
                 </div>
             </div>
 
-            </div>
+        </div>
 
-            <div class="flex justify-center">
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-                    <x-card-menu :image="asset('theme/assets/images/information.svg')" :title="'Construction'" />
-                    <x-card-menu :image="asset('theme/assets/images/information.svg')" :title="'Calibration'" />
-                    <x-card-menu :image="asset('theme/assets/images/information.svg')" :title="'Optional Services'" />
-                    <x-card-menu :image="asset('theme/assets/images/information.svg')":title="'Finding and Corrective Action'" />
+        <div class="flex justify-center mb-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+                {{-- <x-card-menu :onclick="openFormContent({{ route('valverepair.store') }}, 'isolationValveModal', 'New CONSTRUCTION - ACTUATOR ISOLATION VALVE')" :image="asset('theme/assets/images/menu.png')" :title="'Construction'" /> --}}
 
+                {{-- <x-card-menu :onclick="openFormContent(1,'isolationValveModal', 'New CONSTRUCTION - ACTUATOR ISOLATION VALVE')" :image="asset('theme/assets/images/menu.png')" :title="'Construction'" />
+                <x-card-menu :image="asset('theme/assets/images/menu.png')" :title="'Calibration'" />
+                <x-card-menu :image="asset('theme/assets/images/menu.png')" :title="'Optional Services'" />
+                <x-card-menu :image="asset('theme/assets/images/menu.png')" :title="'Finding and Corrective Action'" />
+                <x-card-menu :image="asset('theme/assets/images/menu.png')" :title="'PHE - Penetrant'" />
+                <x-card-menu :image="asset('theme/assets/images/menu.png')" :title="'PHE - Testing'" />
+                <x-card-menu :image="asset('theme/assets/images/menu.png')" :title="'Painting'" />
+                <x-card-menu :image="asset('theme/assets/images/menu.png')" :title="'PHE - Packaging'" /> --}}
+                <div onclick="openFormConstruction('{{ route('valverepair.store') }}')">
+                    <div
+                        class="w-72 max-w-sm hover:bg-gray-100 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <div class="flex justify-end px-4 pt-4">
+                        </div>
+                        <div class="flex flex-col items-center ">
+                            <img class="w-24 h-24 mb-3 shadow-lg rounded-full" src="{{asset('theme/assets/images/menu.png')}}" alt="Bonnie image" />
+                            <h6 class="p-4 text-center mb-1 text-md font-medium text-gray-900 dark:text-white">Construction</h6>
+                        </div>
+                    </div>
                 </div>
+
+
             </div>
         </div>
     </div>
+    </div>
 
     @include('valve_repair.component.edit')
+    @include('valve_repair.construction.modal')
+
 @endsection
 
 @section('js')
     <script type="text/javascript" src="{{ asset('core/js/valve_repair/custom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('core/js/valve_repair/construction/custom.js') }}"></script>
     <script>
         var CSRF_TOKEN = $('[name="csrf-token"]').attr('content');
         var array_dropdown = @json($vrr_dropdown);
         var valveRepair = @json($valverepair);
+        var updateUrls = "{{ route('valverepair.update', ['valverepair' => $valverepair->id]) }}";
     </script>
 @endsection

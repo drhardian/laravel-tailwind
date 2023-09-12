@@ -15,13 +15,17 @@ class CardMenu extends Component
     public $image;
     public $title;
     public $description;
+    public $onclick;
 
 
-    public function __construct($image,$title, $description='')
+
+    public function __construct($image,$title, $description='', $onclick='')
     {
         $this->image = $image;
         $this->title = $title;
         $this->description = $description;
+        $this->onclick = $onclick;
+
 
     }
 

@@ -30,10 +30,9 @@ cancelBtn.onclick = function () {
 
 modalHideAndReset = () => {
     modal.hide();
-    formReset();
+    // formReset();
 };
-
-onChangeDeviceType = (selected_id=null) => {
+onChangeDeviceType = (selected_id = null) => {
     var select = document.getElementById("device_type");
 
     var val = select.options[select.selectedIndex].text;
@@ -60,7 +59,7 @@ onChangeDeviceType = (selected_id=null) => {
     filteredData.forEach(function (item) {
         var option = document.createElement("option");
         option.value = item.id; // Set the value of the option to the 'id' property
-        if(selected_id !== null && item.id == selected_id){
+        if (selected_id !== null && item.id == selected_id) {
             option.selected = true; // Set it as the selected option
         }
         option.text = item.dropdown_label; // Set the text of the option to the 'dropdown_label' property
@@ -181,12 +180,11 @@ saveRecord = () => {
                 // Append the image file to formData (assuming you have an input field with the ID "imageInput")
                 // formData.append("files", $("#photo_devices")[0].files);
                 $.ajax({
-                    type: "post",
+                    type: "POST",
                     url: $("#form_url").val(),
                     data: formData,
                     processData: false, // Prevent jQuery from processing the data
                     contentType: false, // Set the content type to false to let the browser handle it
-                    enctype: "multipart/form-data",
                     headers: {
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
                             "content"
@@ -207,6 +205,18 @@ saveRecord = () => {
                         modalHideAndReset();
                         toastr.success(response.message);
                         $("#main-table").DataTable().ajax.reload();
+                        if (response.action) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Update Data Success",
+                                text: response.message,
+                                confirmButtonText: "Oke",
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        }
                     },
                     error: function (response) {
                         Swal.close();
@@ -397,30 +407,17 @@ function removeFile(name) {
 }
 
 editRecord = (url) => {
-    // modalShowAndReset();
-    var selected_device_id_type = document.getElementById("selected_device_type_value").value;
+    var selected_device_id_type = document.getElementById(
+        "selected_device_type_value"
+    ).value;
     modal.show();
     showHideDiv();
     scope_of_workDiv();
     onChangeDeviceType(selected_device_id_type);
-    $('.modal-title').text('Edit Valve Repair Request');
-
-    $('#warning-alert').removeClass('flex').addClass('hidden');
-
-    $('.warning-alert-message').html('');
-    $('.warning-alert-title').text('');
-
-    // $.ajax({
-    //     type: "get",
-    //     url: url,
-    //     dataType: "json",
-    //     success: function (response) {
-    //         $.each(response.form, function (index, value) {
-    //             $('#' + value[0]).val(value[1]);
-    //         });
-
-    //         $('#form_url').val(response.update_url);
-    //         $('#mainForm').attr('method', 'PUT');
-    //     }
-    // });
-}
+    $(".modal-title").text("Edit Valve Repair Request");
+    $("#warning-alert").removeClass("flex").addClass("hidden");
+    $(".warning-alert-message").html("");
+    $(".warning-alert-title").text("");
+    $("#form_url").val(updateUrls);
+    $("#mainForm").attr("method", "PUT");
+};

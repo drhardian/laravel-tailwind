@@ -51,6 +51,7 @@
                     <!-- Form Area -->
                     <form id="mainForm" method="post" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                             <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
                                 data-tabs-toggle="#myTabContent" role="tablist">
@@ -540,7 +541,7 @@
                         </button>
                         <button type="button" id="saveButtonAction"
                             class=" hidden ml-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                            onClick="saveRecord()">Save</button>
+                            onClick="saveRecord()">Update</button>
                     </div>
                 </div>
             </div>

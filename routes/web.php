@@ -122,5 +122,8 @@ Route::prefix('products')->controller(ProductController::class)->group(function(
 
 Route::resource('valverepair', RepairReportController::class)->except('create');
 Route::prefix('valverepair')->controller(RepairReportController::class)->group(function() {
-    // Route::get('show/datatable', 'showDatatable')->name('tablemap.main.table');
+    Route::get('constructionbody/{id}', 'editConstructionBody')->name('valverepair.get.constructionbody');
+    Route::post('constructionbody', 'storeConstructionBody')->name('valverepair.store.constructionbody');
+    Route::put('constructionbody/{id}', 'storeConstructionBody')->name('valverepair.update.constructionbody');
+
 });
