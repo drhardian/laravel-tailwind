@@ -194,7 +194,7 @@
 
         </div>
 
-        <div class="flex justify-center mb-10">
+        <div class="flex justify-center mb-10 p-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-10">
                 {{-- <x-card-menu :onclick="openFormContent({{ route('valverepair.store') }}, 'isolationValveModal', 'New CONSTRUCTION - ACTUATOR ISOLATION VALVE')" :image="asset('theme/assets/images/menu.png')" :title="'Construction'" /> --}}
 

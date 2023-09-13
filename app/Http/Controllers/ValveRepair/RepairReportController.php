@@ -329,7 +329,6 @@ class RepairReportController extends Controller
                 // Set the model's attributes based on the checkbox values
                 $model->bc_checkbox = $request->has('bc_checkbox') ? 1 : 0;
                 $model->repair_report_id = $request->input('repair_report_id');
-
                 // Save the model to the database
                 $model->save();
             } else {
@@ -353,53 +352,256 @@ class RepairReportController extends Controller
         }
     }
 
+    /**
+     * storeConstructionBody a newly created resource in storage.
+     */
+    public function updateConstructionBody(Request $request, ConstructionIsolationValve $consIsolValve)
+    {
+        DB::beginTransaction();
+
+        try {
+
+            if ($request->has('bc_checkbox')) {
+                $data['bc_checkbox'] = 1; // Checkbox is not checked, set to false
+                $consIsolValve->update($data);
+            } else {
+                $data = $request->except('_token');
+                $data['bc_checkbox'] = 0; // Checkbox is not checked, set to false
+                $consIsolValve->update($data);
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'Table Body Construction successfully saved'
+            ], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+
+            return response()->json([
+                'message' => 'The server encountered an error and could not complete your request'
+            ], 500);
+        }
+    }
+
     # showing existing detail data on edit form
     public function editConstructionBody(Request $request, $id)
     {
 
         $consIsolValve = ConstructionIsolationValve::where('repair_report_id', $id)->first();
-        return response()->json([
-            'form' => [
-                $consIsolValve
-                // 'id' => $consIsolValve->id,
-                // 'repair_report_id' => $consIsolValve->repair_report_id,
-                // 'bc_checkbox' => $consIsolValve->bc_checkbox,
-                // 'bc_brand_found' => $consIsolValve->bc_brand_found,
-                // 'bc_model_found' => $consIsolValve->bc_model_found,
-                // 'bc_serial_number_found' => $consIsolValve->bc_serial_number_found,
-                // 'bc_type_found' => $consIsolValve->bc_type_found,
-                // 'bc_size_found' => $consIsolValve->bc_size_found,
-                // 'bc_port_found' => $consIsolValve->bc_port_found,
-                // 'bc_pressure_class_found' => $consIsolValve->bc_pressure_class_found,
-                // 'bc_end_connection_found' => $consIsolValve->bc_end_connection_found,
-                // 'bc_bonnet_style_found' => $consIsolValve->bc_bonnet_style_found,
-                // 'bc_packing_configuration_found' => $consIsolValve->bc_packing_configuration_found,
-                // 'bc_live_loaded_found' => $consIsolValve->bc_live_loaded_found,
-                // 'bc_body_material_found' => $consIsolValve->bc_body_material_found,
-                // 'bc_pdb_material_found' => $consIsolValve->bc_pdb_material_found,
-                // 'bc_steam_shaft_material_found' => $consIsolValve->bc_steam_shaft_material_found,
-                // 'bc_seat_material_found' => $consIsolValve->bc_seat_material_found,
-                // 'bc_brand_left' => $consIsolValve->bc_brand_left,
-                // 'bc_model_left' => $consIsolValve->bc_model_left,
-                // 'bc_serial_number_left' => $consIsolValve->bc_serial_number_left,
-                // 'bc_type_left' => $consIsolValve->bc_type_left,
-                // 'bc_size_left' => $consIsolValve->bc_size_left,
-                // 'bc_port_left' => $consIsolValve->bc_port_left,
-                // 'bc_pressure_class_left' => $consIsolValve->bc_pressure_class_left,
-                // 'bc_end_connection_left' => $consIsolValve->bc_end_connection_left,
-                // 'bc_bonnet_style_left' => $consIsolValve->bc_bonnet_style_left,
-                // 'bc_packing_configuration_left' => $consIsolValve->bc_packing_configuration_left,
-                // 'bc_live_loaded_left' => $consIsolValve->bc_live_loaded_left,
-                // 'bc_body_material_left' => $consIsolValve->bc_body_material_left,
-                // 'bc_pdb_material_left' => $consIsolValve->bc_pdb_material_left,
-                // 'bc_steam_shaft_material_left' => $consIsolValve->bc_steam_shaft_material_left,
-                // 'bc_seat_material_left' => $consIsolValve->bc_seat_material_left,
-                // 'bc_note' => $consIsolValve->bc_note,
-                // 'created_at' => $consIsolValve->created_at,
-                // 'updated_at' => $consIsolValve->updated_at,
+        if ($consIsolValve) {
+            return response()->json([
+                'form' => [
+                    $consIsolValve
+                ],
+                'update_url' => route('valverepair.update.constructionbody', ['consIsolValve' => $consIsolValve->id])
+            ], 200);
+        } else {
+            // Data doesn't exist, return a message indicating the need for initial insertion
+            return response()->json([
+                'status' => 'empty',
+                'message' => 'Data not found. Please insert the data initially / No Data in Tab Body.',
+            ], 200); // You can use a different status code if appropriate
+        }
+    }
 
-            ],
-            'update_url' => route('valverepair.update.constructionbody', ['id' => $consIsolValve->id])
-        ], 200);
+
+    /**
+     * storeConstructionBody a newly created resource in storage.
+     */
+    public function storeConstructionActuatorWheel(Request $request, ConstructionIsolationValve $consIsolValve)
+    {
+        DB::beginTransaction();
+
+        try {
+            if ($request->has('ahc_checkbox')) {
+                $data['ahc_checkbox'] = 1; // Checkbox is not checked, set to false
+                $consIsolValve->update($data);
+            } else {
+                $data = $request->except('_token');
+                $data['ahc_checkbox'] = 0; // Checkbox is not checked, set to false
+                $consIsolValve->update($data);
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'Data Actuator Wheel successfully saved'
+            ], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+
+            return response()->json([
+                'message' => 'The server encountered an error and could not complete your request'
+            ], 500);
+        }
+    }
+
+    # showing existing detail data on edit form
+    public function editConstructionActuatorWheel(Request $request, $consIsolValve)
+    {
+        $consIsolValveData = ConstructionIsolationValve::where('repair_report_id', $consIsolValve)->first();
+
+        if ($consIsolValveData) {
+            // Get all the attributes as an associative array
+            $dataAttributes = $consIsolValveData->getAttributes();
+
+            // Filter attributes that start with 'ahc_'
+            $filteredAttributes = collect($dataAttributes)->filter(function ($value, $key) {
+                return strpos($key, 'ahc_') === 0;
+            })->all();
+
+            // Create a new object with the filtered attributes
+            $filteredConsIsolValveData = new ConstructionIsolationValve();
+            $filteredConsIsolValveData->setRawAttributes($filteredAttributes);
+
+            // Now $filteredConsIsolValveData contains only the attributes with names starting with 'ahc_'
+            return response()->json([
+                'form' => [
+                    $filteredConsIsolValveData
+                ],
+                'update_url' => route('valverepair.store.constructionactuatorwheel', ['consIsolValve' => $consIsolValveData->id])
+            ], 200);
+        } else {
+            // Data doesn't exist, return a message indicating the need for initial insertion
+            return response()->json([
+                'status' => 'empty',
+                'message' => 'Data not found. Please insert the data first In tab Body.',
+            ], 200); // You can use a different status code if appropriate
+        }
+    }
+
+     /**
+     * storeConstructionBody a newly created resource in storage.
+     */
+    public function storeConstructionActuatorAutomation(Request $request, ConstructionIsolationValve $consIsolValve)
+    {
+        DB::beginTransaction();
+
+        try {
+            if ($request->has('aa_checkbox')) {
+                $data['aa_checkbox'] = 1; // Checkbox is not checked, set to false
+                $consIsolValve->update($data);
+            } else {
+                $data = $request->except('_token');
+                $data['aa_checkbox'] = 0; // Checkbox is not checked, set to false
+                $consIsolValve->update($data);
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'Data Actuator Wheel successfully saved'
+            ], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+
+            return response()->json([
+                'message' => 'The server encountered an error and could not complete your request'
+            ], 500);
+        }
+    }
+
+    # showing existing detail data on edit form
+    public function editConstructionActuatorAutomation(Request $request, $consIsolValve)
+    {
+        $consIsolValveData = ConstructionIsolationValve::where('repair_report_id', $consIsolValve)->first();
+
+        if ($consIsolValveData) {
+            // Get all the attributes as an associative array
+            $dataAttributes = $consIsolValveData->getAttributes();
+
+            // Filter attributes that start with 'ahc_'
+            $filteredAttributes = collect($dataAttributes)->filter(function ($value, $key) {
+                return strpos($key, 'aa_') === 0;
+            })->all();
+
+            // Create a new object with the filtered attributes
+            $filteredConsIsolValveData = new ConstructionIsolationValve();
+            $filteredConsIsolValveData->setRawAttributes($filteredAttributes);
+
+            // Now $filteredConsIsolValveData contains only the attributes with names starting with 'ahc_'
+            return response()->json([
+                'form' => [
+                    $filteredConsIsolValveData
+                ],
+                'update_url' => route('valverepair.store.constructionactuatorautomation', ['consIsolValve' => $consIsolValveData->id])
+            ], 200);
+        } else {
+            // Data doesn't exist, return a message indicating the need for initial insertion
+            return response()->json([
+                'status' => 'empty',
+                'message' => 'Data not found. Please insert the data first In tab Body.',
+            ], 200); // You can use a different status code if appropriate
+        }
+    }
+
+      /**
+     * storeConstructionBody a newly created resource in storage.
+     */
+    public function storeConstructionPositionerIsolation(Request $request, ConstructionIsolationValve $consIsolValve)
+    {
+        DB::beginTransaction();
+
+        try {
+            if ($request->has('pc_checkbox')) {
+                $data['pc_checkbox'] = 1; // Checkbox is not checked, set to false
+                $consIsolValve->update($data);
+            } else {
+                $data = $request->except('_token');
+                $data['pc_checkbox'] = 0; // Checkbox is not checked, set to false
+                $consIsolValve->update($data);
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'Data Actuator Wheel successfully saved'
+            ], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+
+            return response()->json([
+                'message' => 'The server encountered an error and could not complete your request'
+            ], 500);
+        }
+    }
+
+    # showing existing detail data on edit form
+    public function editConstructionPositionerIsolation(Request $request, $consIsolValve)
+    {
+        $consIsolValveData = ConstructionIsolationValve::where('repair_report_id', $consIsolValve)->first();
+
+        if ($consIsolValveData) {
+            // Get all the attributes as an associative array
+            $dataAttributes = $consIsolValveData->getAttributes();
+
+            // Filter attributes that start with 'ahc_'
+            $filteredAttributes = collect($dataAttributes)->filter(function ($value, $key) {
+                return strpos($key, 'pc_') === 0;
+            })->all();
+
+            // Create a new object with the filtered attributes
+            $filteredConsIsolValveData = new ConstructionIsolationValve();
+            $filteredConsIsolValveData->setRawAttributes($filteredAttributes);
+
+            // Now $filteredConsIsolValveData contains only the attributes with names starting with 'ahc_'
+            return response()->json([
+                'form' => [
+                    $filteredConsIsolValveData
+                ],
+                'update_url' => route('valverepair.store.constructionpositionerisolation', ['consIsolValve' => $consIsolValveData->id])
+            ], 200);
+        } else {
+            // Data doesn't exist, return a message indicating the need for initial insertion
+            return response()->json([
+                'status' => 'empty',
+                'message' => 'Data not found. Please insert the data first In tab Body.',
+            ], 200); // You can use a different status code if appropriate
+        }
     }
 }

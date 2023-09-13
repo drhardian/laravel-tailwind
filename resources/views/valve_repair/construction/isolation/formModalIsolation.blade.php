@@ -61,606 +61,82 @@
                        <li class="mr-2" role="presentation">
                            <button
                                class="inline-block p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                               id="actuatorHandwheel-tab" data-url={{ route('valverepair.store') }}
-                               data-tabs-target="#actuatorHandwheel" type="button" role="tab"
-                               aria-controls="actuatorHandwheel" aria-selected="false">Actuator
+                               id="actuatorHandwheel-tab"
+                               data-url={{ route('valverepair.get.constructionactuatorwheel', ['consIsolValve' => $valverepair->id]) }}
+                               data-form="mainFormConstructionActuatorHandWheel" data-tabs-target="#actuatorHandwheel"
+                               type="button" role="tab" aria-controls="actuatorHandwheel"
+                               aria-selected="false">Actuator
                                Handwheel</button>
                        </li>
                        <li class="mr-2" role="presentation">
                            <button
                                class="inline-block p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                               id="ActuatorAutomation-tab" data-tabs-target="#ActuatorAutomation" type="button"
+                               id="ActuatorAutomation-tab"
+                               data-url={{ route('valverepair.get.constructionactuatorautomation', ['consIsolValve' => $valverepair->id]) }}
+                               data-tabs-target="#ActuatorAutomation" type="button"
+                               data-form="mainFormActuatorAutomation" data-tabs-target="#ActuatorAutomation"
                                role="tab" aria-controls="ActuatorAutomation" aria-selected="false">Actuator
                                Automation</button>
+                       </li>
+                       <li class="mr-2" role="presentation">
+                           <button
+                               class="inline-block p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                               id="PositionerIsolationValve-tab"
+                               data-url={{ route('valverepair.get.constructionpositionerisolation', ['consIsolValve' => $valverepair->id]) }}
+                               data-tabs-target="#PositionerIsolationValve" type="button"
+                               data-form="mainFormPositionerIsolationValve" data-tabs-target="#PositionerIsolationValve"
+                               role="tab" aria-controls="PositionerIsolationValve"
+                               aria-selected="false">Positioner</button>
+                       </li>
+                       <li class="mr-2" role="presentation">
+                           <button
+                               class="inline-block p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                               id="PositionerIsolationValve-tab"
+                               data-url={{ route('valverepair.get.constructionpositionerisolation', ['consIsolValve' => $valverepair->id]) }}
+                               data-tabs-target="#AccessoriesIsolationValve" type="button"
+                               data-form="mainFormAccessoriesIsolationValve"
+                               data-tabs-target="#AccessoriesIsolationValve" role="tab"
+                               aria-controls="AccessoriesIsolationValve" aria-selected="false">Accessories</button>
                        </li>
                    </ul>
                </div>
                <div id="myTabContent">
-                   {{-- Content general Information --}}
+                   {{-- Start Body Information --}}
                    <div class="hidden p-4 rounded-lg bg-gray-0 dark:bg-gray-800" id="BodyIsolation" role="tabpanel"
                        aria-labelledby="BodyIsolation-tab">
                        <form id="mainFormConstructionBody" method="post" enctype="multipart/form-data">
                            @csrf
-                           <div class="flex items-center">
-                               <input id="checkbox_body_construction_isolation_valve" type="checkbox" name="bc_checkbox"
-                                   value="1"
-                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                               <label for="checked-checkbox"
-                                   class="ml-2 text-md font-medium text-gray-900 dark:text-gray-300">Data Not
-                                   Available</label>
-                           </div>
-                           <div class="mb-6 mt-6">
-                               <div class="row sm:flex">
-                                   <div id="body_construction_found"
-                                       class=" {{ 1 == 2 ? 'sm:w-2/2' : 'sm:w-1/2' }} w-full sm:pr-2">
-                                       <h5 class="mb-4 text-sm font-medium leading-none text-gray-900 dark:text-white">
-                                           CONSTRUCTION (AS FOUND)</h5>
-                                       <label for="bc_brand_found"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
-                                       <select id="bc_brand_found" name="bc_brand_found" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a type</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'brand_isolation_valve')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_model_found"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Model</label>
-                                       <input type="text" id="bc_model_found" name="bc_model_found"
-                                           class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                           required placeholder="Model">
-                                       <label for="bc_serial_number_found"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Serial
-                                           Number</label>
-                                       <input type="text" id="bc_serial_number_found"
-                                           name="bc_serial_number_found"
-                                           class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                           required placeholder="Serial Number">
-                                       <label for="bc_type_found"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
-                                       <select id="bc_type_found" name="bc_type_found" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a type</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'isolation_valve_device_type')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_size_found"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Size</label>
-                                       <select id="bc_size_found" name="bc_size_found" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'body_size_isolation_valve')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_port_found"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Port</label>
-                                       <select id="bc_port_found" name="bc_port_found" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'body_port_isolation_valve')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_pressure_class_found"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pressure
-                                           Class</label>
-                                       <select id="bc_pressure_class_found" name="bc_pressure_class_found" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'body_pressure_class_isolation_valve')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_end_connection_found"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">End
-                                           Connection</label>
-                                       <select id="bc_end_connection_found" name="bc_end_connection_found" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'body_end_connection_isolation_valve')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_bonnet_style_found"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bonnet
-                                           Style</label>
-                                       <select id="bc_bonnet_style_found" name="bc_bonnet_style_found" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'bonnet_style')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-
-                                       <label for="bc_packing_configuration_found"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Packing
-                                           Configuration</label>
-                                       <select id="bc_packing_configuration_found"
-                                           name="bc_packing_configuration_found" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'body_packing_configuration_isolation_valve')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_live_loaded_found"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Live
-                                           Loaded</label>
-                                       <select id="bc_live_loaded_found" name="bc_live_loaded_found" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'live_loaded')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_body_material_found"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Body
-                                           Material</label>
-                                       <select id="bc_body_material_found" name="bc_body_material_found" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'body_material')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_pdb_material_found"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Plug/Disc/Ball
-                                           Material</label>
-                                       <select id="bc_pdb_material_found" name="bc_pdb_material_found" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'plug_disc_ball_material')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_steam_shaft_material_found"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Steam
-                                           Shaft Material</label>
-                                       <select id="bc_steam_shaft_material_found" name="bc_steam_shaft_material_found"
-                                           required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'stem_shaft_material')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_seat_material_found"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seat
-                                           Material</label>
-                                       <select id="bc_seat_material_found" name="bc_seat_material_found" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'seat_material')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-
-                                   </div>
-
-                                   {{-- Body Construction Left --}}
-                                   <div id="body_construction_left" class="sm:w-1/2 w-full sm:pr-2">
-                                       <h5 class="mb-4 text-sm font-medium leading-none text-gray-900 dark:text-white">
-                                           CONSTRUCTION (AS LEFT)</h5>
-                                       <label for="bc_brand_left"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
-                                       <select id="bc_brand_left" name="bc_brand_left" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a type</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'brand_isolation_valve')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_model_left"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Model</label>
-                                       <input type="text" id="bc_model_left" name="bc_model_left"
-                                           class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                           required placeholder="Model">
-                                       <label for="bc_serial_number_left"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Serial
-                                           Number</label>
-                                       <input type="text" id="bc_serial_number_left" name="bc_serial_number_left"
-                                           class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                           required placeholder="Serial Number">
-                                       <label for="bc_type_left"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
-                                       <select id="bc_type_left" name="bc_type_left" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a type</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'isolation_valve_device_type')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_size_left"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Size</label>
-                                       <select id="bc_size_left" name="bc_size_left" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'body_size_isolation_valve')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_port_left"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Port</label>
-                                       <select id="bc_port_left" name="bc_port_left" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'body_port_isolation_valve')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_pressure_class_left"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pressure
-                                           Class</label>
-                                       <select id="bc_pressure_class_left" name="bc_pressure_class_left" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'body_pressure_class_isolation_valve')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_end_connection_left"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">End
-                                           Connection</label>
-                                       <select id="bc_end_connection_left" name="bc_end_connection_left" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'body_end_connection_isolation_valve')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_bonnet_style_left"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bonnet
-                                           Style</label>
-                                       <select id="bc_bonnet_style_left" name="bc_bonnet_style_left" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'bonnet_style')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-
-                                       <label for="bc_packing_configuration_left"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Packing
-                                           Configuration</label>
-                                       <select id="bc_packing_configuration_left" name="bc_packing_configuration_left"
-                                           required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'body_packing_configuration_isolation_valve')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_live_loaded_left"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Live
-                                           Loaded</label>
-                                       <select id="bc_live_loaded_left" name="bc_live_loaded_left" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'live_loaded')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_body_material_left"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Body
-                                           Material</label>
-                                       <select id="bc_body_material_left" name="bc_body_material_left" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'body_material')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_pdb_material_left"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Plug/Disc/Ball
-                                           Material</label>
-                                       <select id="bc_pdb_material_left" name="bc_pdb_material_left" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'plug_disc_ball_material')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_steam_shaft_material_left"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Steam
-                                           Shaft Material</label>
-                                       <select id="bc_steam_shaft_material_left" name="bc_steam_shaft_material_left"
-                                           required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'stem_shaft_material')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-                                       <label for="bc_seat_material_left"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seat
-                                           Material</label>
-                                       <select id="bc_seat_material_left" name="bc_seat_material_left" required
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                           <option selected value="" disabled>Choose a Size</option>
-                                           @foreach ($vrr_dropdown as $value)
-                                               @if ($value->dropdown_category == 'seat_material')
-                                                   <option value="{{ $value->id }}">
-                                                       {{ $value->dropdown_label }}
-                                                   </option>
-                                               @endif
-                                           @endforeach
-                                       </select>
-
-                                   </div>
-                               </div>
-                               <div id="body_construction_note_div" class="row sm:flex mt-3">
-                                   <div class="w-full sm:pr-2">
-                                       <label for="bc_note"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Note</label>
-                                       <textarea
-                                           class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                           placeholder="Write note here..." id="bc_note" name="bc_note"></textarea>
-                                   </div>
-                               </div>
-                           </div>
+                           @include('valve_repair.construction.isolation.tab.body')
                        </form>
                    </div>
                    {{-- Start Actuator Wheel --}}
                    <div class="hidden p-4 rounded-lg bg-gray-0 dark:bg-gray-800" id="actuatorHandwheel"
                        role="tabpanel" aria-labelledby="actuatorHandwheel-tab">
-                       <div class="flex items-center">
-                           <input id="checkbox_actuator_isolation_valve" type="checkbox"
-                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                           <label for="checked-checkbox"
-                               class="ml-2 text-md font-medium text-gray-900 dark:text-gray-300">Data Not
-                               Available</label>
-                       </div>
-                       <div class="row sm:flex mb-6 mt-6">
-                           <div id="actuator_construction_found"
-                               class=" {{ 1 == 2 ? 'sm:w-2/2' : 'sm:w-1/2' }} w-full sm:pr-2">
-                               <h5 class="mb-4 text-sm font-medium leading-none text-gray-900 dark:text-white">
-                                   CONSTRUCTION (AS FOUND)</h5>
-                               <label for="actuator_construction_type_found"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
-                               <select id="actuator_construction_type_found" name="actuator_construction_type_found"
-                                   required
-                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                   <option selected value="" disabled>Choose a type</option>
-                                   @foreach ($vrr_dropdown as $value)
-                                       @if ($value->dropdown_category == 'type_actuator_construction')
-                                           <option value="{{ $value->id }}">
-                                               {{ $value->dropdown_label }}
-                                           </option>
-                                       @endif
-                                   @endforeach
-                               </select>
-                               <label for="actuator_construction_size_found"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Size</label>
-                               <select id="actuator_construction_size_found" name="actuator_construction_size_found"
-                                   required
-                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                   <option selected value="" disabled>Choose a Size</option>
-                                   @foreach ($vrr_dropdown as $value)
-                                       @if ($value->dropdown_category == 'size_actuator')
-                                           <option value="{{ $value->id }}">
-                                               {{ $value->dropdown_label }}
-                                           </option>
-                                       @endif
-                                   @endforeach
-                               </select>
-                               <label for="actuator_construction_mounting_found"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mounting</label>
-
-                               <select id="actuator_construction_mounting_found"
-                                   name="actuator_construction_mounting_found" required
-                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                   <option selected value="" disabled>Choose a Mounting</option>
-                                   @foreach ($vrr_dropdown as $value)
-                                       @if ($value->dropdown_category == 'mounting_actuator')
-                                           <option value="{{ $value->id }}">
-                                               {{ $value->dropdown_label }}
-                                           </option>
-                                       @endif
-                                   @endforeach
-                               </select>
-                               <label for="actuator_construction_action_found"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Action</label>
-                               <select id="actuator_construction_action_found"
-                                   name="actuator_construction_action_found" required
-                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                   <option selected value="" disabled>Choose a Mounting</option>
-                                   @foreach ($vrr_dropdown as $value)
-                                       @if ($value->dropdown_category == 'action_actuator')
-                                           <option value="{{ $value->id }}">
-                                               {{ $value->dropdown_label }}
-                                           </option>
-                                       @endif
-                                   @endforeach
-                               </select>
-                               <label for="actuator_construction_model_found"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Model</label>
-                               <input type="text" id="actuator_construction_model_found"
-                                   name="actuator_construction_model_found"
-                                   class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   required placeholder="Model">
-                               <label for="actuator_construction_serial_found"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Serial
-                                   Number</label>
-                               <input type="text" id="actuator_construction_serial_found"
-                                   name="actuator_construction_serial_found"
-                                   class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   required placeholder="Serial">
-                           </div>
-                           <div id="actuator_construction_left" class="sm:w-1/2 w-full sm:pr-2">
-                               <h5 class="mb-4 text-sm font-medium leading-none text-gray-900 dark:text-white">
-                                   CONSTRUCTION (AS LEFT)</h5>
-                               <label for="actuator_construction_type_left"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
-                               <select id="actuator_construction_type_left" name="actuator_construction_type_left"
-                                   required
-                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                   <option selected value="" disabled>Choose a type</option>
-                                   @foreach ($vrr_dropdown as $value)
-                                       @if ($value->dropdown_category == 'type_actuator_construction')
-                                           <option value="{{ $value->id }}">
-                                               {{ $value->dropdown_label }}
-                                           </option>
-                                       @endif
-                                   @endforeach
-                               </select>
-                               <label for="actuator_construction_size_left"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Size</label>
-                               <select id="actuator_construction_size_left" name="actuator_construction_size_left"
-                                   required
-                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                   <option selected value="" disabled>Choose a Size</option>
-                                   @foreach ($vrr_dropdown as $value)
-                                       @if ($value->dropdown_category == 'size_actuator')
-                                           <option value="{{ $value->id }}">
-                                               {{ $value->dropdown_label }}
-                                           </option>
-                                       @endif
-                                   @endforeach
-                               </select>
-                               <label for="actuator_construction_mounting_left"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mounting</label>
-                               <input type="text" id="actuator_construction_mounting_left"
-                                   name="actuator_construction_mounting_left"
-                                   class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   required placeholder="Mounting">
-                               <label for="actuator_construction_action_left"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Action</label>
-                               <input type="text" id="actuator_construction_action_left"
-                                   name="actuator_construction_action_left"
-                                   class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   required placeholder="Action">
-                               <label for="actuator_construction_model_left"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Model</label>
-                               <input type="text" id="actuator_construction_model_left"
-                                   name="actuator_construction_model_left"
-                                   class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   required placeholder="Model">
-                               <label for="actuator_construction_serial_left"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Serial
-                                   Number</label>
-                               <input type="text" id="actuator_construction_serial_left"
-                                   name="actuator_construction_serial_left"
-                                   class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   required placeholder="Serial">
-                           </div>
-                       </div>
-                       <div id="actuator_construction_note_div" class="row sm:flex mt-3">
-                           <div class="w-full sm:pr-2">
-                               <label for="actuator_construction_note"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Note</label>
-                               <textarea
-                                   class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   placeholder="Write note here..." id="actuator_construction_note" name="actuator_construction_note"></textarea>
-                           </div>
-                       </div>
-
+                       <form id="mainFormConstructionActuatorHandWheel" method="post" enctype="multipart/form-data">
+                           @include('valve_repair.construction.isolation.tab.actuator_handwheel')
+                       </form>
                    </div>
 
                    <div class="hidden p-4 rounded-lg bg-gray-0 dark:bg-gray-800" id="ActuatorAutomation"
                        role="tabpanel" aria-labelledby="ActuatorAutomation-tab">
-                       <p>Masuk 3</p>
+                       <form id="mainFormActuatorAutomation" method="post" enctype="multipart/form-data">
+                           @csrf
+                           @include('valve_repair.construction.isolation.tab.actuator_automation')
+                       </form>
+                   </div>
+                   <div class="hidden p-4 rounded-lg bg-gray-0 dark:bg-gray-800" id="PositionerIsolationValve"
+                       role="tabpanel" aria-labelledby="PositionerIsolationValve-tab">
+                       <form id="mainFormPositionerIsolationValve" method="post" enctype="multipart/form-data">
+                           @csrf
+                           @include('valve_repair.construction.isolation.tab.positioner')
+                       </form>
+                   </div>
+                   <div class="hidden p-4 rounded-lg bg-gray-0 dark:bg-gray-800" id="AccessoriesIsolationValve"
+                       role="tabpanel" aria-labelledby="AccessoriesIsolationValve-tab">
+                       <form id="mainFormAccessoriesIsolationValve" method="post" enctype="multipart/form-data">
+                           @csrf
+                           @include('valve_repair.construction.isolation.tab.positioner')
+                       </form>
                    </div>
                </div>
                <!-- Modal footer -->

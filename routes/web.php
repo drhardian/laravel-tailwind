@@ -122,8 +122,15 @@ Route::prefix('products')->controller(ProductController::class)->group(function(
 
 Route::resource('valverepair', RepairReportController::class)->except('create');
 Route::prefix('valverepair')->controller(RepairReportController::class)->group(function() {
-    Route::get('constructionbody/{id}', 'editConstructionBody')->name('valverepair.get.constructionbody');
     Route::post('constructionbody', 'storeConstructionBody')->name('valverepair.store.constructionbody');
-    Route::put('constructionbody/{id}', 'storeConstructionBody')->name('valverepair.update.constructionbody');
+    Route::get('constructionbody/{id}', 'editConstructionBody')->name('valverepair.get.constructionbody');
+    Route::put('constructionbody/{consIsolValve}', 'updateConstructionBody')->name('valverepair.update.constructionbody');
+    Route::get('constructionactuatorwheel/{consIsolValve}', 'editConstructionActuatorWheel')->name('valverepair.get.constructionactuatorwheel');
+    Route::put('constructionactuatorwheel/{consIsolValve}', 'storeConstructionActuatorWheel')->name('valverepair.store.constructionactuatorwheel');
+    Route::get('constructionactuatorautomation/{consIsolValve}', 'editConstructionActuatorAutomation')->name('valverepair.get.constructionactuatorautomation');
+    Route::put('constructionactuatorautomation/{consIsolValve}', 'storeConstructionActuatorAutomation')->name('valverepair.store.constructionactuatorautomation');
+    Route::get('constructionpositionerisolation/{consIsolValve}', 'editConstructionPositionerIsolation')->name('valverepair.get.constructionpositionerisolation');
+    Route::put('constructionpositionerisolation/{consIsolValve}', 'storeConstructionPositionerIsolation')->name('valverepair.store.constructionpositionerisolation');
+
 
 });
