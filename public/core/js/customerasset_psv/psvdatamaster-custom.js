@@ -108,6 +108,8 @@ editRecord = (url) => {
             $('#flow').append(flowOptions).trigger('change');
             var platformOptions = new Option(response.dropdown.platform, response.dropdown.platform, true, true);
             $('#platform').append(platformOptions).trigger('change');
+            var statusOptions = new Option(response.dropdown.status, response.dropdown.status, true, true);
+            $('#status').append(statusOptions).trigger('change');
             var demolishOptions = new Option(response.dropdown.demolish, response.dropdown.demolish, true, true);
             $('#demolish').append(demolishOptions).trigger('change');
             var reliefOptions = new Option(response.dropdown.relief, response.dropdown.relief, true, true);

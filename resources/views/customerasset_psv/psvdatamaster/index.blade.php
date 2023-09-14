@@ -35,10 +35,10 @@
                             <th>Flow Station</th>
                             <th>Platform</th>
                             <th>Tag Number</th>
-                            {{-- <th>Operational</th>
+                            {{-- <th>Operational</th> --}}
                             <th>Integrity Status</th>
-                            <th>Cert Date</th>
-                            <th>Expired Date</th> --}}
+                            {{-- <th>Cert Date</th> --}}
+                            {{-- <th>Expired Date</th> --}}
                             <th>Valve Number</th>
                             <th>Status Update</th>
                             {{-- <th>Deferal</th>
@@ -156,236 +156,236 @@
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="area"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Area</label>
-                                                <select class="select2-ajax" id="area" name="area">
-                                                    <option disabled>Search here..</option>
-                                                    <option>East</option>
-                                                    <option>West</option>
-                                                </select>
+                                                    <select class="select2-ajax" id="area" name="area">
+                                                        <option disabled>Search here..</option>
+                                                        <option>East</option>
+                                                        <option>West</option>
+                                                    </select>
                                             </div>
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="flow"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Flow Station</label>
-                                                <select class="select2-ajax" id="flow" name="flow">
-                                                    <option disabled>Search here..</option>
-                                                    <option>ARCO ARJUNA</option>
-                                                    <option>BRAVO F/S</option>
-                                                    <option>CENTRAL PLANT</option>
-                                                    <option>ECHO F/S</option>
-                                                    <option>FOXTROT F/S</option>
-                                                    <option>KILO F/S</option>
-                                                    <option>KLA F/S</option>
-                                                    <option>LIMA F/S</option>
-                                                    <option>MM F/S</option>
-                                                    <option>OPF</option>
-                                                    <option>ORF</option>
-                                                    <option>PAPA F/S</option>
-                                                    <option>UNIFORM F/S</option>
-                                                    <option>ZULU F/S</option>
-                                                </select>
+                                                    <select class="select2-ajax" id="flow" name="flow">
+                                                        <option disabled>Search here..</option>
+                                                        <option>ARCO ARJUNA</option>
+                                                        <option>BRAVO F/S</option>
+                                                        <option>CENTRAL PLANT</option>
+                                                        <option>ECHO F/S</option>
+                                                        <option>FOXTROT F/S</option>
+                                                        <option>KILO F/S</option>
+                                                        <option>KLA F/S</option>
+                                                        <option>LIMA F/S</option>
+                                                        <option>MM F/S</option>
+                                                        <option>OPF</option>
+                                                        <option>ORF</option>
+                                                        <option>PAPA F/S</option>
+                                                        <option>UNIFORM F/S</option>
+                                                        <option>ZULU F/S</option>
+                                                    </select>
                                             </div>
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="platform"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Platform</label>
-                                                <select class="select2-ajax" id="platform" name="platform">
-                                                    <option disabled>Search here..</option>
-                                                    <option>A P/F</option>
-                                                    <option>APNA P/F</option>
-                                                    <option>APNB P/F</option>
-                                                    <option>APND P/F</option>
-                                                    <option>APNE P/F</option>
-                                                    <option>APNF</option> P/F</option>
-                                                    <option>ARCO ARJUNA</option>
-                                                    <option>B P/F</option>
-                                                    <option>B1-COMP. P/F</option>
-                                                    <option>B2-COMP. P/F</option>
-                                                    <option>BA P/F</option>
-                                                    <option>BALONGAN</option>
-                                                    <option>BB P/F</option>
-                                                    <option>BC P/F</option>
-                                                    <option>BD P/F</option>
-                                                    <option>BE P/F</option>
-                                                    <option>BF P/F</option>
-                                                    <option>BG P/F</option>
-                                                    <option>BH P/F</option>
-                                                    <option>BK P/F</option>
-                                                    <option>BL P/F</option>
-                                                    <option>BLQ P/F</option>
-                                                    <option>BM P/F</option>
-                                                    <option>BNA P/F</option>
-                                                    <option>BPRO P/F</option>
-                                                    <option>B-PROC. P/F</option>
-                                                    <option>BQ P/F</option>
-                                                    <option>B-SERV. P/F</option>
-                                                    <option>BTSA P/F</option>
-                                                    <option>BZNA P/F</option>
-                                                    <option>BZZA P/F</option>
-                                                    <option>BZZB P/F</option>
-                                                    <option>C P/F</option>
-                                                    <option>CILAMAYA
-                                                    <option>EA P/F</option>
-                                                    <option>EB P/F</option>
-                                                    <option>EC P/F</option>
-                                                    <option>E-COMP. P/F</option>
-                                                    <option>ED P/F</option>
-                                                    <option>EE P/F</option>
-                                                    <option>EF P/F</option>
-                                                    <option>EH P/F</option>
-                                                    <option>EJ P/F</option>
-                                                    <option>EPRO. P/F</option>
-                                                    <option>E-PROC. P/F</option>
-                                                    <option>EQA P/F</option>
-                                                    <option>EQB P/F</option>
-                                                    <option>EQC P/F</option>
-                                                    <option>EQD P/F</option>
-                                                    <option>EQSA P/F</option>
-                                                    <option>EQSB P/F</option>
-                                                    <option>ESA P/F</option>
-                                                    <option>E-SERVICE P/F</option>
-                                                    <option>ESRA P/F</option>
-                                                    <option>ESTA P/F</option>
-                                                    <option>ETA P/F</option>
-                                                    <option>ETB P/F</option>
-                                                    <option>EWW P/F</option>
-                                                    <option>EWY P/F</option>
-                                                    <option>EZA P/F</option>
-                                                    <option>EZB P/F</option>
-                                                    <option>EZC P/F</option>
-                                                    <option>EZE P/F</option>
-                                                    <option>FA P/F</option>
-                                                    <option>FB P/F</option>
-                                                    <option>FC P/F</option>
-                                                    <option>F-COMP. P/F</option>
-                                                    <option>FD P/F</option>
-                                                    <option>FE P/F</option>
-                                                    <option>FFA P/F</option>
-                                                    <option>FFB P/F</option>
-                                                    <option>FG P/F</option>
-                                                    <option>FH P/F</option>
-                                                    <option>FK P/F</option>
-                                                    <option>FM P/F</option>
-                                                    <option>FNA P/F</option>
-                                                    <option>FNB P/F</option>
-                                                    <option>FN-PROC. P/F</option>
-                                                    <option>F-PROC. P/F</option>
-                                                    <option>FSA P/F</option>
-                                                    <option>F-SERVICE P/F</option>
-                                                    <option>FSWA P/F</option>
-                                                    <option>FU P/F</option>
-                                                    <option>FWA P/F</option>
-                                                    <option>FWB P/F</option>
-                                                    <option>FZA P/F</option>
-                                                    <option>GGA P/F</option>
-                                                    <option>HZEA P/F</option>
-                                                    <option>HZEB P/F</option>
-                                                    <option>J P/F</option>
-                                                    <option>JJA P/F</option>
-                                                    <option>KA P/F</option>
-                                                    <option>KB P/F</option>
-                                                    <option>KC P/F</option>
-                                                    <option>K-COMP. P/F</option>
-                                                    <option>KKA P/F</option>
-                                                    <option>KKNA P/F</option>
-                                                    <option>KKNB P/F</option>
-                                                    <option>KLA P/F</option>
-                                                    <option>KLB P/F</option>
-                                                    <option>KLC P/F</option>
-                                                    <option>KLD P/F</option>
-                                                    <option>KLXA P/F</option>
-                                                    <option>KLXB P/F</option>
-                                                    <option>KLYA P/F</option>
-                                                    <option>KLYB P/F</option>
-                                                    <option>KNA P/F</option>
-                                                    <option>K-PROC. P/F</option>
-                                                    <option>LA P/F</option>
-                                                    <option>LB P/F</option>
-                                                    <option>LC P/F</option>
-                                                    <option>L-COMP. P/F</option>
-                                                    <option>LD P/F</option>
-                                                    <option>LE P/F</option>
-                                                    <option>LES P/F</option>
-                                                    <option>LL-4A P/F</option>
-                                                    <option>LLA P/F</option>
-                                                    <option>LLB P/F</option>
-                                                    <option>LLD P/F</option>
-                                                    <option>LLE P/F</option>
-                                                    <option>LLF P/F</option>
-                                                    <option>LNA P/F</option>
-                                                    <option>LPRO P/F</option>
-                                                    <option>L-PROC P/F</option>
-                                                    <option>L-PROC. P/F</option>
-                                                    <option>LSER P/F</option>
-                                                    <option>L-SERV P/F</option>
-                                                    <option>L-SERV. P/F</option>
-                                                    <option>MB-1 P/F</option>
-                                                    <option>MB-2 ONSHORE</option>
-                                                    <option>MB-4 P/F</option>
-                                                    <option>MBA P/F</option>
-                                                    <option>MM-1 P/F</option>
-                                                    <option>MM-5 P/F</option>
-                                                    <option>MM-6 P/F</option>
-                                                    <option>MMC P/F</option>
-                                                    <option>MMF P/F</option>
-                                                    <option>MMJ P/F</option>
-                                                    <option>MMS P/F</option>
-                                                    <option>MQ-1 P/F</option>
-                                                    <option>MQ-11 P/F</option>
-                                                    <option>MQ-3 P/F</option>
-                                                    <option>MQ-5 P/F</option>
-                                                    <option>MQA P/F</option>
-                                                    <option>MQD P/F</option>
-                                                    <option>MRA P/F</option>
-                                                    <option>MXC P/F</option>
-                                                    <option>MXD P/F</option>
-                                                    <option>MXHT P/F</option>
-                                                    <option>ORFMK</option>
-                                                    <option>ORFTP</option>
-                                                    <option>PA P/F</option>
-                                                    <option>PB P/F</option>
-                                                    <option>PCP P/F</option>
-                                                    <option>PCP P/F</option>
-                                                    <option>PCP P/F</option>
-                                                    <option>PCS P/F</option>
-                                                    <option>PD P/F</option>
-                                                    <option>PE P/F</option>
-                                                    <option>PF P/F</option>
-                                                    <option>Q P/F</option>
-                                                    <option>SBA P/F</option>
-                                                    <option>SCA P/F</option>
-                                                    <option>SPA P/F</option>
-                                                    <option>SPM</option>
-                                                    <option>TLA P/F</option>
-                                                    <option>TLC P/F</option>
-                                                    <option>TLD P/F</option>
-                                                    <option>TLE P/F</option>
-                                                    <option>TLF</option> P/F</option>
-                                                    <option>UA P/F</option>
-                                                    <option>UB P/F</option>
-                                                    <option>UC P/F</option>
-                                                    <option>ULA P/F</option>
-                                                    <option>U-PROC. P/F</option>
-                                                    <option>URA P/F</option>
-                                                    <option>UVA P/F</option>
-                                                    <option>UW P/F</option>
-                                                    <option>UWA P/F</option>
-                                                    <option>UXA P/F</option>
-                                                    <option>UYA P/F</option>
-                                                    <option>YA P/F</option>
-                                                    <option>ZUA P/F</option>
-                                                    <option>ZUB P/F</option>
-                                                    <option>ZUC P/F</option>
-                                                    <option>ZUD P/F</option>
-                                                    <option>ZUE P/F</option>
-                                                    <option>ZUF P/F</option>
-                                                    <option>ZUG P/F</option>
-                                                    <option>ZUJ1 P/F</option>
-                                                    <option>ZUK P/F</option>
-                                                    <option>ZULQ P/F</option>
-                                                </select>
+                                                    <select class="select2-ajax" id="platform" name="platform">
+                                                        <option disabled>Search here..</option>
+                                                        <option>A P/F</option>
+                                                        <option>APNA P/F</option>
+                                                        <option>APNB P/F</option>
+                                                        <option>APND P/F</option>
+                                                        <option>APNE P/F</option>
+                                                        <option>APNF</option> P/F</option>
+                                                        <option>ARCO ARJUNA</option>
+                                                        <option>B P/F</option>
+                                                        <option>B1-COMP. P/F</option>
+                                                        <option>B2-COMP. P/F</option>
+                                                        <option>BA P/F</option>
+                                                        <option>BALONGAN</option>
+                                                        <option>BB P/F</option>
+                                                        <option>BC P/F</option>
+                                                        <option>BD P/F</option>
+                                                        <option>BE P/F</option>
+                                                        <option>BF P/F</option>
+                                                        <option>BG P/F</option>
+                                                        <option>BH P/F</option>
+                                                        <option>BK P/F</option>
+                                                        <option>BL P/F</option>
+                                                        <option>BLQ P/F</option>
+                                                        <option>BM P/F</option>
+                                                        <option>BNA P/F</option>
+                                                        <option>BPRO P/F</option>
+                                                        <option>B-PROC. P/F</option>
+                                                        <option>BQ P/F</option>
+                                                        <option>B-SERV. P/F</option>
+                                                        <option>BTSA P/F</option>
+                                                        <option>BZNA P/F</option>
+                                                        <option>BZZA P/F</option>
+                                                        <option>BZZB P/F</option>
+                                                        <option>C P/F</option>
+                                                        <option>CILAMAYA
+                                                        <option>EA P/F</option>
+                                                        <option>EB P/F</option>
+                                                        <option>EC P/F</option>
+                                                        <option>E-COMP. P/F</option>
+                                                        <option>ED P/F</option>
+                                                        <option>EE P/F</option>
+                                                        <option>EF P/F</option>
+                                                        <option>EH P/F</option>
+                                                        <option>EJ P/F</option>
+                                                        <option>EPRO. P/F</option>
+                                                        <option>E-PROC. P/F</option>
+                                                        <option>EQA P/F</option>
+                                                        <option>EQB P/F</option>
+                                                        <option>EQC P/F</option>
+                                                        <option>EQD P/F</option>
+                                                        <option>EQSA P/F</option>
+                                                        <option>EQSB P/F</option>
+                                                        <option>ESA P/F</option>
+                                                        <option>E-SERVICE P/F</option>
+                                                        <option>ESRA P/F</option>
+                                                        <option>ESTA P/F</option>
+                                                        <option>ETA P/F</option>
+                                                        <option>ETB P/F</option>
+                                                        <option>EWW P/F</option>
+                                                        <option>EWY P/F</option>
+                                                        <option>EZA P/F</option>
+                                                        <option>EZB P/F</option>
+                                                        <option>EZC P/F</option>
+                                                        <option>EZE P/F</option>
+                                                        <option>FA P/F</option>
+                                                        <option>FB P/F</option>
+                                                        <option>FC P/F</option>
+                                                        <option>F-COMP. P/F</option>
+                                                        <option>FD P/F</option>
+                                                        <option>FE P/F</option>
+                                                        <option>FFA P/F</option>
+                                                        <option>FFB P/F</option>
+                                                        <option>FG P/F</option>
+                                                        <option>FH P/F</option>
+                                                        <option>FK P/F</option>
+                                                        <option>FM P/F</option>
+                                                        <option>FNA P/F</option>
+                                                        <option>FNB P/F</option>
+                                                        <option>FN-PROC. P/F</option>
+                                                        <option>F-PROC. P/F</option>
+                                                        <option>FSA P/F</option>
+                                                        <option>F-SERVICE P/F</option>
+                                                        <option>FSWA P/F</option>
+                                                        <option>FU P/F</option>
+                                                        <option>FWA P/F</option>
+                                                        <option>FWB P/F</option>
+                                                        <option>FZA P/F</option>
+                                                        <option>GGA P/F</option>
+                                                        <option>HZEA P/F</option>
+                                                        <option>HZEB P/F</option>
+                                                        <option>J P/F</option>
+                                                        <option>JJA P/F</option>
+                                                        <option>KA P/F</option>
+                                                        <option>KB P/F</option>
+                                                        <option>KC P/F</option>
+                                                        <option>K-COMP. P/F</option>
+                                                        <option>KKA P/F</option>
+                                                        <option>KKNA P/F</option>
+                                                        <option>KKNB P/F</option>
+                                                        <option>KLA P/F</option>
+                                                        <option>KLB P/F</option>
+                                                        <option>KLC P/F</option>
+                                                        <option>KLD P/F</option>
+                                                        <option>KLXA P/F</option>
+                                                        <option>KLXB P/F</option>
+                                                        <option>KLYA P/F</option>
+                                                        <option>KLYB P/F</option>
+                                                        <option>KNA P/F</option>
+                                                        <option>K-PROC. P/F</option>
+                                                        <option>LA P/F</option>
+                                                        <option>LB P/F</option>
+                                                        <option>LC P/F</option>
+                                                        <option>L-COMP. P/F</option>
+                                                        <option>LD P/F</option>
+                                                        <option>LE P/F</option>
+                                                        <option>LES P/F</option>
+                                                        <option>LL-4A P/F</option>
+                                                        <option>LLA P/F</option>
+                                                        <option>LLB P/F</option>
+                                                        <option>LLD P/F</option>
+                                                        <option>LLE P/F</option>
+                                                        <option>LLF P/F</option>
+                                                        <option>LNA P/F</option>
+                                                        <option>LPRO P/F</option>
+                                                        <option>L-PROC P/F</option>
+                                                        <option>L-PROC. P/F</option>
+                                                        <option>LSER P/F</option>
+                                                        <option>L-SERV P/F</option>
+                                                        <option>L-SERV. P/F</option>
+                                                        <option>MB-1 P/F</option>
+                                                        <option>MB-2 ONSHORE</option>
+                                                        <option>MB-4 P/F</option>
+                                                        <option>MBA P/F</option>
+                                                        <option>MM-1 P/F</option>
+                                                        <option>MM-5 P/F</option>
+                                                        <option>MM-6 P/F</option>
+                                                        <option>MMC P/F</option>
+                                                        <option>MMF P/F</option>
+                                                        <option>MMJ P/F</option>
+                                                        <option>MMS P/F</option>
+                                                        <option>MQ-1 P/F</option>
+                                                        <option>MQ-11 P/F</option>
+                                                        <option>MQ-3 P/F</option>
+                                                        <option>MQ-5 P/F</option>
+                                                        <option>MQA P/F</option>
+                                                        <option>MQD P/F</option>
+                                                        <option>MRA P/F</option>
+                                                        <option>MXC P/F</option>
+                                                        <option>MXD P/F</option>
+                                                        <option>MXHT P/F</option>
+                                                        <option>ORFMK</option>
+                                                        <option>ORFTP</option>
+                                                        <option>PA P/F</option>
+                                                        <option>PB P/F</option>
+                                                        <option>PCP P/F</option>
+                                                        <option>PCP P/F</option>
+                                                        <option>PCP P/F</option>
+                                                        <option>PCS P/F</option>
+                                                        <option>PD P/F</option>
+                                                        <option>PE P/F</option>
+                                                        <option>PF P/F</option>
+                                                        <option>Q P/F</option>
+                                                        <option>SBA P/F</option>
+                                                        <option>SCA P/F</option>
+                                                        <option>SPA P/F</option>
+                                                        <option>SPM</option>
+                                                        <option>TLA P/F</option>
+                                                        <option>TLC P/F</option>
+                                                        <option>TLD P/F</option>
+                                                        <option>TLE P/F</option>
+                                                        <option>TLF</option> P/F</option>
+                                                        <option>UA P/F</option>
+                                                        <option>UB P/F</option>
+                                                        <option>UC P/F</option>
+                                                        <option>ULA P/F</option>
+                                                        <option>U-PROC. P/F</option>
+                                                        <option>URA P/F</option>
+                                                        <option>UVA P/F</option>
+                                                        <option>UW P/F</option>
+                                                        <option>UWA P/F</option>
+                                                        <option>UXA P/F</option>
+                                                        <option>UYA P/F</option>
+                                                        <option>YA P/F</option>
+                                                        <option>ZUA P/F</option>
+                                                        <option>ZUB P/F</option>
+                                                        <option>ZUC P/F</option>
+                                                        <option>ZUD P/F</option>
+                                                        <option>ZUE P/F</option>
+                                                        <option>ZUF P/F</option>
+                                                        <option>ZUG P/F</option>
+                                                        <option>ZUJ1 P/F</option>
+                                                        <option>ZUK P/F</option>
+                                                        <option>ZULQ P/F</option>
+                                                    </select>
                                             </div>
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="tag_number"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tag Number</label>
-                                                <input type="text" id="tag_number" name="tag_number"
+                                                    <input type="text" id="tag_number" name="tag_number"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="tag number ">
                                             </div>
@@ -406,24 +406,24 @@
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="integrity"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Integrity Status</label>
-                                                <input type="text" id="integrity" name="integrity"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="integrity">
+                                                    <input type="text" id="integrity" name="integrity"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="integrity">
                                             </div>
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="cert_date"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cert
                                                     Date</label>
-                                                <div class="relative max-w-sm">
-                                                    <div
-                                                        class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            viewBox="0 0 20 20">
-                                                            <path
-                                                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                        </svg>
-                                                    </div>
+                                                    <div class="relative max-w-sm">
+                                                        <div
+                                                            class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                                xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                                viewBox="0 0 20 20">
+                                                                <path
+                                                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                                            </svg>
+                                                        </div>
                                                     <input 
                                                         datepicker 
                                                         id="cert_date" 
@@ -438,16 +438,16 @@
                                                 <label for="exp_date"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Expired
                                                     Date</label>
-                                                <div class="relative max-w-sm">
-                                                    <div
-                                                        class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            viewBox="0 0 20 20">
-                                                            <path
-                                                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                        </svg>
-                                                    </div>
+                                                    <div class="relative max-w-sm">
+                                                        <div
+                                                            class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                                xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                                viewBox="0 0 20 20">
+                                                                <path
+                                                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                                            </svg>
+                                                        </div>
                                                     <input 
                                                         datepicker 
                                                         id="exp_date" 
@@ -461,7 +461,7 @@
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="valve_number"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Valve Number</label>
-                                                <input type="text" id="valve_number" name="valve_number"
+                                                    <input type="text" id="valve_number" name="valve_number"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="valve number ">
                                             </div>
@@ -475,28 +475,30 @@
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="status"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Update</label>
-                                                <input type="text" id="status" name="status"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="status update">
+                                                    <select class="select2-ajax" id="status" name="status">
+                                                        <option disabled>Search here..</option>
+                                                        <option>ACTIVE</option>
+                                                        <option>IN ACTIVE</option>
+                                                    </select>
                                             </div>
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="deferal"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deferal</label>
-                                                <input type="text" id="deferal" name="deferal"
+                                                    <input type="text" id="deferal" name="deferal"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="deferal">
                                             </div>
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="resetting"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Resetting</label>
-                                                <input type="text" id="resetting" name="resetting"
+                                                    <input type="text" id="resetting" name="resetting"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="resetting">
                                             </div>
                                             <div class="sm:w-1/4 w-full sm:pl-2">
                                                     <label for="resize"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Resize</label>
-                                                    <input type="text" id="resize" name="resize"
+                                                        <input type="text" id="resize" name="resize"
                                                         class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required placeholder="resize">
                                             </div>
@@ -505,49 +507,49 @@
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="demolish"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Demolish, Decomm, Inactive</label>
-                                                <select class="select2-ajax" id="demolish" name="demolish">
-                                                    <option disabled>Search here..</option>
-                                                    <option>ACTIVE DECOM</option>
-                                                    <option>DECOMM</option>
-                                                    <option>DEMOLISH</option>
-                                                    <option>DEMOLISH (LINE N/A)</option>
-                                                    <option>DEMOLISH BY PROJECT</option>
-                                                    <option>DEMOLISH LINE</option>
-                                                    <option>DUPLICATE</option>
-                                                    <option>FAC N/A</option>
-                                                    <option>IN ACTIVE</option>
-                                                    <option>INACTIVE</option>
-                                                    <option>LINE DEMOLISH</option>
-                                                    <option>LINE INACTIVE</option>
-                                                    <option>LINE N/A</option>
-                                                    <option>LINE N/A, LINE DEMOLISH</option>
-                                                    <option>MOTHBOLT</option>
-                                                    <option>NUI INACTIVE</option>
-                                                    <option>TEMPORARY INACTIVE</option>
-                                                    <option>UNIT N/A</option>
-                                                    <option>VESSEL IN ACTIVE</option>
-                                                </select>
+                                                    <select class="select2-ajax" id="demolish" name="demolish">
+                                                        <option disabled>Search here..</option>
+                                                        <option>ACTIVE DECOM</option>
+                                                        <option>DECOMM</option>
+                                                        <option>DEMOLISH</option>
+                                                        <option>DEMOLISH (LINE N/A)</option>
+                                                        <option>DEMOLISH BY PROJECT</option>
+                                                        <option>DEMOLISH LINE</option>
+                                                        <option>DUPLICATE</option>
+                                                        <option>FAC N/A</option>
+                                                        <option>IN ACTIVE</option>
+                                                        <option>INACTIVE</option>
+                                                        <option>LINE DEMOLISH</option>
+                                                        <option>LINE INACTIVE</option>
+                                                        <option>LINE N/A</option>
+                                                        <option>LINE N/A, LINE DEMOLISH</option>
+                                                        <option>MOTHBOLT</option>
+                                                        <option>NUI INACTIVE</option>
+                                                        <option>TEMPORARY INACTIVE</option>
+                                                        <option>UNIT N/A</option>
+                                                        <option>VESSEL IN ACTIVE</option>
+                                                    </select>
                                             </div>
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="relief"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Relief Header</label>
-                                                <select class="select2-ajax" id="relief" name="relief">
-                                                    <option disabled>Search here..</option>
-                                                    <option>Closed Drain</option>
-                                                    <option>Sub Sea Vent</option>
-                                                </select>
+                                                    <select class="select2-ajax" id="relief" name="relief">
+                                                        <option disabled>Search here..</option>
+                                                        <option>Closed Drain</option>
+                                                        <option>Sub Sea Vent</option>
+                                                    </select>
                                             </div>
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="note"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Note</label>
-                                                <input type="text" id="note" name="note"
+                                                    <input type="text" id="note" name="note"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="note">
                                             </div>
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="cert_package"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cert Package</label>
-                                                <input type="text" id="cert_package" name="cert_package"
+                                                    <input type="text" id="cert_package" name="cert_package"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="cert package">
                                             </div>
@@ -556,14 +558,14 @@
                                             <div class="sm:w-1/2 w-full sm:pr-2">
                                                 <label for="klarifikasi"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Klarifikasi</label>
-                                                <input type="text" id="klarifikasi" name="klarifikasi"
+                                                    <input type="text" id="klarifikasi" name="klarifikasi"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="klarifikasi">
                                             </div>
-                                            <div class="sm:w-1/2 w-full sm:pl-2 sm:pt-0 pt-6">
+                                            <div class="sm:w-1/2 w-full sm:pl-2">
                                                 <label for="by"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">By</label>
-                                                <input type="text" id="by" name="by"
+                                                    <input type="text" id="by" name="by"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="by">
                                             </div>
@@ -597,7 +599,7 @@
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="model_number"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Model Number</label>
-                                                <input type="text" id="model_number" name="model_number"
+                                                    <input type="text" id="model_number" name="model_number"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="model number">
                                             </div>
@@ -699,9 +701,9 @@
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="press"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Press. Setting (psi)</label>
-                                                <input type="text" id="press" name="press"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="press">
+                                                    <input type="text" id="press" name="press"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="press">
                                             </div>
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="vacuum"
@@ -717,9 +719,9 @@
                                                 <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="psv"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PSV Style</label>
-                                                    <input type="text" id="psv" name="psv"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="psv">
+                                                        <input type="text" id="psv" name="psv"
+                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required placeholder="psv">
                                                 </div>
                                                 <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="design"
@@ -731,9 +733,9 @@
                                                 <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="selection"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Orifice Selection</label>
-                                                    <input type="text" id="selection" name="selection"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="selection">
+                                                        <input type="text" id="selection" name="selection"
+                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required placeholder="selection">
                                                 </div>
                                                 <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="psv_capacity"
@@ -749,9 +751,9 @@
                                                 <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="psv_capacityunit"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PSV Capacity Unit</label>
-                                                    <input type="text" id="psv_capacityunit" name="psv_capacityunit"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="psv capacityunit">
+                                                        <input type="text" id="psv_capacityunit" name="psv_capacityunit"
+                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required placeholder="psv capacityunit">
                                                 </div>
                                                 <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="bonnet"
@@ -763,9 +765,9 @@
                                                 <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="seat"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seat Type</label>
-                                                    <input type="text" id="seat" name="seat"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="seat">
+                                                        <input type="text" id="seat" name="seat"
+                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required placeholder="seat">
                                                 </div>
                                                 <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="CAP"
@@ -781,9 +783,9 @@
                                                 <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="body_bonnet"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Body Bonnet Material</label>
-                                                    <input type="text" id="body_bonnet" name="body_bonnet"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="body bonnet">
+                                                        <input type="text" id="body_bonnet" name="body_bonnet"
+                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required placeholder="body bonnet">
                                                 </div>
                                                 <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="disc_material"
@@ -795,9 +797,9 @@
                                                 <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="spring_material"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Spring Material</label>
-                                                    <input type="text" id="spring_material" name="spring_material"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="spring material">
+                                                        <input type="text" id="spring_material" name="spring_material"
+                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required placeholder="spring material">
                                                 </div>
                                                 <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="guide_material"
@@ -813,62 +815,62 @@
                                                 <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="resilient_seat"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Resilient Seat</label>
-                                                    <input type="text" id="resilient_seat" name="resilient_seat"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="resilient seat">
+                                                        <input type="text" id="resilient_seat" name="resilient_seat"
+                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required placeholder="resilient seat">
                                                 </div>
                                                 <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="bellow_material"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bellow Material</label>
-                                                    <input type="text" id="bellow_material" name="bellow_material"
+                                                        <input type="text" id="bellow_material" name="bellow_material"
                                                         class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required placeholder="bellow material">
                                                 </div>
                                                 <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="year_build"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year Build</label>
-                                                    <div class="relative max-w-sm">
-                                                        <div
-                                                            class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                                                xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                                viewBox="0 0 20 20">
-                                                                <path
-                                                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                            </svg>
+                                                        <div class="relative max-w-sm">
+                                                            <div
+                                                                class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                                    viewBox="0 0 20 20">
+                                                                    <path
+                                                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                                                </svg>
+                                                            </div>
+                                                            <input 
+                                                                datepicker 
+                                                                id="year_build" 
+                                                                datepicker-format="dd/mm/yyyy" 
+                                                                name="year_build" 
+                                                                type="text"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder="Select date">
                                                         </div>
-                                                        <input 
-                                                            datepicker 
-                                                            id="year_build" 
-                                                            datepicker-format="dd/mm/yyyy" 
-                                                            name="year_build" 
-                                                            type="text"
-                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                            placeholder="Select date">
-                                                    </div>
                                                 </div>
                                                 <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="year_install"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year Install</label>
-                                                    <div class="relative max-w-sm">
-                                                        <div
-                                                            class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                                                xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                                viewBox="0 0 20 20">
-                                                                <path
-                                                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                            </svg>
+                                                        <div class="relative max-w-sm">
+                                                            <div
+                                                                class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                                    viewBox="0 0 20 20">
+                                                                    <path
+                                                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                                                </svg>
+                                                            </div>
+                                                            <input 
+                                                                datepicker 
+                                                                id="year_install" 
+                                                                datepicker-format="dd/mm/yyyy" 
+                                                                name="year_install" 
+                                                                type="text"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder="Select date">
                                                         </div>
-                                                        <input 
-                                                            datepicker 
-                                                            id="year_install" 
-                                                            datepicker-format="dd/mm/yyyy" 
-                                                            name="year_install" 
-                                                            type="text"
-                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                            placeholder="Select date">
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -891,14 +893,14 @@
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="service"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Service</label>
-                                                <input type="text" id="service" name="service"
+                                                    <input type="text" id="service" name="service"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="service">
                                             </div>
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="equip_number"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Equipment Number</label>
-                                                <input type="text" id="equip_number" name="equip_number"
+                                                    <input type="text" id="equip_number" name="equip_number"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="equipment number">
                                             </div>
@@ -912,7 +914,7 @@
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="size_basic"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Size Basic</label>
-                                                <input type="text" id="size_basic" name="size_basic"
+                                                    <input type="text" id="size_basic" name="size_basic"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="size basic">
                                             </div>
@@ -937,9 +939,9 @@
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="required"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Required Capacity</label>
-                                                <input type="text" id="required" name="required"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="required">
+                                                    <input type="text" id="required" name="required"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="required">
                                             </div>
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="capacity_unit"
@@ -955,9 +957,9 @@
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="mawp"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">MAWP (psi)</label>
-                                                <input type="text" id="mawp" name="mawp"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="mawp">
+                                                    <input type="text" id="mawp" name="mawp"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="mawp">
                                             </div>
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="operating_psi"
@@ -969,16 +971,16 @@
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="back_psi"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Back Pressure (psi)</label>
-                                                <input type="text" id="back_psi" name="back_psi"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="back psi">
+                                                    <input type="text" id="back_psi" name="back_psi"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="back psi">
                                             </div>
                                             <div class="sm:w-1/4 w-full sm:pr-2">
-                                                    <label for="operating_temp"
-                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Operating Temp. (°F)</label>
-                                                        <input type="text" id="operating_temp" name="operating_temp"
-                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                        required placeholder="operating temp">
+                                                <label for="operating_temp"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Operating Temp. (°F)</label>
+                                                    <input type="text" id="operating_temp" name="operating_temp"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="operating temp">
                                             </div>
                                         </div>
                                     </div>
@@ -987,16 +989,16 @@
                                             <div class="sm:w-1/2 w-full sm:pr-2">
                                                 <label for="cold_diff"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cold Diff. Test Press (psi)</label>
-                                                <input type="text" id="cold_diff" name="cold_diff"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="psv capacityunit">
+                                                    <input type="text" id="cold_diff" name="cold_diff"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="psv capacityunit">
                                             </div>
                                             <div class="sm:w-1/2 w-full sm:pr-2">
                                                 <label for="allowable"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Allowable Over Press. (%)</label>
-                                                <input type="text" id="allowable" name="allowable"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="allowable">
+                                                    <input type="text" id="allowable" name="allowable"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="allowable">
                                             </div>
                                         </div>
                                     </div>
@@ -1019,14 +1021,14 @@
                                             <div class="sm:w-1/2 w-full sm:pr-2">
                                                 <label for="shutdown"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Shutdown Category</label>
-                                                <input type="text" id="shutdown" name="shutdown"
+                                                    <input type="text" id="shutdown" name="shutdown"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="shutdown">
                                             </div>
                                             <div class="sm:w-1/2 w-full sm:pl-2 sm:pt-0 pt-6">
                                                 <label for="valve_upstream"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Isolation Valve Upstream</label>
-                                                <input type="text" id="valve_upstream" name="valve_upstream"
+                                                    <input type="text" id="valve_upstream" name="valve_upstream"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="valve upstream">
                                             </div>
@@ -1044,7 +1046,7 @@
                                             <div class="sm:w-1/2 w-full sm:pr-2">
                                                 <label for="valve_downstream"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Isolation Valve Downstrm</label>
-                                                <input type="text" id="valve_downstream" name="valve_downstream"
+                                                    <input type="text" id="valve_downstream" name="valve_downstream"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="valve downstream">
                                             </div>
@@ -1074,16 +1076,16 @@
                                             <div class="sm:w-1/2 w-full sm:pr-2">
                                                 <label for="spacer_inlet"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Use Spacer Inlet</label>
-                                                <input type="text" id="spacer_inlet" name="spacer_inlet"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="spacer inlet">
+                                                    <input type="text" id="spacer_inlet" name="spacer_inlet"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="spacer inlet">
                                             </div>
                                             <div class="sm:w-1/2 w-full sm:pr-2">
                                                 <label for="spacer_outlet"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Use Spacer Outlet</label>
-                                                <input type="text" id="spacer_outlet" name="spacer_outlet"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="spacer outlet">
+                                                    <input type="text" id="spacer_outlet" name="spacer_outlet"
+                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required placeholder="spacer outlet">
                                             </div>
                                         </div>
                                     </div>
@@ -1103,6 +1105,22 @@
             </div>
         </div>
 @endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const statusInput = document.getElementById('status');
+        const operationalInput = document.getElementById('operational');
+
+        statusInput.addEventListener('change', function () {
+            if (statusInput.value === 'ACTIVE') {
+                operationalInput.value = 'YES';
+            } else {
+                operationalInput.value = 'NO';
+            }
+        });
+    });
+</script>
+
 
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/datepicker.min.js"></script>
@@ -1150,11 +1168,11 @@
                     //     name: 'operational',
                     //     class: 'all'
                     // },
-                    // {
-                    //     data: 'integrity',
-                    //     name: 'integrity',
-                    //     class: 'all'
-                    // },
+                    {
+                        data: 'integrity',
+                        name: 'integrity',
+                        class: 'all'
+                    },
                     // {
                     //     data: 'cert_date',
                     //     name: 'cert_date',
@@ -1173,7 +1191,8 @@
                     {
                         data: 'status',
                         name: 'status',
-                        class: 'all'
+                        className: ['text-center', 'min-tablet']
+
                     },
                     // {
                     //     data: 'deferal',
@@ -1506,6 +1525,14 @@
             });
 
             $('#flow').select2({
+                allowClear: true,
+                width: 'resolve',
+                placeholder: 'Select here..',
+                dropdownCssClass: 'bigdrop',
+                
+            });
+
+            $('#status').select2({
                 allowClear: true,
                 width: 'resolve',
                 placeholder: 'Select here..',
