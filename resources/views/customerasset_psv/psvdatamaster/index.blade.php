@@ -153,7 +153,7 @@
                                     <div class="mb-6">
                                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LOCATION INFORMATION</label>
                                         <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="area"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Area</label>
                                                 <select class="select2-ajax" id="area" name="area">
@@ -162,7 +162,7 @@
                                                     <option>West</option>
                                                 </select>
                                             </div>
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="flow"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Flow Station</label>
                                                 <select class="select2-ajax" id="flow" name="flow">
@@ -183,9 +183,7 @@
                                                     <option>ZULU F/S</option>
                                                 </select>
                                             </div>
-                                        </div>
-                                        <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="platform"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Platform</label>
                                                 <select class="select2-ajax" id="platform" name="platform">
@@ -384,7 +382,7 @@
                                                     <option>ZULQ P/F</option>
                                                 </select>
                                             </div>
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="tag_number"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tag Number</label>
                                                 <input type="text" id="tag_number" name="tag_number"
@@ -397,24 +395,22 @@
                                     <!-- CERTIFICATION INFORMATION -->
                                     <div class="mb-6">
                                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CERTIFICATION INFORMATION</label>
+                                        <div class="mb-6">
+                                            <label for="operational"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Operational</label>
+                                                <input type="text" id="operational" name="operational"
+                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required placeholder="operational">
+                                        </div>
                                         <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
-                                                <label for="operational"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Operational</label>
-                                                    <input type="text" id="operational" name="operational"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="operational">
-                                            </div>
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="integrity"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Integrity Status</label>
                                                 <input type="text" id="integrity" name="integrity"
                                                 class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 required placeholder="integrity">
                                             </div>
-                                        </div>
-                                        <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="cert_date"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cert
                                                     Date</label>
@@ -438,7 +434,7 @@
                                                         placeholder="Select date">
                                                 </div>
                                             </div>
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="exp_date"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Expired
                                                     Date</label>
@@ -462,44 +458,42 @@
                                                         placeholder="Select date">
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="mb-6">
-                                            <label for="valve_number"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Valve Number</label>
-                                            <input type="text" id="valve_number" name="valve_number"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="valve number ">
-                                        </div>
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
+                                                <label for="valve_number"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Valve Number</label>
+                                                <input type="text" id="valve_number" name="valve_number"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="valve number ">
+                                            </div>
+                                         </div>
                                     </div>
 
                                     <!-- VALVE HISTORY -->
                                     <div class="mb-6">
                                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">VALVE HISTORY</label>
                                         <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="status"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Update</label>
                                                 <input type="text" id="status" name="status"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="status update">
                                             </div>
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="deferal"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deferal</label>
                                                 <input type="text" id="deferal" name="deferal"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="deferal">
-                                                </div>
                                             </div>
-                                            <div class="row sm:flex">
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
-                                                    <label for="resetting"
-                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Resetting</label>
-                                                    <input type="text" id="resetting" name="resetting"
-                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                        required placeholder="resetting">
-                                                </div>
-                                                <div class="sm:w-1/2 w-full sm:pl-2 sm:pt-0 pt-6">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
+                                                <label for="resetting"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Resetting</label>
+                                                <input type="text" id="resetting" name="resetting"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="resetting">
+                                            </div>
+                                            <div class="sm:w-1/4 w-full sm:pl-2">
                                                     <label for="resize"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Resize</label>
                                                     <input type="text" id="resize" name="resize"
@@ -508,7 +502,7 @@
                                             </div>
                                         </div>
                                         <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="demolish"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Demolish, Decomm, Inactive</label>
                                                 <select class="select2-ajax" id="demolish" name="demolish">
@@ -534,7 +528,7 @@
                                                     <option>VESSEL IN ACTIVE</option>
                                                 </select>
                                             </div>
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="relief"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Relief Header</label>
                                                 <select class="select2-ajax" id="relief" name="relief">
@@ -543,16 +537,14 @@
                                                     <option>Sub Sea Vent</option>
                                                 </select>
                                             </div>
-                                        </div>
-                                        <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="note"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Note</label>
                                                 <input type="text" id="note" name="note"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="note">
                                             </div>
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="cert_package"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cert Package</label>
                                                 <input type="text" id="cert_package" name="cert_package"
@@ -594,33 +586,29 @@
                             <div class id="valve" role="tab" aria-labelledby="valve-tab">
                                 <div class="space-y-6">
                                     <div class="mb-6">
+                                            <label for="manufacture"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Manufacture</label>
+                                            <input type="text" id="manufacture" name="manufacture"
+                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required placeholder="manufacture">
+                                        </div>
+                                    <div class="mb-6">
                                         <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
-                                                <label for="manufacture"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Manufacture</label>
-                                                <input type="text" id="manufacture" name="manufacture"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="manufacture">
-                                            </div>
-                                            <div class="sm:w-1/2 w-full sm:pl-2 sm:pt-0 pt-6">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="model_number"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Model Number</label>
                                                 <input type="text" id="model_number" name="model_number"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="model number">
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-6">
-                                        <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="serial_number"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Serial Number</label>
                                                     <input type="text" id="serial_number" name="serial_number"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="serial number">
                                             </div>
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="size_in"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Size In</label>
                                                     {{-- <input type="text" id="size_in" name="size_in"
@@ -646,11 +634,7 @@
                                                         <option>24</option>
                                                     </select>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-6">
-                                        <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="rating_in"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rating In</label>
                                                     {{-- <input type="text" id="rating_in" name="rating_in"
@@ -666,7 +650,11 @@
                                                         <option>2500</option>
                                                     </select>
                                             </div>
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                        </div>
+                                    </div>
+                                    <div class="mb-6">
+                                        <div class="row sm:flex">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="size_out"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Size Out</label>
                                                     {{-- <input type="text" id="size_out" name="size_out"
@@ -691,218 +679,199 @@
                                                         <option>16</option>
                                                         <option>24</option>
                                                     </select>
-                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="mb-6">
-                                            <div class="row sm:flex">
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
-                                                    <label for="rating_out"
-                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rating Out</label>
-                                                        {{-- <input type="text" id="rating_out" name="rating_out"
-                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                        required placeholder="rating out"> --}}
-                                                        <select class="select2-ajax" id="rating_out" name="rating_out">
-                                                        <option disabled>Search here..</option>
-                                                        <option>150</option>
-                                                        <option>300</option>
-                                                        <option>600</option>
-                                                        <option>900</option>
-                                                        <option>1500</option>
-                                                        <option>2500</option>
-                                                    </select>
-                                                </div>
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
-                                                    <label for="press"
-                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Press. Setting (psi)</label>
-                                                    <input type="text" id="press" name="press"
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
+                                                <label for="rating_out"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rating Out</label>
+                                                    {{-- <input type="text" id="rating_out" name="rating_out"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="press">
-                                                </div>
+                                                    required placeholder="rating out"> --}}
+                                                    <select class="select2-ajax" id="rating_out" name="rating_out">
+                                                    <option disabled>Search here..</option>
+                                                    <option>150</option>
+                                                    <option>300</option>
+                                                    <option>600</option>
+                                                    <option>900</option>
+                                                    <option>1500</option>
+                                                    <option>2500</option>
+                                                </select>
+                                            </div>
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
+                                                <label for="press"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Press. Setting (psi)</label>
+                                                <input type="text" id="press" name="press"
+                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required placeholder="press">
+                                            </div>
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
+                                                <label for="vacuum"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vacuum Setting (psi)</label>
+                                                    <input type="text" id="vacuum" name="vacuum"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="vacuum">
                                             </div>
                                         </div>
+                                    </div>
                                         <div class="mb-6">
                                             <div class="row sm:flex">
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
-                                                    <label for="vacuum"
-                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vacuum Setting (psi)</label>
-                                                        <input type="text" id="vacuum" name="vacuum"
-                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                        required placeholder="vacuum">
-                                                </div>
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
+                                                <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="psv"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PSV Style</label>
                                                     <input type="text" id="psv" name="psv"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="psv">
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-6">
-                                            <div class="row sm:flex">
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
+                                                <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="design"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Orifice Design</label>
                                                         <input type="text" id="design" name="design"
                                                         class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required placeholder="design">
                                                 </div>
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
+                                                <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="selection"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Orifice Selection</label>
                                                     <input type="text" id="selection" name="selection"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="selection">
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-6">
-                                            <div class="row sm:flex">
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
+                                                <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="psv_capacity"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PSV Capacity</label>
                                                         <input type="text" id="psv_capacity" name="psv_capacity"
                                                         class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required placeholder="psv capacity">
                                                 </div>
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
+                                            </div>
+                                        </div>
+                                        <div class="mb-6">
+                                            <div class="row sm:flex">
+                                                <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="psv_capacityunit"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PSV Capacity Unit</label>
                                                     <input type="text" id="psv_capacityunit" name="psv_capacityunit"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="psv capacityunit">
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-6">
-                                            <div class="row sm:flex">
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
+                                                <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="bonnet"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bonnet Type</label>
                                                         <input type="text" id="bonnet" name="bonnet"
                                                         class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required placeholder="bonnet">
                                                 </div>
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
+                                                <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="seat"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seat Type</label>
                                                     <input type="text" id="seat" name="seat"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="seat">
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-6">
-                                            <div class="row sm:flex">
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
+                                                <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="CAP"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CAP Type</label>
                                                         <input type="text" id="CAP" name="CAP"
                                                         class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required placeholder="CAP">
                                                 </div>
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
+                                            </div>
+                                        </div>
+                                            <div class="mb-6">
+                                                <div class="row sm:flex">
+                                                <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="body_bonnet"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Body Bonnet Material</label>
                                                     <input type="text" id="body_bonnet" name="body_bonnet"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="body bonnet">
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-6">
-                                            <div class="row sm:flex">
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
+                                                <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="disc_material"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Disc Material</label>
                                                         <input type="text" id="disc_material" name="disc_material"
                                                         class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required placeholder="disc material">
                                                 </div>
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
+                                                <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="spring_material"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Spring Material</label>
                                                     <input type="text" id="spring_material" name="spring_material"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="spring material">
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-6">
-                                            <div class="row sm:flex">
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
+                                                <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="guide_material"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Guide Material</label>
                                                         <input type="text" id="guide_material" name="guide_material"
                                                         class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required placeholder="guide material">
                                                 </div>
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
+                                            </div>
+                                        </div>
+                                        <div class="mb-6">
+                                            <div class="row sm:flex">
+                                                <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="resilient_seat"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Resilient Seat</label>
                                                     <input type="text" id="resilient_seat" name="resilient_seat"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="resilient seat">
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-6">
-                                            <label for="bellow_material"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bellow Material</label>
-                                            <input type="text" id="bellow_material" name="bellow_material"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="bellow material">
-                                        </div>
-                                        <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
-                                                <label for="year_build"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year Build</label>
-                                                <div class="relative max-w-sm">
-                                                    <div
-                                                        class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            viewBox="0 0 20 20">
-                                                            <path
-                                                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                        </svg>
+                                                <div class="sm:w-1/4 w-full sm:pr-2">
+                                                    <label for="bellow_material"
+                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bellow Material</label>
+                                                    <input type="text" id="bellow_material" name="bellow_material"
+                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required placeholder="bellow material">
+                                                </div>
+                                                <div class="sm:w-1/4 w-full sm:pr-2">
+                                                    <label for="year_build"
+                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year Build</label>
+                                                    <div class="relative max-w-sm">
+                                                        <div
+                                                            class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                                xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                                viewBox="0 0 20 20">
+                                                                <path
+                                                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                                            </svg>
+                                                        </div>
+                                                        <input 
+                                                            datepicker 
+                                                            id="year_build" 
+                                                            datepicker-format="dd/mm/yyyy" 
+                                                            name="year_build" 
+                                                            type="text"
+                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            placeholder="Select date">
                                                     </div>
-                                                    <input 
-                                                        datepicker 
-                                                        id="year_build" 
-                                                        datepicker-format="dd/mm/yyyy" 
-                                                        name="year_build" 
-                                                        type="text"
-                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                        placeholder="Select date">
+                                                </div>
+                                                <div class="sm:w-1/4 w-full sm:pr-2">
+                                                    <label for="year_install"
+                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year Install</label>
+                                                    <div class="relative max-w-sm">
+                                                        <div
+                                                            class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                                xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                                viewBox="0 0 20 20">
+                                                                <path
+                                                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                                            </svg>
+                                                        </div>
+                                                        <input 
+                                                            datepicker 
+                                                            id="year_install" 
+                                                            datepicker-format="dd/mm/yyyy" 
+                                                            name="year_install" 
+                                                            type="text"
+                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            placeholder="Select date">
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
-                                                <label for="year_install"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year Install</label>
-                                                <div class="relative max-w-sm">
-                                                    <div
-                                                        class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            viewBox="0 0 20 20">
-                                                            <path
-                                                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                        </svg>
-                                                    </div>
-                                                    <input 
-                                                        datepicker 
-                                                        id="year_install" 
-                                                        datepicker-format="dd/mm/yyyy" 
-                                                        name="year_install" 
-                                                        type="text"
-                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                        placeholder="Select date">
-                                                </div>
-                                            </div>
                                         </div>
-                                    </div>
                                     <!-- Modal footer -->
                                     <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600 py-4">
                                         {{-- <button type="button"
@@ -919,32 +888,28 @@
                                 <div class="space-y-6">
                                     <div class="mb-6">
                                         <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="service"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Service</label>
                                                 <input type="text" id="service" name="service"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="service">
                                             </div>
-                                            <div class="sm:w-1/2 w-full sm:pl-2 sm:pt-0 pt-6">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="equip_number"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Equipment Number</label>
                                                 <input type="text" id="equip_number" name="equip_number"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="equipment number">
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-6">
-                                        <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="pid"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">P&ID</label>
                                                     <input type="text" id="pid" name="pid"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="P&ID">
                                             </div>
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="size_basic"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Size Basic</label>
                                                 <input type="text" id="size_basic" name="size_basic"
@@ -955,32 +920,28 @@
                                     </div>
                                     <div class="mb-6">
                                         <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="size_code"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Size Code</label>
                                                     <input type="text" id="size_code" name="size_code"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="size code">
                                             </div>
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="fluid"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fluid</label>
                                                     <input type="text" id="fluid" name="fluid"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="fluid">
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-6">
-                                        <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="required"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Required Capacity</label>
                                                 <input type="text" id="required" name="required"
                                                 class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 required placeholder="required">
                                             </div>
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="capacity_unit"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Capacity Unit</label>
                                                     <input type="text" id="capacity_unit" name="capacity_unit"
@@ -991,32 +952,28 @@
                                     </div>
                                     <div class="mb-6">
                                         <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="mawp"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">MAWP (psi)</label>
                                                 <input type="text" id="mawp" name="mawp"
                                                 class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 required placeholder="mawp">
                                             </div>
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="operating_psi"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Operating Pressure (psi)</label>
                                                         <input type="text" id="operating_psi" name="operating_psi"
                                                         class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required placeholder="operating psi">
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-6">
-                                        <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="back_psi"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Back Pressure (psi)</label>
                                                 <input type="text" id="back_psi" name="back_psi"
                                                 class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 required placeholder="back psi">
                                             </div>
-                                                <div class="sm:w-1/2 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="operating_temp"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Operating Temp. (°F)</label>
                                                         <input type="text" id="operating_temp" name="operating_temp"

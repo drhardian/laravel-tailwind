@@ -13,6 +13,8 @@ use App\Http\Controllers\RequestOrderController;
 use App\Http\Controllers\RequestOrderItemController;
 use App\Http\Controllers\UnitRateController;
 use App\Http\Controllers\PsvMasterData\PsvdatamasterController;
+use App\Http\Controllers\PsvMasterData\PsvdashboardController;
+
 
 
 
@@ -113,3 +115,8 @@ Route::prefix('psvdatamaster')->controller(PsvdatamasterController::class)->grou
     Route::post('psvdatamaster/import', 'PsvMasterData\svdatamasterController@importExcel')->name('general.import');
 
 });
+
+Route::resource('psvdashboard', PsvdashboardController::class);
+    Route::prefix('psvdashboard')->controller(PsvdashboardController::class)->group(function() {
+        Route::get('psvdashboard', 'index')->name('psv.dashboard');
+    });
