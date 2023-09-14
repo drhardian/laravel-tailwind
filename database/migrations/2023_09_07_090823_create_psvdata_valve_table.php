@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('psvdata_valve', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('general_id');
             $table->string('manufacture')->nullable();
             $table->string('model_number')->nullable();
             $table->string('serial_number')->nullable();
@@ -39,6 +40,8 @@ return new class extends Migration
             $table->date('year_build')->nullable();
             $table->date('year_install')->nullable();
             $table->timestamps();
+            $table->foreign('general_id')->references('id')->on('psvdata_general');
+
         });
     }
 

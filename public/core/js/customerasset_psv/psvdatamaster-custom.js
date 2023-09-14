@@ -6,7 +6,7 @@ let closeIco = document.getElementById('closeIco');
 
 openForm = (url) => {
     modalShowAndReset();
-    $('.modal-title').text('New Condition Replacement');
+    $('.modal-title').text('New Input PSV Data Master');
     $('#form_url').val(url);
 }
 
@@ -88,7 +88,7 @@ saveRecord = () => {
 
 editRecord = (url) => {
     modalShowAndReset();
-    $('.modal-title').text('Edit Condition Replacement');
+    $('.modal-title').text('Edit Input PSV Data Master');
 
     $('#warning-alert').removeClass('flex').addClass('hidden');
 
@@ -101,7 +101,27 @@ editRecord = (url) => {
         dataType: "json",
         success: function (response) {
             // console.log(response);
-
+            //GENERAL INFORMATION
+            var areaOptions = new Option(response.dropdown.area, response.dropdown.area, true, true);
+            $('#area').append(areaOptions).trigger('change');
+            var flowOptions = new Option(response.dropdown.flow, response.dropdown.flow, true, true);
+            $('#flow').append(flowOptions).trigger('change');
+            var platformOptions = new Option(response.dropdown.platform, response.dropdown.platform, true, true);
+            $('#platform').append(platformOptions).trigger('change');
+            var demolishOptions = new Option(response.dropdown.demolish, response.dropdown.demolish, true, true);
+            $('#demolish').append(demolishOptions).trigger('change');
+            var reliefOptions = new Option(response.dropdown.relief, response.dropdown.relief, true, true);
+            $('#relief').append(reliefOptions).trigger('change');
+            //VALVE INFORMATION
+            var size_inOptions = new Option(response.dropdown.size_in, response.dropdown.size_in, true, true);
+            $('#size_in').append(size_inOptions).trigger('change');
+            var rating_inOptions = new Option(response.dropdown.rating_in, response.dropdown.rating_in, true, true);
+            $('#rating_in').append(rating_inOptions).trigger('change');
+            var size_outOptions = new Option(response.dropdown.size_out, response.dropdown.size_out, true, true);
+            $('#size_out').append(size_outOptions).trigger('change');
+            var rating_outOptions = new Option(response.dropdown.rating_out, response.dropdown.rating_out, true, true);
+            $('#rating_out').append(rating_outOptions).trigger('change');
+            
             $.each(response.form, function (index, value) { 
                 $('#' + value[0]).val(value[1]);
             });

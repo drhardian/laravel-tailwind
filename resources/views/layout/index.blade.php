@@ -238,9 +238,15 @@
                                                     class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                                                     <ul class="text-sm text-gray-700 dark:text-gray-200">
                                                         <li>
-                                                            <a href="{{ route('general.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">General Information</a>
+                                                            <a href="{{ route('requestorder.index') }}"
+                                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Dashboard</a>
                                                         </li>
+                                                    </ul>
+                                                    <ul class="text-sm text-gray-700 dark:text-gray-200">
                                                         <li>
+                                                            <a href="{{ route('psvdatamaster.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Input Data</a>
+                                                        </li>
+                                                        {{-- <li>
                                                             <a href="{{ route('valve.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Valve Information</a>
                                                         </li>
                                                         <li>
@@ -248,7 +254,7 @@
                                                         </li>
                                                         <li>
                                                             <a href="{{ route('condi.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Condition Replacement</a>
-                                                        </li>
+                                                        </li> --}}
                                                     </ul>
                                                 </div>
                                             </li>
