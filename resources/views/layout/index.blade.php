@@ -76,8 +76,8 @@
         class="bg-white dark:bg-gray-900 sticky w-full z-40 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" class="flex items-center">
-                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Flowbite Logo">
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">X-apps</span>
+                <img src="{{ asset('theme/assets/images/ptcs.png') }}" class="h-10 mr-3" alt="Flowbite Logo">
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">AMS</span>
             </a>
             <div class="flex md:order-2">
                 <button data-collapse-toggle="navbar-sticky" type="button"
@@ -243,7 +243,7 @@
                                                         <div>
                                                             <ul class="text-sm text-gray-700 dark:text-gray-200">
                                                                 <li>
-                                                                    <a href="{{ route('products.index') }}"
+                                                                    <a href="{{ route('cina.products.index') }}"
                                                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Spare Unit - Valve</a>
                                                                 </li>
                                                             </ul>

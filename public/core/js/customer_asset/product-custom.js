@@ -3,23 +3,10 @@ const modal = new Modal($newModal);
 let cancelBtn = document.getElementById('cancelBtn');
 let closeIco = document.getElementById('closeIco');
 
-const $uploadExcelModal = document.getElementById('uploadExcelModal');
-const uploadExcelModal = new Modal($uploadExcelModal);
-let cancelUploadBtn = document.getElementById('cancelUploadBtn');
-let closeUploadXlsIco = document.getElementById('closeUploadXlsIco');
-
-openUploadForm = () => {
-    modalUploadShowAndReset();
-}
-
 openForm = (url) => {
     modalShowAndReset();
     $('.modal-title').text('New Item');
     $('#form_url').val(url);
-}
-
-modalUploadShowAndReset = () => {
-    uploadExcelModal.show();
 }
 
 modalShowAndReset = () => {
@@ -98,70 +85,98 @@ saveRecord = () => {
     });
 }
 
-editRecord = (url) => {
-    modalShowAndReset();
-    $('.modal-title').text('Edit Unit Rate');
+// editRecord = (url) => {
+//     modalShowAndReset();
+//     $('.modal-title').text('Edit Unit Rate');
 
-    $('#warning-alert').removeClass('flex').addClass('hidden');
+//     $('#warning-alert').removeClass('flex').addClass('hidden');
 
-    $('.warning-alert-message').html('');
-    $('.warning-alert-title').text('');
+//     $('.warning-alert-message').html('');
+//     $('.warning-alert-title').text('');
 
-    $.ajax({
-        type: "get",
-        url: url,
-        dataType: "json",
-        success: function (response) {
-            $.each(response.form, function (index, value) { 
-                $('#' + value[0]).val(value[1]);
-            });
+//     $.ajax({
+//         type: "get",
+//         url: url,
+//         dataType: "json",
+//         success: function (response) {
+//             $.each(response.form, function (index, value) { 
+//                 $('#' + value[0]).val(value[1]);
+//             });
 
-            $('#form_url').val(response.update_url);
-            $('#mainForm').attr('method', 'PUT');
-        }
-    });
+//             $('#form_url').val(response.update_url);
+//             $('#mainForm').attr('method', 'PUT');
+//         }
+//     });
+// }
+
+// deleteRecord = (url) => {
+//     Swal.fire({
+//         template: '#delete-template',
+//     }).then((result) => {
+//         if (result.isConfirmed) {
+//             $.ajax({
+//                 type: "post",
+//                 url: url,
+//                 data: {
+//                     _token: CSRF_TOKEN,
+//                     _method: 'DELETE',
+//                 },
+//                 beforeSend: function () {
+//                     Swal.fire({
+//                         title: 'Please wait...',
+//                         allowOutsideClick: false,
+//                         allowEscapeKey: false,
+//                         didOpen: () => {
+//                             Swal.showLoading()
+//                         },
+//                     })
+//                 },
+//                 success: function(response) {
+//                     Swal.close();
+
+//                     toastr.success(response.message);
+//                     $('#main-table').DataTable().ajax.reload();
+//                 },
+//                 error: function(response) {
+//                     Swal.close();
+
+//                     $('#warning-alert').removeClass('hidden').addClass('flex');
+
+//                     $('.warning-alert-message').html('');
+//                     $('.warning-alert-title').text('');
+
+//                     $('.warning-alert-title').text('Well, this is unexpected..');
+//                     $('.warning-alert-message').append('<li>'+response.responseJSON.message+'</li>');
+//                 }
+//             });
+//         }
+//     });
+// }
+
+const $uploadExcelModal = document.getElementById('uploadExcelModal');
+const uploadExcelModal = new Modal($uploadExcelModal);
+let cancelUploadBtn = document.getElementById('cancelUploadBtn');
+let closeUploadXlsIco = document.getElementById('closeUploadXlsIco');
+
+openUploadForm = () => {
+    modalUploadShowAndReset();
 }
 
-deleteRecord = (url) => {
-    Swal.fire({
-        template: '#delete-template',
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                type: "post",
-                url: url,
-                data: {
-                    _token: CSRF_TOKEN,
-                    _method: 'DELETE',
-                },
-                beforeSend: function () {
-                    Swal.fire({
-                        title: 'Please wait...',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        didOpen: () => {
-                            Swal.showLoading()
-                        },
-                    })
-                },
-                success: function(response) {
-                    Swal.close();
-
-                    toastr.success(response.message);
-                    $('#main-table').DataTable().ajax.reload();
-                },
-                error: function(response) {
-                    Swal.close();
-
-                    $('#warning-alert').removeClass('hidden').addClass('flex');
-
-                    $('.warning-alert-message').html('');
-                    $('.warning-alert-title').text('');
-
-                    $('.warning-alert-title').text('Well, this is unexpected..');
-                    $('.warning-alert-message').append('<li>'+response.responseJSON.message+'</li>');
-                }
-            });
-        }
-    });
+modalUploadShowAndReset = () => {
+    uploadExcelModal.show();
 }
+
+cancelUploadBtn.onclick = function() {
+    uploadExcelModal.hide();
+    formUploadReset();    
+}
+
+closeUploadXlsIco.onclick = function() {
+    uploadExcelModal.hide();
+    formUploadReset();    
+}
+
+formUploadReset = () => {
+    $("#filexls").val('');
+}
+
