@@ -16,7 +16,7 @@ export default {
     'border', 
     'whitespace-normal', 
     {
-      pattern: /bg-(red|green|blue|yellow)-(100|400|800)/,
+      pattern: /bg-(red|green|blue|yellow|white)-(100|400|800)/,
     },
     { pattern: /text-(red|green|blue|yellow)-(100|400|800)/ },
     { pattern: /border-(red|green|blue|yellow)-(100|400|800)/ },

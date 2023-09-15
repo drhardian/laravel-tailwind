@@ -23,67 +23,67 @@ closeIco.onclick = function() {
     modalHideAndReset();
 }
 
-// cancelBtn.onclick = function() {
-//     modalHideAndReset();
-// }
+cancelBtn.onclick = function() {
+    modalHideAndReset();
+}
 
 modalHideAndReset = () => {
     modal.hide();
     formReset();    
 }
 
-// saveRecord = () => {
-//     Swal.fire({
-//         template: '#create-template',
-//     }).then((result) => {
-//         if (result.isConfirmed) {
-//             $.ajax({
-//                 type: "post",
-//                 url: $('#form_url').val(),
-//                 data: $('#mainForm').serialize() + '&_token=' + CSRF_TOKEN + '&_method=' + $('#mainForm').attr('method'),
-//                 beforeSend: function() {
-//                     Swal.fire({
-//                         title: 'Please wait...',
-//                         allowOutsideClick: false,
-//                         allowEscapeKey: false,
-//                         didOpen: () => {
-//                             Swal.showLoading()
-//                         },
-//                     })
-//                 },
-//                 success: function(response) {
-//                     Swal.close();
-//                     modalHideAndReset();
-//                     toastr.success(response.message);
-//                     $('#main-table').DataTable().ajax.reload();
-//                 },
-//                 error: function(response) {
-//                     Swal.close();
+saveRecord = () => {
+    Swal.fire({
+        template: '#create-template',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "post",
+                url: $('#form_url').val(),
+                data: $('#mainForm').serialize() + '&_token=' + CSRF_TOKEN + '&_method=' + $('#mainForm').attr('method'),
+                beforeSend: function() {
+                    Swal.fire({
+                        title: 'Please wait...',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        },
+                    })
+                },
+                success: function(response) {
+                    Swal.close();
+                    modalHideAndReset();
+                    toastr.success(response.message);
+                    $('#main-table').DataTable().ajax.reload();
+                },
+                error: function(response) {
+                    Swal.close();
 
-//                     $('#warning-alert').removeClass('hidden').addClass('flex');
+                    $('#warning-alert').removeClass('hidden').addClass('flex');
 
-//                     $('.warning-alert-message').html('');
-//                     $('.warning-alert-title').text('');
+                    $('.warning-alert-message').html('');
+                    $('.warning-alert-title').text('');
 
-//                     if (response.status === 422) {
-//                         $('.warning-alert-title').text(
-//                             'Ensure that these requirements are met:');
+                    if (response.status === 422) {
+                        $('.warning-alert-title').text(
+                            'Ensure that these requirements are met:');
 
-//                         $.each(response.responseJSON.errors, function(indexInArray,
-//                             valueOfElement) {
-//                             $('.warning-alert-message').append('<li>' +
-//                                 valueOfElement[0] + '</li>');
-//                         });
-//                     } else {
-//                         $('.warning-alert-title').text('Well, this is unexpected..');
-//                         $('.warning-alert-message').append('<li>' + response.responseJSON
-//                             .message + '</li>');
-//                     }
-//                 }
-//             });
-//         }
-//     });
-// }
+                        $.each(response.responseJSON.errors, function(indexInArray,
+                            valueOfElement) {
+                            $('.warning-alert-message').append('<li>' +
+                                valueOfElement[0] + '</li>');
+                        });
+                    } else {
+                        $('.warning-alert-title').text('Well, this is unexpected..');
+                        $('.warning-alert-message').append('<li>' + response.responseJSON
+                            .message + '</li>');
+                    }
+                }
+            });
+        }
+    });
+}
 
 // editRecord = (url) => {
 //     modalShowAndReset();
