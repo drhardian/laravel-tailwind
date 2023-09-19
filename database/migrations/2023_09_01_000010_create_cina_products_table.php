@@ -64,6 +64,8 @@ return new class extends Migration
             $table->string('input_signal')->nullable();
             $table->string('other_accessories')->nullable();
             $table->string('instrument_type')->nullable();
+            $table->string('instrument_brand')->nullable();
+            $table->string('automation_brand')->nullable();
             $table->string('bulk_material_type')->nullable();
             $table->string('sparepart_description')->nullable();
             $table->string('sparepart_number')->nullable();
