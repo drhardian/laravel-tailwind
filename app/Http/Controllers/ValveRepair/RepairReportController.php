@@ -304,6 +304,30 @@ class RepairReportController extends Controller
         //
     }
 
+    /**
+     * Remove Image the specified resource from storage.
+     */
+    public function destroyImage(Request $request)
+    {
+        $idValveRepair = $request->input('idValveRepair');
+        $imageId = $request->input('imageId');
+        $nameFile = $request->input('nameFile');
+        $fileUpload = FileUpload::find($imageId); // Replace $id with the actual ID of the record you want to delete
+
+
+        if ($fileUpload) {
+            // If the record exists, delete it
+            $fileUpload->delete();
+            // Optionally, you can also delete the associated file from storage if needed
+            Storage::delete('images/valverepair/' . $idValveRepair . '/' . $nameFile);
+            // Respond with a success message or status
+            return response()->json(['success' => true]);
+        } else {
+            // If the record does not exist, respond with an error message or status
+            return response()->json(['success' => false, 'message' => 'Record not found'], 404);
+        }
+    }
+
     # Display a listing of the resource on datatable.
     public function showDatatable()
     {

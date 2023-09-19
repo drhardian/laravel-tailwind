@@ -394,6 +394,42 @@ function delete_image(nameFile, imageId) {
     $("#" + imageId).remove();
 }
 
+function deleteImage(nameFile, imageId, idValveRepair, url, divId) {
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {
+            idValveRepair: idValveRepair,
+            imageId: imageId,
+            nameFile: nameFile,
+            _token: CSRF_TOKEN,
+        },
+        beforeSend: function () {
+            Swal.fire({
+                title: "Please wait...",
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+            });
+        },
+        success: function (response) {
+            if (response.success) {
+                // Hapus gambar dari tampilan
+                $("#" + divId).remove();
+                Swal.close();
+            } else {
+                alert("Gagal menghapus gambar.");
+            }
+        },
+        error: function (response) {
+            Swal.close();
+            alert(response.responseJSON.message);
+        },
+    });
+}
+
 function removeFile(name) {
     var attachments = document.getElementById("photo_devices").files; // <-- reference your file input here
     var fileBuffer = new DataTransfer();
@@ -423,20 +459,14 @@ editRecord = (url) => {
 };
 
 // Get the image and popup elements
-var img = document.getElementById("myImage");
 var modals = document.getElementById("myImageModal");
-var closeBtn = document.getElementById("close");
+var closeBtn = document.getElementById("closeModalImg");
 var ImgSrc = document.getElementById("ImgSrc");
-
 
 function openModalImg(params, alt) {
     modals.classList.remove("hidden");
     ImgSrc.src = params;
 }
-// Add a click event listener to the image
-img.addEventListener("click", function () {
-    modals.classList.remove("hidden");
-});
 
 // Add a click event listener to the close button
 closeBtn.addEventListener("click", function () {

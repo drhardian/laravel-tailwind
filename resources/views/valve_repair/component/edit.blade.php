@@ -502,8 +502,8 @@
                                                         <input type="text" name="input-{{ $imageId }}" value={{$image_edit->description}}
                                                             placeholder="Image Description"
                                                             class="mt-2 p-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                        <button class="delete-button mt-2 text-red-500"
-                                                            onclick="deleteImage('{{ $nameFile }}', '{{ $imageId }}')">Delete</button>
+                                                        <span class="delete-button mt-2 text-red-500 hover:text-blue-500 cursor-pointer"
+                                                            onclick="deleteImage('{{ $nameFile }}', '{{ $image_edit->id }}','{{$valverepair->id}}','{{ route('valverepair.delete.image') }}','{{ $imageId}}')">Delete</span>
                                                     </div>
                                                 @endforeach
 

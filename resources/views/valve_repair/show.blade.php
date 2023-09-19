@@ -234,7 +234,8 @@
                         <div class="flex flex-col items-center ">
                             <img class="w-24 h-24 mb-3 shadow-lg rounded-full"
                                 src="{{ asset('theme/assets/images/menu.png') }}" alt="Bonnie image" />
-                            <h6 class="p-4 text-center mb-1 text-md font-medium text-gray-900 dark:text-white">Calibration</h6>
+                            <h6 class="p-4 text-center mb-1 text-md font-medium text-gray-900 dark:text-white">Calibration
+                            </h6>
                         </div>
                     </div>
                 </div>
@@ -245,13 +246,24 @@
     </div>
     </div>
 
-<!-- The Popup -->
-<div id="myImageModal" class="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-70 z-50 hidden">
-    <div class="bg-white rounded-lg p-4">
-        <span id="close" class="absolute top-2 right-2 text-gray-600 cursor-pointer">&times;</span>
-        <img id="ImgSrc" src="" alt="Popup Image">
+    <!-- The Popup -->
+    <div id="myImageModal"
+        class="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-70 z-50 hidden">
+        <div class="bg-white rounded-lg p-4">
+            {{-- <span id="closeModalImg" class="absolute top-2 right-2 text-gray-600 cursor-pointer">&times;</span> --}}
+            <button type="button" id="closeModalImg"
+                class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"
+                aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+            </button>
+            <img id="ImgSrc" src="" alt="Popup Image">
+        </div>
     </div>
-</div>
     @include('valve_repair.component.edit')
     @include('valve_repair.construction.modal')
 @endsection
@@ -259,7 +271,8 @@
 @section('js')
     <script type="text/javascript" src="{{ asset('core/js/valve_repair/custom.js') }}"></script>
     <script type="text/javascript" src="{{ asset('core/js/valve_repair/construction/custom.js') }}"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js">
+    </script>
     <script>
         var CSRF_TOKEN = $('[name="csrf-token"]').attr('content');
         var array_dropdown = @json($vrr_dropdown);
