@@ -421,3 +421,31 @@ editRecord = (url) => {
     $("#form_url").val(updateUrls);
     $("#mainForm").attr("method", "PUT");
 };
+
+// Get the image and popup elements
+var img = document.getElementById("myImage");
+var modals = document.getElementById("myImageModal");
+var closeBtn = document.getElementById("close");
+var ImgSrc = document.getElementById("ImgSrc");
+
+
+function openModalImg(params, alt) {
+    modals.classList.remove("hidden");
+    ImgSrc.src = params;
+}
+// Add a click event listener to the image
+img.addEventListener("click", function () {
+    modals.classList.remove("hidden");
+});
+
+// Add a click event listener to the close button
+closeBtn.addEventListener("click", function () {
+    modals.classList.add("hidden");
+});
+
+// Close the popup when clicking outside the image
+window.addEventListener("click", function (event) {
+    if (event.target == modals) {
+        modals.classList.add("hidden");
+    }
+});

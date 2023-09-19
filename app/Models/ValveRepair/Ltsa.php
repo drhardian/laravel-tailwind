@@ -14,4 +14,13 @@ class Ltsa extends Model
     protected $guarded = [];
 
 
+    /**
+     * Get the repairReport associated with the Ltsa
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function repairReport(): HasOne
+    {
+        return $this->hasOne(RepairReport::class, 'repair_report_id', 'id');
+    }
 }

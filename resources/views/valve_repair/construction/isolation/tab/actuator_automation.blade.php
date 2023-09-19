@@ -86,7 +86,7 @@
                 required placeholder="Serial">
         </div>
 
-        <div id="actuator_automation_left" class=" {{ 1 == 2 ? 'sm:w-2/2' : 'sm:w-1/2' }} w-full sm:pr-2">
+        <div id="actuator_automation_left" class=" sm:w-1/2 w-full sm:pr-2">
             <h5 class="mb-4 text-sm font-medium leading-none text-gray-900 dark:text-white">
                 CONSTRUCTION (AS LEFT)</h5>
 

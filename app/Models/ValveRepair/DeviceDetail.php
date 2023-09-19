@@ -13,6 +13,16 @@ class DeviceDetail extends Model
     protected $guarded = [];
 
     /**
+     * Get the repairReport associated with the DeviceDetail
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function repairReport(): HasOne
+    {
+        return $this->hasOne(RepairReport::class, 'repair_report_id', 'id');
+    }
+
+    /**
      * Get the deviceType associated with the DeviceDetail
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

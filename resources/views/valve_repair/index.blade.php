@@ -20,10 +20,15 @@
                 <table id="main-table" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Prefix</th>
-                            <th>Category</th>
-                            <th>Description</th>
-                            <th>Last Update</th>
+                            <th>Customer</th>
+                            <th>LTSA Ref.</th>
+                            <th>Ro Number</th>
+                            <th>Ro Date</th>
+                            <th>SOW</th>
+                            <th>Tag Number</th>
+                            <th>Start Date</th>
+                            <th>Complated Date</th>
+                            <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -42,8 +47,7 @@
         var CSRF_TOKEN = $('[name="csrf-token"]').attr('content');
         var array_dropdown = @json($vrr_dropdown);
     </script>
-    {{-- <script>
-
+    <script>
         $(document).ready(function() {
             $('#main-table').DataTable({
                 language: {
@@ -55,28 +59,46 @@
                 deferRender: true,
                 bAutoWidth: false,
                 ajax: {
-                    url: "{{ route('tablemap.main.table') }}",
+                    url: "{{ route('valverepair.main.table') }}",
                 },
-                columns: [
-                    {
-                        data: 'prefix_title',
-                        name: 'prefix_title',
-                        className: 'all'
+                columns: [{
+                        data: 'customer',
+                        name: 'customer',
+                        className: 'desktop'
                     },
                     {
-                        data: 'category',
-                        name: 'category',
-                        className: 'all'
+                        data: 'ltsa.ltsa_ref',
+                        name: 'ltsa.ltsa_ref',
+                        className: 'desktop'
                     },
                     {
-                        data: 'description',
-                        name: 'description',
-                        class: ['text-center', 'min-tablet']
+                        data: 'ltsa.ro_number',
+                        name: 'ltsa.ro_number',
+                        className: 'desktop'
                     },
                     {
-                        data: 'updated_at',
-                        name: 'updated_at',
-                        class: ['text-center', 'min-tablet']
+                        data: 'ltsa.ro_date',
+                        name: 'ltsa.ro_date',
+                        className: 'desktop'
+                    },
+                    {
+                        data: 'ltsa.ro_date',
+                        name: 'ltsa.ro_date',
+                        className: 'desktop'
+                    },
+                    {
+                        data: 'device_detail.tag_number',
+                        name: 'device_detail.tag_number',
+                        className: 'desktop'
+                    },
+                    {
+                        data: 'start_date',
+                        name: 'start_date',
+                        className: 'desktop'
+                    }, {
+                        data: 'estimate_end_date',
+                        name: 'estimate_end_date',
+                        className: 'desktop'
                     },
                     {
                         data: 'actions',
@@ -86,17 +108,19 @@
                         sortable: false,
                     },
                 ],
-                columnDefs: [
-                    {
+                search: {
+                    "regex": true
+                },
+                columnDefs: [{
                         className: "dt-body-center",
-                        target: [0,1,3,4]
+                        target: [0, 1, 3, 4]
                     },
                     {
-                        target: [3],
+                        target: [3, 6, 7],
                         width: "15%",
                     },
                     {
-                        target: [0,1],
+                        target: [0, 1],
                         width: "20%",
                     },
                     {
@@ -106,5 +130,5 @@
                 ]
             });
         });
-    </script> --}}
+    </script>
 @endsection

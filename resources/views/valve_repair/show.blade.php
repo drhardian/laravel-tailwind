@@ -1,5 +1,10 @@
 @extends('layout.index')
 
+
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css">
+@endsection
+
 @section('content')
     <div class="min-h-screen w-full mx-auto max-w-4xl lg:max-w-7xl">
         <div class="p-4 mt-2">
@@ -10,7 +15,7 @@
                     @include('layout.breadcrumbs')
                 @endunless
             </div>
-            <div class="flex flex-col md:flex-row ">
+            <div class="flex flex-col lg:flex-row ">
                 <div
                     class="w-full h-auto p-3 mr-4 basis-3/5 mb-4 bg-white border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                     <div class="flex flex-row justify-between">
@@ -19,13 +24,12 @@
                                 information</h5>
                         </div>
                         <div class="justify-end px-4">
-                            <i class="fa-solid fa-pen hover:text-blue-500"
+                            <i class="fa-solid fa-pen hover:text-blue-500 cursor-pointer"
                                 onclick="editRecord(`{{ route('valverepair.edit', ['valverepair' => $valverepair->id]) }}`)"></i>
                         </div>
                     </div>
-
                     <div class="flex flex-col md:flex-row space-x-4">
-                        <div class="grid grid-cols-1 gap-x-20 gap-y-1 md:grid-cols-3">
+                        <div class="grid grid-cols-3 gap-x-20 gap-y-1 lg:grid-cols-3">
                             <div class="text-sm">
                                 <p class="font-semibold">Customer :</p>
                                 <p>{{ $valverepair->customer }}</p>
@@ -131,7 +135,9 @@
                                     <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
                                         <img src="{{ asset('images/ValveRepair/' . $valverepair->id . '/' . $images->name) }}"
                                             class="absolute block w-36 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                            alt="{{ $images->name }}">
+                                            alt="{{ $images->name }}"
+                                            onclick="openModalImg('{{ asset('images/ValveRepair/' . $valverepair->id . '/' . $images->name) }}', '{{ $images->name }}')">
+
                                     </div>
                                 @endforeach
                                 <!-- Item 1 -->
@@ -212,8 +218,23 @@
                         <div class="flex justify-end px-4 pt-4">
                         </div>
                         <div class="flex flex-col items-center ">
-                            <img class="w-24 h-24 mb-3 shadow-lg rounded-full" src="{{asset('theme/assets/images/menu.png')}}" alt="Bonnie image" />
-                            <h6 class="p-4 text-center mb-1 text-md font-medium text-gray-900 dark:text-white">Construction</h6>
+                            <img class="w-24 h-24 mb-3 shadow-lg rounded-full"
+                                src="{{ asset('theme/assets/images/menu.png') }}" alt="Bonnie image" />
+                            <h6 class="p-4 text-center mb-1 text-md font-medium text-gray-900 dark:text-white">Construction
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="openFormConstruction('{{ route('valverepair.store') }}')">
+                    <div
+                        class="w-72 max-w-sm hover:bg-gray-100 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <div class="flex justify-end px-4 pt-4">
+                        </div>
+                        <div class="flex flex-col items-center ">
+                            <img class="w-24 h-24 mb-3 shadow-lg rounded-full"
+                                src="{{ asset('theme/assets/images/menu.png') }}" alt="Bonnie image" />
+                            <h6 class="p-4 text-center mb-1 text-md font-medium text-gray-900 dark:text-white">Calibration</h6>
                         </div>
                     </div>
                 </div>
@@ -224,18 +245,30 @@
     </div>
     </div>
 
+<!-- The Popup -->
+<div id="myImageModal" class="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-70 z-50 hidden">
+    <div class="bg-white rounded-lg p-4">
+        <span id="close" class="absolute top-2 right-2 text-gray-600 cursor-pointer">&times;</span>
+        <img id="ImgSrc" src="" alt="Popup Image">
+    </div>
+</div>
     @include('valve_repair.component.edit')
     @include('valve_repair.construction.modal')
-
 @endsection
 
 @section('js')
     <script type="text/javascript" src="{{ asset('core/js/valve_repair/custom.js') }}"></script>
     <script type="text/javascript" src="{{ asset('core/js/valve_repair/construction/custom.js') }}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
     <script>
         var CSRF_TOKEN = $('[name="csrf-token"]').attr('content');
         var array_dropdown = @json($vrr_dropdown);
         var valveRepair = @json($valverepair);
         var updateUrls = "{{ route('valverepair.update', ['valverepair' => $valverepair->id]) }}";
+        $(document).ready(function() {
+            $('.select2').select2({
+                placeholder: 'Select here..'
+            });
+        });
     </script>
 @endsection

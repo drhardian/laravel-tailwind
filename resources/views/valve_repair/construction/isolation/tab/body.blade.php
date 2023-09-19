@@ -6,10 +6,10 @@
         class="ml-2 text-md font-medium text-gray-900 dark:text-gray-300">Data Not
         Available</label>
 </div>
-<div class="mb-6 mt-6">
+<div class="mb-6 mt-6 ">
     <div class="row sm:flex">
         <div id="body_construction_found"
-            class=" {{ 1 == 2 ? 'sm:w-2/2' : 'sm:w-1/2' }} w-full sm:pr-2">
+            class="sm:w-1/2 w-full sm:pr-2">
             <h5 class="mb-4 text-sm font-medium leading-none text-gray-900 dark:text-white">
                 CONSTRUCTION (AS FOUND)</h5>
             <label for="bc_brand_found"
