@@ -28,6 +28,7 @@ class Psvdatamaster extends Model
             $model->year_build = Carbon::createFromFormat('d/m/Y', request('year_build'))->format('Y-m-d');
             $model->year_install = Carbon::createFromFormat('d/m/Y', request('year_install'))->format('Y-m-d');
         });
+
         
     }
 }

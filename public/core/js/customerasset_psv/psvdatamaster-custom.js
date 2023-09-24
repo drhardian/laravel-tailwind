@@ -119,10 +119,18 @@ editRecord = (url) => {
             $('#size_in').append(size_inOptions).trigger('change');
             var rating_inOptions = new Option(response.dropdown.rating_in, response.dropdown.rating_in, true, true);
             $('#rating_in').append(rating_inOptions).trigger('change');
+            var condi_inOptions = new Option(response.dropdown.condi_in, response.dropdown.condi_in, true, true);
+            $('#condi_in').append(condi_inOptions).trigger('change');
             var size_outOptions = new Option(response.dropdown.size_out, response.dropdown.size_out, true, true);
             $('#size_out').append(size_outOptions).trigger('change');
             var rating_outOptions = new Option(response.dropdown.rating_out, response.dropdown.rating_out, true, true);
             $('#rating_out').append(rating_outOptions).trigger('change');
+            var condi_outOptions = new Option(response.dropdown.condi_out, response.dropdown.condi_out, true, true);
+            $('#condi_out').append(condi_outOptions).trigger('change');
+            var manufactureOptions = new Option(response.dropdown.manufacture, response.dropdown.manufacture, true, true);
+            $('#manufacture').append(manufactureOptions).trigger('change');
+            var psvOptions = new Option(response.dropdown.psv, response.dropdown.psv, true, true);
+            $('#psv').append(psvOptions).trigger('change');
             
             $.each(response.form, function (index, value) { 
                 $('#' + value[0]).val(value[1]);
@@ -176,4 +184,31 @@ deleteRecord = (url) => {
             });
         }
     });
+}
+
+const $uploadExcelModal = document.getElementById('uploadExcelModal');
+const uploadExcelModal = new Modal($uploadExcelModal);
+let cancelUploadBtn = document.getElementById('cancelUploadBtn');
+let closeUploadXlsIco = document.getElementById('closeUploadXlsIco');
+
+openUploadForm = () => {
+    modalUploadShowAndReset();
+}
+
+modalUploadShowAndReset = () => {
+    uploadExcelModal.show();
+}
+
+cancelUploadBtn.onclick = function() {
+    uploadExcelModal.hide();
+    formUploadReset();    
+}
+
+closeUploadXlsIco.onclick = function() {
+    uploadExcelModal.hide();
+    formUploadReset();    
+}
+
+formUploadReset = () => {
+    $("#filexls").val('');
 }

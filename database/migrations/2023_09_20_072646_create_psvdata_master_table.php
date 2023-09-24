@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('psvdata_master', function (Blueprint $table) {
             $table->id();
             // GENERAL INFORMATION
-            $table->string('area')->nullable();
+            $table->text('area')->nullable();
             $table->string('flow')->nullable();
             $table->string('platform')->nullable();
             $table->string('tag_number')->nullable();
-            $table->string('operational')->nullable();
-            $table->string('integrity')->nullable();
+            $table->text('operational')->nullable();
+            $table->text('integrity')->nullable();
             $table->date('cert_date')->nullable();
+            $table->string('cert_doc')->nullable();
             $table->date('exp_date')->nullable();
             $table->string('valve_number')->nullable();
             $table->string('status')->nullable();
@@ -39,8 +40,10 @@ return new class extends Migration
             $table->string('serial_number')->nullable();
             $table->string('size_in')->nullable();
             $table->string('rating_in')->nullable();
+            $table->string('condi_in')->nullable();
             $table->string('size_out')->nullable();
             $table->string('rating_out')->nullable();
+            $table->string('condi_out')->nullable();
             $table->string('press')->nullable();
             $table->string('vacuum')->nullable();
             $table->string('psv')->nullable();
@@ -50,7 +53,7 @@ return new class extends Migration
             $table->string('psv_capacityunit')->nullable();
             $table->string('bonnet')->nullable();
             $table->string('seat')->nullable();
-            $table->string('CAP')->nullable();
+            $table->text('CAP')->nullable();
             $table->string('body_bonnet')->nullable();
             $table->string('disc_material')->nullable();
             $table->string('spring_material')->nullable();

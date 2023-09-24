@@ -172,10 +172,21 @@
                                                 </div>
                                         </div>
                                     </div>
+                                    <div class="mb-6">
+                                        <label for="cert_doc"
+                                            divclass="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Certificate Document</label>
+                                            <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                @if($psvdatamaster->cert_doc)
+                                                    <a href="{{ asset($psvdatamaster->cert_doc) }}" target="_blank"><button class="btn btn-success">Download</button></a>
+                                                @else
+                                                    No Document Available
+                                                @endif
+                                            </div>
+                                    </div>
                                 </div>
 
                                 <!-- VALVE HISTORY -->
-                                <div class="mb-6">
+                                <div class="mb-6 space-y-5">
                                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">VALVE HISTORY</label>
                                     <div class="row sm:flex">
                                         <div class="sm:w-1/4 w-full sm:pr-2">
@@ -300,7 +311,8 @@
                         <!-- VALVE INFORMATION -->
                         <div class id="valve" role="tab" aria-labelledby="valve-tab">
                             <div class="space-y-6">
-                                <div class="mb-6">
+                                <div class="row sm:flex">
+                                    <div class="sm:w-1/3 w-full sm:pr-2">
                                         <label for="manufacture"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Manufacture</label>
                                             <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -311,31 +323,32 @@
                                                 @endif
                                             </div>
                                     </div>
+                                    <div class="sm:w-1/3 w-full sm:pr-2">
+                                        <label for="model_number"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Model Number</label>
+                                            <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                @if ($psvdatamaster->model_number)
+                                                    <div class="form-control form-control-solid">{{ $psvdatamaster->model_number }}</div>
+                                                @else
+                                                    <div class="form-control form-control-solid">N/A</div>
+                                                @endif
+                                            </div>
+                                    </div>
+                                    <div class="sm:w-1/3 w-full sm:pr-2">
+                                        <label for="serial_number"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Serial Number</label>
+                                            <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                @if ($psvdatamaster->serial_number)
+                                                    <div class="form-control form-control-solid">{{ $psvdatamaster->serial_number }}</div>
+                                                @else
+                                                    <div class="form-control form-control-solid">N/A</div>
+                                                @endif
+                                            </div>
+                                    </div>
+                                </div>
                                 <div class="mb-6">
                                     <div class="row sm:flex">
-                                        <div class="sm:w-1/4 w-full sm:pr-2">
-                                            <label for="model_number"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Model Number</label>
-                                                <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                    @if ($psvdatamaster->model_number)
-                                                        <div class="form-control form-control-solid">{{ $psvdatamaster->model_number }}</div>
-                                                    @else
-                                                        <div class="form-control form-control-solid">N/A</div>
-                                                    @endif
-                                                </div>
-                                        </div>
-                                        <div class="sm:w-1/4 w-full sm:pr-2">
-                                            <label for="serial_number"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Serial Number</label>
-                                                <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                    @if ($psvdatamaster->serial_number)
-                                                        <div class="form-control form-control-solid">{{ $psvdatamaster->serial_number }}</div>
-                                                    @else
-                                                        <div class="form-control form-control-solid">N/A</div>
-                                                    @endif
-                                                </div>
-                                        </div>
-                                        <div class="sm:w-1/4 w-full sm:pr-2">
+                                        <div class="sm:w-1/3 w-full sm:pr-2">
                                             <label for="size_in"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Size In</label>
                                                 <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -346,7 +359,7 @@
                                                     @endif
                                                 </div>
                                         </div>
-                                        <div class="sm:w-1/4 w-full sm:pr-2">
+                                        <div class="sm:w-1/3 w-full sm:pr-2">
                                             <label for="rating_in"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rating In</label>
                                                 <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -357,11 +370,22 @@
                                                     @endif
                                                 </div>
                                         </div>
+                                        <div class="sm:w-1/3 w-full sm:pr-2">
+                                            <label for="condi_in"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Connection In</label>
+                                                <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    @if ($psvdatamaster->condi_in)
+                                                        <div class="form-control form-control-solid">{{ $psvdatamaster->condi_in }}</div>
+                                                    @else
+                                                        <div class="form-control form-control-solid">N/A</div>
+                                                    @endif
+                                                </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="mb-6">
                                     <div class="row sm:flex">
-                                        <div class="sm:w-1/4 w-full sm:pr-2">
+                                        <div class="sm:w-1/3 w-full sm:pr-2">
                                             <label for="size_out"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Size Out</label>
                                                 <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -372,7 +396,7 @@
                                                     @endif
                                                 </div>
                                         </div>
-                                        <div class="sm:w-1/4 w-full sm:pr-2">
+                                        <div class="sm:w-1/3 w-full sm:pr-2">
                                             <label for="rating_out"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rating Out</label>
                                                 <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -383,23 +407,12 @@
                                                     @endif
                                                 </div>
                                         </div>
-                                        <div class="sm:w-1/4 w-full sm:pr-2">
-                                            <label for="press"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Press. Setting (psi)</label>
+                                        <div class="sm:w-1/3 w-full sm:pr-2">
+                                            <label for="condi_out"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Connection  Out</label>
                                                 <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                    @if ($psvdatamaster->press)
-                                                        <div class="form-control form-control-solid">{{ $psvdatamaster->press }}</div>
-                                                    @else
-                                                        <div class="form-control form-control-solid">N/A</div>
-                                                    @endif
-                                                </div>
-                                        </div>
-                                        <div class="sm:w-1/4 w-full sm:pr-2">
-                                            <label for="vacuum"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vacuum Setting (psi)</label>
-                                                <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                    @if ($psvdatamaster->vacuum)
-                                                        <div class="form-control form-control-solid">{{ $psvdatamaster->vacuum }}</div>
+                                                    @if ($psvdatamaster->condi_out)
+                                                        <div class="form-control form-control-solid">{{ $psvdatamaster->condi_out }}</div>
                                                     @else
                                                         <div class="form-control form-control-solid">N/A</div>
                                                     @endif
@@ -409,6 +422,28 @@
                                 </div>
                                     <div class="mb-6">
                                         <div class="row sm:flex">
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
+                                                <label for="press"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Press. Setting (psi)</label>
+                                                    <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                        @if ($psvdatamaster->press)
+                                                            <div class="form-control form-control-solid">{{ $psvdatamaster->press }}</div>
+                                                        @else
+                                                            <div class="form-control form-control-solid">N/A</div>
+                                                        @endif
+                                                    </div>
+                                            </div>
+                                            <div class="sm:w-1/4 w-full sm:pr-2">
+                                                <label for="vacuum"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vacuum Setting (psi)</label>
+                                                    <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                        @if ($psvdatamaster->vacuum)
+                                                            <div class="form-control form-control-solid">{{ $psvdatamaster->vacuum }}</div>
+                                                        @else
+                                                            <div class="form-control form-control-solid">N/A</div>
+                                                        @endif
+                                                    </div>
+                                            </div>
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="psv"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PSV Style</label>
@@ -442,6 +477,10 @@
                                                         @endif
                                                     </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-6">
+                                        <div class="row sm:flex">
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="psv_capacity"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PSV Capacity</label>
@@ -453,10 +492,6 @@
                                                         @endif
                                                     </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-6">
-                                        <div class="row sm:flex">
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="psv_capacityunit"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PSV Capacity Unit</label>
@@ -484,7 +519,7 @@
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seat Type</label>
                                                     <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                         @if ($psvdatamaster->seat)
-                                                            <div class="form-control form-control-solid">{{ $psvdatamaster->Seat}}</div>
+                                                            <div class="form-control form-control-solid">{{ $psvdatamaster->seat}}</div>
                                                         @else
                                                             <div class="form-control form-control-solid">N/A</div>
                                                         @endif

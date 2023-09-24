@@ -81,45 +81,45 @@ class DashboardController extends Controller
         ], 200);
     }
 
-    public function getRequestOrderAmountStatus()
-    {
-        $rostatusTitle = [];
-        $rostatusTotal = [];
+    // public function getRequestOrderAmountStatus()
+    // {
+    //     $rostatusTitle = [];
+    //     $rostatusTotal = [];
 
-        $queries = RequestOrder::select('status', DB::raw('count(*) as total'))->groupBy('status')->get();
+    //     $queries = RequestOrder::select('status', DB::raw('count(*) as total'))->groupBy('status')->get();
 
-        foreach ($queries as $query) {
-            switch ($query->status) {
-                case 1:
-                    $statusTitle = "Received";
-                    break;
+    //     foreach ($queries as $query) {
+    //         switch ($query->status) {
+    //             case 1:
+    //                 $statusTitle = "Received";
+    //                 break;
                 
-                case 2:
-                    $statusTitle = "Work in progress";
-                    break;
+    //             case 2:
+    //                 $statusTitle = "Work in progress";
+    //                 break;
                 
-                case 3:
-                    $statusTitle = "Work completed";
-                    break;
+    //             case 3:
+    //                 $statusTitle = "Work completed";
+    //                 break;
                 
-                case 4:
-                    $statusTitle = "Invoiced";
-                    break;
+    //             case 4:
+    //                 $statusTitle = "Invoiced";
+    //                 break;
                 
-                default:
-                    $statusTitle = "Paid";
-                    break;
-            }
+    //             default:
+    //                 $statusTitle = "Paid";
+    //                 break;
+    //         }
 
-            $rostatusTitle[] = $statusTitle;
-            $rostatusTotal[] = $query->total;
-        }
+    //         $rostatusTitle[] = $statusTitle;
+    //         $rostatusTotal[] = $query->total;
+    //     }
 
-        return response()->json([
-            'labels' => $rostatusTitle,
-            'series' => $rostatusTotal,
-        ], 200);
-    }
+    //     return response()->json([
+    //         'labels' => $rostatusTitle,
+    //         'series' => $rostatusTotal,
+    //     ], 200);
+    // }
 
     public function indexExternal()
     {

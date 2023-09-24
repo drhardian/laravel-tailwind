@@ -14,11 +14,8 @@ use App\Http\Controllers\RequestOrderItemController;
 use App\Http\Controllers\UnitRateController;
 use App\Http\Controllers\PsvMasterData\PsvdatamasterController;
 use App\Http\Controllers\PsvMasterData\PsvdashboardController;
-
-
-
-
-
+use App\Models\PsvMasterData\Psvdashboard;
+use App\Http\Controllers\DropdownOptionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -111,12 +108,16 @@ Route::resource('psvdatamaster', PsvdatamasterController::class);
 Route::prefix('psvdatamaster')->controller(PsvdatamasterController::class)->group(function() {
     Route::get('show/dropdown', 'showOnDropdown')->name('psvdatamaster.show.dropdown');
     Route::get('show/datatable', 'showDatatable')->name('psvdatamaster.main.table');
-    Route::get('psvdatamaster/export', 'PsvMasterData\PsvdatamasterController@exportExcel')->name('psvdatamaster.export');
-    Route::post('psvdatamaster/import', 'PsvMasterData\svdatamasterController@importExcel')->name('general.import');
+    Route::get('psvdatamaster/export', 'exportExcel')->name('psvdatamaster.export');
+    Route::post('psvdatamaster/import', 'importExcel')->name('psvdatamaster.import');
 
 });
 
-Route::resource('psvdashboard', PsvdashboardController::class);
-    Route::prefix('psvdashboard')->controller(PsvdashboardController::class)->group(function() {
-        Route::get('psvdashboard', 'index')->name('psv.dashboard');
-    });
+Route::get('/psvdashboard', [PsvdashboardController::class, 'index'])->name('psvdashboard');
+// Route::get('/psvdashboard', 'getPSVOperational')->name('psvoperational');
+
+Route::prefix('dropdown/options/')->controller(DropdownOptionController::class)->group(function() {
+    Route::get('show', 'showOnDropdown')->name('general.options.showondropdown');
+    Route::post('new', 'storeFromDropdown')->name('general.options.storefromdropdown');
+});
+
