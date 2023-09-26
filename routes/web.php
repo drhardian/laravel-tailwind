@@ -17,6 +17,7 @@ use App\Http\Controllers\PsvMasterData\PsvdashboardController;
 use App\Models\PsvMasterData\Psvdashboard;
 use App\Http\Controllers\DropdownOptionController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PsvMasterData\PdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,8 +111,12 @@ Route::prefix('psvdatamaster')->controller(PsvdatamasterController::class)->grou
     Route::get('show/datatable', 'showDatatable')->name('psvdatamaster.main.table');
     Route::get('psvdatamaster/export', 'exportExcel')->name('psvdatamaster.export');
     Route::post('psvdatamaster/import', 'importExcel')->name('psvdatamaster.import');
+    Route::get('/psvdatamaster/{id}', 'cetakPdf')->name('psvdatamaster.pdf');
+    Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
 
 });
+
+// Route::get('/cetak-pdf/{id}', [PdfController::class, 'cetakPdf'])->name('pdf.cetak');
 
 Route::get('/psvdashboard', [PsvdashboardController::class, 'index'])->name('psvdashboard');
 // Route::get('/psvdashboard', 'getPSVOperational')->name('psvoperational');

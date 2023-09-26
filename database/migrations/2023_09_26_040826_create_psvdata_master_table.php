@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('flow')->nullable();
             $table->string('platform')->nullable();
             $table->string('tag_number')->nullable();
-            $table->text('operational')->nullable();
-            $table->text('integrity')->nullable();
+            $table->string('operational')->nullable();
+            $table->string('integrity')->nullable();
             $table->date('cert_date')->nullable();
             $table->string('cert_doc')->nullable();
             $table->date('exp_date')->nullable();
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('resetting')->nullable();
             $table->string('resize')->nullable();
             $table->string('demolish')->nullable();
-            $table->string('relief')->nullable();
+            $table->text('relief')->nullable();
             $table->string('note')->nullable();
             $table->string('cert_package')->nullable();
             $table->string('klarifikasi')->nullable();
@@ -46,7 +46,7 @@ return new class extends Migration
             $table->string('condi_out')->nullable();
             $table->string('press')->nullable();
             $table->string('vacuum')->nullable();
-            $table->string('psv')->nullable();
+            $table->text('psv')->nullable();
             $table->string('design')->nullable();
             $table->string('selection')->nullable();
             $table->string('psv_capacity')->nullable();
@@ -60,8 +60,10 @@ return new class extends Migration
             $table->string('guide_material')->nullable();
             $table->string('resilient_seat')->nullable();
             $table->string('bellow_material')->nullable();
-            $table->date('year_build')->nullable();
-            $table->date('year_install')->nullable();
+            // $table->date('year_build')->nullable();
+            // $table->date('year_install')->nullable();
+            $table->string('year_build')->nullable();
+            $table->string('year_install')->nullable();
             // PROCESS CONDITION
             $table->string('service')->nullable();
             $table->string('equip_number')->nullable();

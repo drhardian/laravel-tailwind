@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\PsvdatamasterImport;
 use App\Exports\PsvdatamasterExport;
+use App\Models\PsvMasterData\CertDoc;
+use PDF;
 
 
 class PsvdatamasterController extends Controller
@@ -57,16 +59,43 @@ class PsvdatamasterController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         DB::beginTransaction();
 
         try {
-            $psvdatamaster = Psvdatamaster::create($request->only('area','flow','platform','tag_number','operational','integrity','cert_date','cert_doc','exp_date','valve_number','status','deferal','resetting','resize','demolish','relief','note','cert_package','klarifikasi','by','manufacture','model_number','serial_number','size_in','rating_in','condi_in','size_out','rating_out','condi_out','press','vacuum','psv','design','selection','psv_capacity','psv_capacityunit','bonnet','seat','CAP','body_bonnet','disc_material','spring_material','guide_material','resilient_seat','bellow_material','year_build','year_install','service','equip_number','pid','size_basic','size_code','fluid','required','capacity_unit','mawp','operating_psi','back_psi','operating_temp','cold_diff','allowable','shutdown','valve_upstream','condi_upstream','valve_downstream','condi_downstream','scaffolding','spacer_inlet','spacer_outlet'));
+            // /**
+            //  * Handle upload pdf cert_doc
+            //  */
+            $file = $request->file('cert_doc');
+                $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
+                $path = 'public/assets/documents/psv/'; 
+
+            //     /**
+            //      * Upload an cert_doc to Storage
+            //      */
+                $file->storeAs($path, $fileName);
+                $fileName = 'storage/assets/documents/psv/'.$fileName;
+                // $validatedData['cert_doc'] = $fileName;
+            
+
+            $psvdatamaster = Psvdatamaster::create(array_merge(
+                [
+                'cert_doc'=>$fileName
+                ],
+                $request->only('area','flow','platform','tag_number','operational','integrity','cert_date','exp_date','valve_number','status','deferal','resetting','resize','demolish','relief','note','cert_package','klarifikasi','by','manufacture','model_number','serial_number','size_in','rating_in','condi_in','size_out','rating_out','condi_out','press','vacuum','psv','design','selection','psv_capacity','psv_capacityunit','bonnet','seat','CAP','body_bonnet','disc_material','spring_material','guide_material','resilient_seat','bellow_material','year_build','year_install','service','equip_number','pid','size_basic','size_code','fluid','required','capacity_unit','mawp','operating_psi','back_psi','operating_temp','cold_diff','allowable','shutdown','valve_upstream','condi_upstream','valve_downstream','condi_downstream','scaffolding','spacer_inlet','spacer_outlet')
+                )
+            ); 
             
             DB::commit();
 
             return response()->json([
-                'url' => route('psvdatamaster.show', [$psvdatamaster->id])
+                'message' => 'Psvdatamaster has been created!'
             ], 200);
+
+            // return response()->json([
+            //     'url' => route('psvdatamaster.show', [$psvdatamaster->id])
+            // ], 200);
+
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
             DB::rollBack();
@@ -76,33 +105,13 @@ class PsvdatamasterController extends Controller
             ], 500);
         }
 
-        // /**
-        //  * Handle upload pdf cert_doc
-        //  */
-        // if ($file = $request->file('cert_doc')) {
-        //     $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
-        //     $path = 'public/assets/documents/psv/'; 
+        
 
-        //     /**
-        //      * Upload an cert_doc to Storage
-        //      */
-        //     $file->storeAs($path, $fileName);
-        //     $fileName = 'storage/assets/documents/psv/'.$fileName;
-        //     $validatedData['cert_doc'] = $fileName;
-        // }
-        if ($request->file('cert_doc')->isValid()) {
-            $uploadedFile = $request->file('cert_doc');
-            $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
-            $filePath = $uploadedFile->storeAs('cert-docs', $fileName, 'public'); // Simpan file dalam direktori 'public/cert-docs'
+        // Psvdatamaster::create($validatedData);
 
-            // Lakukan sesuatu dengan $filePath, seperti menyimpannya ke database atau mengembalikannya sebagai respons
-            // Contoh: Simpan $filePath ke dalam database atau kirimkan sebagai respons
-            return response()->json(['message' => 'File berhasil diunggah', 'file_path' => $filePath]);
-        } else {
-            // Tangani jika pengunggahan gagal
-            return redirect()->back()->with('error', 'Gagal mengunggah file');
-        }
+        // return redirect()->back()->with('success', 'Psvdatamaster has been created!');
     }
+
 
     /**
      * Display the specified resource.
@@ -135,6 +144,29 @@ class PsvdatamasterController extends Controller
             'title' => $this->pageProfile,
             'psvdatamaster' => $psvdatamaster
         ]);
+    }
+
+    //PRINT PDF
+
+    public function cetakPdf($id)
+    {
+        // Ambil data yang akan dicetak
+        $psvdatamaster = Psvdatamaster::findOrFail($id);
+        // \Log::debug($psvdatamaster);
+
+    
+        // Cetak PDF dari tampilan (view) 'pdf.view' dengan data yang diambil
+        $pdf = PDF::loadView('customerasset_psv.psvdatamaster.pdfview', compact('psvdatamaster'));
+    
+        // Opsional: Atur ukuran dan orientasi halaman PDF
+        $pdf->setPaper('A4', 'portrait');
+    
+        // Opsional: Download PDF dengan nama yang sesuai
+        return $pdf->download('psvdatamaster.pdf');
+    
+        // Tampilkan PDF dalam browser
+        return $pdf->stream('psvdatamaster.pdf');
+        
     }
 
     /**
@@ -197,8 +229,8 @@ class PsvdatamasterController extends Controller
                 ['guide_material', $psvdatamaster->guide_material],
                 ['resilient_seat', $psvdatamaster->resilient_seat],
                 ['bellow_material', $psvdatamaster->bellow_material],
-                ['year_build', Carbon::parse($psvdatamaster->year_build)->format('d/m/Y')],
-                ['year_install', Carbon::parse($psvdatamaster->year_install)->format('d/m/Y')],
+                ['year_build', $psvdatamaster->year_build],
+                ['year_install', $psvdatamaster->year_install],
                 //Process Condition
                 ['service', $psvdatamaster->service],
                 ['equip_number', $psvdatamaster->equip_number],
@@ -236,7 +268,34 @@ class PsvdatamasterController extends Controller
         DB::beginTransaction();
 
         try {
-            $psvdatamaster->update($request->only('area','flow','platform','tag_number','operational','integrity','cert_date','cert_doc','exp_date','valve_number','status','deferal','resetting','resize','demolish','relief','note','cert_package','klarifikasi','by','manufacture','model_number','serial_number','size_in','rating_in','condi_in','size_out','rating_out','condi_out','press','vacuum','psv','design','selection','psv_capacity','psv_capacityunit','bonnet','seat','CAP','body_bonnet','disc_material','spring_material','guide_material','resilient_seat','bellow_material','year_build','year_install','service','equip_number','pid','size_basic','size_code','fluid','required','capacity_unit','mawp','operating_psi','back_psi','operating_temp','cold_diff','allowable','shutdown','valve_upstream','condi_upstream','valve_downstream','condi_downstream','scaffolding','spacer_inlet','spacer_outlet'));
+
+            if ($file = $request->file('cert_doc')) {
+                $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
+                $path = 'public/assets/documents/psv/';
+    
+                /**
+                 * Delete docin if exists.
+                 */
+                if($psvdatamaster->cert_doc){
+                    $result = str_replace('storage/', '', $psvdatamaster->cert_doc);
+                    Storage::delete('public/' . $result);
+                }
+    
+                /**
+                 * Store an docin to Storage
+                 */
+                $file->storeAs($path, $fileName);
+                $fileName = 'storage/assets/documents/products/'.$fileName;
+                // $validatedData['cert_doc'] = $fileName;
+            }
+        
+        Psvdatamaster::where('id', $psvdatamaster->id)->update(array_merge(
+            [
+            'cert_doc'=>$fileName
+            ],
+            $request->only('area','flow','platform','tag_number','operational','integrity','cert_date','exp_date','valve_number','status','deferal','resetting','resize','demolish','relief','note','cert_package','klarifikasi','by','manufacture','model_number','serial_number','size_in','rating_in','condi_in','size_out','rating_out','condi_out','press','vacuum','psv','design','selection','psv_capacity','psv_capacityunit','bonnet','seat','CAP','body_bonnet','disc_material','spring_material','guide_material','resilient_seat','bellow_material','year_build','year_install','service','equip_number','pid','size_basic','size_code','fluid','required','capacity_unit','mawp','operating_psi','back_psi','operating_temp','cold_diff','allowable','shutdown','valve_upstream','condi_upstream','valve_downstream','condi_downstream','scaffolding','spacer_inlet','spacer_outlet')
+            )
+        ); 
 
             DB::commit();
 
@@ -251,30 +310,44 @@ class PsvdatamasterController extends Controller
                 'message' => 'The server encountered an error and could not complete your request'
             ], 500);
         }
+    }
          /**
          * Handle upload an cert_doc
          */
-        if ($file = $request->file('cert_doc')) {
-            $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
-            $path = 'public/assets/documents/psv/';
+        // \Log::debug($request);
+        // if ($file = $request->file('cert_doc')) {
+        //     $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
+        //     $path = 'public/assets/documents/psv/';
 
-            /**
-             * Delete cert_doc if exists.
-             */
-            if($psvdatamaster->cert_doc){
-                $result = str_replace('storage/', '', $psvdatamaster->cert_doc);
-                Storage::delete('public/' . $result);
-            }
+        //     /**
+        //      * Delete cert_doc if exists.
+        //      */
+        //     if($psvdatamaster->cert_doc){
+        //         $result = str_replace('storage/', '', $psvdatamaster->cert_doc);
+        //         Storage::delete('public/' . $result);
+        //     }
 
-            /**
-             * Store an cert_doc to Storage
-             */
-            $file->storeAs($path, $fileName);
-            $fileName = 'storage/assets/documents/psv/'.$fileName;
-            $validatedData['cert_doc'] = $fileName;
-        }
+        //     /**
+        //      * Store an cert_doc to Storage
+        //      */
+        //     $file->storeAs($path, $fileName);
+        //     $fileName = 'storage/assets/documents/psv/'.$fileName;
+        //     $validatedData['cert_doc'] = $fileName;
+        // }
 
-    }
+    //     Psvdatamaster::where('id', $psvdatamaster->id)->update($validatedData);
+    // //     return response()->json([
+    //         'message' => 'psvdatamaster successfully updated'
+    //     ], 200);
+    // } catch (\Exception $e) {
+    //     DB::rollBack();
+    //     Log::error($e->getMessage());
+
+    //     return response()->json([
+    //         'message' => 'The server encountered an error and could not complete your request'
+    //     ], 500);
+    // }
+
 
     /**
      * Remove the specified resource from storage.
@@ -284,7 +357,12 @@ class PsvdatamasterController extends Controller
         DB::beginTransaction();
 
         try {
-            $psvdatamaster->delete();
+            if($psvdatamaster->cert_doc){
+                $result = str_replace('storage/', '', $psvdatamaster->cert_doc);
+                    Storage::delete('public/' . $result);
+            }
+
+            Psvdatamaster::destroy($psvdatamaster->id);
 
             DB::commit();
 
@@ -300,13 +378,36 @@ class PsvdatamasterController extends Controller
             ], 500);
         }
         /**
-         * Delete docin if exists.
+         * Delete cer_doc if exists.
          */
-        if($psvdatamaster->cert_doc){
-            $result = str_replace('storage/', '', $psvdatamaster->cert_doc);
-                Storage::delete('public/' . $result);
+        // if($psvdatamaster->cert_doc){
+        //     $result = str_replace('storage/', '', $psvdatamaster->cert_doc);
+        //         Storage::delete('public/' . $result);
+        // }
+
+    }
+
+    public function uploadCertDoc(Request $request)
+    {
+        $request->validate([
+            'cert_doc' => 'required|mimes:pdf,doc,docx|max:2048',
+        ]);
+
+        if ($request->hasFile('cert_doc')) {
+            $file = $request->file('cert_doc');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('cert_docs', $fileName); // Simpan file di direktori 'cert_docs'
+
+            // Simpan informasi dokumen ke tabel 'cert_doc'
+            $certDoc = new CertDoc();
+            $certDoc->name = $fileName;
+            $certDoc->file_path = $filePath;
+            $certDoc->save();
+
+            return redirect()->back()->with('success', 'Certificate document uploaded successfully.');
         }
 
+        return redirect()->back()->with('error', 'Failed to upload certificate document.');
     }
 
      /**
@@ -328,7 +429,10 @@ class PsvdatamasterController extends Controller
         $file = $request->file('filexls');
         Excel::import(new PsvdatamasterImport, $file);
 
-        return redirect()->back()->with('success', 'Data imported successfully');
+        // return redirect()->back()->with('success', 'Data imported successfully');
+        return response()->json([
+            'message' => 'Data imported successfully'
+        ], 200);
     }
 
     public function showDatatable()
@@ -342,7 +446,7 @@ class PsvdatamasterController extends Controller
             'tag_number',
             // 'operational',
             'integrity',
-            // 'cert_date',
+            'cert_date',
             // 'cert_doc',
             // 'exp_date',
             'valve_number',

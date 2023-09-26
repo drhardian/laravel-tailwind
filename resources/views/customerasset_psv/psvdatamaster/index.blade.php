@@ -41,7 +41,7 @@
                             <th>Tag Number</th>
                             {{-- <th>Operational</th> --}}
                             <th>Integrity Status</th>
-                            {{-- <th>Cert Date</th> --}}
+                            <th>Cert Date</th>
                             {{-- <th>Expired Date</th> --}}
                             <th>Valve Number</th>
                             <th>Status Update</th>
@@ -116,7 +116,7 @@
                     <!-- URL Area -->
                     <input type="hidden" id="form_url" readonly>
                     <!-- Form Area -->
-                    <form id="mainForm" method="post">
+                    <form id="mainForm" method="post" enctype="multipart/form-data">
                         @csrf
                             <!-- Tab Panel -->
                         <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
@@ -276,13 +276,22 @@
                                                     required placeholder="valve number ">
                                             </div>
                                          </div>
-                                         <div class="mb-6">
+                                         {{-- <form method="POST" action="{{ route('upload.cert.doc') }}" enctype="multipart/form-data">
+                                            @csrf --}}
+                                            <div class="mb-6">
+                                                <label for="cert_doc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Certificate Document</label>
+                                                <input type="file" id="cert_doc" name="cert_doc" accept=".pdf,.doc,.docx" class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required placeholder="cert_doc">
+                                            </div>
+                                        
+                                            {{-- <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">Upload</button> --}}
+                                        {{-- </form> --}}
+                                         {{-- <div class="mb-6">
                                             <label for="cert_doc"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Certificate Document</label>
                                                 <input type="file" id="cert_doc" name="cert_doc" accept=".pdf,.doc,.docx"
                                                 class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 required placeholder="cert_doc">
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     
                                     <!-- VALVE HISTORY -->
@@ -640,48 +649,16 @@
                                                 <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="year_build"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year Build</label>
-                                                        <div class="relative max-w-sm">
-                                                            <div
-                                                                class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                                    viewBox="0 0 20 20">
-                                                                    <path
-                                                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                                </svg>
-                                                            </div>
-                                                            <input 
-                                                                datepicker 
-                                                                id="year_build" 
-                                                                datepicker-format="dd/mm/yyyy" 
-                                                                name="year_build" 
-                                                                type="text"
-                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                placeholder="Select date">
-                                                        </div>
+                                                        <input type="text" id="year_build" name="year_build"
+                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required placeholder="year build">
                                                 </div>
                                                 <div class="sm:w-1/4 w-full sm:pr-2">
                                                     <label for="year_install"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year Install</label>
-                                                        <div class="relative max-w-sm">
-                                                            <div
-                                                                class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                                    viewBox="0 0 20 20">
-                                                                    <path
-                                                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                                </svg>
-                                                            </div>
-                                                            <input 
-                                                                datepicker 
-                                                                id="year_install" 
-                                                                datepicker-format="dd/mm/yyyy" 
-                                                                name="year_install" 
-                                                                type="text"
-                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                placeholder="Select date">
-                                                        </div>
+                                                        <input type="text" id="year_install" name="year_install"
+                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required placeholder="year install">
                                                 </div>
                                             </div>
                                         </div>
@@ -1043,11 +1020,11 @@
                         name: 'integrity',
                         class: 'all'
                     },
-                    // {
-                    //     data: 'cert_date',
-                    //     name: 'cert_date',
-                    //     class: 'all'
-                    // },
+                    {
+                        data: 'cert_date',
+                        name: 'cert_date',
+                        class: 'all'
+                    },
                     // {
                     //     data: 'exp_date',
                     //     name: 'exp_date',

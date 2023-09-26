@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\PsvMasterData\Psvdatamaster;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Response;
+use Illuminate\Support\Carbon;
 
 class PsvdashboardController extends Controller
 {
@@ -38,14 +40,24 @@ class PsvdashboardController extends Controller
         $noCount = Psvdatamaster::where('operational', 'No')->count();
 
         // UNTUK MENJUMLAHKAN TOTAL INTEGRITY PER ITEM
-        $psvTotalGreen = $this->getTotalByOperational('Green');
-        $psvTotalRed = $this->getTotalByOperational('Red');
-        $greenCount = Psvdatamaster::where('integrity', 'Green')->count();
-        $redCount = Psvdatamaster::where('integrity', 'Red')->count();
+        // $psvTotalGreen = $this->getTotalByOperational('Green');
+        // $psvTotalRed = $this->getTotalByOperational('Red');
+        // $greenCount = Psvdatamaster::where('integrity', 'Green')->count();
+        // $redCount = Psvdatamaster::where('integrity', 'Red')->count();
+        
         $psvintegritycount = DB::table('psvdata_master')
         ->select('integrity', DB::raw('COUNT(*) as jumlahintegrity'))
         ->groupBy('integrity')
         ->get();
+
+        // $psvintegritywarnacount = DB::table('psvdata_master')
+        // ->select(
+        // DB::raw('SUM(CASE WHEN integrity = "green" THEN 1 ELSE 0 END) as jumlah_green'),
+        // DB::raw('SUM(CASE WHEN integrity = "red" THEN 1 ELSE 0 END) as jumlah_red')
+        // )
+        // ->get();
+
+        // \Log::debug($psvintegritycount);
         
         // UNTUK MENJUMLAHKAN TOTAL AREA PER ITEM
         $psvareacount = DB::table('psvdata_master')
@@ -64,7 +76,12 @@ class PsvdashboardController extends Controller
         ->select('psv', DB::raw('COUNT(*) as jumlahstyle'))
         ->groupBy('psv')
         ->get();
-        
+
+        // UNTUK MENGETAHUI SISA HARI 
+        // $psvcertdatecount = DB::table('psvdata_master')
+        // ->select('psv', DB::raw('DATEDIFF(cert_date,DATE(NOW()) as jumlahhari'))
+        // ->where('id')
+        // ->get();
 
         // UNTUK MENJUMLAHKAN TOTAL PSV SIZE PER ITEM
         $psvsizecount = DB::table('psvdata_master')
@@ -79,8 +96,11 @@ class PsvdashboardController extends Controller
         ->get();
 
         // UNTUK MENJUMLAHKAN TOTAL PLATFORM PER ITEM
+        $psvplatformcount = DB::table('psvdata_master')
+        ->select('platform', DB::raw('COUNT(*) as jumlahplatform'))
+        ->groupBy('platform')
+        ->get();
 
-    
         // $contractsTotal = Contract::get()->count();
         // $roTotal = RequestOrder::get()->count();
         // $roOnProgressTotal = RequestOrder::where('status',2)->get()->count();
@@ -104,11 +124,12 @@ class PsvdashboardController extends Controller
                 'noCount',
 
                 //INTEGRITY
-                'psvTotalGreen',
-                'psvTotalRed',
-                'greenCount',
-                'redCount',
+                // 'psvTotalGreen',
+                // 'psvTotalRed',
+                // 'greenCount',
+                // 'redCount',
                 'psvintegritycount',
+                // 'psvintegritywarnacount',
 
                 // AREA
                 'psvareacount',
@@ -126,7 +147,10 @@ class PsvdashboardController extends Controller
                 'psvbrandcount',
                 
                 //PLATFORM
-                // 'psvDataPerMonth',
+                'psvplatformcount',
+
+                // 'psvcertdatecount',
+
             )
         );
     }
@@ -136,6 +160,44 @@ class PsvdashboardController extends Controller
         $operatotal = Psvdatamaster::where('operational', $operational)->count();
         return $operatotal;
     }
+
+    public function date(Request $request): Response
+    {
+        $query = Psvdatamaster::query();
+        $dateFilter = $request->date_filter;
+
+        switch($dateFilter){
+            case 'today':
+                $query->whereDate('cert_date',Carbon::today());
+                break;
+            case 'yesterday':
+                $query->wheredate('cert_date',Carbon::yesterday());
+                break;
+            case 'this_week':
+                $query->whereBetween('cert_date',[Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()]);
+                break;
+            case 'last_week':
+                $query->whereBetween('cert_date',[Carbon::now()->subWeek(),Carbon::now()]);
+                break;
+            case 'this_month':
+                $query->whereMonth('cert_date',Carbon::now()->month);
+                break;
+            case 'last_month':
+                $query->whereMonth('cert_date',Carbon::now()->subMonth()->month);
+                break;
+            case 'this_year':
+                $query->whereYear('cert_date',Carbon::now()->year);
+                break;
+            case 'last_year':
+                $query->whereYear('cert_date',Carbon::now()->subYear()->year);
+                break;                       
+        }
+            
+        $psvdatamasterfilter = $query->get();
+
+        return response()->view('index',compact('psvdatamasterfilter','dateFilter'));
+    }
+
 
     // public function getTotalByArea($area)
     // {

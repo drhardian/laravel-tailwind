@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="min-h-screen w-full mx-auto max-w-4xl lg:max-w-7xl">
-        <div class="p-4 mt-2">
+        {{-- <div class="p-4 mt-2">
             <h3 class="mb-2 hidden md:block text-2xl font-medium text-gray-900 dark:text-white">{{ $title }}</h3>
 
             <div class="flex justify-between mb-7">
@@ -18,14 +18,14 @@
                     Print
                 </a>
             </div>
-        </div>
+        </div> --}}
 
         <div>
             <div class="flex justify-center mt-5">
                 <div
                     class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <!-- Tab Panel -->
-                    <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+                    {{-- <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
                             data-tabs-toggle="#myTabContent" role="tablist">
                             <li class="mr-2" role="presentation">
@@ -53,7 +53,7 @@
                                     aria-controls="condi" aria-selected="false">CONDITION REPLACEMENT</button>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
 
                     <div id="myTabContent">
                         <!-- GENERAL INFORMATION -->
@@ -61,7 +61,7 @@
                             <div class="space-y-6">
                                 <!-- LOCATION INFORMATION -->
                                 <div class="mb-6">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LOCATION INFORMATION</label>
+                                    <label class="block mb-2 text-sm font-medium text-blue-900 dark:text-white">LOCATION INFORMATION</label>
                                     <div class="row sm:flex">
                                         <div class="sm:w-1/4 w-full sm:pr-2">
                                             <label for="area"
@@ -112,7 +112,7 @@
 
                                 <!-- CERTIFICATION INFORMATION -->
                                 <div class="mb-6">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CERTIFICATION INFORMATION</label>
+                                    <label class="block mb-2 text-sm font-medium text-blue-900 dark:text-white">CERTIFICATION INFORMATION</label>
                                     <div class="mb-6">
                                         <label for="operational"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Operational</label>
@@ -311,6 +311,8 @@
                         <!-- VALVE INFORMATION -->
                         <div class id="valve" role="tab" aria-labelledby="valve-tab">
                             <div class="space-y-6">
+                                <div class="mb-6">
+                                    <label class="block mb-2 text-sm font-medium text-blue-900 dark:text-white">VALVE INFORMATION</label>
                                 <div class="row sm:flex">
                                     <div class="sm:w-1/3 w-full sm:pr-2">
                                         <label for="manufacture"
@@ -645,6 +647,8 @@
                         <div class id="process" role="tab" aria-labelledby="process-tab">
                             <div class="space-y-6">
                                 <div class="mb-6">
+                                    <label class="block mb-2 text-sm font-medium text-blue-900 dark:text-white">PROCESS CONDITION</label>
+                                <div class="mb-6">
                                     <div class="row sm:flex">
                                         <div class="sm:w-1/4 w-full sm:pr-2">
                                             <label for="service"
@@ -820,6 +824,8 @@
                         <!-- CONDITION REPLACEMENT -->
                         <div class id="condi" role="tab" aria-labelledby="condi-tab">
                             <div class="space-y-6">
+                                <div class="mb-6">
+                                    <label class="block mb-2 text-sm font-medium text-blue-900 dark:text-white">CONDITION REPLACEMENT</label>
                                 <div class="mb-6">
                                     <div class="row sm:flex">
                                         <div class="sm:w-1/2 w-full sm:pr-2">

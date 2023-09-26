@@ -172,6 +172,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ])->toArray(),
 
@@ -190,6 +191,7 @@ return [
         // 'Example' => App\Facades\Example::class,
             'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
             'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+            'PDF' => Barryvdh\DomPDF\Facade::class,
         
     ])->toArray(),
 

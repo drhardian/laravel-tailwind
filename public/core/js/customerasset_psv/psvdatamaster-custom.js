@@ -38,10 +38,19 @@ saveRecord = () => {
         template: '#create-template',
     }).then((result) => {
         if (result.isConfirmed) {
+            const formInput = $('#mainForm')[0];
+            const formData = new FormData(formInput);
+
             $.ajax({
                 type: "post",
                 url: $('#form_url').val(),
-                data: $('#mainForm').serialize() + '&_token=' + CSRF_TOKEN + '&_method=' + $('#mainForm').attr('method'),
+                data: formData,
+                // data: $('#mainForm').serialize() + '&_token=' + CSRF_TOKEN + '&_method=' + $('#mainForm').attr('method'),
+                contentType: false,
+                processData: false,
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content'),
+                },
                 beforeSend: function() {
                     Swal.fire({
                         title: 'Please wait...',
@@ -193,6 +202,8 @@ let closeUploadXlsIco = document.getElementById('closeUploadXlsIco');
 
 openUploadForm = () => {
     modalUploadShowAndReset();
+    $('.modal-title').text('Import PSV Data Master');
+    $('#form_url').val(url);
 }
 
 modalUploadShowAndReset = () => {

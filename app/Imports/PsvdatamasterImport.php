@@ -18,18 +18,30 @@ class PsvdatamasterImport implements ToModel, WithHeadingRow, WithCalculatedForm
     // */
     public function model(array $row)
     {
+        // dd([
+        //     Carbon::parse($row['cert_date']),
+        //     Carbon::parse($row['exp_date']),
+        //     Carbon::parse($row['year_build']),
+        //     Carbon::parse($row['year_install']),
+        // ]);
+
+        // $certDate = strtotime($row['cert_date']);
+        // dd($row['cert_date']);
+
+        // dd(Carbon::createFromFormat('Y-m-d',$row['cert_date'])->format('Y-m-d'));
+
         return new Psvdatamaster([
                 //General Information
-                'id' => $row['id'],
+                // 'id' => $row['id'],
                 'area' => $row['area'],
                 'flow' => $row['flow_station'],
                 'platform' => $row['platform'],
                 'tag_number'=> $row['tag_number'],
                 'operational'=> $row['operational'],
                 'integrity'=> $row['integrity'],
-                'cert_date'=> $row['cert_date'] ? Carbon::createFromDate(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['cert_date']))->format('Y-m-d') : Carbon::make(null),
+                'cert_date'=> Carbon::createFromFormat('Y-m-d',$row['cert_date'])->format('Y-m-d'),
                 'cert_doc'=> $row['certificate_document'],
-                'exp_date'=> $row['exp_date'] ? Carbon::createFromDate(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['exp_date']))->format('Y-m-d') : Carbon::make(null),
+                'exp_date'=> Carbon::createFromFormat('Y-m-d',$row['exp_date'])->format('Y-m-d'),
                 'valve_number'=> $row['valve_number'],
                 'status' => $row['status_update'],
                 'deferal' => $row['deferal'],
@@ -74,8 +86,8 @@ class PsvdatamasterImport implements ToModel, WithHeadingRow, WithCalculatedForm
                 'guide_material' => $row['guide_material'],
                 'resilient_seat' => $row['resilient_seat'],
                 'bellow_material' => $row['bellow_material'],
-                'year_build' => $row['year_build'] ? Carbon::createFromDate(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['year_build']))->format('Y') : Carbon::make(null),
-                'year_install' => $row['year_install'] ? Carbon::createFromDate(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['year_install']))->format('Y') : Carbon::make(null),
+                'year_build' => $row['year_build'],
+                'year_install' => $row['year_install'],
                 //Process Condition
                 'service' => $row['service'],
                 'equip_number' => $row['equipment_number'],
@@ -105,8 +117,8 @@ class PsvdatamasterImport implements ToModel, WithHeadingRow, WithCalculatedForm
                 'scaffolding' => $row['scaffolding'],
                 'spacer_inlet' => $row['use_spacer_inlet'],
                 'spacer_outlet' => $row['use_spacer_outlet'],
-                'created_at' => $row['created_at'],
-                'updated_at' => $row['updated_at'],
+                // 'created_at' => $row['created_at'],
+                // 'updated_at' => $row['updated_at'],
         ]);
     }
 }
