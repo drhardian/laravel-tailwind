@@ -451,7 +451,7 @@ class PsvdatamasterController extends Controller
             // 'exp_date',
             'valve_number',
             'status',
-            'by',
+            // 'by',
             // 'deferal',
             // 'resetting',
             // 'resize',
