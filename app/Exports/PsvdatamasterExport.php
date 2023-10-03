@@ -12,7 +12,7 @@ class PsvdatamasterExport implements FromCollection, WithHeadings
     {
         return [
             //General Information
-            'id',
+            // 'id',
             'area',
             'flow_station',
             'platform',
@@ -87,8 +87,8 @@ class PsvdatamasterExport implements FromCollection, WithHeadings
             'scaffolding',
             'use_spacer_inlet',
             'use_spacer_outlet',
-            'created_at',
-            'updated_at',
+            // 'created_at',
+            // 'updated_at',
         ];
     }
     /**
