@@ -41,7 +41,7 @@
                             <th>Tag Number</th>
                             {{-- <th>Operational</th> --}}
                             <th>Integrity Status</th>
-                            <th>Cert Date</th>
+                            {{-- <th>Cert Date</th> --}}
                             {{-- <th>Expired Date</th> --}}
                             <th>Valve Number</th>
                             <th>Status Update</th>
@@ -1020,11 +1020,11 @@
                         name: 'integrity',
                         class: 'all'
                     },
-                    {
-                        data: 'cert_date',
-                        name: 'cert_date',
-                        class: 'all'
-                    },
+                    // {
+                    //     data: 'cert_date',
+                    //     name: 'cert_date',
+                    //     class: 'all'
+                    // },
                     // {
                     //     data: 'exp_date',
                     //     name: 'exp_date',
