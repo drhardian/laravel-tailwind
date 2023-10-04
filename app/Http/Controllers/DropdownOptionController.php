@@ -26,7 +26,7 @@ class DropdownOptionController extends Controller
 
         foreach($queries as $query){
             $response[] = array(
-                "id" => $query->id,
+                "id" => request('dataChange')==="false"?$query->id:$query->title,
                 "text" => $query->title
             );
         }
