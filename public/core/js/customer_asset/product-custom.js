@@ -180,3 +180,45 @@ formUploadReset = () => {
     $("#filexls").val('');
 }
 
+preview_image = () => {
+    var total_file = document.getElementById("photo_devices").files.length;
+    for (var i = 0; i < total_file; i++) {
+        var nameFile = event.target.files[i].name;
+        var nameFileSpaces = nameFile.replace(/\s/g, "");
+        var fileNameWithoutExtension = nameFileSpaces.replace(/\.[^/.]+$/, "");
+
+        var imageId = "image-item-" + fileNameWithoutExtension;
+        var imageIdArray = i;
+
+        $("#image_preview").append(
+            "<div id='" +
+                imageId +
+                "' class='image-item flex flex-col items-center'><img src='" +
+                URL.createObjectURL(event.target.files[i]) +
+                "' alt='Preview' class='max-w-full h-auto'><input type='text' name='input-" +
+                imageId +
+                "' placeholder='Image Description' class='mt-2 p-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'><a href='javascript:void(0)' class='delete-button mt-2 text-red-500' onclick=\"delete_image('" +
+                nameFile +
+                "','" +
+                imageId +
+                "')\">Delete</a>    </div>"
+        );
+    }
+}
+
+delete_image = (nameFile,imageId) => {
+    removeFile(nameFile);
+    $("#" + imageId).remove();
+}
+
+removeFile = (name) => {
+    var attachments = document.getElementById("photo_devices").files; // <-- reference your file input here
+    var fileBuffer = new DataTransfer();
+    // append the file list to an array iteratively
+    for (let i = 0; i < attachments.length; i++) {
+        // Exclude file in specified index
+        if (name !== attachments[i].name) fileBuffer.items.add(attachments[i]);
+    }
+    // Assign buffer to file input
+    document.getElementById("photo_devices").files = fileBuffer.files; // <-- according to your file input reference
+}

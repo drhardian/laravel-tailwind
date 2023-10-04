@@ -39,18 +39,16 @@
                     class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                         <li>
-                            <a href="#"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                onclick="openForm('{{ route('cina.products.store') }}')">New Product</a>
+                            <span
+                                class="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                                onclick="openForm('{{ route('cina.products.store') }}')">New Product</span>
                         </li>
                         <li>
-                            <a href="#"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                onclick="openUploadForm()">Import</a>
+                            <span class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                onclick="openUploadForm()">Import</span>
                         </li>
                         <li>
-                            <a href="#"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Export</a>
+                            <span class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Export</span>
                         </li>
                     </ul>
                 </div>
@@ -311,6 +309,12 @@
                                         class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                         id="additionalinfo-tab" data-tabs-target="#additionalinfo" type="button" role="tab"
                                         aria-controls="additionalinfo" aria-selected="false">ADDITIONAL INFORMATION</button>
+                                </li>
+                                <li class="mr-2" role="presentation">
+                                    <button
+                                        class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                        id="uploadfiles-tab" data-tabs-target="#uploadfiles" type="button" role="tab"
+                                        aria-controls="uploadfiles" aria-selected="false">UPLOAD FILES</button>
                                 </li>
                             </ul>
                         </div>
@@ -868,6 +872,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="hidden p-2 rounded-lg" id="uploadfiles" role="tabpanel" aria-labelledby="uploadfiles-tab">
+                                <div class="w-full mb-3">
+                                    <input type="file" id="photo_devices" name="photo_devices[]" multiple="multiple" onchange="preview_image()">
+                                </div>
+                                <div class="grid grid-cols-4 gap-4" id="image_preview"></div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -1041,8 +1051,10 @@
                 placeholder: 'Search here..',
             });
 
-            $('.select2-custom-ajax').on('select2:select', function(e) {
-                var paramsData = e.params.data.text;
+            $('.select2-custom-ajax').on('select2:close', function(e) {
+                // var paramsData = e.params.data.text;
+                let getText = $(this).find(':selected');
+                var paramsData = getText[0].label;
 
                 if (paramsData) {
                     let url = $(this).attr("data-store");
@@ -1054,7 +1066,7 @@
                             method: "POST",
                             data: {
                                 _token: CSRF_TOKEN,
-                                newoption: e.params.data.text
+                                newoption: paramsData
                             },
                             dataType: "json",
                             success: function(response) {
