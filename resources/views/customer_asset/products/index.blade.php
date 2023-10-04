@@ -39,18 +39,16 @@
                     class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                         <li>
-                            <a href="#"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                onclick="openForm('{{ route('cina.products.store') }}')">New Product</a>
+                            <span
+                                class="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                                onclick="openForm('{{ route('cina.products.store') }}')">New Product</span>
                         </li>
                         <li>
-                            <a href="#"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                onclick="openUploadForm()">Import</a>
+                            <span class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                onclick="openUploadForm()">Import</span>
                         </li>
                         <li>
-                            <a href="#"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Export</a>
+                            <span class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Export</span>
                         </li>
                     </ul>
                 </div>
@@ -160,7 +158,7 @@
                                     <select name="cina_product_origin_id" id="cina_product_origin_id"
                                         class="select2-custom-ajax" 
                                         data-show="{{ route('cinaproductorigin.showondropdown') }}" 
-                                        data-store="{{ route('cinaproductorigin.storefromdropdown') }}"
+                                        {{-- data-store="{{ route('cinaproductorigin.storefromdropdown') }}" --}}
                                         data-form="cina_product_origin_id"></select>
                                 </div>
                                 <div class="sm:w-1/3 w-full m-1 my-3">
@@ -311,6 +309,12 @@
                                         class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                         id="additionalinfo-tab" data-tabs-target="#additionalinfo" type="button" role="tab"
                                         aria-controls="additionalinfo" aria-selected="false">ADDITIONAL INFORMATION</button>
+                                </li>
+                                <li class="mr-2" role="presentation">
+                                    <button
+                                        class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                        id="uploadfiles-tab" data-tabs-target="#uploadfiles" type="button" role="tab"
+                                        aria-controls="uploadfiles" aria-selected="false">UPLOAD FILES</button>
                                 </li>
                             </ul>
                         </div>
@@ -544,6 +548,7 @@
                                         Please select item origin first
                                     </span>
                                 </div>
+                                <!-- Spare Unit Form Container -->
                                 <div class="space-y-4 hidden" id="spare_unit_form">
                                     <div class="w-full">
                                         <label for="cina_asset_type_id"
@@ -557,6 +562,7 @@
                                     </div>
                                     <!-- Asset Valve Form -->
                                     <div class="space-y-4 hidden" id="asset_valve_form">
+                                        <!-- equipment,valve type,valve size -->
                                         <div class="row sm:flex space-x-2">
                                             <div class="sm:w-1/3 w-full">
                                                 <label for="equipment"
@@ -592,22 +598,285 @@
                                                     data-form="valve_size"></select>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="space-y-4 hidden" id="asset_instrument_form">
-                                        <div class="row sm:flex">
+                                        <!-- valve rating,end connection,serial number -->
+                                        <div class="row sm:flex space-x-2">
                                             <div class="sm:w-1/3 w-full">
-                                                instrument
+                                                <label for="valve_rating"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Valve Rating</label>
+                                                <select name="valve_rating" id="valve_rating"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-valverating"
+                                                    data-change="true"
+                                                    data-form="valve_rating"></select>
+                                            </div>
+                                            <div class="sm:w-1/3 w-full">
+                                                <label for="end_connection"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">End Connection</label>
+                                                <select name="end_connection" id="end_connection"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-endconnection"
+                                                    data-change="true"
+                                                    data-form="end_connection"></select>
+                                            </div>
+                                            <div class="sm:w-1/3 w-full">
+                                                <label for="serial_number"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Serial Number</label>
+                                                <select name="serial_number" id="serial_number"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-serialnumber"
+                                                    data-change="true"
+                                                    data-form="serial_number"></select>
+                                            </div>
+                                        </div>
+                                        <!-- valve model,valve brand,valve condition -->
+                                        <div class="row sm:flex space-x-2">
+                                            <div class="sm:w-1/3 w-full">
+                                                <label for="valve_model"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Model</label>
+                                                <select name="valve_model" id="valve_model"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-valvemodel"
+                                                    data-change="true"
+                                                    data-form="valve_model"></select>
+                                            </div>
+                                            <div class="sm:w-1/3 w-full">
+                                                <label for="brand"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
+                                                <select name="brand" id="brand"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-brand"
+                                                    data-change="true"
+                                                    data-form="brand"></select>
+                                            </div>
+                                            <div class="sm:w-1/3 w-full">
+                                                <label for="valve_condition"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Condition</label>
+                                                <select name="valve_condition" id="valve_condition"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-valvecondition"
+                                                    data-change="true"
+                                                    data-form="valve_condition"></select>
+                                            </div>
+                                        </div>
+                                        <!-- actuator brand,actuator type,actuator size -->
+                                        <div class="row sm:flex space-x-2">
+                                            <div class="sm:w-1/3 w-full">
+                                                <label for="actuator_brand"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Actuator Brand</label>
+                                                <select name="actuator_brand" id="actuator_brand"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-actuatorbrand"
+                                                    data-change="true"
+                                                    data-form="actuator_brand"></select>
+                                            </div>
+                                            <div class="sm:w-1/3 w-full">
+                                                <label for="actuator_type"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Actuator Type</label>
+                                                <select name="actuator_type" id="actuator_type"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-actuatortype"
+                                                    data-change="true"
+                                                    data-form="actuator_type"></select>
+                                            </div>
+                                            <div class="sm:w-1/3 w-full">
+                                                <label for="actuator_size"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Actuator Size</label>
+                                                <select name="actuator_size" id="actuator_size"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-actuatorsize"
+                                                    data-change="true"
+                                                    data-form="actuator_size"></select>
+                                            </div>
+                                        </div>
+                                        <!-- fail position,actuator condition,positioner brand -->
+                                        <div class="row sm:flex space-x-2">
+                                            <div class="sm:w-1/3 w-full">
+                                                <label for="fail_position"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fail Position</label>
+                                                <select name="fail_position" id="fail_position"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-failposition"
+                                                    data-change="true"
+                                                    data-form="fail_position"></select>
+                                            </div>
+                                            <div class="sm:w-1/3 w-full">
+                                                <label for="actuator_condition"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Actuator Condition</label>
+                                                <select name="actuator_condition" id="actuator_condition"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-actuatorcondition"
+                                                    data-change="true"
+                                                    data-form="actuator_condition"></select>
+                                            </div>
+                                            <div class="sm:w-1/3 w-full">
+                                                <label for="positioner_brand"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Positioner Brand</label>
+                                                <select name="positioner_brand" id="positioner_brand"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-positionerbrand"
+                                                    data-change="true"
+                                                    data-form="positioner_brand"></select>
+                                            </div>
+                                        </div>
+                                        <!-- positioner model,input signal,positioner condition -->
+                                        <div class="row sm:flex space-x-2">
+                                            <div class="sm:w-1/3 w-full">
+                                                <label for="positioner_model"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Positioner Model</label>
+                                                <select name="positioner_model" id="positioner_model"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-positionermodel"
+                                                    data-change="true"
+                                                    data-form="positioner_model"></select>
+                                            </div>
+                                            <div class="sm:w-1/3 w-full">
+                                                <label for="input_signal"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Input Signal</label>
+                                                <select name="input_signal" id="input_signal"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-inputsignal"
+                                                    data-change="true"
+                                                    data-form="input_signal"></select>
+                                            </div>
+                                            <div class="sm:w-1/3 w-full">
+                                                <label for="positioner_condition"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Positioner Condition</label>
+                                                <select name="positioner_condition" id="positioner_condition"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-positionercondition"
+                                                    data-change="true"
+                                                    data-form="positioner_condition"></select>
+                                            </div>
+                                        </div>
+                                        <!-- other accessories -->
+                                        <div class="row sm:flex space-x-2">
+                                            <div class="sm:w-1/3 w-full">
+                                                <label for="other_accessories"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Other Accessories</label>
+                                                <select name="other_accessories" id="other_accessories"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-otheraccessories"
+                                                    data-change="true"
+                                                    data-form="other_accessories"></select>
+                                            </div>
+                                            <div class="sm:w-1/3 w-full"></div><div class="sm:w-1/3 w-full"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Asset Instrument Form -->
+                                    <div class="space-y-4 hidden" id="asset_instrument_form">
+                                        <!-- instrument type,instrument brand -->
+                                        <div class="row sm:flex space-x-2">
+                                            <div class="sm:w-1/2 w-full">
+                                                <label for="instrument_type"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Instrument Type</label>
+                                                <select name="instrument_type" id="instrument_type"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-instrumenttype"
+                                                    data-change="true"
+                                                    data-form="instrument_type"></select>
+                                            </div>
+                                            <div class="sm:w-1/2 w-full">
+                                                <label for="instrument_brand"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Instrument Brand</label>
+                                                <select name="instrument_brand" id="instrument_brand"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-instrumentbrand"
+                                                    data-change="true"
+                                                    data-form="instrument_brand"></select>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Asset Automation Form -->
                                     <div class="space-y-4 hidden" id="asset_automation_form">
-                                        <div class="row sm:flex">
-                                            <div class="sm:w-1/3 w-full">
-                                                automation
+                                        <div class="row sm:flex space-x-2">
+                                            <div class="sm:w-1/2 w-full">
+                                                <label for="automation_brand"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Instrument Brand</label>
+                                                <select name="automation_brand" id="automation_brand"
+                                                    class="select2-general-dropdown" 
+                                                    data-show="{{ route('general.options.showondropdown') }}" 
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="cina-automationbrand"
+                                                    data-change="true"
+                                                    data-form="automation_brand"></select>
                                             </div>
+                                            <div class="sm:w-1/2 w-full"></div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Bulk Material Form Container -->
+                                <div class="space-y-4 hidden" id="bulk_material_form">
+                                    <div class="w-full">
+                                        <label for="bulk_material_type"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type of Bulk Material</label>
+                                        <select name="bulk_material_type" id="bulk_material_type"
+                                            class="select2-general-dropdown" 
+                                            data-show="{{ route('general.options.showondropdown') }}" 
+                                            data-store="{{ route('general.options.storefromdropdown') }}"
+                                            data-alias="cina-bulkmaterialtype"
+                                            data-change="true"
+                                            data-form="bulk_material_type"></select>
+                                    </div>
+                                </div>
+                                <!-- Spare Parts Form Container -->
+                                <div class="space-y-4 hidden" id="spare_parts_form">
+                                    <div class="row sm:flex space-x-2">
+                                        <div class="sm:w-1/2 w-full m-1 my-3">
+                                            <label for="sparepart_description"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                            <input type="text" id="sparepart_description" name="sparepart_description"
+                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        </div>
+                                        <div class="sm:w-1/2 w-full m-1 my-3">
+                                            <label for="sparepart_number"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Part Number</label>
+                                            <input type="text" id="sparepart_number" name="sparepart_number"
+                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hidden p-2 rounded-lg" id="uploadfiles" role="tabpanel" aria-labelledby="uploadfiles-tab">
+                                <div class="w-full mb-3">
+                                    <input type="file" id="photo_devices" name="photo_devices[]" multiple="multiple" onchange="preview_image()">
+                                </div>
+                                <div class="grid grid-cols-4 gap-4" id="image_preview"></div>
                             </div>
                         </div>
                     </form>
@@ -782,8 +1051,10 @@
                 placeholder: 'Search here..',
             });
 
-            $('.select2-custom-ajax').on('select2:select', function(e) {
-                var paramsData = e.params.data.text;
+            $('.select2-custom-ajax').on('select2:close', function(e) {
+                // var paramsData = e.params.data.text;
+                let getText = $(this).find(':selected');
+                var paramsData = getText[0].label;
 
                 if (paramsData) {
                     let url = $(this).attr("data-store");
@@ -795,7 +1066,7 @@
                             method: "POST",
                             data: {
                                 _token: CSRF_TOKEN,
-                                newoption: e.params.data.text
+                                newoption: paramsData
                             },
                             dataType: "json",
                             success: function(response) {
@@ -820,8 +1091,27 @@
                     type: "get",
                     url: url,
                     success: function (response) {
-                        $('#default_additional_form').addClass('hidden');
-                        $('#' + response + '_form').removeClass('hidden');
+                        $('#default_additional_form').hide();
+                        
+                        if( response == "spare_unit" ) {
+                            $('#bulk_material_form').hide();
+                            $('#spare_parts_form').hide();
+                            $('#' + response + '_form').show();
+                        } else if( response == "bulk_material" ) {
+                            $('#spare_unit_form').hide();
+                            $('#spare_parts_form').hide();
+                            $('#' + response + '_form').show();
+                        } else if( response == "spare_parts" ) {
+                            $('#spare_unit_form').hide();
+                            $('#bulk_material_form').hide();
+                            $('#' + response + '_form').show();
+                        } else {
+                            $('#spare_unit_form').hide();
+                            $('#bulk_material_form').hide();
+                            $('#spare_parts_form').hide();
+                            
+                            $('#default_additional_form').show();
+                        }
                     }
                 });
             });
