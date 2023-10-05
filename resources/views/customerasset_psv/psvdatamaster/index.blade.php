@@ -1541,12 +1541,24 @@
                 contentType: false,
                 processData: false,
                 enctype: "multipart/form-data",
+                beforeSend: function() {
+                    Swal.fire({
+                        title: 'Please wait...',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        },
+                    })
+                },
                 success: function(response) {
+                    Swal.close();
                     toastr.success(response.message);
                     closeUploadXlsIco.click();
                     $('#main-table').DataTable().ajax.reload();
                 },
                 error: function(xhr) {
+                    Swal.close();
                     toastr.error(xhr.responseJSON.message);
                 }
             });

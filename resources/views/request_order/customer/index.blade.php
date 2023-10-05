@@ -35,13 +35,11 @@
     </div>
 
     <!-- Floating button on mobile screen -->
-    <!--
     <button
-        class="flex sm:hidden fixed z-50 bottom-10 right-8 bg-blue-700 w-12 h-12 rounded-full drop-shadow-lg justify-center items-center text-white text-xl hover:bg-blue-800 hover:drop-shadow-2xl animate-bounce duration-300"
-        data-modal-target="newCustomerModal" data-modal-toggle="newCustomerModal">
+        onclick="openForm(`{{ route('client.store') }}`)"
+        class="flex sm:hidden fixed z-50 bottom-10 right-8 bg-blue-700 w-12 h-12 rounded-full drop-shadow-lg justify-center items-center text-white text-xl hover:bg-blue-800 hover:drop-shadow-2xl animate-bounce duration-300">
         <i class="fa-solid fa-plus"></i>
     </button>
-    -->
 
     <!-- New Customer modal -->
     <div id="newModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" role="dialog" aria-modal="true"

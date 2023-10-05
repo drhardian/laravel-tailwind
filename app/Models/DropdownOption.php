@@ -9,5 +9,4 @@ class DropdownOption extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
 }

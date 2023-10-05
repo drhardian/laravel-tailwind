@@ -14,6 +14,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\PsvdatamasterImport;
 use App\Exports\PsvdatamasterExport;
 use App\Models\PsvMasterData\CertDoc;
+use Exception;
+use ParseError;
 use PDF;
 
 
@@ -425,14 +427,22 @@ class PsvdatamasterController extends Controller
      */
     public function importExcel(Request $request)
     {
-        // \Log::debug($request);
-        $file = $request->file('filexls');
-        Excel::import(new PsvdatamasterImport, $file);
+        try {
+            Excel::import(new PsvdatamasterImport, $request->file('filexls'));
 
-        // return redirect()->back()->with('success', 'Data imported successfully');
-        return response()->json([
-            'message' => 'Data imported successfully'
-        ], 200);
+            return response()->json([
+                'message' => 'Data imported successfully'
+            ], 200);
+        } catch (ParseError $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
+
     }
 
     public function showDatatable()

@@ -6,42 +6,27 @@ use App\Models\PsvMasterData\Psvdatamaster;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
 
-
-class PsvdatamasterImport implements ToModel, WithHeadingRow, WithCalculatedFormulas
+class PsvdatamasterImport implements ToModel, WithHeadingRow
 {
-    // /**
-    // * @param array $row
-    // *
-    // * @return \Illuminate\Database\Eloquent\Model|null
-    // */
+    /**
+    * @param array $row
+    *
+    * @return \Illuminate\Database\Eloquent\Model|null
+    */
     public function model(array $row)
     {
-        // dd([
-        //     Carbon::parse($row['cert_date']),
-        //     Carbon::parse($row['exp_date']),
-        //     Carbon::parse($row['year_build']),
-        //     Carbon::parse($row['year_install']),
-        // ]);
-
-        // $certDate = strtotime($row['cert_date']);
-        // dd($row['cert_date']);
-
-        // dd(Carbon::createFromFormat('Y-m-d',$row['cert_date'])->format('Y-m-d'));
-
         return new Psvdatamaster([
-                //General Information
-                // 'id' => $row['id'],
+                #General Information
                 'area' => $row['area'],
                 'flow' => $row['flow_station'],
                 'platform' => $row['platform'],
                 'tag_number'=> $row['tag_number'],
                 'operational'=> $row['operational'],
                 'integrity'=> $row['integrity'],
-                'cert_date'=> Carbon::createFromFormat('Y-m-d',$row['cert_date'])->format('Y-m-d'),
+                'cert_date'=> !empty($row['cert_date']) ? Carbon::createFromFormat('Y-m-d',$row['cert_date'])->format('Y-m-d'):NULL,
                 'cert_doc'=> $row['certificate_document'],
-                'exp_date'=> Carbon::createFromFormat('Y-m-d',$row['exp_date'])->format('Y-m-d'),
+                'exp_date'=> !empty($row['exp_date']) ? Carbon::createFromFormat('Y-m-d',$row['exp_date'])->format('Y-m-d'):NULL,
                 'valve_number'=> $row['valve_number'],
                 'status' => $row['status_update'],
                 'deferal' => $row['deferal'],
@@ -53,27 +38,20 @@ class PsvdatamasterImport implements ToModel, WithHeadingRow, WithCalculatedForm
                 'cert_package'  => $row['cert_package'],
                 'klarifikasi' => $row['klarifikasi'],
                 'by' => $row['by'],
-
-                //Valve Information
-               
+                #Valve Information
                 'manufacture' => $row['manufacture'],
                 'model_number' => $row['model_number'],
                 'serial_number' => $row['serial_number'],
-                // 'size_in' => doubleval($row['size_in']),
                 'size_in' => $row['size_in'],
                 'rating_in' => $row['rating_in'],
                 'condi_in' => $row['conection_in'],
-                // 'size_out' => doubleval($row['size_out']),
                 'size_out' => $row['size_out'],
                 'rating_out' => $row['rating_out'],
                 'condi_out' => $row['conection_out'],
-                // 'press'  => doubleval($row['press_setting']),
-                // 'vacuum'  => doubleval($row['vacuum_setting']),
                 'press'  => $row['press'],
                 'vacuum'  => $row['vacuum'],
                 'psv' => $row['psv_style'],
                 'design' => $row['orifice_design'],
-                // 'selection' => doubleval($row['orifice_selection']),
                 'selection' => $row['selection'],
                 'psv_capacity' => $row['psv_capacity'],
                 'psv_capacityunit' => $row['psv_capacity_unit'],
@@ -88,7 +66,7 @@ class PsvdatamasterImport implements ToModel, WithHeadingRow, WithCalculatedForm
                 'bellow_material' => $row['bellow_material'],
                 'year_build' => $row['year_build'],
                 'year_install' => $row['year_install'],
-                //Process Condition
+                #Process Condition
                 'service' => $row['service'],
                 'equip_number' => $row['equipment_number'],
                 'pid' => $row['pid'],
@@ -97,18 +75,13 @@ class PsvdatamasterImport implements ToModel, WithHeadingRow, WithCalculatedForm
                 'fluid' => $row['fluid'],
                 'required' => $row['required_capacity'],
                 'capacity_unit' => $row['capacity_unit'],
-                // 'mawp' => doubleval($row['mawp']),
-                // 'operating_psi' => doubleval($row['operating_pressure']),
                 'mawp' => $row['mawp'],
                 'operating_psi' => $row['operating_psi'],
                 'back_psi' => $row['back_pressure'],
                 'operating_temp' => $row['operating_temp'],
-                // 'cold_diff' => doubleval($row['cold_diff_test_press']),
-                // 'allowable' => intval($row['allowable_over_press']),
                 'cold_diff' => $row['cold_diff'],
                 'allowable' => $row['allowable'],
-                //Condition Replacement
-                // 'shutdown' =>  intval($row['shutdown_category']),
+                #Condition Replacement
                 'shutdown' =>  $row['shutdown'],
                 'valve_upstream' => $row['isolation_valve_upstream'],
                 'condi_upstream' => $row['condition_upstream'],
@@ -117,8 +90,6 @@ class PsvdatamasterImport implements ToModel, WithHeadingRow, WithCalculatedForm
                 'scaffolding' => $row['scaffolding'],
                 'spacer_inlet' => $row['use_spacer_inlet'],
                 'spacer_outlet' => $row['use_spacer_outlet'],
-                // 'created_at' => $row['created_at'],
-                // 'updated_at' => $row['updated_at'],
         ]);
     }
 }

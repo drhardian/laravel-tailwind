@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Document</title>
+    <title>X-Apps</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -76,8 +76,8 @@
         class="bg-white dark:bg-gray-900 sticky w-full z-40 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" class="flex items-center">
-                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Flowbite Logo">
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">X-apps</span>
+                <img src="{{ asset('theme/assets/images/ptcs.png') }}" class="h-10 mr-3" alt="Flowbite Logo">
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">AMS</span>
             </a>
             <div class="flex md:order-2">
                 <button data-collapse-toggle="navbar-sticky" type="button"
@@ -130,7 +130,8 @@
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                                 stroke-width="2" d="m1 1 4 4 4-4" />
-                                        </svg></button>
+                                        </svg>
+                                    </button>
                                     <div id="requestOrderDropdown"
                                         class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                                         <ul class="pt-2 text-sm text-gray-700 dark:text-gray-200">
@@ -222,43 +223,76 @@
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                                 stroke-width="2" d="m1 1 4 4 4-4" />
-                                        </svg></button>
+                                        </svg>
+                                    </button>
                                     <div id="customerAssetDropdown"
                                         class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                        <ul class="pt-2 text-sm text-gray-700 dark:text-gray-200">
-                                            <li>
-                                                <button id="customerAssetPSVDropdownButton" data-dropdown-toggle="customerAssetPSVDropdown"
-                                                    data-dropdown-placement="right-start" type="button"
-                                                    class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">PSV Data Master<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
-                                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2" d="m1 1 4 4 4-4" />
-                                                    </svg></button>
-                                                <div id="customerAssetPSVDropdown"
-                                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                                    <ul class="text-sm text-gray-700 dark:text-gray-200">
-                                                        <li>
-                                                            <a href="{{ route('psvdashboard') }}"
-                                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Dashboard</a>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="text-sm text-gray-700 dark:text-gray-200">
-                                                        <li>
-                                                            <a href="{{ route('psvdatamaster.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Input Data</a>
-                                                        </li>
-                                                        {{-- <li>
-                                                            <a href="{{ route('valve.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Valve Information</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="{{ route('process.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Process Condition</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="{{ route('condi.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Condition Replacement</a>
-                                                        </li> --}}
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                        <div>
+                                            <ul class="text-sm text-gray-700 dark:text-gray-200">
+                                                <li>
+                                                    <button id="customerInventoryDropdownButton" data-dropdown-toggle="customerInventoryDropdown"
+                                                        data-dropdown-placement="right-start" type="button"
+                                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Inventory Asset<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
+                                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="m1 1 4 4 4-4" />
+                                                        </svg>
+                                                    </button>
+                                                    <div id="customerInventoryDropdown"
+                                                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                                        <div>
+                                                            <ul class="text-sm text-gray-700 dark:text-gray-200">
+                                                                <li>
+                                                                    <a href="{{ route('cina.products.index') }}"
+                                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Spare Unit - Valve</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <button id="customerAssetPSVDropdownButton" data-dropdown-toggle="customerAssetPSVDropdown"
+                                                        data-dropdown-placement="right-start" type="button"
+                                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">PSV Data Master<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
+                                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="m1 1 4 4 4-4" />
+                                                        </svg></button>
+                                                    <div id="customerAssetPSVDropdown"
+                                                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                                        <ul class="text-sm text-gray-700 dark:text-gray-200">
+                                                            <li>
+                                                                <a href="{{ route('psvdashboard') }}"
+                                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Dashboard</a>
+                                                            </li>
+                                                        </ul>
+                                                        <ul class="text-sm text-gray-700 dark:text-gray-200">
+                                                            <li>
+                                                                <a href="{{ route('psvdatamaster.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Input Data</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                {{-- <li>
+                                                    <a href="{{ route('unitrate.index') }}"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Unit Rates</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ route('activity.index') }}"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Activities</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ route('itemtype.index') }}"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Item Types</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ route('item.index') }}"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Item</a>
+                                                </li> --}}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
                                 <!-- Reporting/Doc.Control -->
                                 <li>
                                     <a href="#"
@@ -334,8 +368,26 @@
                     </li>
                     <!-- Setup -->
                     <li>
-                        <a href="#"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Setup</a>
+                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbarST"
+                            class="flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Setup
+                            <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                        <div id="dropdownNavbarST"
+                            class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-400"
+                                aria-labelledby="dropdownLargeButton">
+                                <!-- Table Map -->
+                                <li>
+                                    <a href="{{ route('tablemap.index') }}"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Table Map</a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
             </div>
