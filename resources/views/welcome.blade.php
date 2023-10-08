@@ -111,7 +111,7 @@
                     </div>
                 </div>
                 <div class="w-1/2 md:block hidden">
-                    <img class="rounded-2xl" src="{{ asset('login-img.jpg') }}" alt="">
+                    <img class="rounded-2xl" src="{{ asset('theme/assets/images/ptcs.png') }}" alt="">
                 </div>
             </div>
         </div>
