@@ -95,7 +95,7 @@
                         @csrf
                         <div class="mb-6">
                             <div class="row sm:flex">
-                                <div class="sm:w-1/2 w-full sm:pr-2">
+                                <div class="sm:w-1/2 w-full sm:pl-2 sm:pt-0 pt-6">
                                     <label for="contract_id"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">#Contract</label>
                                     <select class="select2-ajax" id="contract_id" name="contract_id">

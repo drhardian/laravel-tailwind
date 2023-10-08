@@ -74,10 +74,10 @@
 <body>
     <header
         class="bg-white dark:bg-gray-900 sticky w-full z-40 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
             <a href="#" class="flex items-center">
-                <img src="{{ asset('theme/assets/images/ptcs.png') }}" class="h-10 mr-3" alt="Flowbite Logo">
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">AMS</span>
+                <img src="{{ asset('theme/assets/images/ptcs.png') }}" class="h-11 mr-3" alt="PTCS Logo">
+                {{-- <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">AMS</span> --}}
             </a>
             <div class="flex md:order-2">
                 <button data-collapse-toggle="navbar-sticky" type="button"
@@ -216,7 +216,7 @@
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Work Progress</a>
                                 </li>
                                 <!-- Customer Asset -->
-                                <li>
+                                <li aria-labelledby="dropdownNavbarLink">
                                     <button id="customerAssetDropdownButton" data-dropdown-toggle="customerAssetDropdown"
                                         data-dropdown-placement="right-start" type="button"
                                         class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Customer Asset<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
@@ -244,10 +244,37 @@
                                                             <ul class="text-sm text-gray-700 dark:text-gray-200">
                                                                 <li>
                                                                     <a href="{{ route('cina.products.index') }}"
+                                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Dashboard</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="{{ route('cina.products.index') }}"
                                                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Spare Unit - Valve</a>
                                                                 </li>
                                                             </ul>
                                                         </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <button id="customerAssetPSVDropdownButton" data-dropdown-toggle="customerAssetPSVDropdown"
+                                                        data-dropdown-placement="right-start" type="button"
+                                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">PSV Data Master<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
+                                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="m1 1 4 4 4-4" />
+                                                        </svg></button>
+                                                    <div id="customerAssetPSVDropdown"
+                                                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                                        <ul class="text-sm text-gray-700 dark:text-gray-200">
+                                                            <li>
+                                                                <a href="{{ route('psvdashboard') }}"
+                                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Dashboard</a>
+                                                            </li>
+                                                        </ul>
+                                                        <ul class="text-sm text-gray-700 dark:text-gray-200">
+                                                            <li>
+                                                                <a href="{{ route('psvdatamaster.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Overview</a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                 </li>
                                                 {{-- <li>
@@ -301,11 +328,6 @@
                                 aria-labelledby="dropdownLargeButton">
                                 <li>
                                     <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Management
-                                        Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="#"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Task Manager</a>
                                 </li>
                                 <li>
@@ -319,6 +341,10 @@
                                 <li>
                                     <a href="#"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Field Services</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">e-Procurement</a>
                                 </li>
                                 <li>
                                     <a href="#"

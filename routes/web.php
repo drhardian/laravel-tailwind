@@ -4,7 +4,6 @@ use App\Http\Controllers\CustomerAsset\CinaAssetTypeController;
 use App\Http\Controllers\CustomerAsset\CinaProductOriginController;
 use App\Http\Controllers\CustomerAsset\CinaProductUomController;
 use App\Http\Controllers\CustomerAsset\ProductController;
-use App\Http\Controllers\DropdownOptionController;
 use App\Http\Controllers\RequestOrder\ActivityController;
 use App\Http\Controllers\RequestOrder\AuthController;
 use App\Http\Controllers\RequestOrder\ClientController;
@@ -18,7 +17,11 @@ use App\Http\Controllers\RequestOrder\RequestOrderController;
 use App\Http\Controllers\RequestOrder\RequestOrderItemController;
 use App\Http\Controllers\RequestOrder\UnitRateController;
 use App\Http\Controllers\MappingTable\MappingTableController;
+use App\Http\Controllers\PsvMasterData\PsvdatamasterController;
+use App\Http\Controllers\PsvMasterData\PsvdashboardController;
+use App\Http\Controllers\DropdownOptionController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PsvMasterData\PdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -143,6 +146,21 @@ Route::prefix('cinaproductuom')->controller(CinaProductUomController::class)->gr
     Route::get('selectbox/show', 'showOnDropdown')->name('cinaproductuom.showondropdown');
     Route::post('selectbox/new', 'storeFromDropdown')->name('cinaproductuom.storefromdropdown');
 });
+Route::resource('psvdatamaster', PsvdatamasterController::class);
+Route::prefix('psvdatamaster')->controller(PsvdatamasterController::class)->group(function() {
+    Route::get('show/dropdown', 'showOnDropdown')->name('psvdatamaster.show.dropdown');
+    Route::get('show/datatable', 'showDatatable')->name('psvdatamaster.main.table');
+    Route::get('psvdatamaster/export', 'exportExcel')->name('psvdatamaster.export');
+    Route::post('psvdatamaster/import', 'importExcel')->name('psvdatamaster.import');
+    Route::get('/psvdatamaster/{id}', 'cetakPdf')->name('psvdatamaster.pdf');
+    Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
+
+});
+
+// Route::get('/cetak-pdf/{id}', [PdfController::class, 'cetakPdf'])->name('pdf.cetak');
+
+Route::get('/psvdashboard', [PsvdashboardController::class, 'index'])->name('psvdashboard');
+// Route::get('/psvdashboard', 'getPSVOperational')->name('psvoperational');
 
 Route::prefix('dropdown/options/')->controller(DropdownOptionController::class)->group(function() {
     Route::get('show', 'showOnDropdown')->name('general.options.showondropdown');
