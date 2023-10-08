@@ -74,10 +74,10 @@
 <body>
     <header
         class="bg-white dark:bg-gray-900 sticky w-full z-40 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
             <a href="#" class="flex items-center">
-                <img src="{{ asset('theme/assets/images/ptcs.png') }}" class="h-10 mr-3" alt="Flowbite Logo">
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">AMS</span>
+                <img src="{{ asset('theme/assets/images/ptcs.png') }}" class="h-11 mr-3" alt="PTCS Logo">
+                {{-- <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">AMS</span> --}}
             </a>
             <div class="flex md:order-2">
                 <button data-collapse-toggle="navbar-sticky" type="button"
@@ -244,6 +244,10 @@
                                                             <ul class="text-sm text-gray-700 dark:text-gray-200">
                                                                 <li>
                                                                     <a href="{{ route('cina.products.index') }}"
+                                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Dashboard</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="{{ route('cina.products.index') }}"
                                                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Spare Unit - Valve</a>
                                                                 </li>
                                                             </ul>
@@ -268,7 +272,7 @@
                                                         </ul>
                                                         <ul class="text-sm text-gray-700 dark:text-gray-200">
                                                             <li>
-                                                                <a href="{{ route('psvdatamaster.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Input Data</a>
+                                                                <a href="{{ route('psvdatamaster.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Overview</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -324,11 +328,6 @@
                                 aria-labelledby="dropdownLargeButton">
                                 <li>
                                     <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Management
-                                        Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="#"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Task Manager</a>
                                 </li>
                                 <li>
@@ -342,6 +341,10 @@
                                 <li>
                                     <a href="#"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Field Services</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">e-Procurement</a>
                                 </li>
                                 <li>
                                     <a href="#"

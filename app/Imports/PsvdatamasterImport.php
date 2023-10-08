@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Models\DropdownOption;
 use App\Models\PsvMasterData\Psvdatamaster;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -16,6 +17,84 @@ class PsvdatamasterImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
+        #area
+        DropdownOption::updateOrCreate(
+            [ 'title' => $row['area'], 'dropdown_alias' => 'psv-area' ]
+        );
+
+        #flow station
+        DropdownOption::updateOrCreate(
+            [ 'title' => $row['flow_station'], 'dropdown_alias' => 'psv-flow' ]
+        );
+
+        #platform
+        DropdownOption::updateOrCreate(
+            [ 'title' => $row['platform'], 'dropdown_alias' => 'psv-platform' ]
+        );
+
+        #demolish
+        if(!empty($row['demolish'])) {
+            DropdownOption::updateOrCreate(
+                [ 'title' => $row['demolish'], 'dropdown_alias' => 'psv-demolish' ]
+            );
+        }
+        
+        #manufacture
+        if(!empty($row['manufacture'])) {
+            DropdownOption::updateOrCreate(
+                [ 'title' => $row['manufacture'], 'dropdown_alias' => 'psv-manufacture' ]
+            );
+        }
+        
+        #size in
+        if(!empty($row['size_in']) && $row['size_in'] != "-") {
+            DropdownOption::updateOrCreate(
+                [ 'title' => $row['size_in'], 'dropdown_alias' => 'psv-size_in' ]
+            );
+        }
+        
+        #rating in
+        if(!empty($row['rating_in']) && $row['rating_in'] != "-") {
+            DropdownOption::updateOrCreate(
+                [ 'title' => $row['rating_in'], 'dropdown_alias' => 'psv-rating_in' ]
+            );
+        }
+        
+        #connection in
+        if(!empty($row['conection_in']) && $row['conection_in'] != "-") {
+            DropdownOption::updateOrCreate(
+                [ 'title' => $row['conection_in'], 'dropdown_alias' => 'psv-condi_in' ]
+            );
+        }
+        
+        #size out
+        if(!empty($row['size_out']) && $row['size_out'] != "-") {
+            DropdownOption::updateOrCreate(
+                [ 'title' => $row['size_out'], 'dropdown_alias' => 'psv-size_out' ]
+            );
+        }
+
+        #rating out
+        if(!empty($row['rating_out']) && $row['rating_out'] != "-") {
+            DropdownOption::updateOrCreate(
+                [ 'title' => $row['rating_out'], 'dropdown_alias' => 'psv-rating_out' ]
+            );
+        }
+        
+        #connection out
+        if(!empty($row['conection_out']) && $row['conection_out'] != "-") {
+            DropdownOption::updateOrCreate(
+                [ 'title' => $row['conection_out'], 'dropdown_alias' => 'psv-condi_out' ]
+            );
+        }
+        
+        #psv style
+        if(!empty($row['psv_style'])) {
+            DropdownOption::updateOrCreate(
+                [ 'title' => $row['psv_style'], 'dropdown_alias' => 'psv-style' ]
+            );
+        }
+
         return new Psvdatamaster([
                 #General Information
                 'area' => $row['area'],
@@ -24,9 +103,9 @@ class PsvdatamasterImport implements ToModel, WithHeadingRow
                 'tag_number'=> $row['tag_number'],
                 'operational'=> $row['operational'],
                 'integrity'=> $row['integrity'],
-                'cert_date'=> !empty($row['cert_date']) ? Carbon::createFromFormat('Y-m-d',$row['cert_date'])->format('Y-m-d'):NULL,
+                'cert_date'=> $row['cert_date'] !== null ? date('Y-m-d',strtotime($row['cert_date'])) : Carbon::now()->make(null),
                 'cert_doc'=> $row['certificate_document'],
-                'exp_date'=> !empty($row['exp_date']) ? Carbon::createFromFormat('Y-m-d',$row['exp_date'])->format('Y-m-d'):NULL,
+                'exp_date'=> $row['exp_date'] !== null ? date('Y-m-d',strtotime($row['exp_date'])) : Carbon::now()->make(null),
                 'valve_number'=> $row['valve_number'],
                 'status' => $row['status_update'],
                 'deferal' => $row['deferal'],
