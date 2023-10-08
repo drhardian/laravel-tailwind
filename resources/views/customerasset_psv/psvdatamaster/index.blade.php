@@ -39,10 +39,10 @@
                             <th>Flow Station</th>
                             <th>Platform</th>
                             <th>Tag Number</th>
-                            {{-- <th>Operational</th> --}}
-                            <th>Integrity Status</th>
-                            {{-- <th>Cert Date</th> --}}
-                            {{-- <th>Expired Date</th> --}}
+                            <th>Operational</th>
+                            <th>Integrity</th>
+                            <th>Cert Date</th>
+                            <th>Expired Date</th>
                             <th>Valve Number</th>
                             <th>Status Update</th>
                             {{-- <th>Deferal</th>
@@ -56,7 +56,10 @@
                             {{-- <th>By</th> --}}
                             {{-- <th>Created At</th> --}}
                             <th>Updated At</th>
-                            <th></th>
+                            <th>Action</th>
+                            <th>search1</th>
+                            <th>search2</th>
+                            {{-- <th>search3</th> --}}
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -301,13 +304,9 @@
                                             <div class="sm:w-1/4 w-full sm:pr-2">
                                                 <label for="status"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Update</label>
-                                                    <select id="status" name="status"
-                                                        class="select2-general-dropdown"
-                                                        data-show="{{ route ('general.options.showondropdown') }}"
-                                                        data-store="{{ route ('general.options.storefromdropdown') }}"
-                                                        data-alias="psv-status"
-                                                        data-change="true"
-                                                        data-form="status">
+                                                    <select id="status" name="status" class="select2">
+                                                        <option value="ACTIVE">ACTIVE</option>
+                                                        <option value="IN ACTIVE">IN ACTIVE</option>
                                                     </select>
                                             </div>
                                             
@@ -989,58 +988,86 @@
                     url: "{{ route('psvdatamaster.main.table') }}",
                 },
                 columns: [
-                    //GENERAL INFORMATION
                     {
-                        data: 'area',
-                        name: 'area',
-                        className: ['text-center', 'min-tablet']
+                        data: 'area', name: 'area',
+                        className: 'dt-body-center min-tablet',
+                        width: '10%'
                     },
                     {
-                        data: 'flow',
-                        name: 'flow',
-                        className: ['text-center', 'min-tablet']
+                        data: 'flow', name: 'flow',
+                        className: 'dt-body-center min-tablet',
+                        width: '15%'
                     },
                     {
-                        data: 'platform',
-                        name: 'platform',
-                        className: ['text-center', 'min-tablet']
+                        data: 'platform', name: 'platform',
+                        className: 'dt-body-center min-tablet',
+                        width: '15%'
                     },
                     {
-                        data: 'tag_number',
-                        name: 'tag_number',
-                        class: 'all'
+                        data: 'tag_number', name: 'tag_number',
+                        class: 'dt-body-center min-tablet',
+                        width: '20%'
                     },
+                    {
+                        data: 'operational', name: 'operational',
+                        class: 'dt-body-center min-tablet'
+                    },
+                    {
+                        data: 'integrity', name: 'integrity',
+                        class: 'dt-body-center min-tablet'
+                    },
+                    {
+                        data: 'cert_date', name: 'cert_date',
+                        class: 'dt-body-center tablet-l',
+                        width: '10%'
+                    },
+                    {
+                        data: 'exp_date', name: 'exp_date',
+                        class: 'dt-body-center tablet-l',
+                        width: '10%'
+                    },
+                    {
+                        data: 'valve_number', name: 'valve_number',
+                        class: 'dt-body-center tablet-l',
+                        width: '15%'
+                    },
+                    {
+                        data: 'status_search', name: 'status',
+                        class: 'dt-body-center min-tablet',
+                        searchable: true
+
+                    },
+                    {
+                        data: 'updated_at', name: 'updated_at',
+                        class: ['dt-body-center', 'tablet-l']
+                    },
+                    {
+                        data: 'actions', name: 'actions',
+                        class: ['text-center', 'min-tablet'],
+                        orderable: false,
+                        sortable: false,
+                    },
+                    {
+                        data: 'integrity_search', name: 'integrity_search',
+                        visible: false,
+                        searchable: true
+                    },
+                    {
+                        data: 'operational_search', name: 'operational_search',
+                        visible: false,
+                        searchable: true
+                    },
+                    {
+                        data: 'status', name: 'status',
+                        visible: false,
+                        searchable: true
+                    },
+
                     // {
                     //     data: 'operational',
                     //     name: 'operational',
                     //     class: 'all'
                     // },
-                    {
-                        data: 'integrity',
-                        name: 'integrity',
-                        class: 'all'
-                    },
-                    // {
-                    //     data: 'cert_date',
-                    //     name: 'cert_date',
-                    //     class: 'all'
-                    // },
-                    // {
-                    //     data: 'exp_date',
-                    //     name: 'exp_date',
-                    //     class: 'all'
-                    // },
-                    {
-                        data: 'valve_number',
-                        name: 'valve_number',
-                        class: 'all'
-                    },
-                    {
-                        data: 'status',
-                        name: 'status',
-                        className: ['text-center', 'min-tablet']
-
-                    },
                     // {
                     //     data: 'deferal',
                     //     name: 'deferal',
@@ -1327,57 +1354,8 @@
                     //     name: 'spacer_outlet',
                     //     class: 'all'
                     // },
-
-                    {
-                        data: 'updated_at',
-                        name: 'updated_at',
-                        class: ['text-center', 'min-tablet']
-                    },
-                    {
-                        data: 'actions',
-                        name: 'actions',
-                        class: ['text-center', 'min-tablet'],
-                        orderable: false,
-                        sortable: false,
-                    },
                 ],
-                columnDefs: [{
-                        target: [0, 1, 2, 3, 4, 5, 6],
-                        className: "dt-head-center",
-                    },
-                    {
-                        target: [6],
-                        width: "5%",
-                    },
-                    {
-                        target: [0, 1, 3, 5, 6],
-                        className: "dt-center",
-                    },
-                ]
             });
-
-            // $('#area').select2({
-            //     allowClear: true,
-            //     width: 'resolve',
-            //     placeholder: 'Select here..',
-            //     dropdownCssClass: 'bigdrop',
-                
-            // });
-            // $('#platform').select2({
-            //     allowClear: true,
-            //     width: 'resolve',
-            //     placeholder: 'Select here..',
-            //     dropdownCssClass: 'bigdrop',
-                
-            // });
-
-            // $('#flow').select2({
-            //     allowClear: true,
-            //     width: 'resolve',
-            //     placeholder: 'Select here..',
-            //     dropdownCssClass: 'bigdrop',
-                
-            // });
 
             $('.select2-general-dropdown').select2({
                 allowClear: true,
@@ -1453,78 +1431,15 @@
                 }
             });
 
-            // $('#status').select2({
-            //     allowClear: true,
-            //     width: 'resolve',
-            //     placeholder: 'Select here..',
-            //     dropdownCssClass: 'bigdrop',
-            // });
-
-            // $('#demolish').select2({
-            //     allowClear: true,
-            //     width: 'resolve',
-            //     placeholder: 'Select here..',
-            //     dropdownCssClass: 'bigdrop',
-                
-            // });
-
-            // $('#relief').select2({
-            //     allowClear: true,
-            //     width: 'resolve',
-            //     placeholder: 'Select here..',
-            //     dropdownCssClass: 'bigdrop',
-                
-            // });
-
-            // $('#size_in').select2({
-            //     allowClear: true,
-            //     width: 'resolve',
-            //     placeholder: 'Select here..',
-            //     dropdownCssClass: 'bigdrop',
-                
-            // });
-
-            // $('#rating_in').select2({
-            //     allowClear: true,
-            //     width: 'resolve',
-            //     placeholder: 'Select here..',
-            //     dropdownCssClass: 'bigdrop',
-                
-            // });
-            // $('#condi_in').select2({
-            //     allowClear: true,
-            //     width: 'resolve',
-            //     placeholder: 'Select here..',
-            //     dropdownCssClass: 'bigdrop',
-                
-            // });
-
-            // $('#size_out').select2({
-            //     allowClear: true,
-            //     width: 'resolve',
-            //     placeholder: 'Select here..',
-            //     dropdownCssClass: 'bigdrop',
-                
-            // });
-
-            // $('#rating_out').select2({
-            //     allowClear: true,
-            //     width: 'resolve',
-            //     placeholder: 'Select here..',
-            //     dropdownCssClass: 'bigdrop',
-                
-            // });
-            // $('#condi_out').select2({
-            //     allowClear: true,
-            //     width: 'resolve',
-            //     placeholder: 'Select here..',
-            //     dropdownCssClass: 'bigdrop',
-                
-            // });
             $('#newBtn').on('click', function(e) {
                 e.preventDefault();
 
                 $('.modal-title').text('New PSV Data Master');
+            });
+
+            $('#status').select2({
+                allowClear: true,
+                placeholder: 'Search here..',
             });
         });
 

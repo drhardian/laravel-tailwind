@@ -1,195 +1,235 @@
 @extends('layout.index')
 
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css">
+@endsection
+
 @section('content')
-     <div class="min-h-screen w-full mx-auto max-w-4xl lg:max-w-7xl">
-        <div class="flex mt-2 p-4 gap-x-5">
+    <div class="min-h-screen w-full mx-auto max-w-4xl lg:max-w-7xl space-y-2 p-5">
+        {{-- <div class="flex mt-2 p-4 gap-x-5">
             <div class="w-1/3">
                 <div
                     class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <div class="text-center mb-6">
                         <a href="#">
-                            <span class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">OPERATIONAL</span>
+                            <span
+                                class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">OPERATIONAL</span>
                         </a>
                     </div>
-                    <div id="operationalChart"></div>
                 </div>
             </div>
             <div class="w-1/3">
-                <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <div class="text-center mb-6">
-                    <a href="#">
-                        <span class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">INTEGRITY STATUS</span>
-                    </a>
-                </div>
-                <div id="integrityChart"></div>
-            </div>
-        </div>
-            
-        <div class="w-1/2 grid gap-y-2">
-            <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-2">
-                <div class="flex items-center justify-center px-10 py-3">
-                    <div class="flex flex-col items-center justify-center text-center">
-                        <dt class="mb-2 text-3xl font-extrabold contracts-text">{{ $psvTotal }}</dt>
-                        <dd class="text-gray-500 justify-center dark:text-gray-400">TOTAL PSV</dd>
-                        {{-- <div id="areaChart"></div> --}}
+                <div
+                    class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <div class="text-center mb-6">
+                        <a href="#">
+                            <span class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">INTEGRITY
+                                STATUS</span>
+                        </a>
                     </div>
-                    <i class="fa-solid fa-4x2"></i>
                 </div>
             </div>
-            <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-2">
-                <div class="flex items-center justify-center px-4 py-3">
-                    <div class="flex flex-col items-center justify-center text-center">
-                        <dt class="mb-2 text-3xl font-extrabold contracts-text">{{ $totalPsvByMonth }}</dt>
-                        <dd class="text-gray-500 dark:text-gray-400">TOTAL PSV</dd>
-                        <dt class="text-gray-500 dark:text-gray-400">Bulan : {{ date('F Y') }}</dt> 
-                        {{-- NAMPILIN TOTAL BULAN INI --}}
+
+            <div class="w-1/2 grid gap-y-2">
+                <div
+                    class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-2">
+                    <div class="flex items-center justify-center px-10 py-3">
+                        <div class="flex flex-col items-center justify-center text-center">
+                            <dt class="mb-2 text-3xl font-extrabold contracts-text">{{ $psvTotal }}</dt>
+                            <dd class="text-gray-500 justify-center dark:text-gray-400">TOTAL PSV</dd>
+                        </div>
+                        <i class="fa-solid fa-4x2"></i>
                     </div>
-                    <i class="fa-solid fa-4x2"></i>
                 </div>
-            </div> 
-        </div>
-    </div>
-    {{-- <div class="container">
-        <h1 class="text-center text-danger pt-4">Date Filters</h1>
-        <hr> --}}
-
-   {{-- <div class="row py-2">
-        <div class="col-md-6">
-            <h2>List of Data Master PSV</h3>
-        </div>
-
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="date_filter">Filter by Date:</label>
-
-                <form method="get" action="psvdatamaster">
-                    <div class="input-group">
-                        <select class="form-select" name="date_filter">
-                            <option value="">All Dates</option>
-                            <option value="today" {{ $dateFilter == 'today' ? 'selected' : '' }}>Today</option>
-                            <option value="yesterday" {{ $dateFilter == 'yesterday' ? 'selected' : '' }}>Yesterday</option>
-                            <option value="this_week" {{ $dateFilter == 'this_week' ? 'selected' : '' }}>This Week</option>
-                            <option value="last_week" {{ $dateFilter == 'last_week' ? 'selected' : '' }}>Last Week</option>
-                            <option value="this_month" {{ $dateFilter == 'this_month' ? 'selected' : '' }}>This Month</option>
-                            <option value="last_month" {{ $dateFilter == 'last_month' ? 'selected' : '' }}>Last Month</option>
-                            <option value="this_year" {{ $dateFilter == 'this_year' ? 'selected' : '' }}>This Year</option>
-                            <option value="last_year" {{ $dateFilter == 'last_year' ? 'selected' : '' }}>Last Year</option>
-                            </select>
-                        <button type="submit" class="btn btn-primary">Filter</button>
+                <div
+                    class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-2">
+                    <div class="flex items-center justify-center px-4 py-3">
+                        <div class="flex flex-col items-center justify-center text-center">
+                            <dt class="mb-2 text-3xl font-extrabold contracts-text">{{ $totalPsvByMonth }}</dt>
+                            <dd class="text-gray-500 dark:text-gray-400">TOTAL PSV</dd>
+                            <dt class="text-gray-500 dark:text-gray-400">Bulan : {{ date('F Y') }}</dt>
+                        </div>
+                        <i class="fa-solid fa-4x2"></i>
                     </div>
-                </form>
-
+                </div>
             </div>
-        </div>
-    </div> --}}
-    
-    {{-- <table class="table  table-bordered table-hover">
-        <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($monthlyPsvTotals as $month => $total)
-                <tr>
-                    <td>{{ date('F Y', mktime(0, 0, 0, $month, 1)) }}</td>
-                    <td class="border px-4 py-2" onmouseover="showTagNumber(this, '{{ $monthlyTagNumbers[$month] }}')" onmouseout="hideTagNumber()">{{ $monthlyPsvTotals[$month] }}</td>
-                </tr>
-                    
-                @endforeach
-            </tbody>
-        </table> --}}
+        </div> --}}
+        
+        <!-- General Information -->
+        <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow">
+            <a href="#">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">General Information</h5>
+            </a>
+            <div class="grid grid-cols-4 mt-5">
+                
+                <div class="w-full max-w-sm bg-white">
+                    <div class="flex flex-col items-center">
+                        <h5 class="mb-1 text-xl font-medium text-gray-900">Area</h5>
+                        <span class="text-sm text-gray-500 mb-5">Based on area location</span>
+                        <div id="areaDonutChart"></div>
+                    </div>
+                </div>
+                
+                <div class="w-full max-w-sm bg-white">
+                    <div class="flex flex-col items-center">
+                        <h5 class="mb-1 text-xl font-medium text-gray-900">Operational</h5>
+                        <span class="text-sm text-gray-500 mb-5">Operational Status</span>
+                        <div id="operationalChart"></div>
+                    </div>
+                </div>
 
-    {{-- MEMBUAT TABEL UNTUK QTY PER BULAN --}}
-    {{-- <div class="min-h-screen w-full mx-auto max-w-4xl lg:max-w-7xl">
-        <style>
-            /* Mengatur tampilan tabel */
-            .horizontal-table {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-        
-            .vertical-table {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-        
-            /* Mengatur sel dalam tabel */
-            .vertical-table td {
-                border: 1px solid #ccc; /* Atur gaya border sesuai kebutuhan Anda */
-                padding: 10px;
-                width: 150px; /* Atur lebar sel sesuai kebutuhan Anda */
-                text-align: center; /* Tengahkan teks */
-                white-space: nowrap; /* Hindari pemisahan teks berlebihan ke bawah */
-                cursor: pointer; /* Mengubah kursor saat mengarahkan ke sel */
-            }
-        
-            /* Gaya rincian tag_number */
-            .tag-number-popup {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0; /* Muncul di sebelah kanan sel */
-                background-color: #fff;
-                border: 1px solid #ccc;
-                padding: 10px;
-            }
-        </style>
-        
-        <div class="horizontal-table">
-            @foreach ($monthlyPsvTotals as $month => $total)
-                <div>
-                    <table class="vertical-table">
-                        <thead>
-                            <tr>
-                                <td>{{ date('F Y', mktime(0, 0, 0, $month, 1)) }}</td>
-                            </tr>
-                        </thead>
+                <div class="w-full max-w-sm bg-white">
+                    <div class="flex flex-col items-center">
+                        <h5 class="mb-1 text-xl font-medium text-gray-900">Integrity</h5>
+                        <span class="text-sm text-gray-500 mb-5">Integrity Status</span>
+                        <div id="integrityChart"></div>
+                    </div>
+                </div>
+                
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <tbody>
-                            <tr>
-                                <td class="border px-4 py-2" onmouseover="showTagNumber(this, '{{ $monthlyTagNumbers[$month] }}')" onmouseout="hideTagNumber()">{{ $monthlyPsvTotals[$month] }}</td>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <th scope="row" class="flex items-center px-5 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    <div class="pl-3">
+                                        <div class="text-base font-semibold">Total PSV</div>
+                                        <div class="font-normal text-gray-500">Total all data</div>
+                                    </div>  
+                                </th>
+                                <td class="px-6 py-4 text-right">
+                                    <p class="text-xl text-gray-900 font-medium">{{ $psvTotal }}</p>
+                                </td>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <th scope="row" class="flex items-center px-5 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <div class="pl-3">
+                                        <div class="text-base font-semibold">Total PSV</div>
+                                        <div class="font-normal text-gray-500">Total on {{ date('F Y') }}</div>
+                                    </div>
+                                </th>
+                                <td class="px-6 py-4 text-right">
+                                    <p class="text-xl text-gray-900 font-medium">{{ $totalPsvByMonth }}</p>
+                                </td>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <th scope="row" class="flex items-center px-5 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    <div class="pl-3">
+                                        <div class="text-base font-semibold">Total Platform</div>
+                                        <div class="font-normal text-gray-500">Based on platform name</div>
+                                    </div>  
+                                </th>
+                                <td class="px-6 py-4 text-right">
+                                    <p class="text-xl text-gray-900 font-medium">{{ $psvplatformcount1->count() }}</p>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="tag-number-popup" onmouseover="showTagNumber(this, '{{ $monthlyTagNumbers[$month] }}')" onmouseout="hideTagNumber()">
-                        Tag Number: {{ $monthlyTagNumbers[$month] }}
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Certification Schedule -->
+        <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow">
+            <div class="flex flex-col gap-2">
+                <div class="w-full">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <a href="#">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Certification Schedule</h5>
+                            </a>
+                        </div>
+                        <div class="relative">
+                            <select id="year" onchange="filterData()">
+                                @foreach ($getYears as $year)
+                                    <option value="{{ $year->year_list }}">{{ $year->year_list }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
-            @endforeach
+                <div class="w-full">
+                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    @for ($month = 1; $month <= 12; $month++)
+                                        <th scope="col" class="px-6 py-3">
+                                            {{ date('F', mktime(0, 0, 0, $month, 1)) }}
+                                        </th>
+                                    @endfor
+        
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white border-b text-center">
+                                    @for ($month = 1; $month <= 12; $month++)
+                                        <td class="total-psv-cell px-6 py-4 hover:font-bold hover:text-xl" 
+                                            onclick="showTagNumber(this, {{ $month }})">
+                                            {{ $monthlyPsvTotals[$month] }}
+                                        </td>
+                                    @endfor
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <script>
-            // Fungsi untuk menampilkan rincian tag_number
-            function showTagNumber(element, tagNumber) {
-                var tagNumberPopup = element.querySelector('.tag-number-popup');
-                tagNumberPopup.style.display = 'block';
-                tagNumberPopup.innerHTML = 'Tag Number: ' + tagNumber;
-            }
-        
-            // Fungsi untuk menyembunyikan rincian tag_number
-            function hideTagNumber() {
-                var tagNumberPopups = document.querySelectorAll('.tag-number-popup');
-                tagNumberPopups.forEach(function (popup) {
-                    popup.style.display = 'none';
-                });
-            }
-        </script> --}}
 
-            <!-- Tambahkan elemen dropdown untuk tahun -->
-            <label for="year">Pilih Tahun:</label>
-            <select id="year" onchange="filterData()">
-                <option value="2023">2023</option>
-                <option value="2024">2024</option>
+        <div class="grid grid-cols-3 gap-2">
+            <!-- Quantity based on flow station -->
+            <div class="w-full bg-white border border-gray-200 rounded-lg shadow p-3">
+                <div class="flex flex-col items-center">
+                    <h5 class="mb-1 text-xl font-medium text-gray-900">Flow Station</h5>
+                    <span class="text-sm text-gray-500 mb-5">Quantity based on flow station</span>
+                    <div id="psvflowChart"></div>
+                </div>
+            </div>
+            <!-- Quantity based on flow station -->
+            <div class="w-full bg-white border border-gray-200 rounded-lg shadow p-3">
+                <div class="flex flex-col items-center">
+                    <h5 class="mb-1 text-xl font-medium text-gray-900">PSV Style</h5>
+                    <span class="text-sm text-gray-500 mb-5">Quantity based on style</span>
+                    <div id="psvstylebarChart"></div>
+                </div>
+            </div>
+            <!-- Integrity status based on area -->
+            <div class="w-full bg-white border border-gray-200 rounded-lg shadow p-3">
+                <div class="flex flex-col items-center">
+                    <h5 class="mb-1 text-xl font-medium text-gray-900">Integrity Status</h5>
+                    <span class="text-sm text-gray-500 mb-5">Integrity Status based on area</span>
+                    <div id="areastatusChart"></div>
+                </div>
+            </div>
+        </div>
 
-                <!-- Tambahkan opsi tahun lainnya sesuai kebutuhan Anda -->
-            </select>
-        
-            <!-- Tabel hasil filter -->
-            {{--<div class="horizontal-table" id="filteredData">
+        <div class="w-full bg-white border border-gray-200 rounded-lg shadow p-3">
+            <div class="flex flex-col items-center pb-12">
+                <h5 class="mb-1 text-xl font-medium text-gray-900">Brand</h5>
+                <span class="text-sm text-gray-500 mb-5">Quantity based on brand name</span>
+                <div id="psvbrandChart" class="w-full h-80"></div>
+            </div>
+        </div>
+
+        <div class="w-full bg-white border border-gray-200 rounded-lg shadow p-3">
+            <div class="flex flex-col items-center pb-16">
+                <h5 class="mb-1 text-xl font-medium text-gray-900">Size</h5>
+                <span class="text-sm text-gray-500 mb-5">Quantity based on valve size</span>
+                <div id="psvsizeChart" class="w-full h-80"></div>
+            </div>
+        </div>
+
+        <div class="w-full bg-white border border-gray-200 rounded-lg shadow p-3">
+            <div class="flex flex-col items-center pb-16">
+                <h5 class="mb-1 text-xl font-medium text-gray-900">Platform</h5>
+                <span class="text-sm text-gray-500 mb-5">Quantity based on platform location</span>
+                <div id="psvplatformChart" class="w-full h-80"></div>
+            </div>
+        </div>
+
+        <!-- Tabel hasil filter -->
+        {{-- <div class="horizontal-table" id="filteredData">
                 <!-- Data akan ditempatkan di sini melalui JavaScript -->
                 @foreach ($monthlyPsvTotals as $month => $total)
                 <div>
@@ -211,47 +251,8 @@
                 </div>
             @endforeach
             </div> --}}
-            
-            {{-- TABEL HORIZONTAL SOROT TAG NUMBER --}}
-            {{-- <style>
-                /* Mengatur tampilan tabel */
-                .horizontal-table {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                    align-items: center;
-                }
-            
-                .vertical-table {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    align-items: center;
-                }
-            
-                /* Mengatur sel dalam tabel */
-                .vertical-table td {
-                    border: 1px solid #ccc; /* Atur gaya border sesuai kebutuhan Anda */
-                    padding: 10px;
-                    width: 150px; /* Atur lebar sel sesuai kebutuhan Anda */
-                    text-align: center; /* Tengahkan teks */
-                    white-space: nowrap; /* Hindari pemisahan teks berlebihan ke bawah */
-                    cursor: pointer; /* Mengubah kursor saat mengarahkan ke sel */
-                }
-            
-                /* Gaya rincian tag_number */
-                .tag-number-popup {
-                    display: none;
-                    position: absolute;
-                    top: 0;
-                    left: 100%; /* Muncul di sebelah kanan sel */
-                    background-color: #fff;
-                    border: 1px solid #ccc;
-                    padding: 10px;
-                }
-            </style> --}}
-        
-        <style>
+
+        {{-- <style>
             /* Mengatur tampilan tabel */
             .vertical-table {
                 display: flex;
@@ -259,763 +260,752 @@
                 /* justify-content: space-between; */
                 align-items: center;
             }
-            .horizontal-table {
-                    display: flex;
-                    flex-direction:  column;
-                    justify-content: space-between;
-                    /* align-items: flex-start; */
-                    align-items: center;
 
-                }
-        
+            .horizontal-table {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                /* align-items: flex-start; */
+                align-items: center;
+
+            }
+
             /* Mengatur sel dalam tabel */
             .vertical-table td {
                 /* display: flex; */
-                border: 1px solid #ccc; /* Atur gaya border sesuai kebutuhan Anda */
+                border: 1px solid #ccc;
+                /* Atur gaya border sesuai kebutuhan Anda */
                 padding: 10px;
-                width: 150px; /* Atur lebar sel sesuai kebutuhan Anda */
-                text-align: center; /* Tengahkan teks */
-                    white-space: nowrap; /* Hindari pemisahan teks berlebihan ke bawah */
-                    cursor: pointer;
+                width: 150px;
+                /* Atur lebar sel sesuai kebutuhan Anda */
+                text-align: center;
+                /* Tengahkan teks */
+                white-space: nowrap;
+                /* Hindari pemisahan teks berlebihan ke bawah */
+                cursor: pointer;
             }
-        
+
             /* Gaya rincian tag_number */
             .tag-number-popup {
                 display: none;
                 position: absolute;
-                top: 100%; /* Muncul di bawah sel */
+                top: 100%;
+                /* Muncul di bawah sel */
                 left: 0;
                 background-color: #fff;
                 border: 1px solid #ccc;
                 padding: 10px;
             }
-        </style>
-        
-        <div class="vertical-table">
+        </style> --}}
+
+        {{-- <div class="vertical-table">
             <table class="table-auto">
                 <thead>
                     <tr>
-                        <td class="px-4 py-2">Bulan</td>
-                        <td class="px-4 py-2">Total PSV</td>
-                    </tr>
+                        <td class="px-4 py-2">Tahun <span id="selected-year-text"></span></td>
+                        @for ($month = 1; $month <= 12; $month++) --}}
+                            {{-- <tr> --}}
+                            {{-- <td>{{ date('F', mktime(0, 0, 0, $month, 1)) }}</td> --}}
+                            {{-- <td class="total-psv-cell" onmouseover="showTagNumber(this, {{ $month }})" onmouseout="hideTagNumber()">{{ $monthlyPsvTotals[$month] }}</td>
+                            </tr> --}}
+                        {{-- @endfor --}}
+                        {{-- <td class="px-4 py-2">Total PSV</td> --}}
+                    {{-- </tr>
                 </thead>
                 <tbody>
-                    @for ($month = 1; $month <= 12; $month++)
-                        <tr>
-                            <td>{{ date('F Y', mktime(0, 0, 0, $month, 1)) }}</td>
-                            <td class="total-psv-cell" onmouseover="showTagNumber(this, {{ $month }})" onmouseout="hideTagNumber()">{{ $monthlyPsvTotals[$month] }}</td>
-                        </tr>
-                    @endfor
+                    <tr>
+                        <td>Total PSV</td>
+                        @for ($month = 1; $month <= 12; $month++)
+                            <td class="total-psv-cell" onmouseover="showTagNumber(this, {{ $month }})"
+                                onmouseout="hideTagNumber()">{{ $monthlyPsvTotals[$month] }}</td> --}}
+                            {{-- <tr>
+                                <td>{{ date('F Y', mktime(0, 0, 0, $month, 1)) }}</td>
+                                <td class="total-psv-cell" onmouseover="showTagNumber(this, {{ $month }})" onmouseout="hideTagNumber()">{{ $monthlyPsvTotals[$month] }}</td>
+                            </tr> --}}
+                        {{-- @endfor
+                    </tr>
                 </tbody>
             </table>
             <div class="tag-number-popup" id="tagNumberPopup"></div>
-        </div>
-        
-        <script>
-            // Fungsi untuk menampilkan rincian tag_number
-            function showTagNumber(element, month) {
-                var tagNumberPopup = document.getElementById('tagNumberPopup');
-                tagNumberPopup.style.display = 'block';
-        
-                // Mengambil data tag_number berdasarkan bulan
-                var tagNumber = tagNumbers[month];
-                tagNumberPopup.innerHTML = 'Tag Number: ' + tagNumber;
-            }
-        
-            // Fungsi untuk menyembunyikan rincian tag_number
-            function hideTagNumber() {
-                var tagNumberPopup = document.getElementById('tagNumberPopup');
-                tagNumberPopup.style.display = 'none';
-            }
-        
-            // Data tag_numbers sesuai dengan bulan
-            var tagNumbers = [
-                @foreach ($monthlyTagNumbers as $tagNumber)
-                    '{{ $tagNumber }}',
-                @endforeach
-            ];
-        </script>
-        
-        <div class="flex mt-2 p-4 gap-x-5">
-            <div class="flex-1 flex-shrink">
-                <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <div class="text-center mb-6">
-                        <a href="#">
-                            <span class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">AREA</span>
-                        </a>
-                    </div>
-                    <div id="areaChart"></div>
-                </div>
-            </div>
-            <div class="flex-1">
-                <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <div class="text-center mb-6">
-                        <a href="#">
-                            <span class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">FLOW STATION</span>
-                        </a>
-                    </div>
-                    <div id="psvflowChart"></div>
-                </div>
-            </div>
-        </div>
-        <div class="min-h-screen w-full mx-auto max-w-4xl lg:max-w-7xl">
-            <div class="flex mt-2 p-4 gap-x-5">
-                <div class="w-1/3">
-                    <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        </div> --}}
+
+        {{-- <div class="min-h-screen w-full mx-auto max-w-4xl lg:max-w-7xl">
+            <div class="flex mt-2 p-4 gap-x-5"> --}}
+                {{-- <div class="w-1/3">
+                    <div
+                        class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <div class="text-center mb-6">
                             <a href="#">
-                                <span class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">PSV STYLE</span>
-                            </a>
-                        </div>
-                        <div id="psvstyleChart"></div>
-                    </div>
-                </div>
-                <div class="w-1/3">
-                    <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                        <div class="text-center mb-6">
-                            <a href="#">
-                                <span class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">PSV SIZE</span>
+                                <span class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">PSV
+                                    SIZE</span>
                             </a>
                         </div>
                         <div id="psvsizeChart"></div>
                     </div>
-                </div>
-                <div class="w-1/3">
-                    <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                </div> --}}
+                {{-- <div class="w-1/3">
+                    <div
+                        class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <div class="text-center mb-6">
                             <a href="#">
-                                <span class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">PSV BRAND</span>
+                                <span class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">PSV
+                                    BRAND</span>
                             </a>
                         </div>
                         <div id="psvbrandChart"></div>
                     </div>
-                </div>
-            </div>
-        <div class="min-h-screen w-full mx-auto max-w-4xl lg:max-w-7xl">
-            <div class="flex mt-2 p-4 gap-x-5">
-                <div class="flex-1 flex-shrink">
-                    <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                        <div class="text-center mb-6">
-                            <a href="#">
-                                <span class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">PLATFORM</span>
-                            </a>
+                </div> --}}
+            {{-- </div>
+            <div class="min-h-screen w-full mx-auto max-w-4xl lg:max-w-7xl"> --}}
+                {{-- <div class="flex mt-2 p-4 gap-x-5">
+                    <div class="flex-1 flex-shrink">
+                        <div
+                            class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            <div class="text-center mb-6">
+                                <a href="#">
+                                    <span
+                                        class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">PLATFORM</span>
+                                </a>
+                            </div>
+                            <div id="psvplatformChart"></div>
                         </div>
-                        <div id="psvplatformChart"></div>
                     </div>
-                </div>
-            </div>
-        {{-- </div> --}}
-        <div class="flex mt-2 p-4 gap-x-5">
-            <div class="flex-1 flex-shrink">
-                <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <div class="text-center mb-6">
-                        <a href="#">
-                            <span class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Integrity Status Based on Area</span>
-                        </a>
+                </div> --}}
+                {{-- </div> --}}
+                {{-- <div class="flex mt-2 p-4 gap-x-5">
+                    <div class="flex-1">
+                        <div
+                            class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            <div class="text-center mb-6">
+                                <a href="#">
+                                    <span
+                                        class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Integrity
+                                        Status Based on Flow Station</span>
+                                </a>
+                            </div> --}}
+                            {{-- <div id="flowstatusChart"></div> --}}
+                        {{-- </div>
                     </div>
-                    <div id="areastatusChart"></div>
-                </div>
-            </div>
-            <div class="flex-1">
-                <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <div class="text-center mb-6">
-                        <a href="#">
-                            <span class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Integrity Status Based on Flow Station</span>
-                        </a>
-                    </div>
-                    <div id="flowstatusChart"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection
+                </div> --}}
+            {{-- </div>
+        </div> --}}
 
+            {{-- CHART OPERATIONAL --}}
+            {{-- <div id="operationalChart" style="width: 400px; height: 400px;"></div> --}}
+        @endsection
 
-@section('js')
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        @section('js')
+            <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    // Initialize variables to store counts
+                    var yesCount = {{ $yesCount }};
+                    var noCount = {{ $noCount }};
 
-{{-- CHART OPERATIONAL --}}
-<div id="operationalChart" style="width: 400px; height: 400px;"></div>
-<script>
-    $(document).ready(function () {
-        // Initialize variables to store counts
-        var yesCount = {{ $yesCount }};
-        var noCount = {{ $noCount }};
-    
-        // Function to create the donut chart
-        function createDonutChart() {
-            var options = {
-                chart: {
-                    type: 'donut',
-                },
-                series: [yesCount, noCount],
-                labels: ['Yes', 'No'],
-                colors: ['#00BFFF', '#778899'], // Customize colors as needed
-                legend: {
-                show: false // Menghilangkan legenda
-                },
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 200
-                        },
-                        legend: {
-                            position: 'bottom'
-                        }
+                    // Function to create the donut chart
+                    function createDonutChart() {
+                        var options = {
+                            chart: {
+                                type: 'donut',
+                            },
+                            series: [yesCount, noCount],
+                            labels: ['Yes', 'No'],
+                            colors: ['#1450A3','#6499E9'], // Customize colors as needed
+                            legend: {
+                                show: false // Menghilangkan legenda
+                            },
+                            plotOptions: {
+                                pie: {
+                                    donut: {
+                                        labels: {
+                                            show: true,
+                                            total: {
+                                                show: true
+                                            }
+                                        }
+                                    },
+                                    expandOnClick: false
+                                }
+                            },
+                            responsive: [{
+                                breakpoint: 480,
+                                options: {
+                                    chart: {
+                                        width: 200
+                                    },
+                                    legend: {
+                                        position: 'bottom'
+                                    }
+                                }
+                            }]
+                        };
+
+                        var chart = new ApexCharts(document.querySelector("#operationalChart"), options);
+                        chart.render();
                     }
-                }]
-            };
-    
-            var chart = new ApexCharts(document.querySelector("#operationalChart"), options);
-            chart.render();
-        }
-    
-        // Call the createDonutChart function to initially create the chart
-        createDonutChart();
-    });
-</script>
-    
-{{-- CHART INTEGRITY --}}
-<div id="integrityChart" style="width: 400px; height: 400px;"></div>
-<script>
-    
-        // Function to create the donut chart
-        function createDonutChart() {
-            var options = {
-                chart: {
-                    type: 'donut',
-                },
-                series : @json($psvintegritycount->pluck('jumlahintegrity')->toArray()),
-                labels : @json($psvintegritycount->pluck('integrity')->toArray()),
-                colors: ['#3CB371', '#FF0000'], // Customize colors as needed
-                legend: {
-                show: false // Menghilangkan legenda
-                },
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 200
-                        },
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }]
-            };
-    
-            var chart = new ApexCharts(document.querySelector("#integrityChart"), options);
-            chart.render();
-        }
-    
-        // Call the createDonutChart function to initially create the chart
-        createDonutChart();
-</script>
 
-{{-- CHART AREA --}}
-<div id="areaChart" style="width: 400px; height: 400px;"></div>
-{{-- <script>
-    $(document).ready(function () {
-        // Ambil data total East dan West dari controller
-        var eastCount = {{ $eastCount }};
-        var westCount = {{ $westCount }};
-    
-        // Function to create the bar chart
-        function createBarChart() {
-            var options = {
-                chart: {
-                    type: 'bar',
-                    width: '100%',
+                    // Call the createDonutChart function to initially create the chart
+                    createDonutChart();
 
-                },
-                series: [
-                {
-                    name: 'Qty',
-                    data: [eastCount, westCount]
-                }],
-                xaxis: {
-                    categories: ['East', 'West'],
-                },
-                colors: ['#4169E1'], // Customize colors as needed
-                plotOptions: {
-                    bar: {
-                        horizontal: true, // Set to true for horizontal bar chart
-                        // horizontal: false,
-                        endingShape: 'rounded'
-                    },
-                },
-                dataLabels: {
-                enabled: false // Disable data labels (optional)
+                    $('#year').select2({
+                        allowClear: true,
+                        placeholder: 'Select years..',
+                    });
+                });
+
+                // Fungsi untuk menampilkan rincian tag_number
+                function showTagNumber(element, month) {
+                    var tagNumberPopup = document.getElementById('tagNumberPopup');
+                    tagNumberPopup.style.display = 'block';
+
+                    // Mengambil data tag_number berdasarkan bulan
+                    var tagNumber = tagNumbers[month];
+                    tagNumberPopup.innerHTML = 'Tag Number: ' + tagNumber;
                 }
-            };
-    
-            var chart = new ApexCharts(document.querySelector("#areaChart"), options);
-            chart.render();
-    }
-    
-    // Call the createBarChart function to initially create the chart
-    createBarChart();
-    });
-</script> --}}
-<script>
-    // Function to create the bar chart
-    function createBarChart() {
-        var options = {
-            chart: {
-                type: 'bar',
-                width: '100%',
-            },
-            series: [
-            {
-                name: 'Qty',
-                data: @json($psvareacount->pluck('jumlaharea')->toArray()),
-            }],
-            xaxis: {
-                categories: @json($psvareacount->pluck('area')->toArray()),
-            },
-            // series : @json($psvareacount->pluck('jumlaharea')->toArray()),
-            // labels : @json($psvareacount->pluck('area')->toArray()),
-            colors: ['#4169E1'], // Customize colors as needed
-            plotOptions: {
-                bar: {
-                    horizontal: true, // Set to true for horizontal bar chart
-                    // horizontal: false,
-                    endingShape: 'rounded'
-                },
-            },
-            dataLabels: {
-            enabled: false // Disable data labels (optional)
-            }
-        };
 
-        var chart = new ApexCharts(document.querySelector("#areaChart"), options);
-        chart.render();
-    }
+                // Fungsi untuk menyembunyikan rincian tag_number
+                function hideTagNumber() {
+                    var tagNumberPopup = document.getElementById('tagNumberPopup');
+                    tagNumberPopup.style.display = 'none';
+                }
 
-    // Call the createBarChart function to initially create the chart
-    createBarChart();
-</script>
+                // Data tag_numbers sesuai dengan bulan
+                var tagNumbers = [
+                    @foreach ($monthlyTagNumbers as $tagNumber)
+                        '{{ $tagNumber }}',
+                    @endforeach
+                ];
 
-{{-- <script>
-$(document).ready(function () {
-// Ambil data total East dan West dari controller
-var eastCount = {{ $eastCount }};
-var westCount = {{ $westCount }};
+            </script>
 
-// Konfigurasi grafik
-function createBarChart() {
-var options = {
-    chart: {
-        type: 'bar',
-    },
-    plotOptions: {
-        bar: {
-            horizontal: false,
-            columnWidth: '55%',
-            endingShape: 'rounded'
-        },
-    },
-    dataLabels: {
-        enabled: false
-    },
-    colors: ['#FF5733', '#33FF57'], // Warna untuk East dan West
-    series: [{
-        name: 'East',
-        data: [eastCount]
-    }, {
-        name: 'West',
-        data: [westCount]
-    }],
-    xaxis: {
-        categories: ['East & West']
-    }
-};
-
-// Membuat grafik batang menggunakan ApexCharts
-var chart = new ApexCharts(document.querySelector("#barChart"), options);
-chart.render();
-
-// Call the createBarChart function to initially create the chart
-createBarChart();
-});
-</script> --}}
-
-{{-- CHART FLOW STATION --}}
-<div id="psvflowChart" style="width: 400px; height: 400px;"></div>
-<script>
-    // Function to create the bar chart
-    function createBarChart() {
-        var options = {
-            chart: {
-                type: 'bar',
-                // width: '100%',
-            },
-            series: [
-            {
-                name: 'Qty',
-                data: @json($psvflowcount->pluck('jumlahflow')->toArray()),
-            }],
-            xaxis: {
-                categories: @json($psvflowcount->pluck('flow')->toArray()),
-            },
-            colors: ['#4169E1'], // Customize colors as needed
-            plotOptions: {
-                bar: {
-                    // horizontal: false,
-                    horizontal: true,
-                    endingShape: 'rounded'
-                },
-            },
-            dataLabels: {
-                enabled: false // Disable data labels (optional)
-            }
-        };
-
-        var chart = new ApexCharts(document.querySelector("#psvflowChart"), options);
-        chart.render();
-    }
-
-    // Call the createBarChart function to initially create the chart
-    createBarChart();
-</script>
-
-{{-- CHART PSV STYLE --}}
-<div id="psvstyleChart" style="width: 400px; height: 400px;"></div>
-<script>
-        // Function to create the donut chart
-        function createDonutChart() {
-            var options = {
-                chart: {
-                    type: 'donut',
-                },
-                series : @json($psvstylecount->pluck('jumlahstyle')->toArray()),
-                labels : @json($psvstylecount->pluck('psv')->toArray()),
-                colors: ['#1E90FF'], // Customize colors as needed
-                legend: {
-                show: false // Menghilangkan legenda
-                },
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
+            {{-- CHART INTEGRITY - DONUT --}}
+            <script>
+                // Function to create the donut chart
+                function createDonutChart() {
+                    var options = {
                         chart: {
-                            width: 200
+                            type: 'donut',
                         },
+                        series: @json($psvintegritySeries),
+                        labels: @json($psvintegrityLabels),
+                        colors: ['#54B435','#F9D923','#FF1E00'], // Customize colors as needed
                         legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }]
-            };
-    
-            var chart = new ApexCharts(document.querySelector("#psvstyleChart"), options);
-            chart.render();
-        }
-    
-        // Call the createDonutChart function to initially create the chart
-        createDonutChart();
-</script>
+                            show: false // Menghilangkan legenda
+                        },
+                        plotOptions: {
+                            pie: {
+                                donut: {
+                                    labels: {
+                                        show: true,
+                                        total: {
+                                            show: true
+                                        }
+                                    }
+                                },
+                                expandOnClick: false
+                            }
+                        },
+                        responsive: [{
+                            breakpoint: 480,
+                            options: {
+                                chart: {
+                                    width: 200
+                                },
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }]
+                    };
 
-{{-- <div id="psvstyleChart" style="width: 400px; height: 400px;"></div>
-<script>
-    // Function to create the donut chart
-    function createDonutChart() {
-        var options = {
-            chart: {
-                type: 'donut',
-            },
-            series : @json($psvstylecount->pluck('jumlahstyle')->toArray()),
-            labels : @json($psvstylecount->pluck('psv')->toArray()),
-            colors: ['#1E90FF'], // Customize colors as needed
-            legend: {
-                show: false // Menghilangkan legenda
-            },
-            responsive: [{
-                breakpoint: 480,
-                options: {
+                    var chart = new ApexCharts(document.querySelector("#integrityChart"), options);
+                    chart.render();
+                }
+
+                // Call the createDonutChart function to initially create the chart
+                createDonutChart();
+            </script>
+
+            {{-- CHART AREA - DONUT --}}
+            <script>
+                // Function to create the donut chart
+                function createDonutChart() {
+                    var options = {
+                        chart: {
+                            type: 'donut',
+                        },
+                        series: @json($psvareacount->pluck('jumlaharea')->toArray()),
+                        labels: @json($psvareacount->pluck('area')->toArray()),
+                        colors: ['#1450A3','#6499E9'], // Customize colors as needed
+                        legend: {
+                            show: false // Menghilangkan legenda
+                        },
+                        plotOptions: {
+                            pie: {
+                                donut: {
+                                    labels: {
+                                        show: true,
+                                        total: {
+                                            show: true
+                                        }
+                                    }
+                                },
+                                expandOnClick: false
+                            }
+                        },
+                        responsive: [{
+                            breakpoint: 480,
+                            options: {
+                                chart: {
+                                    width: 200
+                                },
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }]
+                    };
+
+                    var chart = new ApexCharts(document.querySelector("#areaDonutChart"), options);
+                    chart.render();
+                }
+
+                // Call the createDonutChart function to initially create the chart
+                createDonutChart();
+            </script>
+
+            {{-- CHART FLOW STATION - BAR --}}
+            <script>
+                // Function to create the bar chart
+                function createBarChart() {
+                    var options = {
+                        chart: {
+                            type: 'bar',
+                            width: '400px',
+                        },
+                        series: [{
+                            name: 'Qty',
+                            data: @json($psvflowcount->pluck('jumlahflow')->toArray()),
+                        }],
+                        xaxis: {
+                            categories: @json($psvflowcount->pluck('flow')->toArray()),
+                        },
+                        colors: ['#6499E9'], // Customize colors as needed
+                        plotOptions: {
+                            bar: {
+                                // horizontal: false,
+                                horizontal: true,
+                                endingShape: 'rounded',
+                                dataLabels: {
+                                    position: 'top',
+                                }
+                            },
+                        },
+                        dataLabels: {
+                            enabled: true, // Disable data labels (optional)
+                            textAnchor: 'start',
+                            style: {
+                                colors: ['#000'],
+                            },
+                            offsetX: 20,
+                        },
+                        tooltip: {
+                            enabled: true,
+                            shared: true,
+                            intersect: false 
+                        },
+                    };
+
+                    var chart = new ApexCharts(document.querySelector("#psvflowChart"), options);
+                    chart.render();
+                }
+
+                // Call the createBarChart function to initially create the chart
+                createBarChart();
+            </script>
+
+            <script>
+                /* CHART PSV STYLE - BAR */
+                var optionsPsvStyle = {
                     chart: {
-                        width: 200
+                        type: 'bar',
+                        width: '400px',
                     },
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
-            }]
-        };
-
-        var chart = new ApexCharts(document.querySelector("#psvstyleChart"), options);
-        chart.render();
-    }
-
-    // Call the createDonutChart function to initially create the chart
-    createDonutChart();
-</script> --}}
-
-{{-- CHART PSV SIZE --}}
-<div id="psvsizeChart" style="width: 400px; height: 400px;"></div>
-<script>
-        // Function to create the donut chart
-        function createDonutChart() {
-            var options = {
-                chart: {
-                    type: 'donut',
-                },
-                series : @json($psvsizecount->pluck('jumlahsize')->toArray()),
-                labels : @json($psvsizecount->pluck('size_in')->toArray()),
-                colors: ['#1E90FF'], // Customize colors as needed
-                legend: {
-                show: false // Menghilangkan legenda
-                },
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 200
-                        },
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }]
-            };
-    
-            var chart = new ApexCharts(document.querySelector("#psvsizeChart"), options);
-            chart.render();
-        }
-    
-        // Call the createDonutChart function to initially create the chart
-        createDonutChart();
-</script>
-
-{{-- CHART PSV BRAND --}}
-<div id="psvbrandChart" style="width: 400px; height: 400px;"></div>
-<script>
-        // Function to create the donut chart
-        function createDonutChart() {
-            var options = {
-                chart: {
-                    type: 'donut',
-                },
-                series : @json($psvbrandcount->pluck('jumlahbrand')->toArray()),
-                labels : @json($psvbrandcount->pluck('manufacture')->toArray()),
-                colors: ['#1E90FF'], // Customize colors as needed
-                legend: {
-                show: false // Menghilangkan legenda
-                },
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 200
-                        },
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }]
-            };
-    
-            var chart = new ApexCharts(document.querySelector("#psvbrandChart"), options);
-            chart.render();
-        }
-    
-        // Call the createDonutChart function to initially create the chart
-        createDonutChart();
-</script>
-
-{{-- CHART PLATFORM --}}
-<div id="psvplatformChart" style="width: 400px; height: 400px;"></div>
-<script>
-        // Function to create the bar chart
-        function createBarChart() {
-            var options = {
-                chart: {
-                    type: 'bar',
-                    // width: '100%',
-                },
-                series: [
-                {
-                    name: 'Qty',
-                    data: @json($psvplatformcount->pluck('jumlahplatform')->toArray()),
-                }],
-                xaxis: {
-                    categories: @json($psvplatformcount->pluck('platform')->toArray()),
-                },
-                colors: ['#4169E1'], // Customize colors as needed
-                plotOptions: {
-                    bar: {
-                        // horizontal: false,
-                        horizontal: true,
-                        endingShape: 'rounded'
-                    },
-                },
-                dataLabels: {
-                    enabled: false // Disable data labels (optional)
-                }
-            };
-    
-            var chart = new ApexCharts(document.querySelector("#psvplatformChart"), options);
-            chart.render();
-        }
-    
-        // Call the createBarChart function to initially create the chart
-        createBarChart();
-</script>
-
-{{-- CHART AREA STATUS --}}
-<div id="areastatusChart" style="width: 400px; height: 400px;"></div>
-<script> 
-        // Function to create the bar chart
-        function createBarChart() {
-            var options = {
-                chart: {
-                    type: 'bar',
-                    width: '100%',
-
-                },
-                series: [
-                    {
-                    name: 'Green',
-                    data: @json($psvintegritycount->pluck('jumlahintegrity')->toArray()),
-
-                },
-                {
-                    name: 'Red',
-                    data: @json($psvintegritycount->pluck('jumlahintegrity')->toArray()),
-                }
-                    // {
-                    //     name: 'RED',
-                    //     data: @json($psvintegritycount->pluck('jumlahintegrity')->toArray()),
-
-                    // }
-                ],
-                xaxis: {
-                    categories: @json($psvareacount->pluck('area')->toArray()),
-                    // categories: @json($psvintegritycount->pluck('integrity')->toArray()),
-
-                },
-                colors: ['#3CB371', '#FF0000'], // Customize colors as needed
-                plotOptions: {
-                    bar: {
-                        horizontal: true, // Set to true for horizontal bar chart
-                        // horizontal: false,
-                        endingShape: 'rounded'
-                    },
-                },
-                dataLabels: {
-                enabled: false // Disable data labels (optional)
-                }
-            };
-    
-            var chart = new ApexCharts(document.querySelector("#areastatusChart"), options);
-            chart.render();
-    }
-    
-    // Call the createBarChart function to initially create the chart
-    createBarChart();
-</script>
-
-
-{{-- CHART FLOW STATUS --}}
-<div id="flowstatusChart" style="width: 400px; height: 400px;"></div>
-<script> 
-        // Function to create the bar chart
-        function createBarChart() {
-            var options = {
-                chart: {
-                    type: 'bar',
-                    width: '100%',
-
-                },
-                series: [
-                    {
-                        name: 'GREEN',
-                        data: @json($psvintegritycount->pluck('jumlahintegrity')->toArray()),
-                    },
-                    {
-                        name: 'RED',
-                        data: @json($psvintegritycount->pluck('jumlahintegrity')->toArray()),
-
+                    series: [{
+                        name: 'Qty',
+                        data: @json($psvstylecount->pluck('jumlahstyle')->toArray()),
                     }],
-                xaxis: {
-                    categories: @json($psvflowcount->pluck('flow')->toArray()),
-                    // categories: @json($psvintegritycount->pluck('integrity')->toArray()),
-
-                },
-                colors: ['#3CB371', '#FF0000'], // Customize colors as needed
-                plotOptions: {
-                    bar: {
-                        horizontal: true, // Set to true for horizontal bar chart
-                        // horizontal: false,
-                        endingShape: 'rounded'
+                    xaxis: {
+                        categories: @json($psvstylecategories),
                     },
-                },
-                dataLabels: {
-                enabled: false // Disable data labels (optional)
+                    colors: ['#6499E9'], // Customize colors as needed
+                    plotOptions: {
+                        bar: {
+                            horizontal: true,
+                            endingShape: 'rounded',
+                            dataLabels: {
+                                position: 'top',
+                            }
+                        },
+                    },
+                    dataLabels: {
+                        enabled: true, // Disable data labels (optional)
+                        textAnchor: 'start',
+                        style: {
+                            colors: ['#000'],
+                        },
+                        offsetX: 20,
+                    },
+                    tooltip: {
+                        enabled: true,
+                        shared: true,
+                        intersect: false 
+                    },
+                };
+
+                var chartPsvStyle = new ApexCharts(document.querySelector("#psvstylebarChart"), optionsPsvStyle);
+                chartPsvStyle.render();
+
+                /* CHART INTEGRITY STATUS - BAR */
+                var optionsIntegrityByArea = {
+                    chart: {
+                        type: 'bar',
+                        width: '400px',
+
+                    },
+                    series: [
+                        {
+                            name: 'Good',
+                            data: @json($integrityAreaStatusGood),
+
+                        },
+                        {
+                            name: 'Warning',
+                            data: @json($integrityAreaStatusWarning),
+                        },
+                        {
+                            name: 'Expired',
+                            data: @json($integrityAreaStatusExpired),
+                        }
+                    ],
+                    xaxis: {
+                        categories: @json($psvareacount->pluck('area')->toArray()),
+                    },
+                    colors: ['#54B435','#F9D923','#FF1E00'], // Customize colors as needed '#54B435','#F9D923','#FF1E00'
+                    plotOptions: {
+                        bar: {
+                            horizontal: true, // Set to true for horizontal bar chart
+                            endingShape: 'rounded',
+                            dataLabels: {
+                                position: 'top',
+                            }
+                        },
+                    },
+                    dataLabels: {
+                        enabled: true, // Disable data labels (optional)
+                        textAnchor: 'start',
+                        style: {
+                            colors: ['#000'],
+                        },
+                        offsetX: 20,
+                    },
+                    tooltip: {
+                        enabled: true,
+                        shared: true,
+                        intersect: false 
+                    },
+                };
+
+                var chartIntegrityByArea = new ApexCharts(document.querySelector("#areastatusChart"), optionsIntegrityByArea);
+                chartIntegrityByArea.render();
+
+                /* CHART PSV BRAND - BAR */
+                var optionsBrand = {
+                    chart: {
+                        type: 'bar',
+                        width: '100%',
+                        height: '100%',
+                    },
+                    series: [{
+                        name: 'Qty',
+                        data: @json($psvbrandcount->pluck('jumlahbrand')->toArray()),
+                    }],
+                    xaxis: {
+                        categories: @json($psvbrandcategories),
+                        labels: {
+                            show: true,
+                            rotate: -30
+                        },
+                    },
+                    colors: ['#6499E9'], // Customize colors as needed
+                    plotOptions: {
+                        bar: {
+                            horizontal: false,
+                            dataLabels: {
+                                position: 'top',
+                            }
+                        },
+                    },
+                    dataLabels: {
+                        enabled: true, // Disable data labels (optional)
+                        textAnchor: 'start',
+                        style: {
+                            colors: ['#000'],
+                        },
+                        offsetX: -14,
+                    },
+                    tooltip: {
+                        enabled: true,
+                        shared: true,
+                        intersect: false 
+                    },
+                };
+
+                var chartBrand = new ApexCharts(document.querySelector("#psvbrandChart"), optionsBrand);
+                chartBrand.render();
+
+                /* CHART PSV SIZE - BAR */
+                var optionsSizeBar = {
+                    chart: {
+                        type: 'bar',
+                        width: '100%',
+                        height: '100%',
+                    },
+                    series: [{
+                        name: 'Qty',
+                        data: @json($psvsizecount->pluck('jumlahsize')->toArray()),
+                    }],
+                    xaxis: {
+                        categories: @json($psvsizecategories),
+                    },
+                    colors: ['#6499E9'], // Customize colors as needed
+                    plotOptions: {
+                        bar: {
+                            horizontal: false,
+                            dataLabels: {
+                                position: 'top',
+                            }
+                        },
+                    },
+                    dataLabels: {
+                        enabled: true, // Disable data labels (optional)
+                        textAnchor: 'start',
+                        style: {
+                            colors: ['#000'],
+                        },
+                        offsetX: -14,
+                    },
+                    tooltip: {
+                        enabled: true,
+                        shared: true,
+                        intersect: false 
+                    },
+                };
+
+                var chartSizeBar = new ApexCharts(document.querySelector("#psvsizeChart"), optionsSizeBar);
+                chartSizeBar.render();
+
+                /* CHART PSV PLATFORM - BAR */
+                var optionsPlatform = {
+                    chart: {
+                        type: 'bar',
+                        width: '100%',
+                        height: '100%',
+                    },
+                    series: [{
+                        name: 'Qty',
+                        data: @json($psvplatformcount->pluck('jumlahplatform')->toArray()),
+                    }],
+                    xaxis: {
+                        categories: @json($psvplatformcategories),
+                        labels: {
+                            show: true,
+                            rotate: -30
+                        },
+                    },
+                    colors: ['#6499E9'], // Customize colors as needed
+                    plotOptions: {
+                        bar: {
+                            horizontal: false,
+                            dataLabels: {
+                                position: 'top',
+                            }
+                        },
+                    },
+                    dataLabels: {
+                        enabled: true, // Disable data labels (optional)
+                        textAnchor: 'start',
+                        style: {
+                            colors: ['#000'],
+                        },
+                        offsetX: -14,
+                    },
+                    tooltip: {
+                        enabled: true,
+                        shared: true,
+                        intersect: false 
+                    },
+                };
+
+                var chartPlatform = new ApexCharts(document.querySelector("#psvplatformChart"), optionsPlatform);
+                chartPlatform.render();
+            </script>
+
+            {{-- CHART PSV SIZE - DONUT --}}
+            {{-- <div id="psvsizeChart" style="width: 400px; height: 400px;"></div> --}}
+            {{-- <script>
+                // Function to create the donut chart
+                function createDonutChart() {
+                    var options = {
+                        chart: {
+                            type: 'donut',
+                        },
+                        series: @json($psvsizecount->pluck('jumlahsize')->toArray()),
+                        labels: @json($psvsizecount->pluck('size_in')->toArray()),
+                        colors: ['#1E90FF'], // Customize colors as needed
+                        legend: {
+                            show: false // Menghilangkan legenda
+                        },
+                        responsive: [{
+                            breakpoint: 480,
+                            options: {
+                                chart: {
+                                    width: 200
+                                },
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }]
+                    };
+
+                    var chart = new ApexCharts(document.querySelector("#psvsizeChart"), options);
+                    chart.render();
                 }
-            };
-    
-            var chart = new ApexCharts(document.querySelector("#flowstatusChart"), options);
-            chart.render();
-    }
-    
-    // Call the createBarChart function to initially create the chart
-    createBarChart();
-</script>
 
-{{-- <script>
-    // Sample data for testing (replace with your actual data)
-    var psvareacount = [
-        { area: 'Category 1', jumlaharea: 20, jumlahintegrity: 10 },
-        { area: 'Category 2', jumlaharea: 25, jumlahintegrity: 15 },
-        // Add more data points as needed
-    ];
+                // Call the createDonutChart function to initially create the chart
+                createDonutChart();
+            </script> --}}
 
-    // Function to create the bar chart
-    function createBarChart() {
-        var options = {
-            chart: {
-                type: 'bar',
-                width: '100%',
-            },
-            series: [
-                {
-                    name: 'Jumlah Area',
-                    data: psvareacount.map(item => item.jumlaharea),
-                },
-                {
-                    name: 'Jumlah Integrity',
-                    data: psvareacount.map(item => item.jumlahintegrity),
-                },
-            ],
-            xaxis: {
-                categories: psvareacount.map(item => item.area),
-            },
-            colors: ['#3CB371', '#FF0000'], // Customize colors as needed
-            plotOptions: {
-                bar: {
-                    horizontal: false,
-                    endingShape: 'rounded',
-                },
-            },
-            dataLabels: {
-                enabled: false, // Disable data labels (optional)
-            },
-            tooltip: {
-                y: {
-                    formatter: function (value, { series, seriesIndex, dataPointIndex }) {
-                        return seriesIndex === 0 ? 'Jumlah Area: ' + value : 'Jumlah Integrity: ' + value;
-                    }
+            {{-- CHART PSV BRAND --}}
+            {{-- <div id="psvbrandChart" style="width: 400px; height: 400px;"></div> --}}
+            {{-- <script>
+                // Function to create the donut chart
+                function createDonutChart() {
+                    var options = {
+                        chart: {
+                            type: 'donut',
+                        },
+                        series: @json($psvbrandcount->pluck('jumlahbrand')->toArray()),
+                        labels: @json($psvbrandcount->pluck('manufacture')->toArray()),
+                        colors: ['#1E90FF'], // Customize colors as needed
+                        legend: {
+                            show: false // Menghilangkan legenda
+                        },
+                        responsive: [{
+                            breakpoint: 480,
+                            options: {
+                                chart: {
+                                    width: 200
+                                },
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }]
+                    };
+
+                    var chart = new ApexCharts(document.querySelector("#psvbrandChart"), options);
+                    chart.render();
                 }
-            }
-        };
 
-        var chart = new ApexCharts(document.querySelector("#areastatusChart"), options);
-        chart.render();
-    }
+                // Call the createDonutChart function to initially create the chart
+                createDonutChart();
+            </script> --}}
 
-    // Call the createBarChart function to initially create the chart
-    createBarChart();
-</script> --}}
+            {{-- CHART PLATFORM --}}
+            {{-- <div id="psvplatformChart" style="width: 400px; height: 400px;"></div>
+            <script>
+                // Function to create the bar chart
+                function createBarChart() {
+                    var options = {
+                        chart: {
+                            type: 'bar',
+                            // width: '100%',
+                        },
+                        series: [{
+                            name: 'Qty',
+                            data: @json($psvplatformcount->pluck('jumlahplatform')->toArray()),
+                        }],
+                        xaxis: {
+                            categories: @json($psvplatformcount->pluck('platform')->toArray()),
+                        },
+                        colors: ['#4169E1'], // Customize colors as needed
+                        plotOptions: {
+                            bar: {
+                                // horizontal: false,
+                                horizontal: true,
+                                endingShape: 'rounded'
+                            },
+                        },
+                        dataLabels: {
+                            enabled: false // Disable data labels (optional)
+                        }
+                    };
 
-@endsection
+                    var chart = new ApexCharts(document.querySelector("#psvplatformChart"), options);
+                    chart.render();
+                }
+
+                // Call the createBarChart function to initially create the chart
+                createBarChart();
+            </script> --}}
+
+            {{-- CHART FLOW STATUS --}}
+            {{-- <div id="flowstatusChart" style="width: 400px; height: 400px;"></div> --}}
+            {{-- <script>
+                // Function to create the bar chart
+                function createBarChart() {
+                    var options = {
+                        chart: {
+                            type: 'bar',
+                            width: '100%',
+
+                        },
+                        series: [{
+                                name: 'GREEN',
+                                data: @json($psvintegritycount->pluck('jumlahintegrity')->toArray()),
+                            },
+                            {
+                                name: 'RED',
+                                data: @json($psvintegritycount->pluck('jumlahintegrity')->toArray()),
+
+                            }
+                        ],
+                        xaxis: {
+                            categories: @json($psvflowcount->pluck('flow')->toArray()),
+                            // categories: @json($psvintegritycount->pluck('integrity')->toArray()),
+
+                        },
+                        colors: ['#3CB371', '#FF0000'], // Customize colors as needed
+                        plotOptions: {
+                            bar: {
+                                horizontal: true, // Set to true for horizontal bar chart
+                                // horizontal: false,
+                                endingShape: 'rounded'
+                            },
+                        },
+                        dataLabels: {
+                            enabled: false // Disable data labels (optional)
+                        }
+                    };
+
+                    var chart = new ApexCharts(document.querySelector("#flowstatusChart"), options);
+                    chart.render();
+                }
+
+                // Call the createBarChart function to initially create the chart
+                createBarChart();
+            </script> --}}
+        @endsection
