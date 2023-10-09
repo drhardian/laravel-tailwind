@@ -431,7 +431,6 @@ class PsvdatamasterController extends Controller
                 'message' => $e->getMessage()
             ], 500);
         }
-
     }
 
     public function showDatatable()
