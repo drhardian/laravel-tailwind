@@ -18,8 +18,7 @@ class PsvdashboardController extends Controller
         
         //UNTUK MENJUMLAHKAN DATA PSV BERDASARKAN BULAN SAAT INI
         $currentMonth = date('m');
-        $totalPsvByMonth = Psvdatamaster::whereMonth('cert_date', '=', $currentMonth)->count();
-        // dd($totalPsvByMonth);
+        $totalPsvByMonth = Psvdatamaster::whereMonth('cert_date', '=', $currentMonth)->whereYear('cert_date', '=', date('Y'))->count();
 
         // Mengambil data tag_number berdasarkan bulan
         $monthlyTagNumbers = [];
