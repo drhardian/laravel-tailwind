@@ -21,6 +21,9 @@ use App\Http\Controllers\PsvMasterData\PsvdatamasterController;
 use App\Http\Controllers\PsvMasterData\PsvdashboardController;
 use App\Http\Controllers\DropdownOptionController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Eproc\EprocitemcodeController;
+use App\Http\Controllers\DropdownOptionItemcodeController;
+
 use App\Http\Controllers\PsvMasterData\PdfController;
 
 /*
@@ -166,3 +169,20 @@ Route::prefix('dropdown/options/')->controller(DropdownOptionController::class)-
     Route::get('show', 'showOnDropdown')->name('general.options.showondropdown');
     Route::post('new', 'storeFromDropdown')->name('general.options.storefromdropdown');
 });
+
+Route::resource('eprocitemcode', EprocitemcodeController::class);
+Route::prefix('eprocitemcode')->controller(EprocitemcodeController::class)->group(function() {
+    Route::get('show/dropdown', 'showOnDropdown')->name('eprocitemcode.show.dropdown');
+    Route::get('show/datatable', 'showDatatable')->name('eprocitemcode.main.table');
+    // Route::get('eprocitemcode/export', 'exportExcel')->name('eprocitemcode.export');
+    // Route::post('eprocitemcode/import', 'importExcel')->name('eprocitemcode.import');
+    // Route::get('/eprocitemcode/{id}', 'cetakPdf')->name('eprocitemcode.pdf');
+    // Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
+
+});
+
+Route::prefix('dropdown/options/')->controller(DropdownOptionItemcodeController::class)->group(function() {
+    Route::get('show', 'showOnDropdown')->name('eproc.options.showondropdown');
+    Route::post('new', 'storeFromDropdown')->name('eproc.options.storefromdropdown');
+});
+

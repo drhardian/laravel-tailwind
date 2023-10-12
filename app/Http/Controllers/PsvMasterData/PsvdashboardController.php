@@ -18,14 +18,13 @@ class PsvdashboardController extends Controller
         
         //UNTUK MENJUMLAHKAN DATA PSV BERDASARKAN BULAN SAAT INI
         $currentMonth = date('m');
-        $totalPsvByMonth = Psvdatamaster::whereMonth('cert_date', '=', $currentMonth)->count();
-        // dd($totalPsvByMonth);
+        $totalPsvByMonth = Psvdatamaster::whereMonth('cert_date', '=', $currentMonth)->whereYear('cert_date', '=', date('Y'))->count();
 
         // Mengambil data tag_number berdasarkan bulan
         $monthlyTagNumbers = [];
 
         for ($month = 1; $month <= 12; $month++) {
-            $PsvByMonth = Psvdatamaster::whereMonth('cert_date', '=', $month)->count();
+            $PsvByMonth = Psvdatamaster::whereMonth('cert_date',$month)->whereYear('cert_date',date('Y'))->count();
             $monthlyPsvTotals[$month] = $PsvByMonth;
 
             // Mengambil data tag_number berdasarkan bulan
@@ -50,21 +49,49 @@ class PsvdashboardController extends Controller
         ->groupBy('integrity')
         ->get();
 
-        // $psvintegritywarnacount = DB::table('psvdata_master')
-        // ->select(
-        // DB::raw('SUM(CASE WHEN integrity = "green" THEN 1 ELSE 0 END) as jumlah_green'),
-        // DB::raw('SUM(CASE WHEN integrity = "red" THEN 1 ELSE 0 END) as jumlah_red')
-        // )
-        // ->get();
+        $psvintegritySeries = [];
+        $psvintegrityLabels = [];
 
-        // \Log::debug($psvintegritycount);
-        
+        $psvintegritycountGood = Psvdatamaster::whereRaw('TIMESTAMPDIFF(MONTH,CURDATE(),exp_date) >= 3');
+        $psvintegritycountExpired = Psvdatamaster::whereRaw('TIMESTAMPDIFF(MONTH,CURDATE(),exp_date) < 0');
+        $psvintegritycountWarning = Psvdatamaster::where(function($q) {
+            $q->whereRaw('TIMESTAMPDIFF(MONTH,CURDATE(),exp_date) >= 0')
+            ->whereRaw('TIMESTAMPDIFF(MONTH,CURDATE(),exp_date) < 3');
+        });
+
+        $psvintegritySeries = [
+            $psvintegritycountGood->count(),
+            $psvintegritycountWarning->count(),
+            $psvintegritycountExpired->count(),
+        ];
+
+        $psvintegrityLabels = [
+            'Good','Warning','Expired'
+        ];
+
         // UNTUK MENJUMLAHKAN TOTAL AREA PER ITEM
         $psvareacount = DB::table('psvdata_master')
-        ->select('area', DB::raw('COUNT(*) as jumlaharea'))
-        ->groupBy('area')
-        ->get();
-        
+            ->select('area', DB::raw('COUNT(*) as jumlaharea'))
+            ->groupBy('area')
+            ->get();
+
+        $integrityAreaStatusGood = [];
+        $integrityAreaStatusWarning = [];
+        $integrityAreaStatusExpired = [];
+
+        foreach ($psvareacount as $area) {
+            $psvintegritycountAreaGood = Psvdatamaster::whereRaw('TIMESTAMPDIFF(MONTH,CURDATE(),exp_date) >= 3')->where('area',$area->area);
+            $psvintegritycountAreaExpired = Psvdatamaster::whereRaw('TIMESTAMPDIFF(MONTH,CURDATE(),exp_date) < 0')->where('area',$area->area);
+            $psvintegritycountAreaWarning = Psvdatamaster::where(function($q) {
+                $q->whereRaw('TIMESTAMPDIFF(MONTH,CURDATE(),exp_date) >= 0')
+                ->whereRaw('TIMESTAMPDIFF(MONTH,CURDATE(),exp_date) < 3');
+            })->where('area',$area->area);
+
+            $integrityAreaStatusGood[] = $psvintegritycountAreaGood->count();
+            $integrityAreaStatusWarning[] = $psvintegritycountAreaWarning->count();
+            $integrityAreaStatusExpired[] = $psvintegritycountAreaExpired->count();
+        }
+
         // UNTUK MENJUMLAHKAN TOTAL FLOW PER ITEM
         $psvflowcount = DB::table('psvdata_master')
         ->select('flow', DB::raw('COUNT(*) as jumlahflow'))
@@ -77,6 +104,11 @@ class PsvdashboardController extends Controller
         ->groupBy('psv')
         ->get();
 
+        $psvstylecategories = [];
+        foreach ($psvstylecount as $psvstyle) {
+            $psvstylecategories[] = !empty($psvstyle->psv) ? $psvstyle->psv : 'UNKNOWN';
+        }
+
         // UNTUK MENGETAHUI SISA HARI 
         // $psvcertdatecount = DB::table('psvdata_master')
         // ->select('psv', DB::raw('DATEDIFF(cert_date,DATE(NOW()) as jumlahhari'))
@@ -85,9 +117,15 @@ class PsvdashboardController extends Controller
 
         // UNTUK MENJUMLAHKAN TOTAL PSV SIZE PER ITEM
         $psvsizecount = DB::table('psvdata_master')
-        ->select('size_in', DB::raw('COUNT(*) as jumlahsize'))
+        ->select('size_in', DB::raw('COUNT(size_in) as jumlahsize'))
         ->groupBy('size_in')
+        ->orderBy('size_in')
         ->get();
+
+        $psvsizecategories = [];
+        foreach ($psvsizecount as $psvsize) {
+            $psvsizecategories[] = !empty($psvsize->size_in) ? $psvsize->size_in : 'UNKNOWN';
+        }
 
         // UNTUK MENJUMLAHKAN TOTAL PSV BRAND PER ITEM
         $psvbrandcount = DB::table('psvdata_master')
@@ -95,11 +133,23 @@ class PsvdashboardController extends Controller
         ->groupBy('manufacture')
         ->get();
 
+        $psvbrandcategories = [];
+        foreach ($psvbrandcount as $psvbrand) {
+            $psvbrandcategories[] = !empty($psvbrand->manufacture) ? $psvbrand->manufacture : 'UNKNOWN';
+        }
+
         // UNTUK MENJUMLAHKAN TOTAL PLATFORM PER ITEM
         $psvplatformcount = DB::table('psvdata_master')
         ->select('platform', DB::raw('COUNT(*) as jumlahplatform'))
         ->groupBy('platform')
         ->get();
+
+        $psvplatformcategories = [];
+        foreach ($psvplatformcount as $psvplatform) {
+            $psvplatformcategories[] = !empty($psvplatform->platform) ? $psvplatform->platform : 'UNKNOWN';
+        }
+
+        $psvplatformcount1 = Psvdatamaster::select('platform')->groupBy('platform')->get();
 
         // $contractsTotal = Contract::get()->count();
         // $roTotal = RequestOrder::get()->count();
@@ -107,6 +157,8 @@ class PsvdashboardController extends Controller
         // $roCompletedTotal = RequestOrder::where('status',3)->get()->count();
         // $roInvoicedTotal = RequestOrder::where('status',4)->get()->count();
         // $roPaidTotal = RequestOrder::where('status',9)->get()->count();
+
+        $getYears = Psvdatamaster::select(DB::raw('YEAR(cert_date) year_list'))->whereNot('cert_date',null)->groupBy('year_list')->orderBy('year_list','desc')->get();        
 
         return view('customerasset_psv.psvdashboard.dashboard', 
             compact(
@@ -129,27 +181,42 @@ class PsvdashboardController extends Controller
                 // 'greenCount',
                 // 'redCount',
                 'psvintegritycount',
+                'psvintegritySeries',
+                'psvintegrityLabels',
+                'psvintegritycountGood',
+                'psvintegritycountWarning',
+                'psvintegritycountExpired',
+                'integrityAreaStatusGood',
+                'integrityAreaStatusWarning',
+                'integrityAreaStatusExpired',
                 // 'psvintegritywarnacount',
 
-                // AREA
+                #AREA
                 'psvareacount',
 
-                //PSV STYLE
+                #PSV STYLE
                 'psvstylecount',
+                'psvstylecategories',
 
-                // FLOW STATION
+                #FLOW STATION
                 'psvflowcount',
 
-                //PSV SIZE
+                #PSV SIZE
                 'psvsizecount',
+                'psvsizecategories',
 
                 //PSV BRAND
                 'psvbrandcount',
+                'psvbrandcategories',
                 
                 //PLATFORM
                 'psvplatformcount',
+                'psvplatformcount1',
+                'psvplatformcategories',
 
                 // 'psvcertdatecount',
+
+                'getYears'
 
             )
         );

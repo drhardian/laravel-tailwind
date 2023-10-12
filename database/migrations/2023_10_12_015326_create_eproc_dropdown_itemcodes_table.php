@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dropdown_options', function (Blueprint $table) {
+        Schema::create('eproc_dropdown_itemcodes', function (Blueprint $table) {
             $table->id();
+            $table->string('code');
             $table->string('title');
             $table->string('dropdown_alias');
-            $table->unique(['title','dropdown_alias']);
+            $table->unique(['code','title','dropdown_alias']);
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dropdown_options');
+        Schema::dropIfExists('eproc_dropdown_itemcodes');
     }
 };
