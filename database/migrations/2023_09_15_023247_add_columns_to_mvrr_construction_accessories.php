@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('mvrr_construction_isolation_valve', function (Blueprint $table) {
+        Schema::table('mvrr_construction', function (Blueprint $table) {
             $table->boolean('ac_checkbox')->default(false);
             $table->text('ac_note')->nullable();
             $table->boolean('construction_change')->default(false);
@@ -23,7 +23,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('mvrr_construction_isolation_valve', function (Blueprint $table) {
+        Schema::table('mvrr_construction', function (Blueprint $table) {
             $table->dropColumn([
                 'ac_checkbox',
                 'ac_note',

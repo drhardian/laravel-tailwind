@@ -311,7 +311,7 @@ bodyIsolationClick.onclick = function () {
     $("#form_id_construction").val(forms);
     formResetConstruction();
     $("#" + forms).attr("method", "POST");
-    var url = dataUrl + "/" + valveRepair.id;
+    var url = dataUrl + "/" + valveRepair.id+"?scopeofworkid="+scopeofwork.id;
 
     $.ajax({
         type: "get",
@@ -329,7 +329,12 @@ bodyIsolationClick.onclick = function () {
         },
         success: function (response) {
             if (response.status == "empty") {
+                if(scopeofwork.scope_of_work_id != 1){
+                    hideLeftFormConstruction("body_construction_left");
+                }
+
                 Swal.close();
+
             } else {
                 $.each(response.form[0], function (key, value) {
                     // Find the input element with the corresponding ID
@@ -396,7 +401,6 @@ actuatorHandwheel.onclick = function () {
 saveRecordIsolation = () => {
     var form_url = $("#form_url_construction").val();
     var form_id_name = $("#form_id_construction").val();
-
     Swal.fire({
         template: "#create-template",
     }).then((result) => {
@@ -408,6 +412,8 @@ saveRecordIsolation = () => {
                     $("#" + form_id_name).serialize() +
                     "&repair_report_id=" +
                     valveRepair.id +
+                    "&scope_of_work_id=" +
+                    scopeofwork.id +
                     "&_token=" +
                     CSRF_TOKEN +
                     "&_method=" +
@@ -493,7 +499,7 @@ actuatorHandwheelClick.onclick = function () {
             if (response.status == "empty") {
                 Swal.close();
                 Swal.fire({
-                    icon: "alert",
+                    icon: "warning",
                     title: "Information",
                     text: response.message,
                     confirmButtonText: "Oke",
@@ -619,7 +625,6 @@ actuatorAutomationClick.onclick = function () {
                 }
             }
             Swal.close();
-            console.log(forms);
             $("#form_id_construction").val(forms);
             $("#form_url_construction").val(response.update_url);
             $("#" + forms).attr("method", "PUT");

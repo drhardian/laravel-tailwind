@@ -469,9 +469,11 @@ function openModalImg(params, alt) {
 }
 
 // Add a click event listener to the close button
-closeBtn.addEventListener("click", function () {
-    modals.classList.add("hidden");
-});
+if (closeBtn) {
+    closeBtn.addEventListener("click", function () {
+        modals.classList.add("hidden");
+    });
+}
 
 // Close the popup when clicking outside the image
 window.addEventListener("click", function (event) {

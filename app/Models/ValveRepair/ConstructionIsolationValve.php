@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ConstructionIsolationValve extends Model
 {
     use HasFactory;
-    protected $table = "mvrr_construction_isolation_valve";
+    protected $table = "mvrr_construction";
     protected $guarded = [];
 }

@@ -1,4 +1,7 @@
 @extends('layout.index')
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css">
+@endsection
 
 @section('content')
     <div class="min-h-screen w-full mx-auto max-w-4xl lg:max-w-7xl">
@@ -43,12 +46,17 @@
 
 @section('js')
     <script type="text/javascript" src="{{ asset('core/js/valve_repair/custom.js') }}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js">
+    </script>
     <script>
         var CSRF_TOKEN = $('[name="csrf-token"]').attr('content');
         var array_dropdown = @json($vrr_dropdown);
     </script>
     <script>
         $(document).ready(function() {
+            $('.select2').select2({
+                placeholder: 'Select here..'
+            });
             $('#main-table').DataTable({
                 language: {
                     processing: "Loading. Please wait..."

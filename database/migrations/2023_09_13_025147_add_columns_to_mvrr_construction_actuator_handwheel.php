@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('mvrr_construction_isolation_valve', function (Blueprint $table) {
+        Schema::table('mvrr_construction', function (Blueprint $table) {
             $table->boolean('ahc_checkbox')->default(false);
             $table->unsignedBigInteger('ahc_type_found')->nullable();
             $table->foreign('ahc_type_found')->references('id')->on('mvrr_repair_reports')->name('bc_type_found_fk');
@@ -52,7 +52,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('mvrr_construction_isolation_valve', function (Blueprint $table) {
+        Schema::table('mvrr_construction', function (Blueprint $table) {
             $table->dropColumn([
                 'ahc_checkbox',
                 'ahc_type_found',

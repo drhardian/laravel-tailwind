@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('mvrr_construction_accessories', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('construction_id');
-            $table->foreign('construction_id')->references('id')->on('mvrr_construction_isolation_valve');
+            $table->foreign('construction_id')->references('id')->on('mvrr_construction');
             $table->unsignedBigInteger('ac_accessories_id')->nullable();
             $table->foreign('ac_accessories_id')->references('id')->on('mvrr_repair_reports')->name('pc_ac_accessories_id_fk');
             $table->string('ac_accessories_as');

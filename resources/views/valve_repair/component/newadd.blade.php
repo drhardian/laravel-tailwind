@@ -120,7 +120,7 @@
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Work
                                                 Type*</label>
                                             <select id="work_type" name="work_type" required
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                 <option selected value="" disabled>Choose a order type</option>
                                                 @foreach ($vrr_dropdown as $workType)
                                                     @if ($workType->dropdown_category == 'work_type')
@@ -134,7 +134,7 @@
                                                 class="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white">Order
                                                 Type*</label>
                                             <select id="order_type" name="order_type" onchange="showHideDiv()"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                 <option selected value="" disabled>Choose a order type</option>
                                                 @foreach ($vrr_dropdown as $workType)
                                                     @if ($workType->dropdown_category == 'order_type')
@@ -150,7 +150,7 @@
                                                 Work</label>
                                             <select id="scope_of_work" name="scope_of_work"
                                                 onchange="scope_of_workDiv()"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                 <option selected value="" disabled>Choose a order type</option>
                                                 @foreach ($vrr_dropdown as $workType)
                                                     @if ($workType->dropdown_category == 'sow')
@@ -166,7 +166,7 @@
                                                     Type</label>
 
                                                     <select id="repair_type" name="repair_type"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                     <option selected value="" disabled>Choose a order type</option>
                                                     @foreach ($vrr_dropdown as $workType)
                                                         @if ($workType->dropdown_category == 'repair_type')
@@ -232,7 +232,7 @@
                                             Diagnostic
                                             only job</label>
                                         <select id="field_diagnostic_only_job" name="field_diagnostic_only_job"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                             <option selected value="" disabled>Choose a Option</option>
                                             <option value=1>Yes</option>
                                             <option value=0>No</option>
@@ -371,7 +371,7 @@
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Device
                                                 Type*</label>
                                             <select id="device_type" name="device_type" required onchange="onChangeDeviceType()"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                 <option selected value="" disabled>Choose a Device Type</option>
                                                 @foreach ($vrr_dropdown as $workType)
                                                     @if ($workType->dropdown_category == 'device_type')
@@ -385,7 +385,7 @@
                                                 class="block mb-2 mt-3 text-sm font-medium text-gray-900 dark:text-white">"Selected
                                                 Device" Type</label>
                                             <select id="selected_device_type" name="selected_device_type" required
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                 <option selected value="0" disabled>Choose a device type</option>
                                                 @foreach ($vrr_dropdown as $workType)
                                                     @if ($workType->dropdown_category == 'selected_device_type')
@@ -410,7 +410,7 @@
                                             <label for="process"
                                                 class="block mb-2 mt-3 text-sm font-medium text-gray-900 dark:text-white">Process</label>
                                             <select id="process" name="process" required
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                class="select2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                 <option selected value="" disabled>Choose a Process</option>
                                                 @foreach ($vrr_dropdown as $workType)
                                                     @if ($workType->dropdown_category == 'process_device_detail')

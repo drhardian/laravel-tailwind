@@ -53,7 +53,7 @@
                        <li class="mr-2" role="presentation">
                            <button class="inline-block p-4 border-b-2 rounded-t-lg" id="BodyIsolation-tab"
                                data-tabs-target="#BodyIsolation"
-                               data-url={{ route('valverepair.store.constructionbody') }}
+                               data-url={{ route('valverepair.scopeofwork.store.constructionbody') }}
                                data-form="mainFormConstructionBody" type="button" role="tab"
                                aria-controls="BodyIsolation" aria-selected="false">Body</button>
                        </li>
@@ -61,7 +61,7 @@
                            <button
                                class="inline-block p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                id="actuatorHandwheel-tab"
-                               data-url={{ route('valverepair.get.constructionactuatorwheel', ['consIsolValve' => $valverepair->id]) }}
+                               data-url={{ route('valverepair.scopeofwork.get.constructionactuatorwheel', ['consIsolValve' => $valverepair->id, 'scopeofworkid' => $scopeofwork->id]) }}
                                data-form="mainFormConstructionActuatorHandWheel" data-tabs-target="#actuatorHandwheel"
                                type="button" role="tab" aria-controls="actuatorHandwheel"
                                aria-selected="false">Actuator
@@ -71,7 +71,7 @@
                            <button
                                class="inline-block p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                id="ActuatorAutomation-tab"
-                               data-url={{ route('valverepair.get.constructionactuatorautomation', ['consIsolValve' => $valverepair->id]) }}
+                               data-url={{ route('valverepair.scopeofwork.get.constructionactuatorautomation', ['consIsolValve' => $valverepair->id, 'scopeofworkid' => $scopeofwork->id]) }}
                                data-tabs-target="#ActuatorAutomation" type="button"
                                data-form="mainFormActuatorAutomation" data-tabs-target="#ActuatorAutomation"
                                role="tab" aria-controls="ActuatorAutomation" aria-selected="false">Actuator
@@ -81,7 +81,7 @@
                            <button
                                class="inline-block p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                id="PositionerIsolationValve-tab"
-                               data-url={{ route('valverepair.get.constructionpositionerisolation', ['consIsolValve' => $valverepair->id]) }}
+                               data-url={{ route('valverepair.scopeofwork.get.constructionpositionerisolation', ['consIsolValve' => $valverepair->id, 'scopeofworkid' => $scopeofwork->id]) }}
                                data-tabs-target="#PositionerIsolationValve" type="button"
                                data-form="mainFormPositionerIsolationValve" data-tabs-target="#PositionerIsolationValve"
                                role="tab" aria-controls="PositionerIsolationValve"
@@ -91,7 +91,7 @@
                            <button
                                class="inline-block p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                id="AccessoriesIsolationValve-tab"
-                               data-url={{ route('valverepair.get.constructionaccesoriesisolation', ['consIsolValve' => $valverepair->id]) }}
+                               data-url={{ route('valverepair.scopeofwork.get.constructionaccesoriesisolation', ['consIsolValve' => $valverepair->id, 'scopeofworkid' => $scopeofwork->id]) }}
                                data-tabs-target="#AccessoriesIsolationValve" type="button"
                                data-form="mainFormAccessoriesIsolationValve"
                                data-tabs-target="#AccessoriesIsolationValve" role="tab"

@@ -197,54 +197,43 @@
 
                 </div>
             </div>
-
         </div>
 
-        <div class="flex justify-center mb-10 p-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-                {{-- <x-card-menu :onclick="openFormContent({{ route('valverepair.store') }}, 'isolationValveModal', 'New CONSTRUCTION - ACTUATOR ISOLATION VALVE')" :image="asset('theme/assets/images/menu.png')" :title="'Construction'" /> --}}
-
-                {{-- <x-card-menu :onclick="openFormContent(1,'isolationValveModal', 'New CONSTRUCTION - ACTUATOR ISOLATION VALVE')" :image="asset('theme/assets/images/menu.png')" :title="'Construction'" />
-                <x-card-menu :image="asset('theme/assets/images/menu.png')" :title="'Calibration'" />
-                <x-card-menu :image="asset('theme/assets/images/menu.png')" :title="'Optional Services'" />
-                <x-card-menu :image="asset('theme/assets/images/menu.png')" :title="'Finding and Corrective Action'" />
-                <x-card-menu :image="asset('theme/assets/images/menu.png')" :title="'PHE - Penetrant'" />
-                <x-card-menu :image="asset('theme/assets/images/menu.png')" :title="'PHE - Testing'" />
-                <x-card-menu :image="asset('theme/assets/images/menu.png')" :title="'Painting'" />
-                <x-card-menu :image="asset('theme/assets/images/menu.png')" :title="'PHE - Packaging'" /> --}}
-                <div onclick="openFormConstruction('{{ route('valverepair.store') }}')">
-                    <div
-                        class="w-72 max-w-sm hover:bg-gray-100 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                        <div class="flex justify-end px-4 pt-4">
-                        </div>
-                        <div class="flex flex-col items-center ">
-                            <img class="w-24 h-24 mb-3 shadow-lg rounded-full"
-                                src="{{ asset('theme/assets/images/menu.png') }}" alt="Bonnie image" />
-                            <h6 class="p-4 text-center mb-1 text-md font-medium text-gray-900 dark:text-white">Construction
-                            </h6>
-                        </div>
-                    </div>
+        <div class="p-4 flex flex-col lg:flex-row ">
+            <div
+                class="w-full h-auto p-3 mr-4 basis-5/5 mb-4 bg-white border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                <div class="flex justify-between mb-7">
+                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
+                            class="fa-solid fa-gears"></i> Scope Of Work</h5>
+                    <button type="button" onclick="openFormSow(`{{ route('valverepair.scopeofwork.store') }}`)"
+                        class="text-white bg-blue-700 hidden sm:block hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <i class="fa-solid fa-plus mr-2"></i>New
+                    </button>
                 </div>
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
+                    <table id="scope_of_work_id_table" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Scope of Work
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                <div onclick="openFormConstruction('{{ route('valverepair.store') }}')">
-                    <div
-                        class="w-72 max-w-sm hover:bg-gray-100 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                        <div class="flex justify-end px-4 pt-4">
-                        </div>
-                        <div class="flex flex-col items-center ">
-                            <img class="w-24 h-24 mb-3 shadow-lg rounded-full"
-                                src="{{ asset('theme/assets/images/menu.png') }}" alt="Bonnie image" />
-                            <h6 class="p-4 text-center mb-1 text-md font-medium text-gray-900 dark:text-white">Calibration
-                            </h6>
-                        </div>
-                    </div>
+
+                        </tbody>
+                    </table>
                 </div>
-
 
             </div>
         </div>
-    </div>
-    </div>
+
+
+        </div>
 
     <!-- The Popup -->
     <div id="myImageModal"
@@ -264,13 +253,16 @@
             <img id="ImgSrc" src="" alt="Popup Image">
         </div>
     </div>
+
     @include('valve_repair.component.edit')
-    @include('valve_repair.construction.modal')
+    @include('valve_repair.component.scopeofwork')
 @endsection
 
 @section('js')
     <script type="text/javascript" src="{{ asset('core/js/valve_repair/custom.js') }}"></script>
     <script type="text/javascript" src="{{ asset('core/js/valve_repair/construction/custom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('core/js/valve_repair/scopeofwork/sow.js') }}"></script>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js">
     </script>
     <script>
@@ -278,9 +270,38 @@
         var array_dropdown = @json($vrr_dropdown);
         var valveRepair = @json($valverepair);
         var updateUrls = "{{ route('valverepair.update', ['valverepair' => $valverepair->id]) }}";
+
         $(document).ready(function() {
             $('.select2').select2({
                 placeholder: 'Select here..'
+            });
+            $('#scope_of_work_id_table').DataTable({
+                language: {
+                    processing: "Loading. Please wait..."
+                },
+                responsive: true,
+                processing: true,
+                serverSide: true,
+                deferRender: true,
+                bAutoWidth: false,
+                ajax: {
+                    url: "{{ route('scopeofwork.main.table') }}",
+                },
+                columns: [{
+                        data: 'scope_of_work_id',
+                        name: 'scope_of_work_id',
+                        className: 'all',
+                        class: ['flex justify-center'],
+
+                    },
+                    {
+                        data: 'actions',
+                        name: 'actions',
+                        class: ['text-center', 'min-tablet'],
+                        orderable: false,
+                        sortable: false,
+                    },
+                ],
             });
         });
     </script>

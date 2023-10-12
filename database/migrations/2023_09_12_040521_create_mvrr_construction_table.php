@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mvrr_construction_isolation_valve', function (Blueprint $table) {
+        Schema::create('mvrr_construction', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('repair_report_id');
             $table->foreign('repair_report_id')->references('id')->on('mvrr_repair_reports');
@@ -82,6 +82,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mvrr_construction_isolation_valve');
+        Schema::dropIfExists('mvrr_construction');
     }
 };

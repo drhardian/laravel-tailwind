@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('mvrr_construction_isolation_valve', function (Blueprint $table) {
+        Schema::table('mvrr_construction', function (Blueprint $table) {
             $table->boolean('pc_checkbox')->default(false);
 
             $table->unsignedBigInteger('pc_brand_found')->nullable();
@@ -43,7 +43,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('mvrr_construction_isolation_valve', function (Blueprint $table) {
+        Schema::table('mvrr_construction', function (Blueprint $table) {
             $table->dropColumn([
                 'pc_checkbox',
                 'pc_brand_found',
