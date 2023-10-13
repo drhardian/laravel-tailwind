@@ -19,8 +19,8 @@ class EprocmaterialController extends Controller
 
     public function __construct()
     {
-        $this->pageTitle = 'e-Proc Material';
-        $this->pageProfile = 'e-Proc Material';
+        $this->pageTitle = 'e-Proc Products';
+        $this->pageProfile = 'e-Proc Products';
     }
 
     /**

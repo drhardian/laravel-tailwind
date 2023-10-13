@@ -357,11 +357,11 @@
                                             <ul class="text-sm text-gray-700 dark:text-gray-200">
                                                 <li>
                                                     <a href="{{ route('eprocitemcode.index') }}"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Tools Code</a>
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Item Code</a>
                                                 </li>
                                                 <li>
                                                     <a href="{{ route('eprocmaterial.index') }}"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Material</a>
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Products</a>
                                                 </li>
                                             </ul>
                                         </div>

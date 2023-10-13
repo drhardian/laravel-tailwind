@@ -15,7 +15,7 @@
                 @endunless
             
                 <div class="flex space-x-3"> <!-- Container untuk tombol-tombol -->
-                    {{-- <button type="button" onclick="openUploadForm()"
+                    <button type="button" onclick="openUploadForm()"
                         class="text-white bg-green-700 sm:block hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         <i class="fa-solid fa-file-import"></i> Import
                     </button>
@@ -23,7 +23,7 @@
                     <a id="newBtn" href="{{ route('psvdatamaster.export') }}" download="exported-data.csv"
                         class="text-white bg-yellow-400 sm:block hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
                         <i class="fa-solid fa-file-export"></i> Export
-                    </a> --}}
+                    </a>
                     <button type="button" id="newBtn" onclick="openForm(`{{ route('eprocmaterial.store') }}`)"
                         class="text-white bg-blue-700 sm:block hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <i class="fa-solid fa-plus"></i> New
@@ -109,35 +109,17 @@
                     <form id="mainForm" method="post" enctype="multipart/form-data">
                         @csrf
                             <!-- Tab Panel -->
-                        <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+                        {{-- <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                             <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
                                 data-tabs-toggle="#myTabContent" role="tablist">
                                 <li class="mr-2" role="presentation">
                                     <button
                                         class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                         id="general-tab" data-tabs-target="#general" type="button" role="tab"
-                                        aria-controls="general" aria-selected="false">TOOLS CODE</button>
+                                        aria-controls="general" aria-selected="false">PRODUCT</button>
                                 </li>
-                                {{-- <li class="mr-2" role="presentation">
-                                    <button
-                                        class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                        id="valve-tab" data-tabs-target="#valve" type="button" role="tab"
-                                        aria-controls="valve" aria-selected="false">VALVE INFORMATION</button>
-                                </li>
-                                <li class="mr-2" role="presentation">
-                                    <button
-                                        class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                        id="process-tab" data-tabs-target="#process" type="button" role="tab"
-                                        aria-controls="process" aria-selected="false">PROCESS CONDITION</button>
-                                </li>
-                                <li class="mr-2" role="presentation">
-                                    <button
-                                        class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                        id="condi-tab" data-tabs-target="#condi" type="button" role="tab"
-                                        aria-controls="condi" aria-selected="false">CONDITION REPLACEMENT</button>
-                                </li> --}}
                             </ul>
-                        </div>
+                        </div> --}}
 
                         <div id="myTabContent">
                             

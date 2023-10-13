@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('eproc_materials', function (Blueprint $table) {
             $table->id();
+            $table->string('material_image')->nullable();
             $table->string('materialmain_code');
             $table->string('material_code');
             $table->string('materialsub_code');
@@ -22,10 +23,11 @@ return new class extends Migration
             $table->string('brand_eproc')->nullable();
             $table->string('uom_eproc')->nullable();
             $table->string('price')->nullable();
-            $table->string('material_image')->nullable();
             $table->timestamps();
-            $table->foreign('unit_rate_id')->references('id')->on('unit_rate');
-
+            $table->foreign('materialmain_code')->references('titlemain_code')->on('eproc_itemcodes');
+            $table->foreign('material_code')->references('title_code')->on('eproc_itemcodes');
+            $table->foreign('materialsub_code')->references('titlesub_code')->on('eproc_itemcodes');
+            $table->foreign('materialgroup_code')->references('titlegroup_code')->on('eproc_itemcodes');
         });
     }
 

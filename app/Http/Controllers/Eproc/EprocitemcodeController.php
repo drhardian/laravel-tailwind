@@ -18,8 +18,8 @@ class EprocitemcodeController extends Controller
 
     public function __construct()
     {
-        $this->pageTitle = 'e-Proc Tools Code';
-        $this->pageProfile = 'e-Proc Tools Code';
+        $this->pageTitle = 'e-Proc Item Code';
+        $this->pageProfile = 'e-Proc Item Code';
     }
 
     /**
