@@ -20,11 +20,10 @@ use App\Http\Controllers\MappingTable\MappingTableController;
 use App\Http\Controllers\PsvMasterData\PsvdatamasterController;
 use App\Http\Controllers\PsvMasterData\PsvdashboardController;
 use App\Http\Controllers\DropdownOptionController;
+use App\Http\Controllers\Eproc\EprocDropdownItemcodeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Eproc\EprocitemcodeController;
-use App\Http\Controllers\Eproc\EprocmaterialController;
-use App\Http\Controllers\DropdownOptionItemcodeController;
-
+use App\Http\Controllers\Eproc\EprocproductController;
 use App\Http\Controllers\PsvMasterData\PdfController;
 
 /*
@@ -182,10 +181,10 @@ Route::prefix('eprocitemcode')->controller(EprocitemcodeController::class)->grou
 
 });
 
-Route::resource('eprocmaterial', EprocmaterialController::class);
-Route::prefix('eprocmaterial')->controller(EprocmaterialController::class)->group(function() {
-    Route::get('show/dropdown', 'showOnDropdown')->name('eprocmaterial.show.dropdown');
-    Route::get('show/datatable', 'showDatatable')->name('eprocmaterial.main.table');
+Route::resource('eprocproduct', EprocproductController::class);
+Route::prefix('eprocproduct')->controller(EprocproductController::class)->group(function() {
+    Route::get('show/dropdown', 'showOnDropdown')->name('eprocproduct.show.dropdown');
+    Route::get('show/datatable', 'showDatatable')->name('eprocproduct.main.table');
     // Route::get('eprocitemcode/export', 'exportExcel')->name('eprocitemcode.export');
     // Route::post('eprocitemcode/import', 'importExcel')->name('eprocitemcode.import');
     // Route::get('/eprocitemcode/{id}', 'cetakPdf')->name('eprocitemcode.pdf');
@@ -193,7 +192,7 @@ Route::prefix('eprocmaterial')->controller(EprocmaterialController::class)->grou
 
 });
 
-Route::prefix('dropdown/optionsitemcode/')->controller(DropdownOptionItemcodeController::class)->group(function() {
+Route::prefix('dropdown/itemcode/')->controller(EprocDropdownItemcodeController::class)->group(function() {
     Route::get('show', 'showOnDropdown')->name('eproc.options.showondropdown');
     Route::post('new', 'storeFromDropdown')->name('eproc.options.storefromdropdown');
 });

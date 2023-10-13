@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Eproc;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Eproc\Eprocmaterial;
+use App\Models\Eproc\Eprocproduct;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -12,7 +12,7 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 
 
-class EprocmaterialController extends Controller
+class EprocproductController extends Controller
 {
     protected $pageTitle;
     protected $pageProfile;
@@ -43,7 +43,7 @@ class EprocmaterialController extends Controller
             ],
         ];
 
-        return view('eproc.eprocmaterial.index', [
+        return view('eproc.eprocproduct.index', [
             'breadcrumbs' => $breadcrumbs,
             'title' => $this->pageTitle
         ]);
@@ -58,18 +58,18 @@ class EprocmaterialController extends Controller
         DB::beginTransaction();
 
         try {
-            $eprocmaterial = Eprocmaterial::create(
-                $request->only('materialmain_code', 'material_code', 'materialsub_code','materialgroup_code', 'descrip', 'specif', 'brand_eproc', 'uom_eproc', 'price')
+            $eprocproduct = Eprocproduct::create(
+                $request->only('productmain_code', 'product_code', 'productsub_code','productgroup_code', 'descrip', 'specif', 'brand_eproc', 'uom_eproc', 'price')
             );
             
             DB::commit();
 
             return response()->json([
-                'message' => 'Eprocmaterial has been created!'
+                'message' => 'Eprocproduct has been created!'
             ], 200);
 
             // return response()->json([
-            //     'url' => route('eprocmaterial.show', [$eprocmaterial->id])
+            //     'url' => route('eprocproduct.show', [$eprocproduct->id])
             // ], 200);
 
         } catch (\Throwable $th) {
@@ -83,16 +83,16 @@ class EprocmaterialController extends Controller
 
         
 
-        // Eprocmaterial::create($validatedData);
+        // Eprocproduct::create($validatedData);
 
-        // return redirect()->back()->with('success', 'Eprocmaterial has been created!');
+        // return redirect()->back()->with('success', 'Eprocproduct has been created!');
     }
 
 
     /**
      * Display the specified resource.
      */
-    public function show(Eprocmaterial $eprocmaterial)
+    public function show(Eprocproduct $eprocproduct)
     {
         $breadcrumbs = [
             [
@@ -104,7 +104,7 @@ class EprocmaterialController extends Controller
             [
                 'title' => $this->pageTitle,
                 'status' => 'active',
-                'url' => route('eprocmaterial.index'),
+                'url' => route('eprocproduct.index'),
                 'icon' => '',
             ],
             [
@@ -115,10 +115,10 @@ class EprocmaterialController extends Controller
             ],
         ];
 
-        return view('eproc.eprocmaterial.profile', [
+        return view('eproc.eprocproduct.profile', [
             'breadcrumbs' => $breadcrumbs,
             'title' => $this->pageProfile,
-            'eprocmaterial' => $eprocmaterial
+            'eprocproduct' => $eprocproduct
         ]);
     }
 
@@ -148,29 +148,32 @@ class EprocmaterialController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Eprocmaterial $eprocmaterial)
+    public function edit(Eprocproduct $eprocproduct)
     {
         return response()->json([
             'dropdown' => [
-                'materialmain_code' => $eprocmaterial->materialmain_code,
-                'material_code' => $eprocmaterial->material_code,
-                'materialsub_code' => $eprocmaterial->materialsub_code,
-                'materialgroup_code'=> $eprocmaterial->materialgroup_code,
-                'descrip'=> $eprocmaterial->descrip, 
-                'specif'=> $eprocmaterial->specif, 
-                'brand_eproc'=> $eprocmaterial->brand_eproc, 
-                'uom_eproc'=> $eprocmaterial->uom_eproc, 
-                'price'=> $eprocmaterial->price,
+                'productmain_code' => $eprocproduct->productmain_code,
+                'product_code' => $eprocproduct->product_code,
+                'productsub_code' => $eprocproduct->productsub_code,
+                'productgroup_code'=> $eprocproduct->productgroup_code,
+                
+            ],
+            'form' => [
+               ['descrip', $eprocproduct->descrip], 
+               ['specif', $eprocproduct->specif], 
+               ['brand_eproc', $eprocproduct->brand_eproc], 
+               ['uom_eproc', $eprocproduct->uom_eproc], 
+               ['price', $eprocproduct->price],
             ],
 
-            'update_url' => route('eprocmaterial.update', ['eprocmaterial' => $eprocmaterial->id])
+            'update_url' => route('eprocproduct.update', ['eprocproduct' => $eprocproduct->id])
         ], 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Eprocmaterial $eprocmaterial)
+    public function update(Request $request, Eprocproduct $eprocproduct)
     {
         DB::beginTransaction();
 
@@ -196,15 +199,15 @@ class EprocmaterialController extends Controller
             //     // $validatedData['cert_doc'] = $fileName;
             // }
         
-            Eprocmaterial::where('id', $eprocmaterial->id)->update(
-            $request->only('materialmain_code', 'material_code', 'materialsub_code','materialgroup_code', 'descrip', 'specif', 'brand_eproc', 'uom_eproc', 'price')
+            Eprocproduct::where('id', $eprocproduct->id)->update(
+            $request->only('productmain_code', 'product_code', 'productsub_code','productgroup_code', 'descrip', 'specif', 'brand_eproc', 'uom_eproc', 'price')
             
         ); 
 
             DB::commit();
 
             return response()->json([
-                'message' => 'eprocmaterial successfully updated'
+                'message' => 'eprocproduct successfully updated'
             ], 200);
         } catch (\Exception $e) {
             DB::rollBack();
@@ -256,22 +259,22 @@ class EprocmaterialController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Eprocmaterial $eprocmaterial)
+    public function destroy(Eprocproduct $eprocproduct)
     {
         DB::beginTransaction();
 
         try {
-            // if($eprocmaterial->cert_doc){
-            //     $result = str_replace('storage/', '', $eprocmaterial->cert_doc);
+            // if($eprocproduct->cert_doc){
+            //     $result = str_replace('storage/', '', $eprocproduct->cert_doc);
             //         Storage::delete('public/' . $result);
             // }
 
-            Eprocmaterial::destroy($eprocmaterial->id);
+            Eprocproduct::destroy($eprocproduct->id);
 
             DB::commit();
 
             return response()->json([
-                'message' => 'eprocmaterial successfully deleted'
+                'message' => 'eprocproduct successfully deleted'
             ], 200);
         } catch (\Exception $e) {
             DB::rollBack();
@@ -349,12 +352,12 @@ class EprocmaterialController extends Controller
 
     public function showDatatable()
     {
-        $model = Eprocmaterial::select(
+        $model = Eprocproduct::select(
             'id',
-            'materialmain_code', 
-            'material_code', 
-            'materialsub_code',
-            'materialgroup_code', 
+            'productmain_code', 
+            'product_code', 
+            'productsub_code',
+            'productgroup_code', 
             'descrip', 
             'specif', 
             'brand_eproc', 
@@ -365,9 +368,9 @@ class EprocmaterialController extends Controller
 
         return DataTables::of($model)
             ->addColumn('actions', function($model) {
-                $show = '<a href="'.route('eprocmaterial.show', [ $model->id ]).'"><i class="fa-solid fa-eye cursor-pointer"></i></a>';
-                $edit = '<a href="#" class="px-2" onclick="editRecord(\'' . route('eprocmaterial.edit', ['eprocmaterial' => $model->id]) . '\')"><i class="fa-solid fa-pen-to-square cursor-pointer"></i></a>';
-                $delete = '<a href="#" class="" onclick="deleteRecord(\'' . route('eprocmaterial.destroy', ['eprocmaterial' => $model->id]) . '\')"><i class="fa-solid fa-trash cursor-pointer"></i></a>';
+                $show = '<a href="'.route('eprocproduct.show', [ $model->id ]).'"><i class="fa-solid fa-eye cursor-pointer"></i></a>';
+                $edit = '<a href="#" class="px-2" onclick="editRecord(\'' . route('eprocproduct.edit', ['eprocproduct' => $model->id]) . '\')"><i class="fa-solid fa-pen-to-square cursor-pointer"></i></a>';
+                $delete = '<a href="#" class="" onclick="deleteRecord(\'' . route('eprocproduct.destroy', ['eprocproduct' => $model->id]) . '\')"><i class="fa-solid fa-trash cursor-pointer"></i></a>';
                 $actions = '<div class="row flex">'.
                     $show.$edit.$delete.
                     '</div>';
@@ -378,7 +381,7 @@ class EprocmaterialController extends Controller
                 return Carbon::parse($model->updated_at)->format('d/m/Y H:i:s');
             })
             ->rawColumns(['actions'])
-            ->removeColumn('eprocmaterials')
+            ->removeColumn('eprocproducts')
             ->make(true);
     }
 }

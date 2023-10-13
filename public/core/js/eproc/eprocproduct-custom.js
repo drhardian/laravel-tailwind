@@ -6,7 +6,7 @@ let closeIco = document.getElementById('closeIco');
 
 openForm = (url) => {
     modalShowAndReset();
-    $('.modal-title').text('New Input Material e-Proc');
+    $('.modal-title').text('New Input Product e-Proc');
     $('#form_url').val(url);
 }
 
@@ -97,7 +97,7 @@ saveRecord = () => {
 
 editRecord = (url) => {
     modalShowAndReset();
-    $('.modal-title').text('Edit Input Material e-Proc');
+    $('.modal-title').text('Edit Input Product e-Proc');
 
     $('#warning-alert').removeClass('flex').addClass('hidden');
 
@@ -181,7 +181,7 @@ let closeUploadXlsIco = document.getElementById('closeUploadXlsIco');
 
 openUploadForm = () => {
     modalUploadShowAndReset();
-    $('.modal-title').text('Import Material e-Proc');
+    $('.modal-title').text('Import Product e-Proc');
     $('#form_url').val(url);
 }
 

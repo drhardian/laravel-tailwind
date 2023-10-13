@@ -114,8 +114,8 @@
                                 <li class="mr-2" role="presentation">
                                     <button
                                         class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                        id="general-tab" data-tabs-target="#general" type="button" role="tab"
-                                        aria-controls="general" aria-selected="false">TOOLS CODE</button>
+                                        id="eproc-tab" data-tabs-target="#eproc" type="button" role="tab"
+                                        aria-controls="eproc" aria-selected="false">TOOLS CODE</button>
                                 </li>
                             </ul>
                         </div> --}}
@@ -132,7 +132,7 @@
                                                     <label for="main_code"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Main Code</label>
                                                         <select id="main_code" name="main_code"
-                                                        class="select2-general-dropdown"
+                                                        class="select2-eproc-dropdown"
                                                         data-show="{{ route ('eproc.options.showondropdown') }}"
                                                         data-store="{{ route ('eproc.options.storefromdropdown') }}"
                                                         data-alias="eproc-main_code"
@@ -143,7 +143,7 @@
                                                     <label for="titlemain_code"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title Main Code</label>
                                                     <select id="titlemain_code" name="titlemain_code"
-                                                    class="select2-general-dropdown"
+                                                    class="select2-eproc-dropdown"
                                                     data-show="{{ route ('eproc.options.showondropdown') }}"
                                                     data-store="{{ route ('eproc.options.storefromdropdown') }}"
                                                     data-alias="eproc-titlemain_code"
@@ -152,28 +152,28 @@
                                                 </div> --}}
                                                 <div class="row sm:flex">
                                                     <div class="w-full">
-                                                    <label for="main_code_and_titlemain_code"
-                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Main Code</label>
-                                                    <div class="flex">
-                                                        <div class="w-full">
-                                                            <select id="main_code" name="main_code"
-                                                                class="select2-general-dropdown"
-                                                                data-show="{{ route ('general.options.showondropdown') }}"
-                                                                data-store="{{ route ('general.options.storefromdropdown') }}"
-                                                                data-alias="eproc-main_code"
-                                                                data-change="true"
-                                                                data-form="main code"></select>
+                                                        <label for="main_code_and_titlemain_code"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Main Code</label>
+                                                        <div class="flex">
+                                                            <div class="w-1/4"> <!-- Bagian Main Code -->
+                                                                <select id="main_code" name="main_code"
+                                                                    class="select2-eproc-dropdown"
+                                                                    data-show="{{ route ('eproc.options.showondropdown') }}"
+                                                                    data-store="{{ route ('eproc.options.storefromdropdown') }}"
+                                                                    data-alias="eproc-main_code"
+                                                                    data-change="true"
+                                                                    data-form="main code"></select>
+                                                            </div>
+                                                            <div class="w-3/4"> <!-- Bagian Title Main Code -->
+                                                                <select id="titlemain_code" name="titlemain_code"
+                                                                    class="select2-eproc-dropdown"
+                                                                    data-show="{{ route ('eproc.options.showondropdown') }}"
+                                                                    data-store="{{ route ('eproc.options.storefromdropdown') }}"
+                                                                    data-alias="eproc-titlemain_code"
+                                                                    data-change="true"
+                                                                    data-form="title main code"></select>
+                                                            </div>
                                                         </div>
-                                                        <div class="w-full">
-                                                            <select id="titlemain_code" name="titlemain_code"
-                                                                class="select2-general-dropdown"
-                                                                data-show="{{ route ('general.options.showondropdown') }}"
-                                                                data-store="{{ route ('general.options.storefromdropdown') }}"
-                                                                data-alias="eproc-titlemain_code"
-                                                                data-change="true"
-                                                                data-form="title main code"></select>
-                                                        </div>
-                                                    </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -183,7 +183,7 @@
                                                 <label for="code"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Code</label>
                                                     <select id="code" name="code"
-                                                    class="select2-general-dropdown"
+                                                    class="select2-eproc-dropdown"
                                                     data-show="{{ route ('eproc.options.showondropdown') }}"
                                                     data-store="{{ route ('eproc.options.storefromdropdown') }}"
                                                     data-alias="eproc-code"
@@ -194,7 +194,7 @@
                                                 <label for="title_code"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title Code</label>
                                                     <select id="code" name="code"
-                                                    class="select2-general-dropdown"
+                                                    class="select2-eproc-dropdown"
                                                     data-show="{{ route ('eproc.options.showondropdown') }}"
                                                     data-store="{{ route ('eproc.options.storefromdropdown') }}"
                                                     data-alias="eproc-title_code"
@@ -205,24 +205,24 @@
                                         <div class="row sm:flex space-x-4">
                                             <div class="w-full">
                                                 <div class="row sm:flex">
-                                                    <div class="w-full">
+                                                    <div class="w-full"> 
                                                         <label for="code_and_title_code"
                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Code</label>
                                                         <div class="flex">
-                                                            <div class="w-full">
+                                                            <div class="w-1/4"> <!-- Bagian Code -->
                                                                 <select id="code" name="code"
-                                                                    class="select2-general-dropdown"
-                                                                    data-show="{{ route ('general.options.showondropdown') }}"
-                                                                    data-store="{{ route ('general.options.storefromdropdown') }}"
+                                                                    class="select2-eproc-dropdown"
+                                                                    data-show="{{ route ('eproc.options.showondropdown') }}"
+                                                                    data-store="{{ route ('eproc.options.storefromdropdown') }}"
                                                                     data-alias="eproc-code"
                                                                     data-change="true"
                                                                     data-form="code"></select>
                                                             </div>
-                                                            <div class="w-full">
+                                                            <div class="w-3/4"> <!-- Bagian Title Code -->
                                                                 <select id="title_code" name="title_code"
-                                                                    class="select2-general-dropdown"
-                                                                    data-show="{{ route ('general.options.showondropdown') }}"
-                                                                    data-store="{{ route ('general.options.storefromdropdown') }}"
+                                                                    class="select2-eproc-dropdown"
+                                                                    data-show="{{ route ('eproc.options.showondropdown') }}"
+                                                                    data-store="{{ route ('eproc.options.storefromdropdown') }}"
                                                                     data-alias="eproc-title_code"
                                                                     data-change="true"
                                                                     data-form="title code"></select>
@@ -232,11 +232,12 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                             {{-- <div class="w-full">
                                                 <label for="sub_code"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sub Code</label>
                                                     <select id="sub_code" name="sub_code"
-                                                    class="select2-general-dropdown"
+                                                    class="select2-eproc-dropdown"
                                                     data-show="{{ route ('eproc.options.showondropdown') }}"
                                                     data-store="{{ route ('eproc.options.storefromdropdown') }}"
                                                     data-alias="eproc-sub_code"
@@ -247,7 +248,7 @@
                                                 <label for="titlesub_code"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title Sub Code</label>
                                                     <select id="titlesub_code" name="titlesub_code"
-                                                    class="select2-general-dropdown"
+                                                    class="select2-eproc-dropdown"
                                                     data-show="{{ route ('eproc.options.showondropdown') }}"
                                                     data-store="{{ route ('eproc.options.storefromdropdown') }}"
                                                     data-alias="eproc-titlesub_code"
@@ -261,20 +262,20 @@
                                                             <label for="subcode_and_titlesub_code"
                                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sub Code</label>
                                                             <div class="flex">
-                                                                <div class="w-full">
+                                                                <div class="w-1/4"> <!-- Bagian Sub Code -->
                                                                     <select id="sub_code" name="sub_code"
-                                                                        class="select2-general-dropdown"
-                                                                        data-show="{{ route ('general.options.showondropdown') }}"
-                                                                        data-store="{{ route ('general.options.storefromdropdown') }}"
+                                                                        class="select2-eproc-dropdown"
+                                                                        data-show="{{ route ('eproc.options.showondropdown') }}"
+                                                                        data-store="{{ route ('eproc.options.storefromdropdown') }}"
                                                                         data-alias="eproc-sub_code"
                                                                         data-change="true"
                                                                         data-form="sub code"></select>
                                                                 </div>
-                                                                <div class="w-full">
+                                                                <div class="w-3/4"> <!-- Bagian Title Sub Code -->
                                                                     <select id="titlesub_code" name="titlesub_code"
-                                                                        class="select2-general-dropdown"
-                                                                        data-show="{{ route ('general.options.showondropdown') }}"
-                                                                        data-store="{{ route ('general.options.storefromdropdown') }}"
+                                                                        class="select2-eproc-dropdown"
+                                                                        data-show="{{ route ('eproc.options.showondropdown') }}"
+                                                                        data-store="{{ route ('eproc.options.storefromdropdown') }}"
                                                                         data-alias="eproc-titlesub_code"
                                                                         data-change="true"
                                                                         data-form="title sub code"></select>
@@ -288,7 +289,7 @@
                                                 <label for="group_code"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Group Code</label>
                                                     <select id="group_code" name="group_code"
-                                                    class="select2-general-dropdown"
+                                                    class="select2-eproc-dropdown"
                                                     data-show="{{ route ('eproc.options.showondropdown') }}"
                                                     data-store="{{ route ('eproc.options.storefromdropdown') }}"
                                                     data-alias="eproc-group_code"
@@ -299,7 +300,7 @@
                                                 <label for="titlegroup_code"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title Group Code</label>
                                                     <select id="titlegroup_code" name="titlegroup_code"
-                                                    class="select2-general-dropdown"
+                                                    class="select2-eproc-dropdown"
                                                     data-show="{{ route ('eproc.options.showondropdown') }}"
                                                     data-store="{{ route ('eproc.options.storefromdropdown') }}"
                                                     data-alias="eproc-titlegroup_code"
@@ -313,20 +314,20 @@
                                                             <label for="groupcode_and_titlegroup_code"
                                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Group Code</label>
                                                             <div class="flex">
-                                                                <div class="w-full">
+                                                                <div class="w-1/4"> <!-- Bagian Group Code -->
                                                                     <select id="group_code" name="group_code"
-                                                                        class="select2-general-dropdown"
-                                                                        data-show="{{ route ('general.options.showondropdown') }}"
-                                                                        data-store="{{ route ('general.options.storefromdropdown') }}"
+                                                                        class="select2-eproc-dropdown"
+                                                                        data-show="{{ route ('eproc.options.showondropdown') }}"
+                                                                        data-store="{{ route ('eproc.options.storefromdropdown') }}"
                                                                         data-alias="eproc-group_code"
                                                                         data-change="true"
                                                                         data-form="group code"></select>
                                                                 </div>
-                                                                <div class="w-full">
+                                                                <div class="w-3/4"> <!-- Bagian Title Group Code -->
                                                                     <select id="titlegroup_code" name="titlegroup_code"
-                                                                        class="select2-general-dropdown"
-                                                                        data-show="{{ route ('general.options.showondropdown') }}"
-                                                                        data-store="{{ route ('general.options.storefromdropdown') }}"
+                                                                        class="select2-eproc-dropdown"
+                                                                        data-show="{{ route ('eproc.options.showondropdown') }}"
+                                                                        data-store="{{ route ('eproc.options.storefromdropdown') }}"
                                                                         data-alias="eproc-titlegroup_code"
                                                                         data-change="true"
                                                                         data-form="title group code"></select>
@@ -544,7 +545,7 @@
                 
             // });
 
-            $('.select2-general-dropdown').select2({
+            $('.select2-eproc-dropdown').select2({
                 allowClear: true,
                 tags: true,
                 ajax: {
@@ -571,7 +572,7 @@
                 placeholder: 'Search here..',
             });
 
-            $('.select2-general-dropdown').on('select2:close', function(e){
+            $('.select2-eproc-dropdown').on('select2:close', function(e){
                 let getText = $(this).find(':selected');
                 var paramsData = getText[0].label;
 

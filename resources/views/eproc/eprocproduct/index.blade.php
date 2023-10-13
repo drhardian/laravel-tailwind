@@ -24,7 +24,7 @@
                         class="text-white bg-yellow-400 sm:block hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
                         <i class="fa-solid fa-file-export"></i> Export
                     </a>
-                    <button type="button" id="newBtn" onclick="openForm(`{{ route('eprocmaterial.store') }}`)"
+                    <button type="button" id="newBtn" onclick="openForm(`{{ route('eprocproduct.store') }}`)"
                         class="text-white bg-blue-700 sm:block hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <i class="fa-solid fa-plus"></i> New
                     </button>
@@ -122,56 +122,61 @@
                         </div> --}}
 
                         <div id="myTabContent">
-                            
-                            <!-- CODE TOOLS -->
-                            <div class id="code" role="tab" aria-labelledby="code-tab">
+                            <div class id="product" role="tab" aria-labelledby="product-tab">
                                 <div class="space-y-6">
+                                    <!-- ITEM CODE -->
                                     <div class="mb-6">
                                         <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full mr-2">
+                                            <div class="sm:w-1/4 w-full mr-2">
                                                 <label for="titlemain_code"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Main Code</label>
                                                 <select id="titlemain_code" name="titlemain_code"
                                                 class="select2-general-dropdown"
-                                                data-show="{{ route ('eproc.options.showondropdown') }}"
-                                                data-store="{{ route ('eproc.options.storefromdropdown') }}"
+                                                data-show="{{ route ('general.options.showondropdown') }}"
+                                                data-store="{{ route ('general.options.storefromdropdown') }}"
                                                 data-alias="eproc-titlemain_code"
                                                 data-change="true"
                                                 data-form="title main code"></select>
                                             </div>
-                                            <div class="sm:w-1/2 w-full mr-2">
+                                            <div class="sm:w-1/4 w-full mr-2">
                                                 <label for="title_code"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Code</label>
                                                     <select id="code" name="code"
                                                     class="select2-general-dropdown"
-                                                    data-show="{{ route ('eproc.options.showondropdown') }}"
-                                                    data-store="{{ route ('eproc.options.storefromdropdown') }}"
+                                                    data-show="{{ route ('general.options.showondropdown') }}"
+                                                    data-store="{{ route ('general.options.storefromdropdown') }}"
                                                     data-alias="eproc-title_code"
                                                     data-change="true"
                                                     data-form="title code"></select>
                                             </div>
-                                            <div class="sm:w-1/2 w-full mr-2">
+                                            <div class="sm:w-1/4 w-full mr-2">
                                                 <label for="titlesub_code"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sub Code</label>
                                                     <select id="titlesub_code" name="titlesub_code"
                                                     class="select2-general-dropdown"
-                                                    data-show="{{ route ('eproc.options.showondropdown') }}"
-                                                    data-store="{{ route ('eproc.options.storefromdropdown') }}"
+                                                    data-show="{{ route ('general.options.showondropdown') }}"
+                                                    data-store="{{ route ('general.options.storefromdropdown') }}"
                                                     data-alias="eproc-titlesub_code"
                                                     data-change="true"
                                                     data-form="title sub code"></select>
                                             </div>
-                                            <div class="sm:w-1/2 w-full mr-2">
+                                            <div class="sm:w-1/4 w-full mr-2">
                                                 <label for="titlegroup_code"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Group Code</label>
                                                     <select id="titlegroup_code" name="titlegroup_code"
                                                     class="select2-general-dropdown"
-                                                    data-show="{{ route ('eproc.options.showondropdown') }}"
-                                                    data-store="{{ route ('eproc.options.storefromdropdown') }}"
+                                                    data-show="{{ route ('general.options.showondropdown') }}"
+                                                    data-store="{{ route ('general.options.storefromdropdown') }}"
                                                     data-alias="eproc-titlegroup_code"
                                                     data-change="true"
                                                     data-form="title group code"></select>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <!-- PRODUCT INFORMATION -->
+                                    <div class="mb-6">
+                                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PRODUCT INFORMATION</label>
+                                        <div class="row sm:flex">
                                             <div class="sm:w-1/2 w-full mr-2">
                                                 <label for="descrip"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
@@ -184,24 +189,28 @@
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Specification</label>
                                                     <input type="text" id="specif" name="specif"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="specif">
+                                                    required placeholder="specification">
                                             </div>
-                                            <div class="sm:w-1/2 w-full mr-2">
+                                        </div>
+                                    </div>
+                                    <div class="mb-6">
+                                        <div class="row sm:flex">
+                                            <div class="sm:w-1/3 w-full mr-2">
                                                 <label for="brand_eproc"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
                                                     <input type="text" id="brand_eproc" name="brand_eproc"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="brand_eproc">
+                                                    required placeholder="brand">
                                             </div>
-                                            <div class="sm:w-1/2 w-full mr-2">
+                                            <div class="sm:w-1/3 w-full mr-2">
                                                 <label for="uom_eproc"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UOM</label>
                                                     <input type="text" id="uom_eproc" name="uom_eproc"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="uom_eproc">
+                                                    required placeholder="uom">
                                             </div>
 
-                                            <div class="sm:w-1/2 w-full mr-2">
+                                            <div class="sm:w-1/3 w-full mr-2">
                                                 <label for="price"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unit Price</label>
                                                     <input type="text" id="price" name="price"
@@ -210,23 +219,24 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Modal footer -->
-                                    <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600 py-4">
-                                        {{-- <button id="nextPageBtn" type="button"
-                                        class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-                                            Next
-                                        </button> --}}
-                                        <button id="cancelBtn" type="button"
-                                            class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
-                                    </div>
                                 </div>
                             </div>
-
+                            <!-- Modal footer -->
+                            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600 py-4">
+                                <button type="button"
+                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                    onClick="saveRecord()">Save</button>
+                                <button id="cancelBtn" type="button"
+                                    class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
+                            </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
+        </div>
     </div>
+</div>
+
     <!-- Upload Excel modal -->
     <div id="uploadExcelModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" role="dialog"
         aria-modal="true"
@@ -305,7 +315,7 @@
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/datepicker.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
-    <script type="text/javascript" src="{{ asset('core/js/eproc/eprocmaterial-custom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('core/js/eproc/eprocproduct-custom.js') }}"></script>
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         
@@ -319,7 +329,7 @@
                 serverSide: true,
                 deferRender: true,
                 ajax: {
-                    url: "{{ route('eprocmaterial.main.table') }}",
+                    url: "{{ route('eprocproduct.main.table') }}",
                 },
                 columns: [
                     {
