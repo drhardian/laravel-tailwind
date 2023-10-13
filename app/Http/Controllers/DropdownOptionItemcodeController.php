@@ -16,7 +16,7 @@ class DropdownOptionItemcodeController extends Controller
      */
     public function showOnDropdown()
     {
-        $queries = DropdownOptionItemcode::select('id','title')
+        $queries = DropdownOptionItemcode::select('id','code','title')
                     ->when(request('search', false), function($query) {
                         return $query->where('title', 'like', '%'.request('search').'%');
                     })
@@ -46,7 +46,7 @@ class DropdownOptionItemcodeController extends Controller
         try {
             $newOption = request('newoption');
 
-            $query = DropdownOptionItemcode::select('id','title')
+            $query = DropdownOptionItemcode::select('id','code','title')
                         ->where('title', $newOption)
                         ->where('dropdown_alias', request('alias'))
                         ->firstOrCreate([

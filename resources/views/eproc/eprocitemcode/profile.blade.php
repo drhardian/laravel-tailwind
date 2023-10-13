@@ -13,10 +13,10 @@
                 @unless (count($breadcrumbs) === 0)
                     @include('layout.breadcrumbs')
                 @endunless
-                <a href="{{ route('eprocitemcode.pdf', ['id' => $eprocitemcode->id]) }}" class="text-white bg-blue-700 hidden sm:block hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                {{-- <a href="{{ route('eprocitemcode.pdf', ['id' => $eprocitemcode->id]) }}" class="text-white bg-blue-700 hidden sm:block hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     <i class="fa-solid fa-print mr-2"></i>
                     Print
-                </a>
+                </a> --}}
             </div>
         </div>
 
@@ -85,22 +85,22 @@
                                                 </div>
                                         </div>
                                         <div class="sm:w-1/4 w-full sm:pr-2">
-                                            <label for="platform"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Platform</label>
+                                            <label for="sub_code"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sub Code</label>
                                                 <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                    @if ($eprocitemcode->platform)
-                                                        <div class="form-control form-control-solid">{{ $eprocitemcode->platform }}</div>
+                                                    @if ($eprocitemcode->sub_code)
+                                                        <div class="form-control form-control-solid">{{ $eprocitemcode->sub_code }}</div>
                                                     @else
                                                         <div class="form-control form-control-solid">N/A</div>
                                                     @endif
                                                 </div>
                                         </div>
                                         <div class="sm:w-1/4 w-full sm:pr-2">
-                                            <label for="tag_number"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tag Number</label>
+                                            <label for="titlesub_code"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title Sub Code</label>
                                                 <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                    @if ($eprocitemcode->tag_number)
-                                                        <div class="form-control form-control-solid">{{ $eprocitemcode->tag_number }}</div>
+                                                    @if ($eprocitemcode->titlesub_code)
+                                                        <div class="form-control form-control-solid">{{ $eprocitemcode->titlesub_code }}</div>
                                                     @else
                                                         <div class="form-control form-control-solid">N/A</div>
                                                     @endif
@@ -118,25 +118,17 @@
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/datepicker.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
-    <script type="text/javascript" src="{{ asset('core/js/customerasset_psv/eprocitemcode-custom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('core/js/eproc/eprocitemcode-custom.js') }}"></script>
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-        $('#area').select2({
+        $('#main_code').select2({
                 allowClear: true,
                 width: 'resolve',
                 placeholder: 'Select here..',
                 dropdownCssClass: 'bigdrop',
                 
             });
-            $('#platform').select2({
-                allowClear: true,
-                width: 'resolve',
-                placeholder: 'Select here..',
-                dropdownCssClass: 'bigdrop',
-                
-            });
-
-            $('#flow').select2({
+            $('#titlemain_code').select2({
                 allowClear: true,
                 width: 'resolve',
                 placeholder: 'Select here..',
@@ -144,7 +136,7 @@
                 
             });
 
-            $('#status').select2({
+            $('#code').select2({
                 allowClear: true,
                 width: 'resolve',
                 placeholder: 'Select here..',
@@ -152,7 +144,7 @@
                 
             });
 
-            $('#demolish').select2({
+            $('#title_code').select2({
                 allowClear: true,
                 width: 'resolve',
                 placeholder: 'Select here..',
@@ -160,7 +152,7 @@
                 
             });
 
-            $('#relief').select2({
+            $('#sub_code').select2({
                 allowClear: true,
                 width: 'resolve',
                 placeholder: 'Select here..',
@@ -168,7 +160,7 @@
                 
             });
 
-            $('#size_in').select2({
+            $('#titlesub_code').select2({
                 allowClear: true,
                 width: 'resolve',
                 placeholder: 'Select here..',
@@ -176,7 +168,7 @@
                 
             });
 
-            $('#rating_in').select2({
+            $('#group_code').select2({
                 allowClear: true,
                 width: 'resolve',
                 placeholder: 'Select here..',
@@ -184,15 +176,7 @@
                 
             });
 
-            $('#size_out').select2({
-                allowClear: true,
-                width: 'resolve',
-                placeholder: 'Select here..',
-                dropdownCssClass: 'bigdrop',
-                
-            });
-
-            $('#rating_out').select2({
+            $('#titlegroup_code').select2({
                 allowClear: true,
                 width: 'resolve',
                 placeholder: 'Select here..',
@@ -203,7 +187,7 @@
             $('#newBtn').on('click', function(e) {
                 e.preventDefault();
 
-                $('.modal-title').text('New PSV Data Master');
+                $('.modal-title').text('New e-proc Item Code');
             });
     </script>
 @endsection

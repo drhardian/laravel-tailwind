@@ -24,7 +24,7 @@
                         class="text-white bg-yellow-400 sm:block hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
                         <i class="fa-solid fa-file-export"></i> Export
                     </a> --}}
-                    <button type="button" id="newBtn" onclick="openForm(`{{ route('eprocitemcode.store') }}`)"
+                    <button type="button" id="newBtn" onclick="openForm(`{{ route('eprocmaterial.store') }}`)"
                         class="text-white bg-blue-700 sm:block hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <i class="fa-solid fa-plus"></i> New
                     </button>
@@ -35,14 +35,16 @@
                 <table id="main-table" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
+                            {{-- <th>Image</th> --}}
                             <th>Main Code</th>
-                            <th>Title Main Code</th>
                             <th>Code</th>
-                            <th>Title Code</th>
                             <th>Sub Code</th>
-                            <th>Title sub Code</th>
                             <th>Group Code</th>
-                            <th>Title Group Code</th>
+                            <th>Description</th>
+                            <th>Specification</th>
+                            <th>Brand</th>
+                            <th>UOM</th>
+                            <th>Price</th>
                             <th>Updated At</th>
                             <th></th>
                         </tr>
@@ -144,20 +146,9 @@
                                 <div class="space-y-6">
                                     <div class="mb-6">
                                         <div class="row sm:flex">
-                                            <div class="w-full">
-                                                <label for="main_code"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Main Code</label>
-                                                    <select id="main_code" name="main_code"
-                                                    class="select2-general-dropdown"
-                                                    data-show="{{ route ('eproc.options.showondropdown') }}"
-                                                    data-store="{{ route ('eproc.options.storefromdropdown') }}"
-                                                    data-alias="eproc-main_code"
-                                                    data-change="true"
-                                                    data-form="main code"></select>
-                                            </div>
                                             <div class="sm:w-1/2 w-full mr-2">
                                                 <label for="titlemain_code"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title Main Code</label>
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Main Code</label>
                                                 <select id="titlemain_code" name="titlemain_code"
                                                 class="select2-general-dropdown"
                                                 data-show="{{ route ('eproc.options.showondropdown') }}"
@@ -166,20 +157,9 @@
                                                 data-change="true"
                                                 data-form="title main code"></select>
                                             </div>
-                                            <div class="w-full">
-                                                <label for="code"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Code</label>
-                                                    <select id="code" name="code"
-                                                    class="select2-general-dropdown"
-                                                    data-show="{{ route ('eproc.options.showondropdown') }}"
-                                                    data-store="{{ route ('eproc.options.storefromdropdown') }}"
-                                                    data-alias="eproc-code"
-                                                    data-change="true"
-                                                    data-form="code"></select>
-                                            </div>
                                             <div class="sm:w-1/2 w-full mr-2">
                                                 <label for="title_code"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title Code</label>
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Code</label>
                                                     <select id="code" name="code"
                                                     class="select2-general-dropdown"
                                                     data-show="{{ route ('eproc.options.showondropdown') }}"
@@ -188,20 +168,9 @@
                                                     data-change="true"
                                                     data-form="title code"></select>
                                             </div>
-                                            <div class="w-full">
-                                                <label for="sub_code"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sub Code</label>
-                                                    <select id="sub_code" name="sub_code"
-                                                    class="select2-general-dropdown"
-                                                    data-show="{{ route ('eproc.options.showondropdown') }}"
-                                                    data-store="{{ route ('eproc.options.storefromdropdown') }}"
-                                                    data-alias="eproc-sub_code"
-                                                    data-change="true"
-                                                    data-form="sub code"></select>
-                                            </div>
                                             <div class="sm:w-1/2 w-full mr-2">
                                                 <label for="titlesub_code"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title Sub Code</label>
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sub Code</label>
                                                     <select id="titlesub_code" name="titlesub_code"
                                                     class="select2-general-dropdown"
                                                     data-show="{{ route ('eproc.options.showondropdown') }}"
@@ -210,20 +179,9 @@
                                                     data-change="true"
                                                     data-form="title sub code"></select>
                                             </div>
-                                            <div class="w-full">
-                                                <label for="group_code"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Group Code</label>
-                                                    <select id="group_code" name="group_code"
-                                                    class="select2-general-dropdown"
-                                                    data-show="{{ route ('eproc.options.showondropdown') }}"
-                                                    data-store="{{ route ('eproc.options.storefromdropdown') }}"
-                                                    data-alias="eproc-group_code"
-                                                    data-change="true"
-                                                    data-form="group code"></select>
-                                            </div>
                                             <div class="sm:w-1/2 w-full mr-2">
                                                 <label for="titlegroup_code"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title Group Code</label>
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Group Code</label>
                                                     <select id="titlegroup_code" name="titlegroup_code"
                                                     class="select2-general-dropdown"
                                                     data-show="{{ route ('eproc.options.showondropdown') }}"
@@ -232,58 +190,44 @@
                                                     data-change="true"
                                                     data-form="title group code"></select>
                                             </div>
+                                            <div class="sm:w-1/2 w-full mr-2">
+                                                <label for="descrip"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                                    <input type="text" id="descrip" name="descrip"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="descrip">
+                                            </div>
+                                            <div class="sm:w-1/2 w-full mr-2">
+                                                <label for="specif"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Specification</label>
+                                                    <input type="text" id="specif" name="specif"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="specif">
+                                            </div>
+                                            <div class="sm:w-1/2 w-full mr-2">
+                                                <label for="brand_eproc"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
+                                                    <input type="text" id="brand_eproc" name="brand_eproc"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="brand_eproc">
+                                            </div>
+                                            <div class="sm:w-1/2 w-full mr-2">
+                                                <label for="uom_eproc"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UOM</label>
+                                                    <input type="text" id="uom_eproc" name="uom_eproc"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="uom_eproc">
+                                            </div>
+
+                                            <div class="sm:w-1/2 w-full mr-2">
+                                                <label for="price"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unit Price</label>
+                                                    <input type="text" id="price" name="price"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="price">
+                                            </div>
                                         </div>
                                     </div>
-                                    {{-- <div class="mb-6">
-                                        <div class="row sm:flex">
-                                            <div class="sm:w-1/4 w-full sm:pr-2">
-                                                <label for="mawp"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">MAWP (psi)</label>
-                                                    <input type="text" id="mawp" name="mawp"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="mawp">
-                                            </div>
-                                            <div class="sm:w-1/4 w-full sm:pr-2">
-                                                    <label for="operating_psi"
-                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Operating Pressure (psi)</label>
-                                                        <input type="text" id="operating_psi" name="operating_psi"
-                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                        required placeholder="operating psi">
-                                            </div>
-                                            <div class="sm:w-1/4 w-full sm:pr-2">
-                                                <label for="back_psi"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Back Pressure (psi)</label>
-                                                    <input type="text" id="back_psi" name="back_psi"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="back psi">
-                                            </div>
-                                            <div class="sm:w-1/4 w-full sm:pr-2">
-                                                <label for="operating_temp"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Operating Temp. (°F)</label>
-                                                    <input type="text" id="operating_temp" name="operating_temp"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="operating temp">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-6">
-                                        <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
-                                                <label for="cold_diff"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cold Diff. Test Press (psi)</label>
-                                                    <input type="text" id="cold_diff" name="cold_diff"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="psv capacityunit">
-                                            </div>
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
-                                                <label for="allowable"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Allowable Over Press. (%)</label>
-                                                    <input type="text" id="allowable" name="allowable"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="allowable">
-                                            </div>
-                                        </div>
-                                    </div> --}}
                                     <!-- Modal footer -->
                                     <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600 py-4">
                                         {{-- <button id="nextPageBtn" type="button"
@@ -379,7 +323,7 @@
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/datepicker.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
-    <script type="text/javascript" src="{{ asset('core/js/eproc/eprocitemcode-custom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('core/js/eproc/eprocmaterial-custom.js') }}"></script>
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         
@@ -393,22 +337,12 @@
                 serverSide: true,
                 deferRender: true,
                 ajax: {
-                    url: "{{ route('eprocitemcode.main.table') }}",
+                    url: "{{ route('eprocmaterial.main.table') }}",
                 },
                 columns: [
                     {
-                        data: 'main_code',
-                        name: 'main_code',
-                        className: ['text-center', 'min-tablet']
-                    },
-                    {
                         data: 'titlemain_code',
                         name: 'titlemain_code',
-                        className: ['text-center', 'min-tablet']
-                    },
-                    {
-                        data: 'code',
-                        name: 'code',
                         className: ['text-center', 'min-tablet']
                     },
                     {
@@ -416,31 +350,41 @@
                         name: 'title_code',
                         class: ['text-center', 'min-tablet']
                     },
-
-                    {
-                        data: 'sub_code',
-                        name: 'sub_code',
-                        class: ['text-center', 'min-tablet']
-                    },
-
                     {
                         data: 'titlesub_code',
                         name: 'titlesub_code',
                         class: ['text-center', 'min-tablet']
                     },
-
-                    {
-                        data: 'group_code',
-                        name: 'group_code',
-                        class: ['text-center', 'min-tablet']
-                    },
-
                     {
                         data: 'titlegroup_code',
                         name: 'titlegroup_code',
                         class: ['text-center', 'min-tablet']
                     },
-
+                    {
+                        data: 'descrip',
+                        name: 'descrip',
+                        class: 'all'
+                    },
+                    {
+                        data: 'specif',
+                        name: 'specif',
+                        class: 'all'
+                    },
+                    {
+                        data: 'brand_eproc',
+                        name: 'brand_eproc',
+                        class: 'all'
+                    },
+                    {
+                        data: 'uom_eproc',
+                        name: 'uom_eproc',
+                        class: 'all'
+                    },
+                    {
+                        data: 'price',
+                        name: 'price',
+                        class: 'all'
+                    },
                     {
                         data: 'updated_at',
                         name: 'updated_at',

@@ -359,22 +359,10 @@
                                                     <a href="{{ route('eprocitemcode.index') }}"
                                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Tools Code</a>
                                                 </li>
-                                                {{-- <li>
-                                                    <a href="{{ route('unitrate.index') }}"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Unit Rates</a>
-                                                </li>
                                                 <li>
-                                                    <a href="{{ route('activity.index') }}"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Activities</a>
+                                                    <a href="{{ route('eprocmaterial.index') }}"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Material</a>
                                                 </li>
-                                                <li>
-                                                    <a href="{{ route('itemtype.index') }}"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Item Types</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ route('item.index') }}"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Item</a>
-                                                </li> --}}
                                             </ul>
                                         </div>
                                     </div>
