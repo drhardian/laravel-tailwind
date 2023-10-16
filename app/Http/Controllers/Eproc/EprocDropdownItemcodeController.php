@@ -48,16 +48,19 @@ class EprocDropdownItemcodeController extends Controller
             $newOption = request('newoption');
 
             $query = EprocDropdownItemcode::select('id','code','title')
-                        ->where('title', $newOption)
+                        ->where('code','title', $newOption)
                         ->where('dropdown_alias', request('alias'))
                         ->firstOrCreate([
+                            'code' => $newOption,
                             'title' => $newOption,
                             'dropdown_alias' => request('alias')
                         ]);
 
             $setSelected = array(
                 "id" => $query->id,
+                "string" => $query->code,
                 "text" => $query->title
+                
             );
 
             return response()->json([
