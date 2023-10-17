@@ -110,14 +110,14 @@ editRecord = (url) => {
         dataType: "json",
         success: function (response) {
             // console.log(response);
-            var titlemain_codeOptions = new Option(response.dropdown.titlemain_code, response.dropdown.titlemain_code, true, true);
-            $('#titlemain_code').append(titlemain_codeOptions).trigger('change');
-            var title_codeOptions = new Option(response.dropdown.title_code, response.dropdown.title_code, true, true);
-            $('#title_code').append(title_codeOptions).trigger('change');
-            var titlesub_codeOptions = new Option(response.dropdown.titlesub_code, response.dropdown.titlesub_code, true, true);
-            $('#titlesub_code').append(titlesub_codeOptions).trigger('change');
-            var titlegroup_codeOptions = new Option(response.dropdown.titlegroup_code, response.dropdown.titlegroup_code, true, true);
-            $('#titlegroup_code').append(titlegroup_codeOptions).trigger('change');
+            var productmain_codeOptions = new Option(response.dropdown.productmain_code, response.dropdown.productmain_code, true, true);
+            $('#productmain_code').append(productmain_codeOptions).trigger('change');
+            var product_codeOptions = new Option(response.dropdown.product_code, response.dropdown.product_code, true, true);
+            $('#product_code').append(product_codeOptions).trigger('change');
+            var productsub_codeOptions = new Option(response.dropdown.productsub_code, response.dropdown.productsub_code, true, true);
+            $('#productsub_code').append(productsub_codeOptions).trigger('change');
+            var productgroup_codeOptions = new Option(response.dropdown.productgroup_code, response.dropdown.productgroup_code, true, true);
+            $('#productgroup_code').append(productgroup_codeOptions).trigger('change');
 
 
             $.each(response.form, function (index, value) { 

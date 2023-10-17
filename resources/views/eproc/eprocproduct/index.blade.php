@@ -147,48 +147,48 @@
                                         </div>
                                         <div class="row sm:flex">
                                             <div class="sm:w-1/4 w-full mr-2">
-                                                <label for="titlemain_code"
+                                                <label for="productmain_code"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Main Code</label>
-                                                <select id="titlemain_code" name="titlemain_code"
+                                                <select id="productmain_code" name="productmain_code"
                                                 class="select2-eproc-dropdown"
                                                 data-show="{{ route ('eproc.options.showondropdown') }}"
                                                 data-store="{{ route ('eproc.options.storefromdropdown') }}"
-                                                data-alias="eproc-titlemain_code"
+                                                data-alias="eproc-productmain_code"
                                                 data-change="true"
-                                                data-form="title main code"></select>
+                                                data-form="product main code"></select>
                                             </div>
                                             <div class="sm:w-1/4 w-full mr-2">
-                                                <label for="title_code"
+                                                <label for="product_code"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Code</label>
                                                     <select id="code" name="code"
                                                     class="select2-eproc-dropdown"
                                                     data-show="{{ route ('eproc.options.showondropdown') }}"
                                                     data-store="{{ route ('eproc.options.storefromdropdown') }}"
-                                                    data-alias="eproc-title_code"
+                                                    data-alias="eproc-product_code"
                                                     data-change="true"
-                                                    data-form="title code"></select>
+                                                    data-form="product code"></select>
                                             </div>
                                             <div class="sm:w-1/4 w-full mr-2">
-                                                <label for="titlesub_code"
+                                                <label for="productsub_code"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sub Code</label>
-                                                    <select id="titlesub_code" name="titlesub_code"
+                                                    <select id="productsub_code" name="productsub_code"
                                                     class="select2-eproc-dropdown"
                                                     data-show="{{ route ('eproc.options.showondropdown') }}"
                                                     data-store="{{ route ('eproc.options.storefromdropdown') }}"
-                                                    data-alias="eproc-titlesub_code"
+                                                    data-alias="eproc-productsub_code"
                                                     data-change="true"
-                                                    data-form="title sub code"></select>
+                                                    data-form="product sub code"></select>
                                             </div>
                                             <div class="sm:w-1/4 w-full mr-2">
-                                                <label for="titlegroup_code"
+                                                <label for="productgroup_code"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Group Code</label>
-                                                    <select id="titlegroup_code" name="titlegroup_code"
+                                                    <select id="productgroup_code" name="productgroup_code"
                                                     class="select2-eproc-dropdown"
                                                     data-show="{{ route ('eproc.options.showondropdown') }}"
                                                     data-store="{{ route ('eproc.options.storefromdropdown') }}"
-                                                    data-alias="eproc-titlegroup_code"
+                                                    data-alias="eproc-productgroup_code"
                                                     data-change="true"
-                                                    data-form="title group code"></select>
+                                                    data-form="product group code"></select>
                                             </div>
                                         </div>
                                     </div>
@@ -352,23 +352,23 @@
                 },
                 columns: [
                     {
-                        data: 'titlemain_code',
-                        name: 'titlemain_code',
+                        data: 'productmain_code',
+                        name: 'productmain_code',
                         className: ['text-center', 'min-tablet']
                     },
                     {
-                        data: 'title_code',
-                        name: 'title_code',
+                        data: 'product_code',
+                        name: 'product_code',
                         class: ['text-center', 'min-tablet']
                     },
                     {
-                        data: 'titlesub_code',
-                        name: 'titlesub_code',
+                        data: 'productsub_code',
+                        name: 'productsub_code',
                         class: ['text-center', 'min-tablet']
                     },
                     {
-                        data: 'titlegroup_code',
-                        name: 'titlegroup_code',
+                        data: 'productgroup_code',
+                        name: 'productgroup_code',
                         class: ['text-center', 'min-tablet']
                     },
                     {
