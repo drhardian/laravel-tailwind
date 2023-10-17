@@ -35,7 +35,7 @@
                 <table id="main-table" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            {{-- <th>Image</th> --}}
+                            <th>Image</th>
                             <th>Main Code</th>
                             <th>Code</th>
                             <th>Sub Code</th>
@@ -126,6 +126,25 @@
                                 <div class="space-y-6">
                                     <!-- ITEM CODE -->
                                     <div class="mb-6">
+                                        <div class="row sm:flex">
+                                            <!-- product image card-->
+                                            <div class="card mb-4 mb-xl-0">
+                                                <div class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Image</div>
+                                                <div class="card-body text-center">
+                                                    <!-- product image -->
+                                                    <img class="img-account-profile mb-2" src="{{ asset('assets/img/products/default.webp') }}" alt="" id="image-preview" />
+                                                    <!-- product image help block -->
+                                                    {{-- <div class="small font-italic text-muted mb-2">JPG or PNG no larger than 2 MB</div> --}}
+                                                    <!-- product image input -->
+                                                    <input class="form-control form-control-solid mb-2 @error('product_image') is-invalid @enderror" type="file"  id="image" name="product_image" accept="image/*" onchange="previewImage();">
+                                                    @error('product_image')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="row sm:flex">
                                             <div class="sm:w-1/4 w-full mr-2">
                                                 <label for="titlemain_code"
@@ -404,29 +423,6 @@
                     },
                 ]
             });
-
-            // $('#area').select2({
-            //     allowClear: true,
-            //     width: 'resolve',
-            //     placeholder: 'Select here..',
-            //     dropdownCssClass: 'bigdrop',
-                
-            // });
-            // $('#platform').select2({
-            //     allowClear: true,
-            //     width: 'resolve',
-            //     placeholder: 'Select here..',
-            //     dropdownCssClass: 'bigdrop',
-                
-            // });
-
-            // $('#flow').select2({
-            //     allowClear: true,
-            //     width: 'resolve',
-            //     placeholder: 'Select here..',
-            //     dropdownCssClass: 'bigdrop',
-                
-            // });
 
             $('.select2-eproc-dropdown').select2({
                 allowClear: true,

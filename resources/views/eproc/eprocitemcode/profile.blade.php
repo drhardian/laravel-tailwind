@@ -62,7 +62,7 @@
                                 <div class="mb-6">
                                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ITEM CODE</label>
                                     <div class="row sm:flex">
-                                        <div class="sm:w-1/4 w-full sm:pr-2">
+                                        <div class="w-1/4">
                                             <label for="main_code"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Main Code</label>
                                                 <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -73,7 +73,7 @@
                                                     @endif
                                                 </div>
                                         </div>
-                                        <div class="sm:w-1/4 w-full sm:pr-2">
+                                        <div class="w-3/4">
                                             <label for="titlemain_code"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title Main Code</label>
                                                 <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -84,7 +84,33 @@
                                                     @endif
                                                 </div>
                                         </div>
-                                        <div class="sm:w-1/4 w-full sm:pr-2">
+                                    </div>
+                                    <div class="row sm:flex">
+                                        <div class="w-1/4">
+                                            <label for="code"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Code</label>
+                                                <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    @if ($eprocitemcode->code)
+                                                        <div class="form-control form-control-solid">{{ $eprocitemcode->code }}</div>
+                                                    @else
+                                                        <div class="form-control form-control-solid">N/A</div>
+                                                    @endif
+                                                </div>
+                                        </div>
+                                        <div class="w-3/4">
+                                            <label for="title_code"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title Code</label>
+                                                <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    @if ($eprocitemcode->title_code)
+                                                        <div class="form-control form-control-solid">{{ $eprocitemcode->title_code }}</div>
+                                                    @else
+                                                        <div class="form-control form-control-solid">N/A</div>
+                                                    @endif
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="row sm:flex">
+                                        <div class="w-1/4">
                                             <label for="sub_code"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sub Code</label>
                                                 <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -95,7 +121,7 @@
                                                     @endif
                                                 </div>
                                         </div>
-                                        <div class="sm:w-1/4 w-full sm:pr-2">
+                                        <div class="w-3/4">
                                             <label for="titlesub_code"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title Sub Code</label>
                                                 <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -107,13 +133,38 @@
                                                 </div>
                                         </div>
                                     </div>
+                                    <div class="row sm:flex">
+                                        <div class="w-1/4">
+                                            <label for="group_code"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Group Code</label>
+                                                <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    @if ($eprocitemcode->group_code)
+                                                        <div class="form-control form-control-solid">{{ $eprocitemcode->group_code }}</div>
+                                                    @else
+                                                        <div class="form-control form-control-solid">N/A</div>
+                                                    @endif
+                                                </div>
+                                        </div>
+                                        <div class="w-3/4">
+                                            <label for="titlegroup_code"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title Group Code</label>
+                                                <div class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    @if ($eprocitemcode->titlegroup_code)
+                                                        <div class="form-control form-control-solid">{{ $eprocitemcode->titlegroup_code }}</div>
+                                                    @else
+                                                        <div class="form-control form-control-solid">N/A</div>
+                                                    @endif
+                                                </div>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-@endsection
+    @endsection
 
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/datepicker.min.js"></script>
