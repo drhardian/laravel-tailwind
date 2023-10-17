@@ -182,7 +182,8 @@
                                 <div class="sm:w-1/3 w-full m-1 my-3">
                                     <label for="ex_station"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ex.
-                                        Station</label>
+                                        Station <small class="text-red-600">need change to selectbox</small></label>
+                                        <!-- need change to selectbox --> 
                                     <input type="text" id="ex_station" name="ex_station"
                                         class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
@@ -990,10 +991,25 @@
                     url: "{{ route('cina.products.main.table') }}",
                 },
                 columns: [
-                    { data: 'old_id', name: 'old_id', className: 'desktop' },
-                    { data: 'new_id', name: 'new_id', className: 'desktop' },
-                    { data: 'equipment', name: 'equipment', className: 'desktop' },
-                    { data: 'valve_type', name: 'valve_type', className: 'desktop' },
+                    { 
+                        data: 'old_id', name: 'old_id', 
+                        className: 'dt-body-center none'
+                    },
+                    { 
+                        data: 'new_id', name: 'new_id', 
+                        className: 'dt-body-left min-tablet',
+                        width: '15%'
+                    },
+                    { 
+                        data: 'equipment', name: 'equipment', 
+                        className: 'dt-body-center min-tablet',
+                        width: '10%'
+                    },
+                    { 
+                        data: 'valve_type', name: 'valve_type', 
+                        className: 'dt-body-center min-tablet',
+                        width: '10%'
+                    },
                     { data: 'valve_size', name: 'valve_size', className: 'desktop' },
                     { data: 'valve_rating', name: 'valve_rating', className: 'desktop' },
                     { data: 'brand', name: 'brand', className: 'desktop' },

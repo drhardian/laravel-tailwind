@@ -124,9 +124,10 @@ Route::prefix('customer-inventory')->group(function() {
     ]);
 
     Route::prefix('products')->controller(ProductController::class)->group(function() {
+        Route::get('dashboard/show', 'dashboard')->name('cina.products.dashboard');
         Route::get('show/datatable', 'showDatatable')->name('cina.products.main.table');
-        Route::get('export', 'export')->name('cina.products.export');
-        Route::post('import', 'import')->name('cina.products.import');
+        Route::get('file/export', 'export')->name('cina.products.export');
+        Route::post('file/import', 'import')->name('cina.products.import');
         Route::get('template/origin/{product}', 'formOriginTemplate')->name('cina.products.getformtemplate');
         Route::get('template/asset/{product}', 'formAssetTemplate')->name('cina.asset.getformtemplate');
     });
