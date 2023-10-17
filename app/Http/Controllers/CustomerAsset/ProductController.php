@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Imports\SpareUnitValveImport;
 use App\Models\CustomerAsset\CinaAssetType;
 use App\Models\CustomerAsset\CinaProduct;
+use App\Models\CustomerAsset\CinaProductLocation;
 use App\Models\CustomerAsset\CinaProductOrigin;
 use Exception;
+use ParseError;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -30,7 +32,7 @@ class ProductController extends Controller
 
     public function __construct()
     {
-        $this->pageTitle = 'Spare Unit - Valve';
+        $this->pageTitle = 'Assets - Valve';
     }
 
     /**
@@ -425,109 +427,28 @@ class ProductController extends Controller
     /**
      * Handle export data products.
      */
-    // public function import(Request $request)
-    // {
-    //     $file = $request->file('filexls');
+    public function import(Request $request)
+    {
+        try {
+            Excel::import(new SpareUnitValveImport, $request->file('filexls'));
 
-    //     try {
-    //         Excel::import(new SpareUnitValveImport(), $file);
+            return response()->json([
+                'message' => 'Data imported successfully'
+            ], 200);
+        } catch (ParseError $e) {
+            Log::error($e->getMessage());
 
-    //         return response()->json([
-    //             'message' => 'File uploaded'
-    //         ], 200);
-    //     } catch (\Exception $ex) {
-    //         Log::error($ex->getMessage());
-
-    //         return response()->json([
-    //             'message' => $ex->getMessage()
-    //         ],500);
-    //     }
-    // }
-
-    // public function handleImport(Request $request)
-    // {
-    //     $request->validate([
-    //         'file' => 'required|file|mimes:xls,xlsx',
-    //     ]);
-
-    //     $the_file = $request->file('file');
-
-    //     try {
-    //         $spreadsheet = IOFactory::load($the_file->getRealPath());
-    //         $sheet        = $spreadsheet->getActiveSheet();
-    //         $row_limit    = $sheet->getHighestDataRow();
-    //         $column_limit = $sheet->getHighestDataColumn();
-    //         $row_range    = range(2, $row_limit);
-    //         $column_range = range('BB', $column_limit);
-    //         $startcount = 2;
-    //         $data = array();
-    //         foreach ($row_range as $row) {
-    //             $data[] = [
-    //                 'product_assetID' => $sheet->getCell('A' . $row)->getValue(),
-    //                 'product_newassetID' => $sheet->getCell('B' . $row)->getValue(),
-    //                 'product_equip' => $sheet->getCell('C' . $row)->getValue(),
-    //                 'product_type' => $sheet->getCell('D' . $row)->getValue(),
-    //                 'product_end' => $sheet->getCell('E' . $row)->getValue(),
-    //                 'product_size' => $sheet->getCell('F' . $row)->getValue(),
-    //                 'product_rating' => $sheet->getCell('G' . $row)->getValue(),
-    //                 'product_brand' => $sheet->getCell('H' . $row)->getValue(),
-    //                 'product_valvemodel' => $sheet->getCell('I' . $row)->getValue(),
-    //                 'product_serial' => $sheet->getCell('J' . $row)->getValue(),
-    //                 'product_condi' => $sheet->getCell('K' . $row)->getValue(),
-    //                 'product_actbrand' => $sheet->getCell('L' . $row)->getValue(),
-    //                 'product_acttype' => $sheet->getCell('M' . $row)->getValue(),
-    //                 'product_actsize' => $sheet->getCell('N' . $row)->getValue(),
-    //                 'product_fail' => $sheet->getCell('O' . $row)->getValue(),
-    //                 'product_actcond' => $sheet->getCell('P' . $row)->getValue(),
-    //                 'product_posbrand' => $sheet->getCell('Q' . $row)->getValue(),
-    //                 'product_posmodel' => $sheet->getCell('R' . $row)->getValue(),
-    //                 'product_inputsignal' => $sheet->getCell('S' . $row)->getValue(),
-    //                 'product_poscond' => $sheet->getCell('T' . $row)->getValue(),
-    //                 'product_other' => $sheet->getCell('U' . $row)->getValue(),
-    //                 'product_datein' => $sheet->getCell('V' . $row)->getValue(),
-    //                 'product_transfer' => $sheet->getCell('W' . $row)->getValue(),
-    //                 'product_reser' => $sheet->getCell('X' . $row)->getValue(),
-    //                 'product_origin' => $sheet->getCell('Y' . $row)->getValue(),
-    //                 'product_sdvin' => $sheet->getCell('Z' . $row)->getValue(),
-    //                 'product_sdvout' => $sheet->getCell('AA' . $row)->getValue(),
-    //                 'product_station' => $sheet->getCell('AB' . $row)->getValue(),
-    //                 'product_requestor' => $sheet->getCell('AC' . $row)->getValue(),
-    //                 'product_project' => $sheet->getCell('AD' . $row)->getValue(),
-    //                 'product_dateout' => $sheet->getCell('AE' . $row)->getValue(),
-    //                 'product_dateoffshore' => $sheet->getCell('AF' . $row)->getValue(),
-    //                 'product_tfoffshore' => $sheet->getCell('AG' . $row)->getValue(),
-    //                 'product_curloc' => $sheet->getCell('AH' . $row)->getValue(),
-    //                 'product_stockin' => $sheet->getCell('AI' . $row)->getValue(),
-    //                 'product_docin' => $sheet->getCell('AJ' . $row)->getValue(),
-    //                 'product_stockout' => $sheet->getCell('AK' . $row)->getValue(),
-    //                 'product_docout' => $sheet->getCell('AL' . $row)->getValue(),
-    //                 'product_stockqty' => $sheet->getCell('AM' . $row)->getValue(),
-    //                 'product_uom' => $sheet->getCell('AN' . $row)->getValue(),
-    //                 'product_targetpdn' => $sheet->getCell('AO' . $row)->getValue(),
-    //                 'product_csrelease' => $sheet->getCell('AP' . $row)->getValue(),
-    //                 'product_csnumber' => $sheet->getCell('AQ' . $row)->getValue(),
-    //                 'product_cenumber' => $sheet->getCell('AR' . $row)->getValue(),
-    //                 'product_ronumber' => $sheet->getCell('AS' . $row)->getValue(),
-    //                 'product_startdate' => $sheet->getCell('AT' . $row)->getValue(),
-    //                 'product_enddate' => $sheet->getCell('AU' . $row)->getValue(),
-    //                 'product_price' => $sheet->getCell('AV' . $row)->getValue(),
-    //                 'product_remark' => $sheet->getCell('AW' . $row)->getValue(),
-    //                 'product_code' => $sheet->getCell('AX' . $row)->getValue(),
-    //                 'product_image' => $sheet->getCell('AY' . $row)->getValue(),
-    //                 'product_status' => $sheet->getCell('AZ' . $row)->getValue(),
-
-
-    //             ];
-    //             $startcount++;
-    //         }
-    //         // dd($data); cara liat eror
-    //         Product::insert($data);
-    //     } catch (Exception $e) {
-    //         // $error_code = $e->getMessage(); cara liat eror
-    //         return Redirect::route('products.index')->with('error', 'There was a problem uploading the data!');
-    //     }
-    //     return Redirect::route('products.index')->with('success', 'Data product has been imported!');
-    // }
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
 
     /**
      * Handle export data products.
@@ -683,6 +604,7 @@ class ProductController extends Controller
     {
         $model = CinaProduct::with('cinaProductOrigin')
         ->with('cinaAssetType')
+        ->with('cinaProductLocation')
         ->select(
             'id',
             'old_id',
@@ -751,6 +673,39 @@ class ProductController extends Controller
 
                 return $actions;
             })
+            ->editColumn('in_date', function($model) {
+                return Carbon::parse($model->in_date)->format('d/m/Y');
+            })
+            ->editColumn('out_date', function($model) {
+                return Carbon::parse($model->out_date)->format('d/m/Y');
+            })
+            ->editColumn('start_date', function($model) {
+                return Carbon::parse($model->start_date)->format('d/m/Y');
+            })
+            ->editColumn('end_date', function($model) {
+                return Carbon::parse($model->end_date)->format('d/m/Y');
+            })
+            ->editColumn('target_pdn', function($model) {
+                return Carbon::parse($model->target_pdn)->format('d/m/Y');
+            })
+            ->editColumn('cina_product_origin_id', function($model) {
+                return $model->cinaProductOrigin->title;
+            })
+            ->editColumn('cina_asset_type_id', function($model) {
+                return $model->cinaAssetType->title;
+            })
+            ->editColumn('cina_asset_type_id', function($model) {
+                return $model->cinaAssetType->title;
+            })
+            ->editColumn('cina_product_location_id', function($model) {
+                return $model->cinaProductLocation->title;
+            })
+            ->editColumn('valve_size', function($model) {
+                return $model->valve_size.' inch';
+            })
+            ->addColumn('tagnumber', function($model) {
+                return !empty($model->new_id) ? $model->new_id : $model->old_id;
+            })
             ->rawColumns(['actions'])
             ->make(true);
     }
@@ -767,5 +722,58 @@ class ProductController extends Controller
         $templateAlias = CinaAssetType::select('form_template')->find($product);
 
         return $templateAlias->form_template; 
+    }
+
+    public function dashboard()
+    {
+        $locationPTCS = CinaProductLocation::select('id')->where('title','PTCS')->first();
+
+        $totalIncoming = CinaProduct::count();
+        $totalAtWorkshop = CinaProduct::where('cina_product_location_id',$locationPTCS->id)->count();
+        $totalOutgoing = CinaProduct::whereNot('out_date',null)->count();
+
+        $assetTypes = CinaAssetType::select('id','title')->get();
+        $assetOrigins = CinaProductOrigin::select('id','title')->orderBy('id')->get();
+
+        $totalIncomingPerOriginByStatus = [];
+        $totalAtWorkshopPerOriginByStatus = [];
+        $totalOutgoingPerOriginByStatus = [];
+
+        foreach ($assetOrigins as $origin) {
+            $totalIncomingPerOriginByStatus[] = CinaProduct::where('cina_product_origin_id',$origin->id)->count();
+
+            $totalAtWorkshopPerOriginByStatus[] = CinaProduct::where('cina_product_origin_id',$origin->id)
+                ->where('cina_product_location_id',$locationPTCS->id)
+                ->count();
+
+            $totalOutgoingPerOriginByStatus[] = CinaProduct::where('cina_product_origin_id',$origin->id)
+                ->whereNot('out_date',null)
+                ->count();
+        }
+
+        $totalIncomingPerMonth = [];
+        $totalAtworkshopPerMonth = [];
+        $totalOutgoingPerMonth = [];
+
+        for ($i=1; $i <= 12; $i++) { 
+            $totalIncomingPerMonth[] = CinaProduct::whereRaw('MONTH(in_date) = '.$i.' AND YEAR(in_date) = YEAR(NOW())')->count();
+            $totalAtworkshopPerMonth[] = CinaProduct::where('cina_product_location_id',$locationPTCS->id)->whereRaw('MONTH(in_date) = '.$i.' AND YEAR(in_date) = YEAR(NOW())')->count();
+            $totalOutgoingPerMonth[] = CinaProduct::whereNot('out_date',null)->whereRaw('MONTH(out_date) = '.$i.' AND YEAR(out_date) = YEAR(NOW())')->count();
+        }
+
+        return view('customer_asset.products.dashboard', 
+            compact(
+                'totalIncoming',
+                'totalAtWorkshop',
+                'totalOutgoing',
+                'assetTypes',
+                'assetOrigins',
+                'totalIncomingPerOriginByStatus',
+                'totalAtWorkshopPerOriginByStatus',
+                'totalOutgoingPerOriginByStatus',
+                'totalIncomingPerMonth',
+                'totalAtworkshopPerMonth',
+                'totalOutgoingPerMonth',
+            ));
     }
 }
