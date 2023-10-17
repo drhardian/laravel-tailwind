@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('eproc_itemcodes', function (Blueprint $table) {
             $table->id();
             $table->string('main_code');
-            $table->string('titlemain_code');
+            $table->string('titlemain_code')->unique();
             $table->string('code');
-            $table->string('title_code');
+            $table->string('title_code')->unique();
             $table->string('sub_code');
-            $table->string('titlesub_code');
+            $table->string('titlesub_code')->unique();
             $table->string('group_code');
-            $table->string('titlegroup_code');
+            $table->string('titlegroup_code')->unique();
             $table->timestamps();
         });
     }
