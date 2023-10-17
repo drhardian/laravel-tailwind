@@ -72,12 +72,12 @@ class ScopeOfWorkController extends Controller
             [
                 'title' => 'General Information',
                 'status' => 'active',
-                'url' => '',
+                'url' => route('valverepair.show', [$scopeofwork->repair_report_id]),
                 'icon' => '',
             ],
             [
-                'title' => 'General Information',
-                'status' => 'active',
+                'title' => 'Scope Of Work '. $scopeofwork->scopeOfWork->dropdown_label,
+                'status' => '',
                 'url' => '',
                 'icon' => '',
             ],
