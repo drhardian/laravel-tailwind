@@ -171,7 +171,7 @@
                                                     data-change="true"
                                                     data-form="area"></select>
                                             </div>
-                                            <div class="sm:w-1/4 w-full sm:pr-2">
+                                            <div class="sm:w-1/4 w- full sm:pr-2">
                                                 <label for="flow"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Flow Station</label>
                                                     <select id="flow" name="flow"
