@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dropdown_options', function (Blueprint $table) {
+        Schema::create('file_upload', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('dropdown_alias');
-            $table->unique(['title','dropdown_alias']);
+            $table->unsignedBigInteger('reference_id');
+            $table->string('name');
+            $table->string('path');
+            $table->string('size');
+            $table->string('type');
+            $table->string('prefix');
+            $table->text('description');
             $table->timestamps();
         });
     }
@@ -25,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dropdown_options');
+        Schema::dropIfExists('file_upload');
     }
 };
