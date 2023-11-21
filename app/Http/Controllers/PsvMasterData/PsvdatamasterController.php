@@ -150,26 +150,26 @@ class PsvdatamasterController extends Controller
 
     //PRINT PDF
 
-    public function cetakPdf($id)
-    {
-        // Ambil data yang akan dicetak
-        $psvdatamaster = Psvdatamaster::findOrFail($id);
-        // \Log::debug($psvdatamaster);
+    // public function cetakPdf($id)
+    // {
+    //     // Ambil data yang akan dicetak
+    //     $psvdatamaster = Psvdatamaster::findOrFail($id);
+    //     // \Log::debug($psvdatamaster);
 
     
-        // Cetak PDF dari tampilan (view) 'pdf.view' dengan data yang diambil
-        $pdf = PDF::loadView('customerasset_psv.psvdatamaster.pdfview', compact('psvdatamaster'));
+    //     // Cetak PDF dari tampilan (view) 'pdf.view' dengan data yang diambil
+    //     $pdf = PDF::loadView('customerasset_psv.psvdatamaster.pdfview', compact('psvdatamaster'));
     
-        // Opsional: Atur ukuran dan orientasi halaman PDF
-        $pdf->setPaper('A4', 'portrait');
+    //     // Opsional: Atur ukuran dan orientasi halaman PDF
+    //     $pdf->setPaper('A4', 'portrait');
     
-        // Opsional: Download PDF dengan nama yang sesuai
-        return $pdf->download('psvdatamaster.pdf');
+    //     // Opsional: Download PDF dengan nama yang sesuai
+    //     return $pdf->download('psvdatamaster.pdf');
     
-        // Tampilkan PDF dalam browser
-        return $pdf->stream('psvdatamaster.pdf');
+    //     // Tampilkan PDF dalam browser
+    //     return $pdf->stream('psvdatamaster.pdf');
         
-    }
+    // }
 
     /**
      * Show the form for editing the specified resource.

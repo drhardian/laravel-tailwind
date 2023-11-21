@@ -24,6 +24,8 @@ use App\Http\Controllers\Eproc\EprocDropdownItemcodeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Eproc\EprocitemcodeController;
 use App\Http\Controllers\Eproc\EprocproductController;
+use App\Http\Controllers\Eproc\EprocfboController;
+
 use App\Http\Controllers\PsvMasterData\PdfController;
 
 /*
@@ -195,5 +197,16 @@ Route::prefix('eprocproduct')->controller(EprocproductController::class)->group(
 Route::prefix('dropdown/itemcode/')->controller(EprocDropdownItemcodeController::class)->group(function() {
     Route::get('show', 'showOnDropdown')->name('eproc.options.showondropdown');
     Route::post('new', 'storeFromDropdown')->name('eproc.options.storefromdropdown');
+});
+
+Route::resource('eprocfbo', EprocfboController::class);
+Route::prefix('eprocfbo')->controller(EprocfboController::class)->group(function() {
+    Route::get('show/dropdown', 'showOnDropdown')->name('eprocfbo.show.dropdown');
+    Route::get('show/datatable', 'showDatatable')->name('eprocfbo.main.table');
+    // Route::get('eprocitemcode/export', 'exportExcel')->name('eprocitemcode.export');
+    // Route::post('eprocitemcode/import', 'importExcel')->name('eprocitemcode.import');
+    // Route::get('/eprocitemcode/{id}', 'cetakPdf')->name('eprocitemcode.pdf');
+    // Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
+
 });
 

@@ -28,7 +28,8 @@ class EprocDropdownItemcodeController extends Controller
 
         foreach($queries as $query){
             $response[] = array(
-                "id" => request('dataChange')==="false"?$query->id:$query->title,
+                "id" => request('dataChange')==="false"?$query->id : $query->title,
+                "string" => $query->code,
                 "text" => $query->title
             );
         }
@@ -48,7 +49,7 @@ class EprocDropdownItemcodeController extends Controller
             $newOption = request('newoption');
 
             $query = EprocDropdownItemcode::select('id','code','title')
-                        ->where('code','title', $newOption)
+                        ->where('code', $newOption)
                         ->where('dropdown_alias', request('alias'))
                         ->firstOrCreate([
                             'code' => $newOption,
