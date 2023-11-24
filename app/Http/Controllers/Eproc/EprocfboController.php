@@ -205,7 +205,7 @@ class EprocfboController extends Controller
 
             if ($file = $request->file('upload_srf')) {
                 $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
-                $path = 'public/assets/documents/psv/';
+                $path = 'public/assets/documents/eproc/';
     
                 /**
                  * Delete docin if exists.

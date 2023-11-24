@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('product_code');
             $table->string('productsub_code');
             $table->string('productgroup_code');
-            $table->string('descrip')->nullable();
-            $table->string('specif')->nullable();
+            $table->string('descrip_eproc')->nullable();
+            $table->string('qty_eproc')->nullable();
             $table->string('brand_eproc')->nullable();
             $table->string('uom_eproc')->nullable();
-            $table->string('price')->nullable();
+            $table->string('price_eproc')->nullable();
             $table->timestamps();
             $table->foreign('productmain_code')->references('titlemain_code')->on('eproc_itemcodes');
             $table->foreign('product_code')->references('title_code')->on('eproc_itemcodes');

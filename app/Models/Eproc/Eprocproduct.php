@@ -18,23 +18,23 @@ class Eprocproduct extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-        public function productMainCode()
+        public function eprocMainCode()
         {
-            return $this->belongsTo(Eprocitemcode::class, 'productmain_code', 'titlemain_code');
+            return $this->belongsTo(Eprocitemcode::class, 'eprocmain_code', 'titlemain_code');
         }
     
-        public function productCode()
+        public function eprocCode()
         {
-            return $this->belongsTo(Eprocitemcode::class, 'product_code', 'title_code');
+            return $this->belongsTo(Eprocitemcode::class, 'eproc_code', 'title_code');
         }
     
-        public function productSubCode()
+        public function eprocSubCode()
         {
-            return $this->belongsTo(Eprocitemcode::class, 'productsub_code', 'titlesub_code');
+            return $this->belongsTo(Eprocitemcode::class, 'epprocsub_code', 'titlesub_code');
         }
     
-        public function productGroupCode()
+        public function eprocGroupCode()
         {
-            return $this->belongsTo(Eprocitemcode::class, 'productgroup_code', 'titlegroup_code');
+            return $this->belongsTo(Eprocitemcode::class, 'epprocgroup_code', 'titlegroup_code');
         }
 }

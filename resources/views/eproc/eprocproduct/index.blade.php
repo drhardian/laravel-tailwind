@@ -41,8 +41,8 @@
                             <th>Sub Code</th>
                             <th>Group Code</th>
                             <th>Description</th>
-                            <th>Specification</th>
                             <th>Brand</th>
+                            <th>Qty</th>
                             <th>UOM</th>
                             <th>Price</th>
                             <th>Updated At</th>
@@ -197,19 +197,26 @@
                                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PRODUCT INFORMATION</label>
                                         <div class="row sm:flex">
                                             <div class="sm:w-1/2 w-full mr-2">
-                                                <label for="descrip"
+                                                <label for="descrip_eproc"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                                    <input type="text" id="descrip" name="descrip"
+                                                    <input type="text" id="descrip_eproc" name="descrip_eproc"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="descrip">
+                                                    required placeholder="description">
                                             </div>
                                             <div class="sm:w-1/2 w-full mr-2">
-                                                <label for="specif"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Specification</label>
-                                                    <input type="text" id="specif" name="specif"
+                                                <label for="qty"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Qty</label>
+                                                    <input type="number" id="qty" name="qty"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="specification">
+                                                    required placeholder="quantity">
                                             </div>
+                                            {{-- <div class="sm:w-1/2 w-full mr-2">
+                                                <label for="satuan"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Satuan</label>
+                                                    <input type="text" id="satuan" name="satuan"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="satuan">
+                                            </div> --}}
                                         </div>
                                     </div>
                                     <div class="mb-6">
@@ -230,9 +237,9 @@
                                             </div>
 
                                             <div class="sm:w-1/3 w-full mr-2">
-                                                <label for="price"
+                                                <label for="price_eproc"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unit Price</label>
-                                                    <input type="text" id="price" name="price"
+                                                    <input type="number" id="price_eproc" name="price_eproc"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="price">
                                             </div>
@@ -372,13 +379,13 @@
                         class: ['text-center', 'min-tablet']
                     },
                     {
-                        data: 'descrip',
-                        name: 'descrip',
+                        data: 'descrip_eproc',
+                        name: 'descrip_eproc',
                         class: 'all'
                     },
                     {
-                        data: 'specif',
-                        name: 'specif',
+                        data: 'qty_eproc',
+                        name: 'qty_eproc',
                         class: 'all'
                     },
                     {
@@ -392,7 +399,7 @@
                         class: 'all'
                     },
                     {
-                        data: 'price',
+                        data: 'price_eproc',
                         name: 'price',
                         class: 'all'
                     },

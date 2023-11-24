@@ -59,7 +59,7 @@ class EprocproductController extends Controller
 
         try {
             $eprocproduct = Eprocproduct::create(
-                $request->only('productmain_code', 'product_code', 'productsub_code','productgroup_code', 'descrip', 'specif', 'brand_eproc', 'uom_eproc', 'price')
+                $request->only('productmain_code', 'product_code', 'productsub_code','productgroup_code', 'descrip_eproc', 'qty_eproc', 'brand_eproc', 'uom_eproc', 'price_eproc')
             );
             
             DB::commit();
@@ -159,11 +159,11 @@ class EprocproductController extends Controller
                 
             ],
             'form' => [
-               ['descrip', $eprocproduct->descrip], 
-               ['specif', $eprocproduct->specif], 
+               ['descrip_eproc', $eprocproduct->descrip_eproc], 
+               ['qty_eproc', $eprocproduct->qty_eproc], 
                ['brand_eproc', $eprocproduct->brand_eproc], 
                ['uom_eproc', $eprocproduct->uom_eproc], 
-               ['price', $eprocproduct->price],
+               ['price_eproc', $eprocproduct->price_eproc],
             ],
 
             'update_url' => route('eprocproduct.update', ['eprocproduct' => $eprocproduct->id])
@@ -200,7 +200,7 @@ class EprocproductController extends Controller
             // }
         
             Eprocproduct::where('id', $eprocproduct->id)->update(
-            $request->only('productmain_code', 'product_code', 'productsub_code','productgroup_code', 'descrip', 'specif', 'brand_eproc', 'uom_eproc', 'price')
+            $request->only('productmain_code', 'product_code', 'productsub_code','productgroup_code', 'descrip_eproc', 'qty_eproc', 'brand_eproc', 'uom_eproc', 'price_eproc')
             
         ); 
 
@@ -358,11 +358,11 @@ class EprocproductController extends Controller
             'product_code', 
             'productsub_code',
             'productgroup_code', 
-            'descrip', 
-            'specif', 
+            'descrip_eproc', 
+            'qty_eproc', 
             'brand_eproc', 
             'uom_eproc', 
-            'price',
+            'price_eproc',
             'updated_at'
         );
 
