@@ -177,8 +177,7 @@ class EprocfboController extends Controller
                 'required_category' => $eprocfbo->required_category,
                 'eprocmethod' => $eprocfbo->eprocmethod,
                 'statusfbo' => $eprocfbo->statusfbo,
-
-
+                
             ],
             'form' => [
                 ['required_by', $eprocfbo->required_by],

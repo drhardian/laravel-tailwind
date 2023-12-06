@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('eproc_itemcodes', function (Blueprint $table) {
+        Schema::create('catalog_codeitems', function (Blueprint $table) {
             $table->id();
             $table->string('main_code');
-            $table->string('titlemain_code')->unique();
+            $table->string('titlemain_code');
             $table->string('code');
-            $table->string('title_code')->unique();
+            $table->string('title_code');
             $table->string('sub_code');
-            $table->string('titlesub_code')->unique();
+            $table->string('titlesub_code');
             $table->string('group_code');
             $table->string('titlegroup_code')->unique();
             $table->timestamps();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('eproc_itemcodes');
+        Schema::dropIfExists('catalog_codeitems');
     }
 };

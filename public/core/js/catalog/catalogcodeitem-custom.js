@@ -6,7 +6,7 @@ let closeIco = document.getElementById('closeIco');
 
 openForm = (url) => {
     modalShowAndReset();
-    $('.modal-title').text('New Input Item Code e-Proc');
+    $('.modal-title').text('New Input Code Item');
     $('#form_url').val(url);
 }
 
@@ -97,7 +97,7 @@ saveRecord = () => {
 
 editRecord = (url) => {
     modalShowAndReset();
-    $('.modal-title').text('Edit Input Item Code e-Proc');
+    $('.modal-title').text('Edit Input Code Item');
 
     $('#warning-alert').removeClass('flex').addClass('hidden');
 
@@ -126,8 +126,7 @@ editRecord = (url) => {
             $('#group_code').append(group_codeOptions).trigger('change');
             var titlegroup_codeOptions = new Option(response.dropdown.titlegroup_code, response.dropdown.titlegroup_code, true, true);
             $('#titlegroup_code').append(titlegroup_codeOptions).trigger('change');
-
-
+            
             $.each(response.form, function (index, value) { 
                 $('#' + value[0]).val(value[1]);
             });
@@ -189,7 +188,7 @@ let closeUploadXlsIco = document.getElementById('closeUploadXlsIco');
 
 openUploadForm = () => {
     modalUploadShowAndReset();
-    $('.modal-title').text('Import Item Code e-Proc');
+    $('.modal-title').text('Import Code Item');
     $('#form_url').val(url);
 }
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Eproc;
+namespace App\Http\Controllers\Catalog\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Eproc\EprocDropdownItemcode;
+use App\Models\Catalog\CatalogDropdownCodeitem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 
-class EprocDropdownItemcodeController extends Controller
+class CatalogDropdownCodeitemController extends Controller
 {
      /**
      * Display a listing of the resource on selectbox.
@@ -17,7 +17,7 @@ class EprocDropdownItemcodeController extends Controller
      */
     public function showOnDropdown()
     {
-        $queries = EprocDropdownItemcode::select('id','code','title')
+        $queries = CatalogDropdownCodeitem::select('id','code','title')
                     ->when(request('search', false), function($query) {
                         return $query->where('title', 'like', '%'.request('search').'%');
                     })
@@ -48,7 +48,7 @@ class EprocDropdownItemcodeController extends Controller
         try {
             $newOption = request('newoption');
 
-            $query = EprocDropdownItemcode::select('id','code','title')
+            $query = CatalogDropdownCodeitem::select('id','code','title')
                         ->where('code', $newOption)
                         ->where('dropdown_alias', request('alias'))
                         ->firstOrCreate([

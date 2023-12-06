@@ -20,21 +20,21 @@ class Eprocproduct extends Model
      */
         public function eprocMainCode()
         {
-            return $this->belongsTo(Eprocitemcode::class, 'eprocmain_code', 'titlemain_code');
+            return $this->belongsTo(Eproccodeitem::class, 'main_code', 'titlemain_code');
         }
     
         public function eprocCode()
         {
-            return $this->belongsTo(Eprocitemcode::class, 'eproc_code', 'title_code');
+            return $this->belongsTo(Eproccodeitem::class, 'eproc_code', 'title_code');
         }
     
         public function eprocSubCode()
         {
-            return $this->belongsTo(Eprocitemcode::class, 'epprocsub_code', 'titlesub_code');
+            return $this->belongsTo(Eproccodeitem::class, 'epprocsub_code', 'titlesub_code');
         }
     
         public function eprocGroupCode()
         {
-            return $this->belongsTo(Eprocitemcode::class, 'epprocgroup_code', 'titlegroup_code');
+            return $this->belongsTo(Eproccodeitem::class, 'epprocgroup_code', 'titlegroup_code');
         }
 }

@@ -1,26 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Eproc;
+namespace App\Http\Controllers\Catalog\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Eproc\Eprocproduct;
+use App\Models\Catalog\Catalogcodeitem;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 
-
-class EprocproductController extends Controller
+class CatalogcodeitemController extends Controller
 {
     protected $pageTitle;
     protected $pageProfile;
 
     public function __construct()
     {
-        $this->pageTitle = 'e-Proc Products';
-        $this->pageProfile = 'e-Proc Products';
+        $this->pageTitle = 'Catalog Item Code';
+        $this->pageProfile = 'Catalog Item Code';
     }
 
     /**
@@ -43,7 +42,7 @@ class EprocproductController extends Controller
             ],
         ];
 
-        return view('eproc.eprocproduct.index', [
+        return view('catalogs.admin.catalogcodeitem.index', [
             'breadcrumbs' => $breadcrumbs,
             'title' => $this->pageTitle
         ]);
@@ -58,18 +57,18 @@ class EprocproductController extends Controller
         DB::beginTransaction();
 
         try {
-            $eprocproduct = Eprocproduct::create(
-                $request->only('productmain_code', 'product_code', 'productsub_code','productgroup_code', 'descrip_eproc', 'qty_eproc', 'brand_eproc', 'uom_eproc', 'price_eproc')
+            $catalogcodeitem = Catalogcodeitem::create(
+                $request->only('main_code', 'titlemain_code', 'code', 'title_code', 'sub_code', 'titlesub_code', 'group_code', 'titlegroup_code')
             );
             
             DB::commit();
 
             return response()->json([
-                'message' => 'Eprocproduct has been created!'
+                'message' => 'Catalogcodeitem has been created!'
             ], 200);
 
             // return response()->json([
-            //     'url' => route('eprocproduct.show', [$eprocproduct->id])
+            //     'url' => route('catalogcodeitem.show', [$catalogcodeitem->id])
             // ], 200);
 
         } catch (\Throwable $th) {
@@ -83,16 +82,16 @@ class EprocproductController extends Controller
 
         
 
-        // Eprocproduct::create($validatedData);
+        // Catalogcodeitem::create($validatedData);
 
-        // return redirect()->back()->with('success', 'Eprocproduct has been created!');
+        // return redirect()->back()->with('success', 'Catalogcodeitem has been created!');
     }
 
 
     /**
      * Display the specified resource.
      */
-    public function show(Eprocproduct $eprocproduct)
+    public function show(Catalogcodeitem $catalogcodeitem)
     {
         $breadcrumbs = [
             [
@@ -104,7 +103,7 @@ class EprocproductController extends Controller
             [
                 'title' => $this->pageTitle,
                 'status' => 'active',
-                'url' => route('eprocproduct.index'),
+                'url' => route('catalogcodeitem.index'),
                 'icon' => '',
             ],
             [
@@ -115,10 +114,10 @@ class EprocproductController extends Controller
             ],
         ];
 
-        return view('eproc.eprocproduct.profile', [
+        return view('catalogs.admin.catalogcodeitem.profile', [
             'breadcrumbs' => $breadcrumbs,
             'title' => $this->pageProfile,
-            'eprocproduct' => $eprocproduct
+            'catalogcodeitem' => $catalogcodeitem
         ]);
     }
 
@@ -148,32 +147,28 @@ class EprocproductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Eprocproduct $eprocproduct)
+    public function edit(Catalogcodeitem $catalogcodeitem)
     {
         return response()->json([
             'dropdown' => [
-                'productmain_code' => $eprocproduct->productmain_code,
-                'product_code' => $eprocproduct->product_code,
-                'productsub_code' => $eprocproduct->productsub_code,
-                'productgroup_code'=> $eprocproduct->productgroup_code,
-                
-            ],
-            'form' => [
-               ['descrip_eproc', $eprocproduct->descrip_eproc], 
-               ['qty_eproc', $eprocproduct->qty_eproc], 
-               ['brand_eproc', $eprocproduct->brand_eproc], 
-               ['uom_eproc', $eprocproduct->uom_eproc], 
-               ['price_eproc', $eprocproduct->price_eproc],
+                'main_code' => $catalogcodeitem->main_code,
+                'titlemain_code' => $catalogcodeitem->titlemain_code,
+                'code' => $catalogcodeitem->code,
+                'title_code' => $catalogcodeitem->title_code,
+                'sub_code' => $catalogcodeitem->sub_code,
+                'titlesub_code' => $catalogcodeitem->titlesub_code,
+                'group_code'=> $catalogcodeitem->group_code,
+                'titlegroup_code'=> $catalogcodeitem->titlegroup_code,
             ],
 
-            'update_url' => route('eprocproduct.update', ['eprocproduct' => $eprocproduct->id])
+            'update_url' => route('catalogcodeitem.update', ['catalogcodeitem' => $catalogcodeitem->id])
         ], 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Eprocproduct $eprocproduct)
+    public function update(Request $request, Catalogcodeitem $catalogcodeitem)
     {
         DB::beginTransaction();
 
@@ -199,15 +194,15 @@ class EprocproductController extends Controller
             //     // $validatedData['cert_doc'] = $fileName;
             // }
         
-            Eprocproduct::where('id', $eprocproduct->id)->update(
-            $request->only('productmain_code', 'product_code', 'productsub_code','productgroup_code', 'descrip_eproc', 'qty_eproc', 'brand_eproc', 'uom_eproc', 'price_eproc')
+            Catalogcodeitem::where('id', $catalogcodeitem->id)->update(
+            $request->only('main_code', 'titlemain_code', 'code', 'title_code', 'sub_code', 'titlesub_code', 'group_code', 'titlegroup_code')
             
         ); 
 
             DB::commit();
 
             return response()->json([
-                'message' => 'eprocproduct successfully updated'
+                'message' => 'catalogcodeitem successfully updated'
             ], 200);
         } catch (\Exception $e) {
             DB::rollBack();
@@ -259,22 +254,22 @@ class EprocproductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Eprocproduct $eprocproduct)
+    public function destroy(Catalogcodeitem $catalogcodeitem)
     {
         DB::beginTransaction();
 
         try {
-            // if($eprocproduct->cert_doc){
-            //     $result = str_replace('storage/', '', $eprocproduct->cert_doc);
+            // if($catalogcodeitem->cert_doc){
+            //     $result = str_replace('storage/', '', $catalogcodeitem->cert_doc);
             //         Storage::delete('public/' . $result);
             // }
 
-            Eprocproduct::destroy($eprocproduct->id);
+            Catalogcodeitem::destroy($catalogcodeitem->id);
 
             DB::commit();
 
             return response()->json([
-                'message' => 'eprocproduct successfully deleted'
+                'message' => 'catalogcodeitem successfully deleted'
             ], 200);
         } catch (\Exception $e) {
             DB::rollBack();
@@ -352,25 +347,24 @@ class EprocproductController extends Controller
 
     public function showDatatable()
     {
-        $model = Eprocproduct::select(
+        $model = Catalogcodeitem::select(
             'id',
-            'productmain_code', 
-            'product_code', 
-            'productsub_code',
-            'productgroup_code', 
-            'descrip_eproc', 
-            'qty_eproc', 
-            'brand_eproc', 
-            'uom_eproc', 
-            'price_eproc',
+            'main_code', 
+            'titlemain_code', 
+            'code', 
+            'title_code', 
+            'sub_code', 
+            'titlesub_code', 
+            'group_code', 
+            'titlegroup_code',
             'updated_at'
         );
 
         return DataTables::of($model)
             ->addColumn('actions', function($model) {
-                $show = '<a href="'.route('eprocproduct.show', [ $model->id ]).'"><i class="fa-solid fa-eye cursor-pointer"></i></a>';
-                $edit = '<a href="#" class="px-2" onclick="editRecord(\'' . route('eprocproduct.edit', ['eprocproduct' => $model->id]) . '\')"><i class="fa-solid fa-pen-to-square cursor-pointer"></i></a>';
-                $delete = '<a href="#" class="" onclick="deleteRecord(\'' . route('eprocproduct.destroy', ['eprocproduct' => $model->id]) . '\')"><i class="fa-solid fa-trash cursor-pointer"></i></a>';
+                $show = '<a href="'.route('catalogcodeitem.show', [ $model->id ]).'"><i class="fa-solid fa-eye cursor-pointer"></i></a>';
+                $edit = '<a href="#" class="px-2" onclick="editRecord(\'' . route('catalogcodeitem.edit', ['catalogcodeitem' => $model->id]) . '\')"><i class="fa-solid fa-pen-to-square cursor-pointer"></i></a>';
+                $delete = '<a href="#" class="" onclick="deleteRecord(\'' . route('catalogcodeitem.destroy', ['catalogcodeitem' => $model->id]) . '\')"><i class="fa-solid fa-trash cursor-pointer"></i></a>';
                 $actions = '<div class="row flex">'.
                     $show.$edit.$delete.
                     '</div>';
@@ -381,7 +375,7 @@ class EprocproductController extends Controller
                 return Carbon::parse($model->updated_at)->format('d/m/Y H:i:s');
             })
             ->rawColumns(['actions'])
-            ->removeColumn('eprocproducts')
+            ->removeColumn('catalogcodeitems')
             ->make(true);
     }
 }

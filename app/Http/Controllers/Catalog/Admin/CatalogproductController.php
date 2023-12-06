@@ -1,25 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Eproc;
+namespace App\Http\Controllers\Catalog\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Eproc\Eprocitemcode;
+use App\Models\Catalog\Catalogproduct;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 
-class EprocitemcodeController extends Controller
+
+class CatalogproductController extends Controller
 {
     protected $pageTitle;
     protected $pageProfile;
 
     public function __construct()
     {
-        $this->pageTitle = 'e-Proc Item Code';
-        $this->pageProfile = 'e-Proc Item Code';
+        $this->pageTitle = 'Catalog Products';
+        $this->pageProfile = 'Catalog Products';
     }
 
     /**
@@ -42,7 +43,7 @@ class EprocitemcodeController extends Controller
             ],
         ];
 
-        return view('eproc.eprocitemcode.index', [
+        return view('catalogs.admin.catalogproducts.index', [
             'breadcrumbs' => $breadcrumbs,
             'title' => $this->pageTitle
         ]);
@@ -57,18 +58,37 @@ class EprocitemcodeController extends Controller
         DB::beginTransaction();
 
         try {
-            $eprocitemcode = Eprocitemcode::create(
-                $request->only('main_code', 'titlemain_code', 'code', 'title_code', 'sub_code', 'titlesub_code', 'group_code', 'titlegroup_code')
+            /**
+             * Handle upload image
+             */
+            if ($file = $request->file('product_image')) {
+                $fileName = hexdec(uniqid()) . '.' . $file->getClientOriginalExtension();
+                $path = 'public/assets/img/catalogproducts';
+                /**
+                 * Upload an image to Storage
+                 */
+                $file->storeAs($path, $fileName);
+                $fileName = 'storage/assets/img/catalogproducts/' . $fileName;
+                $validatedData['product_image'] = $fileName;
+            }
+
+            $catalogproduct = Catalogproduct::create(
+                array_merge(
+                    [
+                        'product_image' => $fileName
+                    ],
+                    $request->only('product_image','productmain_code', 'product_code', 'productsub_code', 'productgroup_code', 'product_name', 'slug', 'product_merk', 'product_descrip', 'product_spec', 'product_brand', 'product_uom', 'product_price')
+                )
             );
-            
+
             DB::commit();
 
             return response()->json([
-                'message' => 'Eprocitemcode has been created!'
+                'message' => 'Catalogproduct has been created!'
             ], 200);
 
             // return response()->json([
-            //     'url' => route('eprocitemcode.show', [$eprocitemcode->id])
+            //     'url' => route('catalogproduct.show', [$catalogproduct->id])
             // ], 200);
 
         } catch (\Throwable $th) {
@@ -80,18 +100,18 @@ class EprocitemcodeController extends Controller
             ], 500);
         }
 
-        
 
-        // Eprocitemcode::create($validatedData);
 
-        // return redirect()->back()->with('success', 'Eprocitemcode has been created!');
+        // Catalogproduct::create($validatedData);
+
+        // return redirect()->back()->with('success', 'Catalogproduct has been created!');
     }
 
 
     /**
      * Display the specified resource.
      */
-    public function show(Eprocitemcode $eprocitemcode)
+    public function show(Catalogproduct $catalogproduct)
     {
         $breadcrumbs = [
             [
@@ -103,7 +123,7 @@ class EprocitemcodeController extends Controller
             [
                 'title' => $this->pageTitle,
                 'status' => 'active',
-                'url' => route('eprocitemcode.index'),
+                'url' => route('catalogproduct.index'),
                 'icon' => '',
             ],
             [
@@ -114,10 +134,10 @@ class EprocitemcodeController extends Controller
             ],
         ];
 
-        return view('eproc.eprocitemcode.profile', [
+        return view('catalogs.admin.catalogproducts.profile', [
             'breadcrumbs' => $breadcrumbs,
             'title' => $this->pageProfile,
-            'eprocitemcode' => $eprocitemcode
+            'catalogproduct' => $catalogproduct
         ]);
     }
 
@@ -129,55 +149,87 @@ class EprocitemcodeController extends Controller
     //     $psvdatamaster = Psvdatamaster::findOrFail($id);
     //     // \Log::debug($psvdatamaster);
 
-    
+
     //     // Cetak PDF dari tampilan (view) 'pdf.view' dengan data yang diambil
     //     $pdf = PDF::loadView('customerasset_psv.psvdatamaster.pdfview', compact('psvdatamaster'));
-    
+
     //     // Opsional: Atur ukuran dan orientasi halaman PDF
     //     $pdf->setPaper('A4', 'portrait');
-    
+
     //     // Opsional: Download PDF dengan nama yang sesuai
     //     return $pdf->download('psvdatamaster.pdf');
-    
+
     //     // Tampilkan PDF dalam browser
     //     return $pdf->stream('psvdatamaster.pdf');
-        
+
     // }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Eprocitemcode $eprocitemcode)
+    public function edit(Catalogproduct $catalogproduct)
     {
         return response()->json([
             'dropdown' => [
-                'main_code' => $eprocitemcode->main_code,
-                'titlemain_code' => $eprocitemcode->titlemain_code,
-                'code' => $eprocitemcode->code,
-                'title_code' => $eprocitemcode->title_code,
-                'sub_code' => $eprocitemcode->sub_code,
-                'titlesub_code' => $eprocitemcode->titlesub_code,
-                'group_code'=> $eprocitemcode->group_code,
-                'titlegroup_code'=> $eprocitemcode->titlegroup_code,
+                'productmain_code' => $catalogproduct->productmain_code,
+                'product_code' => $catalogproduct->product_code,
+                'productsub_code' => $catalogproduct->productsub_code,
+                'productgroup_code' => $catalogproduct->productgroup_code,
+
+            ],
+            'form' => [
+                ['product_name', $catalogproduct->product_name],
+                ['slug', $catalogproduct->slug],
+                ['product_merk', $catalogproduct->product_merk],
+                ['product_descrip', $catalogproduct->product_descrip],
+                ['product_spec', $catalogproduct->product_spec],
+                ['product_brand', $catalogproduct->product_brand],
+                ['product_uom', $catalogproduct->product_uom],
+                ['product_price', $catalogproduct->product_price],
+                // ['product_image', $catalogproduct->product_image],
+
             ],
 
-            'update_url' => route('eprocitemcode.update', ['eprocitemcode' => $eprocitemcode->id])
+            'update_url' => route('catalogproduct.update', ['catalogproduct' => $catalogproduct->id])
         ], 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Eprocitemcode $eprocitemcode)
+    public function update(Request $request, Catalogproduct $catalogproduct)
     {
         DB::beginTransaction();
 
         try {
 
+            /**
+         * Handle upload an image
+         */
+        if ($file = $request->file('product_image')) {
+            $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
+            $path = 'public/assets/img/catalogproducts/';
+
+            /**
+             * Delete photo if exists.
+             */
+            if($catalogproduct->product_image){
+                $result = str_replace('storage/', '', $catalogproduct->product_image);
+                Storage::delete('public/' . $result);
+            }
+
+            /**
+             * Store an image to Storage
+             */
+            $file->storeAs($path, $fileName);
+            $fileName = 'storage/assets/img/catalogproducts/'.$fileName;
+            $validatedData['product_image'] = $fileName;
+        }
+
             // if ($file = $request->file('cert_doc')) {
             //     $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
             //     $path = 'public/assets/documents/psv/';
-    
+
             //     /**
             //      * Delete docin if exists.
             //      */
@@ -185,7 +237,7 @@ class EprocitemcodeController extends Controller
             //         $result = str_replace('storage/', '', $psvdatamaster->cert_doc);
             //         Storage::delete('public/' . $result);
             //     }
-    
+
             //     /**
             //      * Store an docin to Storage
             //      */
@@ -193,16 +245,19 @@ class EprocitemcodeController extends Controller
             //     $fileName = 'storage/assets/documents/products/'.$fileName;
             //     // $validatedData['cert_doc'] = $fileName;
             // }
-        
-            Eprocitemcode::where('id', $eprocitemcode->id)->update(
-            $request->only('main_code', 'titlemain_code', 'code', 'title_code', 'sub_code', 'titlesub_code', 'group_code', 'titlegroup_code')
-            
-        ); 
+
+            Catalogproduct::where('id', $catalogproduct->id)->update(
+                [
+                    'product_image' => $fileName
+                ],
+                $request->only('product_image','productmain_code', 'product_code', 'productsub_code', 'productgroup_code', 'product_name', 'slug', 'product_merk', 'product_descrip', 'product_spec', 'product_brand', 'product_uom', 'product_price')
+
+            );
 
             DB::commit();
 
             return response()->json([
-                'message' => 'eprocitemcode successfully updated'
+                'message' => 'catalogproduct successfully updated'
             ], 200);
         } catch (\Exception $e) {
             DB::rollBack();
@@ -213,29 +268,29 @@ class EprocitemcodeController extends Controller
             ], 500);
         }
     }
-         /**
-         * Handle upload an cert_doc
-         */
-        // \Log::debug($request);
-        // if ($file = $request->file('cert_doc')) {
-        //     $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
-        //     $path = 'public/assets/documents/psv/';
+    /**
+     * Handle upload an cert_doc
+     */
+    // \Log::debug($request);
+    // if ($file = $request->file('cert_doc')) {
+    //     $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
+    //     $path = 'public/assets/documents/psv/';
 
-        //     /**
-        //      * Delete cert_doc if exists.
-        //      */
-        //     if($psvdatamaster->cert_doc){
-        //         $result = str_replace('storage/', '', $psvdatamaster->cert_doc);
-        //         Storage::delete('public/' . $result);
-        //     }
+    //     /**
+    //      * Delete cert_doc if exists.
+    //      */
+    //     if($psvdatamaster->cert_doc){
+    //         $result = str_replace('storage/', '', $psvdatamaster->cert_doc);
+    //         Storage::delete('public/' . $result);
+    //     }
 
-        //     /**
-        //      * Store an cert_doc to Storage
-        //      */
-        //     $file->storeAs($path, $fileName);
-        //     $fileName = 'storage/assets/documents/psv/'.$fileName;
-        //     $validatedData['cert_doc'] = $fileName;
-        // }
+    //     /**
+    //      * Store an cert_doc to Storage
+    //      */
+    //     $file->storeAs($path, $fileName);
+    //     $fileName = 'storage/assets/documents/psv/'.$fileName;
+    //     $validatedData['cert_doc'] = $fileName;
+    // }
 
     //     Psvdatamaster::where('id', $psvdatamaster->id)->update($validatedData);
     // //     return response()->json([
@@ -254,22 +309,24 @@ class EprocitemcodeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Eprocitemcode $eprocitemcode)
+    public function destroy(Catalogproduct $catalogproduct)
     {
         DB::beginTransaction();
 
         try {
-            // if($eprocitemcode->cert_doc){
-            //     $result = str_replace('storage/', '', $eprocitemcode->cert_doc);
-            //         Storage::delete('public/' . $result);
-            // }
-
-            Eprocitemcode::destroy($eprocitemcode->id);
+            /**
+         * Delete photo if exists.
+         */
+        if($catalogproduct->product_image){
+            $result = str_replace('storage/', '', $catalogproduct->product_image);
+                Storage::delete('public/' . $result);
+        }
+            Catalogproduct::destroy($catalogproduct->id);
 
             DB::commit();
 
             return response()->json([
-                'message' => 'eprocitemcode successfully deleted'
+                'message' => 'catalogproduct successfully deleted'
             ], 200);
         } catch (\Exception $e) {
             DB::rollBack();
@@ -312,7 +369,7 @@ class EprocitemcodeController extends Controller
     //     return redirect()->back()->with('error', 'Failed to upload certificate document.');
     // }
 
-     /**
+    /**
      * EXPORT EXCEL 
      */
     // public function exportExcel()
@@ -322,7 +379,7 @@ class EprocitemcodeController extends Controller
 
     // }
 
-     /**
+    /**
      * IMPORT EXCEL 
      */
     // public function importExcel(Request $request)
@@ -347,35 +404,40 @@ class EprocitemcodeController extends Controller
 
     public function showDatatable()
     {
-        $model = Eprocitemcode::select(
+        $model = Catalogproduct::select(
             'id',
-            'main_code', 
-            'titlemain_code', 
-            'code', 
-            'title_code', 
-            'sub_code', 
-            'titlesub_code', 
-            'group_code', 
-            'titlegroup_code',
+            'product_image',
+            'productmain_code',
+            'product_code',
+            'productsub_code',
+            'productgroup_code',
+            'product_name',
+            'slug',
+            'product_merk',
+            'product_descrip',
+            'product_spec',
+            'product_brand',
+            'product_uom',
+            'product_price',
             'updated_at'
         );
 
         return DataTables::of($model)
-            ->addColumn('actions', function($model) {
-                $show = '<a href="'.route('eprocitemcode.show', [ $model->id ]).'"><i class="fa-solid fa-eye cursor-pointer"></i></a>';
-                $edit = '<a href="#" class="px-2" onclick="editRecord(\'' . route('eprocitemcode.edit', ['eprocitemcode' => $model->id]) . '\')"><i class="fa-solid fa-pen-to-square cursor-pointer"></i></a>';
-                $delete = '<a href="#" class="" onclick="deleteRecord(\'' . route('eprocitemcode.destroy', ['eprocitemcode' => $model->id]) . '\')"><i class="fa-solid fa-trash cursor-pointer"></i></a>';
-                $actions = '<div class="row flex">'.
-                    $show.$edit.$delete.
+            ->addColumn('actions', function ($model) {
+                $show = '<a href="' . route('admin.catalogproduct.show', [$model->id]) . '"><i class="fa-solid fa-eye cursor-pointer"></i></a>';
+                $edit = '<a href="#" class="px-2" onclick="editRecord(\'' . route('admin.catalogproduct.edit', ['catalogproduct' => $model->id]) . '\')"><i class="fa-solid fa-pen-to-square cursor-pointer"></i></a>';
+                $delete = '<a href="#" class="" onclick="deleteRecord(\'' . route('admin.catalogproduct.destroy', ['catalogproduct' => $model->id]) . '\')"><i class="fa-solid fa-trash cursor-pointer"></i></a>';
+                $actions = '<div class="row flex">' .
+                    $show . $edit . $delete .
                     '</div>';
 
                 return $actions;
             })
-            ->editColumn('updated_at', function($model) {
+            ->editColumn('updated_at', function ($model) {
                 return Carbon::parse($model->updated_at)->format('d/m/Y H:i:s');
             })
             ->rawColumns(['actions'])
-            ->removeColumn('eprocitemcodes')
+            ->removeColumn('catalogproducts')
             ->make(true);
     }
 }

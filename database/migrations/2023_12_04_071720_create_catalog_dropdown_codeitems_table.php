@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('eproc_dropdown_itemcodes', function (Blueprint $table) {
+        Schema::create('catalog_dropdown_codeitems', function (Blueprint $table) {
             $table->id();
             $table->string('code');
             $table->string('title');
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('eproc_dropdown_itemcodes');
+        Schema::dropIfExists('catalog_dropdown_codeitems');
     }
 };

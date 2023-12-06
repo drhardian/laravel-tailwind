@@ -19,12 +19,13 @@
                         class="text-white bg-green-700 sm:block hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         <i class="fa-solid fa-file-import"></i> Import
                     </button>
-            
-                    <a id="newBtn" href="{{ route('psvdatamaster.export') }}" download="exported-data.csv"
+
+                    <a id="newBtn"
+                    {{-- <a id="newBtn" href="{{ route('psvdatamaster.export') }}" download="exported-data.csv" --}}
                         class="text-white bg-yellow-400 sm:block hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
                         <i class="fa-solid fa-file-export"></i> Export
                     </a>
-                    <button type="button" id="newBtn" onclick="openForm(`{{ route('eprocproduct.store') }}`)"
+                    <button type="button" id="newBtn" onclick="openForm(`{{ route('catalogcodeitem.store') }}`)"
                         class="text-white bg-blue-700 sm:block hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <i class="fa-solid fa-plus"></i> New
                     </button>
@@ -35,16 +36,14 @@
                 <table id="main-table" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Image</th>
                             <th>Main Code</th>
+                            <th>Title Main Code</th>
                             <th>Code</th>
+                            <th>Title Code</th>
                             <th>Sub Code</th>
+                            <th>Title sub Code</th>
                             <th>Group Code</th>
-                            <th>Description</th>
-                            <th>Brand</th>
-                            <th>Qty</th>
-                            <th>UOM</th>
-                            <th>Price</th>
+                            <th>Title Group Code</th>
                             <th>Updated At</th>
                             <th></th>
                         </tr>
@@ -115,154 +114,155 @@
                                 <li class="mr-2" role="presentation">
                                     <button
                                         class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                        id="eproc-tab" data-tabs-target="#eproc" type="button" role="tab"
-                                        aria-controls="eproc" aria-selected="false">PRODUCT</button>
+                                        id="catalog-tab" data-tabs-target="#catalog" type="button" role="tab"
+                                        aria-controls="catalog" aria-selected="false">TOOLS CODE</button>
                                 </li>
                             </ul>
                         </div> --}}
 
                         <div id="myTabContent">
-                            <div class id="product" role="tab" aria-labelledby="product-tab">
+                            
+                            <!-- CODE TOOLS -->
+                            <div class id="code" role="tab" aria-labelledby="code-tab">
                                 <div class="space-y-6">
-                                    <!-- ITEM CODE -->
                                     <div class="mb-6">
-                                        <div class="row sm:flex">
-                                            <!-- product image card-->
-                                            <div class="card mb-4 mb-xl-0">
-                                                <div class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Image</div>
-                                                <div class="card-body text-center">
-                                                    <!-- product image -->
-                                                    <img class="img-account-profile mb-2" src="{{ asset('assets/img/products/default.webp') }}" alt="" id="image-preview" />
-                                                    <!-- product image help block -->
-                                                    {{-- <div class="small font-italic text-muted mb-2">JPG or PNG no larger than 2 MB</div> --}}
-                                                    <!-- product image input -->
-                                                    <input class="form-control form-control-solid mb-2 @error('product_image') is-invalid @enderror" type="file"  id="image" name="product_image" accept="image/*" onchange="previewImage();">
-                                                    @error('product_image')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
+                                        <div class="row sm:flex space-x-4">
+                                            <div class="w-full">
+                                                <div class="row sm:flex">
+                                                    <div class="w-full">
+                                                        <label for="main_code_and_titlemain_code"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Main Code</label>
+                                                        <div class="flex">
+                                                            <div class="w-1/4"> <!-- Bagian Main Code -->
+                                                                <select id="main_code" name="main_code"
+                                                                    class="select2-catalog-dropdown"
+                                                                    data-show="{{ route ('catalog.options.showondropdown') }}"
+                                                                    data-store="{{ route ('catalog.options.storefromdropdown') }}"
+                                                                    data-alias="catalog-main_code"
+                                                                    data-change="true"
+                                                                    data-form="main code"></select>
+                                                            </div>
+                                                            <div class="w-3/4"> <!-- Bagian Title Main Code -->
+                                                                <select id="titlemain_code" name="titlemain_code"
+                                                                    class="select2-catalog-dropdown"
+                                                                    data-show="{{ route ('catalog.options.showondropdown') }}"
+                                                                    data-store="{{ route ('catalog.options.storefromdropdown') }}"
+                                                                    data-alias="catalog-titlemain_code"
+                                                                    data-change="true"
+                                                                    data-form="title main code"></select>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row sm:flex">
-                                            <div class="sm:w-1/4 w-full mr-2">
-                                                <label for="productmain_code"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Main Code</label>
-                                                <select id="productmain_code" name="productmain_code"
-                                                class="select2-eproc-dropdown"
-                                                data-show="{{ route ('eproc.options.showondropdown') }}"
-                                                data-store="{{ route ('eproc.options.storefromdropdown') }}"
-                                                data-alias="eproc-productmain_code"
-                                                data-change="true"
-                                                data-form="product main code"></select>
-                                            </div>
-                                            <div class="sm:w-1/4 w-full mr-2">
-                                                <label for="product_code"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Code</label>
-                                                    <select id="code" name="code"
-                                                    class="select2-eproc-dropdown"
-                                                    data-show="{{ route ('eproc.options.showondropdown') }}"
-                                                    data-store="{{ route ('eproc.options.storefromdropdown') }}"
-                                                    data-alias="eproc-product_code"
-                                                    data-change="true"
-                                                    data-form="product code"></select>
-                                            </div>
-                                            <div class="sm:w-1/4 w-full mr-2">
-                                                <label for="productsub_code"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sub Code</label>
-                                                    <select id="productsub_code" name="productsub_code"
-                                                    class="select2-eproc-dropdown"
-                                                    data-show="{{ route ('eproc.options.showondropdown') }}"
-                                                    data-store="{{ route ('eproc.options.storefromdropdown') }}"
-                                                    data-alias="eproc-productsub_code"
-                                                    data-change="true"
-                                                    data-form="product sub code"></select>
-                                            </div>
-                                            <div class="sm:w-1/4 w-full mr-2">
-                                                <label for="productgroup_code"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Group Code</label>
-                                                    <select id="productgroup_code" name="productgroup_code"
-                                                    class="select2-eproc-dropdown"
-                                                    data-show="{{ route ('eproc.options.showondropdown') }}"
-                                                    data-store="{{ route ('eproc.options.storefromdropdown') }}"
-                                                    data-alias="eproc-productgroup_code"
-                                                    data-change="true"
-                                                    data-form="product group code"></select>
+                                        <div class="row sm:flex space-x-4">
+                                            <div class="w-full">
+                                                <div class="row sm:flex">
+                                                    <div class="w-full"> 
+                                                        <label for="code_and_title_code"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Code</label>
+                                                        <div class="flex">
+                                                            <div class="w-1/4"> <!-- Bagian Code -->
+                                                                <select id="code" name="code"
+                                                                    class="select2-catalog-dropdown"
+                                                                    data-show="{{ route ('catalog.options.showondropdown') }}"
+                                                                    data-store="{{ route ('catalog.options.storefromdropdown') }}"
+                                                                    data-alias="catalog-code"
+                                                                    data-change="true"
+                                                                    data-form="code"></select>
+                                                            </div>
+                                                            <div class="w-3/4"> <!-- Bagian Title Code -->
+                                                                <select id="title_code" name="title_code"
+                                                                    class="select2-catalog-dropdown"
+                                                                    data-show="{{ route ('catalog.options.showondropdown') }}"
+                                                                    data-store="{{ route ('catalog.options.storefromdropdown') }}"
+                                                                    data-alias="catalog-title_code"
+                                                                    data-change="true"
+                                                                    data-form="title code"></select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- PRODUCT INFORMATION -->
-                                    <div class="mb-6">
-                                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PRODUCT INFORMATION</label>
-                                        <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full mr-2">
-                                                <label for="descrip_eproc"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                                    <input type="text" id="descrip_eproc" name="descrip_eproc"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="description">
+                                            <div class="row sm:flex space-x-4">
+                                                <div class="w-full">
+                                                    <div class="row sm:flex">
+                                                        <div class="w-full">
+                                                            <label for="subcode_and_titlesub_code"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sub Code</label>
+                                                            <div class="flex">
+                                                                <div class="w-1/4"> <!-- Bagian Sub Code -->
+                                                                    <select id="sub_code" name="sub_code"
+                                                                        class="select2-catalog-dropdown"
+                                                                        data-show="{{ route ('catalog.options.showondropdown') }}"
+                                                                        data-store="{{ route ('catalog.options.storefromdropdown') }}"
+                                                                        data-alias="catalog-sub_code"
+                                                                        data-change="true"
+                                                                        data-form="sub code"></select>
+                                                                </div>
+                                                                <div class="w-3/4"> <!-- Bagian Title Sub Code -->
+                                                                    <select id="titlesub_code" name="titlesub_code"
+                                                                        class="select2-catalog-dropdown"
+                                                                        data-show="{{ route ('catalog.options.showondropdown') }}"
+                                                                        data-store="{{ route ('catalog.options.storefromdropdown') }}"
+                                                                        data-alias="catalog-titlesub_code"
+                                                                        data-change="true"
+                                                                        data-form="title sub code"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="sm:w-1/2 w-full mr-2">
-                                                <label for="qty"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Qty</label>
-                                                    <input type="number" id="qty" name="qty"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="quantity">
+                                            <div class="row sm:flex space-x-4">
+                                                <div class="w-full">
+                                                    <div class="row sm:flex">
+                                                        <div class="w-full">
+                                                            <label for="groupcode_and_titlegroup_code"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Group Code</label>
+                                                            <div class="flex">
+                                                                <div class="w-1/4"> <!-- Bagian Group Code -->
+                                                                    <select id="group_code" name="group_code"
+                                                                        class="select2-catalog-dropdown"
+                                                                        data-show="{{ route ('catalog.options.showondropdown') }}"
+                                                                        data-store="{{ route ('catalog.options.storefromdropdown') }}"
+                                                                        data-alias="catalog-group_code"
+                                                                        data-change="true"
+                                                                        data-form="group code"></select>
+                                                                </div>
+                                                                <div class="w-3/4"> <!-- Bagian Title Group Code -->
+                                                                    <select id="titlegroup_code" name="titlegroup_code"
+                                                                        class="select2-catalog-dropdown"
+                                                                        data-show="{{ route ('catalog.options.showondropdown') }}"
+                                                                        data-store="{{ route ('catalog.options.storefromdropdown') }}"
+                                                                        data-alias="catalog-titlegroup_code"
+                                                                        data-change="true"
+                                                                        data-form="title group code"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            {{-- <div class="sm:w-1/2 w-full mr-2">
-                                                <label for="satuan"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Satuan</label>
-                                                    <input type="text" id="satuan" name="satuan"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="satuan">
-                                            </div> --}}
                                         </div>
-                                    </div>
-                                    <div class="mb-6">
-                                        <div class="row sm:flex">
-                                            <div class="sm:w-1/3 w-full mr-2">
-                                                <label for="brand_eproc"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
-                                                    <input type="text" id="brand_eproc" name="brand_eproc"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="brand">
-                                            </div>
-                                            <div class="sm:w-1/3 w-full mr-2">
-                                                <label for="uom_eproc"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UOM</label>
-                                                    <input type="text" id="uom_eproc" name="uom_eproc"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="uom">
-                                            </div>
-
-                                            <div class="sm:w-1/3 w-full mr-2">
-                                                <label for="price_eproc"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unit Price</label>
-                                                    <input type="number" id="price_eproc" name="price_eproc"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="price">
-                                            </div>
-                                        </div>
+                                    </div> 
+                                    <!-- Modal footer -->
+                                    <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600 py-4">
+                                        <button type="button"
+                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                            onClick="saveRecord()">Save</button>
+                                        <button id="cancelBtn" type="button"
+                                            class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Modal footer -->
-                            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600 py-4">
-                                <button type="button"
-                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                    onClick="saveRecord()">Save</button>
-                                <button id="cancelBtn" type="button"
-                                    class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
-                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </form>
-        </div>
+            </div>
     </div>
-</div>
-
     <!-- Upload Excel modal -->
     <div id="uploadExcelModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" role="dialog"
         aria-modal="true"
@@ -289,7 +289,7 @@
                     <div id="alert-frame">
                         <div id="warning-alert-activity"
                             class="hidden items-center p-4 my-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
-                            role="alert"> 
+                            role="alert">
                             <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -341,7 +341,7 @@
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/datepicker.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
-    <script type="text/javascript" src="{{ asset('core/js/eproc/eprocproduct-custom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('core/js/catalog/catalogcodeitem-custom.js') }}"></script>
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         
@@ -355,54 +355,54 @@
                 serverSide: true,
                 deferRender: true,
                 ajax: {
-                    url: "{{ route('eprocproduct.main.table') }}",
+                    url: "{{ route('catalogcodeitem.main.table') }}",
                 },
                 columns: [
                     {
-                        data: 'productmain_code',
-                        name: 'productmain_code',
+                        data: 'main_code',
+                        name: 'main_code',
                         className: ['text-center', 'min-tablet']
                     },
                     {
-                        data: 'product_code',
-                        name: 'product_code',
+                        data: 'titlemain_code',
+                        name: 'titlemain_code',
+                        className: ['text-center', 'min-tablet']
+                    },
+                    {
+                        data: 'code',
+                        name: 'code',
+                        className: ['text-center', 'min-tablet']
+                    },
+                    {
+                        data: 'title_code',
+                        name: 'title_code',
                         class: ['text-center', 'min-tablet']
                     },
+
                     {
-                        data: 'productsub_code',
-                        name: 'productsub_code',
+                        data: 'sub_code',
+                        name: 'sub_code',
                         class: ['text-center', 'min-tablet']
                     },
+
                     {
-                        data: 'productgroup_code',
-                        name: 'productgroup_code',
+                        data: 'titlesub_code',
+                        name: 'titlesub_code',
                         class: ['text-center', 'min-tablet']
                     },
+
                     {
-                        data: 'descrip_eproc',
-                        name: 'descrip_eproc',
-                        class: 'all'
+                        data: 'group_code',
+                        name: 'group_code',
+                        class: ['text-center', 'min-tablet']
                     },
+
                     {
-                        data: 'qty_eproc',
-                        name: 'qty_eproc',
-                        class: 'all'
+                        data: 'titlegroup_code',
+                        name: 'titlegroup_code',
+                        class: ['text-center', 'min-tablet']
                     },
-                    {
-                        data: 'brand_eproc',
-                        name: 'brand_eproc',
-                        class: 'all'
-                    },
-                    {
-                        data: 'uom_eproc',
-                        name: 'uom_eproc',
-                        class: 'all'
-                    },
-                    {
-                        data: 'price_eproc',
-                        name: 'price',
-                        class: 'all'
-                    },
+
                     {
                         data: 'updated_at',
                         name: 'updated_at',
@@ -431,7 +431,30 @@
                 ]
             });
 
-            $('.select2-eproc-dropdown').select2({
+            // $('#area').select2({
+            //     allowClear: true,
+            //     width: 'resolve',
+            //     placeholder: 'Select here..',
+            //     dropdownCssClass: 'bigdrop',
+                
+            // });
+            // $('#platform').select2({
+            //     allowClear: true,
+            //     width: 'resolve',
+            //     placeholder: 'Select here..',
+            //     dropdownCssClass: 'bigdrop',
+                
+            // });
+
+            // $('#flow').select2({
+            //     allowClear: true,
+            //     width: 'resolve',
+            //     placeholder: 'Select here..',
+            //     dropdownCssClass: 'bigdrop',
+                
+            // });
+
+            $('.select2-catalog-dropdown').select2({
                 allowClear: true,
                 tags: true,
                 ajax: {
@@ -458,7 +481,7 @@
                 placeholder: 'Search here..',
             });
 
-            $('.select2-eproc-dropdown').on('select2:close', function(e){
+            $('.select2-catalog-dropdown').on('select2:close', function(e){
                 let getText = $(this).find(':selected');
                 var paramsData = getText[0].label;
 
@@ -512,40 +535,40 @@
             });
         });
 
-        function uploadFile() {
-            var formData = new FormData();
-            formData.append('filexls', $('#filexls')[0].files[0]);
-            formData.append('_token', CSRF_TOKEN);
+        // function uploadFile() {
+        //     var formData = new FormData();
+        //     formData.append('filexls', $('#filexls')[0].files[0]);
+        //     formData.append('_token', CSRF_TOKEN);
 
-            $.ajax({
-                type: "post",
-                url: "{{ route('psvdatamaster.import') }}",
-                data: formData,
-                dataType: "json",
-                contentType: false,
-                processData: false,
-                enctype: "multipart/form-data",
-                beforeSend: function() {
-                    Swal.fire({
-                        title: 'Please wait...',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        didOpen: () => {
-                            Swal.showLoading()
-                        },
-                    })
-                },
-                success: function(response) {
-                    Swal.close();
-                    toastr.success(response.message);
-                    closeUploadXlsIco.click();
-                    $('#main-table').DataTable().ajax.reload();
-                },
-                error: function(xhr) {
-                    Swal.close();
-                    toastr.error(xhr.responseJSON.message);
-                }
-            });
-        }
+        //     $.ajax({
+        //         type: "post",
+        //         url: "{{ route('psvdatamaster.import') }}",
+        //         data: formData,
+        //         dataType: "json",
+        //         contentType: false,
+        //         processData: false,
+        //         enctype: "multipart/form-data",
+        //         beforeSend: function() {
+        //             Swal.fire({
+        //                 title: 'Please wait...',
+        //                 allowOutsideClick: false,
+        //                 allowEscapeKey: false,
+        //                 didOpen: () => {
+        //                     Swal.showLoading()
+        //                 },
+        //             })
+        //         },
+        //         success: function(response) {
+        //             Swal.close();
+        //             toastr.success(response.message);
+        //             closeUploadXlsIco.click();
+        //             $('#main-table').DataTable().ajax.reload();
+        //         },
+        //         error: function(xhr) {
+        //             Swal.close();
+        //             toastr.error(xhr.responseJSON.message);
+        //         }
+        //     });
+        // }
     </script>
 @endsection
