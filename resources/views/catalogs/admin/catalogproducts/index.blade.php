@@ -41,8 +41,8 @@
                             <th>Sub Code</th>
                             <th>Group Code</th>
                             <th>Product Name</th>
-                            <th>Merk</th>
-                            <th>Description</th>
+                            <th>Brand</th>
+                            {{-- <th>Specification</th> --}}
                             <th>Price</th>
                             <th>Updated At</th>
                             <th></th>
@@ -211,54 +211,58 @@
                                                 <div class="row sm:flex">
                                                     <div class="sm:w-1/2 w-full mr-2">
                                                         <label for="product_name"
-                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
-                                                            Produk</label>
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
                                                         <input type="text" id="product_name" name="product_name"
                                                             class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                             required placeholder="product name">
                                                     </div>
                                                     <div class="sm:w-1/2 w-full mr-2">
-                                                        <label for="product_merk"
-                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Merk</label>
-                                                        <input type="text" id="product_merk" name="product_merk"
-                                                            class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                            required placeholder="product merk">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row sm:flex">
-                                                <div class="sm:w-1/2 w-full mr-2">
-                                                    <label for="product_descrip"
-                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                                    <input type="text" id="product_descrip" name="product_descrip"
-                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                        required placeholder="description">
-                                                </div>
-                                                <div class="sm:w-1/2 w-full mr-2">
-                                                    <label for="product_spec"
-                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Specification</label>
-                                                    <input type="text" id="product_spec" name="product_spec"
-                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                        required placeholder="specification">
-                                                </div>
-                                            </div>
-                                            <div class="mb-6">
-                                                <div class="row sm:flex">
-                                                    <div class="sm:w-1/3 w-full mr-2">
                                                         <label for="product_brand"
                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
                                                         <input type="text" id="product_brand" name="product_brand"
                                                             class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                             required placeholder="brand">
                                                     </div>
-                                                    <div class="sm:w-1/3 w-full mr-2">
+                                                </div>
+                                            </div>
+                                            <div class="row sm:flex">
+                                                {{-- <div class="sm:w-1/2 w-full mr-2">
+                                                    <label for="product_descrip"
+                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                                    <input type="text" id="product_descrip" name="product_descrip"
+                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required placeholder="description">
+                                                </div> --}}
+                                                <div class="w-full">
+                                                    <label for="product_spec"
+                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Specification</label>
+                                                        <textarea 
+                                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                                        placeholder="Write specification here..."
+                                                        id="product_spec" 
+                                                        name="specification"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="mb-6">
+                                                <div class="row sm:flex">
+                                                    {{-- <div class="sm:w-1/3 w-full mr-2">
+                                                        <label for="product_brand"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
+                                                        <input type="text" id="product_brand" name="product_brand"
+                                                            class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            required placeholder="brand">
+                                                    </div> --}}
+                                                    <div class="sm:w-1/2 w-full mr-2">
                                                         <label for="product_uom"
                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UOM</label>
-                                                        <input type="text" id="product_uom" name="product_uom"
-                                                            class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                            required placeholder="uom">
+                                                        <select id="product_uom" name="product_uom"
+                                                            class="select2-general-dropdown"
+                                                            data-show="{{ route('general.options.showondropdown') }}"
+                                                            data-store="{{ route('general.options.storefromdropdown') }}"
+                                                            data-alias="catalog-product_uom" data-change="true"
+                                                            data-form="product group code"></select>
                                                     </div>
-                                                    <div class="sm:w-1/3 w-full mr-2">
+                                                    <div class="sm:w-1/2 w-full mr-2">
                                                         <label for="product_price"
                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unit
                                                             Price</label>
@@ -415,15 +419,15 @@
                         class: 'all'
                     },
                     {
-                        data: 'product_merk',
-                        name: 'product_merk',
+                        data: 'product_brand',
+                        name: 'product_brand',
                         class: 'all'
                     },
-                    {
-                        data: 'product_descrip',
-                        name: 'product_descrip',
-                        class: 'all'
-                    },
+                    // {
+                    //     data: 'product_descrip',
+                    //     name: 'product_descrip',
+                    //     class: 'all'
+                    // },
                     // {
                     //     data: 'product_spec',
                     //     name: 'product_spec',
@@ -500,6 +504,74 @@
             });
 
             $('.select2-catalog-dropdown').on('select2:close', function(e) {
+                let getText = $(this).find(':selected');
+                var paramsData = getText[0].label;
+
+                if (paramsData) {
+                    let url = $(this).attr("data-store");
+                    let dataForm = $(this).attr("data-form");
+                    let dataChange = $(this).attr("data-change");
+
+                    if (url) {
+                        $.ajax({
+                            url: url,
+                            method: "POST",
+                            data: {
+                                _token: CSRF_TOKEN,
+                                newoption: paramsData,
+                                alias: $(this).attr('data-alias')
+                            },
+                            dataType: "json",
+                            success: function(response) {
+
+                                $('#' + dataForm).val(null).trigger('change');
+
+                                if (dataChange == "true") {
+                                    var option = new Option(response.message.text, response
+                                        .message.text, true, true);
+                                } else {
+                                    var option = new Option(response.message.text, response
+                                        .message.id, true, true);
+                                }
+
+                                $('#' + dataForm).append(option).trigger('change');
+                                $('#' + dataForm).trigger('change');
+
+                            }
+                        });
+                    }
+                }
+
+            });
+
+            $('.select2-general-dropdown').select2({
+                allowClear: true,
+                tags: true,
+                ajax: {
+                    url: function() {
+                        return $(this).attr('data-show');
+                    },
+                    type: 'GET',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            search: params.term,
+                            alias: $(this).attr('data-alias'),
+                            dataChange: $(this).attr('data-change'),
+                        };
+                    },
+                    processResults: function(response) {
+                        return {
+                            results: response
+                        }
+                    },
+                    cache: true
+                },
+                placeholder: 'Search here..',
+            });
+
+            $('.select2-general-dropdown').on('select2:close', function(e) {
                 let getText = $(this).find(':selected');
                 var paramsData = getText[0].label;
 

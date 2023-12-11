@@ -101,8 +101,6 @@ class EprocfboController extends Controller
             ], 500);
         }
 
-        
-
         // Psvdatamaster::create($validatedData);
 
         // return redirect()->back()->with('success', 'Psvdatamaster has been created!');
@@ -162,7 +160,7 @@ class EprocfboController extends Controller
     
     //     // Tampilkan PDF dalam browser
     //     return $pdf->stream('eprocfbo.pdf');
-        
+
     // }
 
     /**
@@ -177,7 +175,6 @@ class EprocfboController extends Controller
                 'required_category' => $eprocfbo->required_category,
                 'eprocmethod' => $eprocfbo->eprocmethod,
                 'statusfbo' => $eprocfbo->statusfbo,
-                
             ],
             'form' => [
                 ['required_by', $eprocfbo->required_by],
@@ -187,7 +184,6 @@ class EprocfboController extends Controller
                 ['type_process', $eprocfbo->type_process],
                 ['upload_srf', $eprocfbo->upload_srf],
                 ['minimum', $eprocfbo->minimum],
-
             ],
             'update_url' => route('eprocfbo.update', ['eprocfbo' => $eprocfbo->id])
         ], 200);
@@ -281,7 +277,6 @@ class EprocfboController extends Controller
     //     ], 500);
     // }
 
-
     /**
      * Remove the specified resource from storage.
      */
@@ -373,7 +368,6 @@ class EprocfboController extends Controller
     //             'message' => $e->getMessage()
     //         ], 500);
     //     }
-
     // }
 
     public function showDatatable()

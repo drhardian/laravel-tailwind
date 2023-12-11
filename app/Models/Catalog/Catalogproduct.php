@@ -53,8 +53,5 @@ class Catalogproduct extends Model
         {
             return $this->belongsToMany(Catalogproduct::class, 'product_name');
         }
-
-        
-    
     }
     

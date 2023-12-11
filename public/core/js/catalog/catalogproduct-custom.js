@@ -118,7 +118,8 @@ editRecord = (url) => {
             $('#productsub_code').append(productsub_codeOptions).trigger('change');
             var productgroup_codeOptions = new Option(response.dropdown.productgroup_code, response.dropdown.productgroup_code, true, true);
             $('#productgroup_code').append(productgroup_codeOptions).trigger('change');
-
+            var product_uomOptions = new Option(response.dropdown.product_uom, response.dropdown.product_uom, true, true);
+            $('#product_uom').append(product_uomOptions).trigger('change');
 
             $.each(response.form, function (index, value) { 
                 $('#' + value[0]).val(value[1]);

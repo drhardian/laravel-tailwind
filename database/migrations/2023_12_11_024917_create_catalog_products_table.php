@@ -20,13 +20,18 @@ return new class extends Migration
             $table->string('productgroup_code')->nullable();
             $table->string('product_name')->nullable();
             $table->string('slug')->nullable();
-            $table->string('product_merk')->nullable();
-            $table->string('product_descrip')->nullable();
+            // $table->string('product_merk')->nullable();
+            // $table->string('product_descrip')->nullable();
             $table->string('product_spec')->nullable();
             $table->string('product_brand')->nullable();
             $table->string('product_uom')->nullable();
             $table->decimal('product_price', 15, 2)->nullable();
             $table->timestamps();
+            // $table->foreign('catalog_codeitems_id')->references('titlemain_code')->on('catalog_codeitems');
+            // $table->foreign('catalog_codeitems_id')->references('title_code')->on('catalog_codeitems');
+            // $table->foreign('catalog_codeitems_id')->references('titlesub_code')->on('catalog_codeitems');
+            // $table->foreign('catalog_codeitems_id')->references('titlegroup_code')->on('catalog_codeitems');
+
         });
     }
 

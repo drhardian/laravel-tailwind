@@ -160,7 +160,6 @@ class CatalogcodeitemController extends Controller
                 'group_code'=> $catalogcodeitem->group_code,
                 'titlegroup_code'=> $catalogcodeitem->titlegroup_code,
             ],
-
             'update_url' => route('catalogcodeitem.update', ['catalogcodeitem' => $catalogcodeitem->id])
         ], 200);
     }

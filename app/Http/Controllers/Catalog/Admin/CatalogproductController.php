@@ -77,7 +77,7 @@ class CatalogproductController extends Controller
                     [
                         'product_image' => $fileName
                     ],
-                    $request->only('product_image','productmain_code', 'product_code', 'productsub_code', 'productgroup_code', 'product_name', 'slug', 'product_merk', 'product_descrip', 'product_spec', 'product_brand', 'product_uom', 'product_price')
+                    $request->only('product_image','productmain_code', 'product_code', 'productsub_code', 'productgroup_code', 'product_name', 'slug', 'product_spec', 'product_brand', 'product_uom', 'product_price')
                 )
             );
 
@@ -123,7 +123,7 @@ class CatalogproductController extends Controller
             [
                 'title' => $this->pageTitle,
                 'status' => 'active',
-                'url' => route('catalogproduct.index'),
+                'url' => route('admin.catalogproduct.index'),
                 'icon' => '',
             ],
             [
@@ -175,22 +175,23 @@ class CatalogproductController extends Controller
                 'product_code' => $catalogproduct->product_code,
                 'productsub_code' => $catalogproduct->productsub_code,
                 'productgroup_code' => $catalogproduct->productgroup_code,
+                'product_uom', $catalogproduct->product_uom,
+
 
             ],
             'form' => [
                 ['product_name', $catalogproduct->product_name],
                 ['slug', $catalogproduct->slug],
-                ['product_merk', $catalogproduct->product_merk],
-                ['product_descrip', $catalogproduct->product_descrip],
+                // ['product_merk', $catalogproduct->product_merk],
+                // ['product_descrip', $catalogproduct->product_descrip],
                 ['product_spec', $catalogproduct->product_spec],
                 ['product_brand', $catalogproduct->product_brand],
-                ['product_uom', $catalogproduct->product_uom],
                 ['product_price', $catalogproduct->product_price],
                 // ['product_image', $catalogproduct->product_image],
 
             ],
 
-            'update_url' => route('catalogproduct.update', ['catalogproduct' => $catalogproduct->id])
+            'update_url' => route('admin.catalogproduct.update', ['catalogproduct' => $catalogproduct->id])
         ], 200);
     }
 
@@ -250,7 +251,7 @@ class CatalogproductController extends Controller
                 [
                     'product_image' => $fileName
                 ],
-                $request->only('product_image','productmain_code', 'product_code', 'productsub_code', 'productgroup_code', 'product_name', 'slug', 'product_merk', 'product_descrip', 'product_spec', 'product_brand', 'product_uom', 'product_price')
+                $request->only('product_image','productmain_code', 'product_code', 'productsub_code', 'productgroup_code', 'product_name', 'slug', 'product_spec', 'product_brand', 'product_uom', 'product_price')
 
             );
 
@@ -413,8 +414,8 @@ class CatalogproductController extends Controller
             'productgroup_code',
             'product_name',
             'slug',
-            'product_merk',
-            'product_descrip',
+            // 'product_merk',
+            // 'product_descrip',
             'product_spec',
             'product_brand',
             'product_uom',
