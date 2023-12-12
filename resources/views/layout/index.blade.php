@@ -98,12 +98,14 @@
                     <!-- Asset Manager -->
                     <li>
                         <a href="#"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Asset Manager</a>
+                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Asset
+                            Manager</a>
                     </li>
                     <!-- Maintenance Manager -->
                     <li>
                         <a href="#"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Maintenance Manager</a>
+                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Maintenance
+                            Manager</a>
                     </li>
                     <!-- Contract Manager -->
                     <li>
@@ -136,21 +138,26 @@
                                         class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                                         <ul class="pt-2 text-sm text-gray-700 dark:text-gray-200">
                                             <li>
-                                                <button id="requestOrderDashboardDropdownButton" data-dropdown-toggle="requestOrderDashboardDropdown"
+                                                <button id="requestOrderDashboardDropdownButton"
+                                                    data-dropdown-toggle="requestOrderDashboardDropdown"
                                                     data-dropdown-placement="right-start" type="button"
-                                                    class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
-                                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2" d="m1 1 4 4 4-4" />
+                                                    class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard<svg
+                                                        class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 10 6">
+                                                        <path stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                                                     </svg></button>
                                                 <div id="requestOrderDashboardDropdown"
                                                     class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                                                     <ul class="text-sm text-gray-700 dark:text-gray-200">
                                                         <li>
-                                                            <a href="{{ route('ro.dashboard.internal') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Internal</a>
+                                                            <a href="{{ route('ro.dashboard.internal') }}"
+                                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Internal</a>
                                                         </li>
                                                         <li>
-                                                            <a href="{{ route('ro.dashboard.external') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">External</a>
+                                                            <a href="{{ route('ro.dashboard.external') }}"
+                                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">External</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -172,7 +179,8 @@
                                                 </li>
                                                 <li>
                                                     <a href="{{ route('unitrate.index') }}"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Unit Rates</a>
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Unit
+                                                        Rates</a>
                                                 </li>
                                                 <li>
                                                     <a href="{{ route('activity.index') }}"
@@ -180,7 +188,8 @@
                                                 </li>
                                                 <li>
                                                     <a href="{{ route('itemtype.index') }}"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Item Types</a>
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Item
+                                                        Types</a>
                                                 </li>
                                                 <li>
                                                     <a href="{{ route('item.index') }}"
@@ -203,7 +212,8 @@
                                 <!-- Human Resource -->
                                 <li>
                                     <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Human Resource</a>
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Human
+                                        Resource</a>
                                 </li>
                                 <!-- Engineering -->
                                 <li>
@@ -213,16 +223,19 @@
                                 <!-- Work Progress -->
                                 <li>
                                     <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Work Progress</a>
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Work
+                                        Progress</a>
                                 </li>
                                 <!-- Customer Asset -->
                                 <li aria-labelledby="dropdownNavbarLink">
-                                    <button id="customerAssetDropdownButton" data-dropdown-toggle="customerAssetDropdown"
+                                    <button id="customerAssetDropdownButton"
+                                        data-dropdown-toggle="customerAssetDropdown"
                                         data-dropdown-placement="right-start" type="button"
-                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Customer Asset<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
+                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Customer
+                                        Asset<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="m1 1 4 4 4-4" />
+                                            <path stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                                         </svg>
                                     </button>
                                     <div id="customerAssetDropdown"
@@ -230,12 +243,16 @@
                                         <div>
                                             <ul class="text-sm text-gray-700 dark:text-gray-200">
                                                 <li>
-                                                    <button id="customerInventoryDropdownButton" data-dropdown-toggle="customerInventoryDropdown"
+                                                    <button id="customerInventoryDropdownButton"
+                                                        data-dropdown-toggle="customerInventoryDropdown"
                                                         data-dropdown-placement="right-start" type="button"
-                                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Inventory Asset<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
-                                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2" d="m1 1 4 4 4-4" />
+                                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Inventory
+                                                        Asset<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
+                                                            xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 10 6">
+                                                            <path stroke="currentColor" stroke-linecap="round"
+                                                                stroke-linejoin="round" stroke-width="2"
+                                                                d="m1 1 4 4 4-4" />
                                                         </svg>
                                                     </button>
                                                     <div id="customerInventoryDropdown"
@@ -255,12 +272,16 @@
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <button id="customerAssetPSVDropdownButton" data-dropdown-toggle="customerAssetPSVDropdown"
+                                                    <button id="customerAssetPSVDropdownButton"
+                                                        data-dropdown-toggle="customerAssetPSVDropdown"
                                                         data-dropdown-placement="right-start" type="button"
-                                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">PSV Data Master<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
-                                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2" d="m1 1 4 4 4-4" />
+                                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">PSV
+                                                        Data Master<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
+                                                            xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 10 6">
+                                                            <path stroke="currentColor" stroke-linecap="round"
+                                                                stroke-linejoin="round" stroke-width="2"
+                                                                d="m1 1 4 4 4-4" />
                                                         </svg></button>
                                                     <div id="customerAssetPSVDropdown"
                                                         class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
@@ -300,12 +321,14 @@
                                 <!-- Reporting/Doc.Control -->
                                 <li>
                                     <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reporting/Doc. Control</a>
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reporting/Doc.
+                                        Control</a>
                                 </li>
                                 <!-- TKDN Monitoring -->
                                 <li>
                                     <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">TKDN Monitoring</a>
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">TKDN
+                                        Monitoring</a>
                                 </li>
                             </ul>
                         </div>
@@ -340,7 +363,61 @@
                                 </li>
                                 <li>
                                     <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Field Services</a>
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Field
+                                        Services</a>
+                                </li>
+                                <li aria-labelledby="dropdownNavbarLink">
+                                    <button id="eprocDropdownButton" data-dropdown-toggle="eprocDropdown"
+                                        data-dropdown-placement="right-start" type="button"
+                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">e-Procurement<svg
+                                            class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                        </svg>
+                                    </button>
+                                    <div id="eprocDropdown"
+                                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                        <div>
+                                            <ul class="text-sm text-gray-700 dark:text-gray-200">
+                                                <li>
+                                                    <a href="{{ route('eprocfbo.index') }}"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">FBO</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li aria-labelledby="dropdownNavbarLink">
+                                    <button id="catalogDropdownButton" data-dropdown-toggle="catalogDropdown"
+                                        data-dropdown-placement="right-start" type="button"
+                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Catalog<svg
+                                            class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                        </svg>
+                                    </button>
+                                    <div id="catalogDropdown"
+                                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                        <div>
+                                            <ul class="text-sm text-gray-700 dark:text-gray-200">
+                                                <li>
+                                                    <a href="{{ route('catalogcodeitem.index') }}"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Item
+                                                        Code</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ route('admin.catalogproduct.index') }}"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Input Products</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ route('frontend.catalogproduct.index') }}"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Catalog</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </li>
                                 <li>
                                     <a href="#"
@@ -356,7 +433,8 @@
                                 </li>
                                 <li>
                                     <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Human Resources</a>
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Human
+                                        Resources</a>
                                 </li>
                                 <li>
                                     <a href="#"
@@ -364,7 +442,8 @@
                                 </li>
                                 <li>
                                     <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Emerson SSP</a>
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Emerson
+                                        SSP</a>
                                 </li>
                             </ul>
                         </div>
@@ -387,7 +466,8 @@
                                 <!-- Table Map -->
                                 <li>
                                     <a href="{{ route('tablemap.index') }}"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Table Map</a>
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Table
+                                        Map</a>
                                 </li>
                             </ul>
                         </div>
