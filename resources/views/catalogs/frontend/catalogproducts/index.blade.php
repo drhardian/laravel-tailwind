@@ -1,239 +1,54 @@
 @extends('layout.index')
 
 @section('content')
-    {{-- <div class="breadcrumb-area pt-205 breadcrumb-padding pb-210"
-        style="background-image: url({{ asset('themes/ezone/assets/img/bg/breadcrumb.jpg') }})">
-        <div class="container-fluid">
-            <div class="breadcrumb-content text-center">
-                <h2>shop grid 3 column</h2>
-                <ul>
-                    <li><a href="#">home</a></li>
-                    <li>shop grid 3 column</li>
-                </ul>
-            </div>
-        </div>
-    </div> --}}
-    <div class="shop-page-wrapper shop-page-padding ptb-100">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-3">
-                    <!-- sidebar -->
-                    <div class="shop-sidebar mr-50">
-                        {{-- <form method="GET" action="{{ url('catalogproduct') }}">
-                            <div class="sidebar-widget mb-40">
-                                <h3 class="sidebar-title">Filter by Price</h3>
-                                <div class="price_filter">
-                                    <div id="slider-range"></div>
-                                    <div class="price_slider_amount">
-                                        <div class="label-input">
-                                            <label>price : </label>
-                                            <input type="text" id="amount" name="price" placeholder="Add Your Price"
-                                                style="width:170px" />
-                                            <input type="hidden" id="productMinPrice" value="{{ $minPrice }}" />
-                                            <input type="hidden" id="productMaxPrice" value="{{ $maxPrice }}" />
-                                        </div>
-                                        <button type="submit">Filter</button>
+<div class="min-h-screen w-full mx-auto max-w-4xl lg:max-w-7xl space-y-2 p-5">
+    <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow space-y-4">
+        <div class="relative mx-8 mb-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+                @for ($i = 1; $i <= 10; $i++)
+                    <div class="rounded-md bg-white border-slate-200 border">
+                        <div class="relative">
+                            <a href="#">
+                                <img class="w-full" src="https://hixstudio.net/tphtml/ebazer/assets/img/product/prodcut-1.jpg">
+                            </a>
+                            <div class="absolute top-5 right-2 z-10">
+                                <div class="flex flex-col items-center justify-center space-y-2">
+                                    <div class="relative">
+                                        <button class="w-8 h-8 text-sm bg-green-800 text-white rounded-md hover:bg-green-600 flex items-center justify-center">
+                                            <svg height="12" viewBox="0 0 492.49284 492" width="12" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill="currentColor" d="m304.140625 82.472656-270.976563 270.996094c-1.363281 1.367188-2.347656 3.09375-2.816406 4.949219l-30.035156 120.554687c-.898438 3.628906.167969 7.488282 2.816406 10.136719 2.003906 2.003906 4.734375 3.113281 7.527344 3.113281.855469 0 1.730469-.105468 2.582031-.320312l120.554688-30.039063c1.878906-.46875 3.585937-1.449219 4.949219-2.8125l271-270.976562zm0 0"></path>
+                                                <path fill="currentColor" d="m476.875 45.523438-30.164062-30.164063c-20.160157-20.160156-55.296876-20.140625-75.433594 0l-36.949219 36.949219 105.597656 105.597656 36.949219-36.949219c10.070312-10.066406 15.617188-23.464843 15.617188-37.714843s-5.546876-27.648438-15.617188-37.71875zm0 0"></path>
+                                            </svg>
+                                        </button>
                                     </div>
-                                </div>
-                            </div>
-                        </form> --}}
-
-                        @if ($catalogproducts)
-                            <div class="sidebar-widget mb-45">
-                                <h3 class="sidebar-title">Catalog Product</h3>
-                                <div class="sidebar-catalogproduct">
-                                    <ul>
-                                        @foreach ($catalogproducts as $catalogproduct)
-                                            <li><a
-                                                    href="{{ url('catalogproduct?catalogproduct=' . $catalogproduct->slug) }}">{{ $catalogproduct->product_name }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        @endif
-
-                        {{-- @if ($colors)
-                            <div class="sidebar-widget sidebar-overflow mb-45">
-                                <h3 class="sidebar-title">color</h3>
-                                <div class="sidebar-catalogproduct">
-                                    <ul>
-                                        @foreach ($colors as $color)
-                                            <li><a href="{{ url('catalogproduct?option=' . $color->id) }}">{{ $color->name }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        @endif
-
-                        @if ($sizes)
-                            <div class="sidebar-widget mb-40">
-                                <h3 class="sidebar-title">size</h3>
-                                <div class="product-size">
-                                    <ul>
-                                        @foreach ($sizes as $size)
-                                            <li><a href="{{ url('catalogproduct?option=' . $size->id) }}">{{ $size->name }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        @endif --}}
-                    </div>
-                    <!-- end -->
-                </div>
-                <div class="col-lg-9">
-                    <div class="shop-product-wrapper res-xl">
-                        <div class="shop-bar-area">
-                            <div class="shop-bar pb-60">
-                                <div class="shop-found-selector">
-                                    <div class="shop-found">
-                                        <p><span>{{ count($catalogproducts) }}</span> Product Found of
-                                            <span>{{ $catalogproducts->total() }}</span></p>
+                                    <div class="relative">
+                                        <button class="w-8 h-8 text-sm bg-white border border-gray text-slate-600 rounded-md hover:bg-danger hover:border-red-700 hover:text-red-700 flex items-center justify-center">
+                                            <svg width="14" height="14" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19.0697 4.23C17.4597 4.07 15.8497 3.95 14.2297 3.86V3.85L14.0097 2.55C13.8597 1.63 13.6397 0.25 11.2997 0.25H8.67967C6.34967 0.25 6.12967 1.57 5.96967 2.54L5.75967 3.82C4.82967 3.88 3.89967 3.94 2.96967 4.03L0.929669 4.23C0.509669 4.27 0.209669 4.64 0.249669 5.05C0.289669 5.46 0.649669 5.76 1.06967 5.72L3.10967 5.52C8.34967 5 13.6297 5.2 18.9297 5.73C18.9597 5.73 18.9797 5.73 19.0097 5.73C19.3897 5.73 19.7197 5.44 19.7597 5.05C19.7897 4.64 19.4897 4.27 19.0697 4.23Z" fill="currentColor"></path>
+                                                <path d="M17.2297 7.14C16.9897 6.89 16.6597 6.75 16.3197 6.75H3.67975C3.33975 6.75 2.99975 6.89 2.76975 7.14C2.53975 7.39 2.40975 7.73 2.42975 8.08L3.04975 18.34C3.15975 19.86 3.29975 21.76 6.78975 21.76H13.2097C16.6997 21.76 16.8398 19.87 16.9497 18.34L17.5697 8.09C17.5897 7.73 17.4597 7.39 17.2297 7.14ZM11.6597 16.75H8.32975C7.91975 16.75 7.57975 16.41 7.57975 16C7.57975 15.59 7.91975 15.25 8.32975 15.25H11.6597C12.0697 15.25 12.4097 15.59 12.4097 16C12.4097 16.41 12.0697 16.75 11.6597 16.75ZM12.4997 12.75H7.49975C7.08975 12.75 6.74975 12.41 6.74975 12C6.74975 11.59 7.08975 11.25 7.49975 11.25H12.4997C12.9097 11.25 13.2497 11.59 13.2497 12C13.2497 12.41 12.9097 12.75 12.4997 12.75Z" fill="currentColor"></path>
+                                            </svg>
+                                        </button>
                                     </div>
-                                    <div class="shop-selector">
-                                        <label>Sort By : </label>
-                                        <select
-                                            onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value)"
-                                            name="sort" id="">
-                                            @foreach ($sorts as $url => $sort)
-                                                <option {{ $selectedSort == $url ? 'selected' : null }}
-                                                    value="{{ $url }}">{{ $sort }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="shop-filter-tab">
-                                    <div class="shop-tab nav" role=tablist>
-                                        <a class="active" href="#grid-sidebar3" data-toggle="tab" role="tab"
-                                            aria-selected="false">
-                                            <i class="ti-layout-grid4-alt"></i>
-                                        </a>
-                                        <a href="#grid-sidebar4" data-toggle="tab" role="tab" aria-selected="true">
-                                            <i class="ti-menu"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="shop-product-content tab-content">
-                                <div id="grid-sidebar3" class="tab-pane fade active show">
-                                    <!-- grid view -->
-                                    <div class="row">
-                                        @forelse ($catalogproducts as $catalogproduct)
-                                            <!-- grid box -->
-                                            <div class="col-md-6 col-xl-4">
-                                                <div class="catalogproduct-wrapper mb-30">
-                                                    <div class="catalogproduct-img">
-                                                        <a href="{{ url('catalogproduct/' . $catalogproduct->slug) }}">
-                                                            @if ($catalogproduct->productImages->first())
-                                                                <img src="{{ asset('storage/' . $catalogproduct->productImages->first()->path) }}"
-                                                                    alt="{{ $catalogproduct->product_name }}">
-                                                            @else
-                                                                <img src="{{ asset('themes/ezone/assets/img/product/fashion-colorful/1.jpg') }}"
-                                                                    alt="{{ $catalogproduct->product_name }}">
-                                                            @endif
-                                                        </a>
-                                                        {{-- <span>hot</span> --}}
-                                                        <div class="catalogproduct-action">
-                                                            <a class="animate-left add-to-fav" title="Favorite"
-                                                            catalogproduct-slug="{{ $catalogproduct->slug }}" href="">
-                                                                <i class="pe-7s-like"></i>
-                                                            </a>
-                                                            <a class="animate-top add-to-card" title="Add To Cart"
-                                                                href="" catalogproduct-id="{{ $catalogproduct->id }}"
-                                                                catalogproduct-product_name="{{ $catalogproduct->product_name }}"
-                                                                catalogproduct-slug="{{ $catalogproduct->slug }}">
-                                                                <i class="pe-7s-cart"></i>
-                                                            </a>
-                                                            <a class="animate-right quick-view" data-toggle="modal"
-                                                                data-target="#exampleModal" title="Quick View"
-                                                                catalogproduct-slug="{{ $catalogproduct->slug }}" href="">
-                                                                <i class="pe-7s-look"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="catalogproduct-content">
-                                                        <h4><a
-                                                                href="{{ url('catalogproduct/' . $catalogproduct->slug) }}">{{ $catalogproduct->product_name }}</a>
-                                                        </h4>
-                                                        <span>{{ number_format($catalogproduct->priceLabel()) }}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- end -->
-                                        @empty
-                                            No product found!
-                                        @endforelse
-                                    </div>
-                                    <!-- end -->
-                                </div>
-                                <div id="grid-sidebar4" class="tab-pane fade">
-                                    <!-- list view -->
-                                    <div class="row">
-                                        @forelse ($catalogproduct as $catalogproduct)
-                                            <div class="col-lg-12">
-                                                <div
-                                                    class="product-wrapper mb-30 single-product-list product-list-right-pr mb-60">
-                                                    <div class="product-img list-img-width">
-                                                        <a href="{{ url('catalogproduct/' . $catalogproduct->slug) }}">
-                                                            @if ($catalogproduct->productImages->first())
-                                                                <img src="{{ asset('storage/' . $catalogproduct->productImages->first()->path) }}"
-                                                                    alt="{{ $catalogproduct->product_name }}">
-                                                            @else
-                                                                <img src="{{ asset('themes/ezone/assets/img/product/fashion-colorful/1.jpg') }}"
-                                                                    alt="{{ $catalogproduct->product_name }}">
-                                                            @endif
-                                                        </a>
-                                                        <span>hot</span>
-                                                        <div class="product-action-list-style">
-                                                            <a class="animate-right" title="Quick View"
-                                                                data-toggle="modal" data-target="#exampleModal"
-                                                                href="#">
-                                                                <i class="pe-7s-look"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="catalogproduct-content-list">
-                                                        <div class="catalogproduct-list-info">
-                                                            <h4><a
-                                                                    href="{{ url('catalogproduct/' . $catalogproduct->slug) }}">{{ $catalogproduct->product_name }}</a>
-                                                            </h4>
-                                                            <span>{{ number_format($catalogproduct->priceLabel()) }}</span>
-                                                            <p>{!! $catalogproduct->product_descrip !!}</p>
-                                                        </div>
-                                                        <div class="product-list-cart-wishlist">
-                                                            <div class="product-list-cart">
-                                                                <a class="btn-hover list-btn-style add-to-card"
-                                                                    href="" catalogproduct-id="{{ $catalogproduct->id }}"
-                                                                    catalogproduct-product_name="{{ $catalogproduct->product_name }}"
-                                                                    catalogproduct-slug="{{ $catalogproduct->slug }}">add to cart</a>
-                                                            </div>
-                                                            <div class="product-list-wishlist">
-                                                                <a class="btn-hover list-btn-wishlist add-to-fav"
-                                                                    title="Favorite" catalogproduct-slug="{{ $catalogproduct->slug }}"
-                                                                    href="">
-                                                                    <i class="pe-7s-like"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @empty
-                                            No product found!
-                                        @endforelse
-                                    </div>
-                                    <!-- end -->
                                 </div>
                             </div>
                         </div>
+                        <div class="px-5 py-5">
+                            <a href="#" class="text-lg font-normal text-heading text-hover-primary mb-2 inline-block leading-none">Title text</a>
+                            <div class="flex items-center space-x-1 text-sm mb-5">
+                                <span class="text-yellow-300 flex items-center space-x-1">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </span>
+                            </div>
+                            <div class="leading-none mb-2">
+                                <span class="text-base font-medium text-black">Rp. 1200</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mt-50 text-center">
-                        {{ $catalogproduct->links() }}
-                    </div>
-                </div>
+                @endfor
             </div>
         </div>
     </div>
+</div>
 @endsection

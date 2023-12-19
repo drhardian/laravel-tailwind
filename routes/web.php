@@ -29,6 +29,8 @@ use App\Http\Controllers\Catalog\Admin\CatalogcodeitemController;
 use App\Http\Controllers\Catalog\Admin\CatalogDropdownCodeitemController;
 use App\Http\Controllers\Catalog\Admin\CatalogproductController as AdminCatalogproductController;
 use App\Http\Controllers\Catalog\Frontend\CatalogproductController as FrontendCatalogproductController;
+use App\Http\Controllers\Inventory\ProdinController;
+use App\Http\Controllers\Inventory\ProdoutController;
 
 
 
@@ -252,7 +254,6 @@ Route::prefix('admin/catalogproduct')->controller(AdminCatalogproductController:
     Route::get('show/datatable', 'showDatatable')->name('admin.catalogproduct.main.table');
 });
 
-
 Route::resource('frontend/catalogproduct', FrontendCatalogproductController::class)->names([
     'index' => 'frontend.catalogproduct.index',
     'create' => 'frontend.catalogproduct.create',
@@ -266,6 +267,28 @@ Route::resource('frontend/catalogproduct', FrontendCatalogproductController::cla
 Route::prefix('frontend/catalogproduct')->controller(FrontendCatalogproductController::class)->group(function () {
     Route::get('show/dropdown', 'showOnDropdown')->name('frontend.catalogproduct.show.dropdown');
     Route::get('show/datatable', 'showDatatable')->name('frontend.catalogproduct.main.table');
+});
+
+Route::resource('prodin', ProdinController::class);
+Route::prefix('prodin')->controller(ProdinController::class)->group(function () {
+    Route::get('show/dropdown', 'showOnDropdown')->name('prodin.show.dropdown');
+    Route::get('show/datatable', 'showDatatable')->name('prodin.main.table');
+    // Route::get('eproccodeitem/export', 'exportExcel')->name('eproccodeitem.export');
+    // Route::post('eproccodeitem/import', 'importExcel')->name('eproccodeitem.import');
+    // Route::get('/eproccodeitem/{id}', 'cetakPdf')->name('eproccodeitem.pdf');
+    // Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
+
+});
+
+Route::resource('prodout', ProdoutController::class);
+Route::prefix('prodout')->controller(ProdoutController::class)->group(function () {
+    Route::get('show/dropdown', 'showOnDropdown')->name('prodout.show.dropdown');
+    Route::get('show/datatable', 'showDatatable')->name('prodout.main.table');
+    // Route::get('eproccodeitem/export', 'exportExcel')->name('eproccodeitem.export');
+    // Route::post('eproccodeitem/import', 'importExcel')->name('eproccodeitem.import');
+    // Route::get('/eproccodeitem/{id}', 'cetakPdf')->name('eproccodeitem.pdf');
+    // Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
+
 });
 
 

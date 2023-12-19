@@ -167,6 +167,7 @@ class CatalogproductController extends Controller
 
         // $colors = ProductAttributeValue::getAttributeOptions($product, 'color')->pluck('text_value', 'text_value');
         // $sizes = ProductAttributeValue::getAttributeOptions($product, 'size')->pluck('text_value', 'text_value');
-        return view('catalogs.frontend.catalogproducts.index', compact('catalogproduct'));
+        return view('catalogs.frontend.catalogproducts.index', compact('catalogproduct', 'totalcatalogproducts'));
     }
 }
+ 
