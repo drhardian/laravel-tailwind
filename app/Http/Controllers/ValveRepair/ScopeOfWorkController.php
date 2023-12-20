@@ -76,7 +76,14 @@ class ScopeOfWorkController extends Controller
                 'icon' => '',
             ],
             [
-                'title' => 'Scope Of Work '. $scopeofwork->scopeOfWork->dropdown_label,
+                'title' => 'Scope Of Work',
+                'status' => '',
+                'url' => '',
+                'icon' => '',
+            ],
+
+            [
+                'title' =>$scopeofwork->scopeOfWork->dropdown_label,
                 'status' => '',
                 'url' => '',
                 'icon' => '',
@@ -89,6 +96,7 @@ class ScopeOfWorkController extends Controller
             'scopeofwork' => $scopeofwork,
             'vrr_dropdown' => $vrr_dropdown,
             'valverepair' => $scopeofwork->repairReport,
+            'sowtype' => $scopeofwork->scopeOfWork->dropdown_label,
         ]);
     }
 
