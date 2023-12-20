@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
+use App\Models\Catalog\Catalogproduct;
 use Illuminate\Http\Request;
 use App\Models\Inventory\Prodin;
 use Carbon\Carbon;
@@ -75,9 +76,10 @@ class ProdinController extends Controller
             $prodin = Prodin::create(
                 array_merge(
                     [
-                        'prodin_image' => $fileName
+                        'prodin_image' => $fileName,
+                        'date_in' => Carbon::createFromFormat('d/m/Y', $request->date_in)->format('Y-m-d'),
                     ],
-                $request->only('prodin_image','prod_code','inv_stock','prod_name','remaining_stock','inv_brand','inv_owner','inv_category','date_in','inv_uom','inv_supplier','inv_spec', 'stock_loc', 'inv_price')
+                $request->only('prodin_image','prod_code','inv_stock','prod_name','remaining_stock','inv_brand','inv_owner','inv_category','inv_uom','inv_supplier','inv_spec', 'stock_loc', 'inv_price')
                 )
             ); 
             
@@ -165,6 +167,24 @@ class ProdinController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+    public function loadprofilefromitemcode()
+    {
+        $catalogProduct = Catalogproduct::where('itemcode',request('itemcode'))->first();
+
+        $imgUrl = asset('').$catalogProduct->product_image;
+
+        return response()->json([
+            // 'prodin_image' => $catalogProduct->product_image,
+            'prod_name' => $catalogProduct->product_name,
+            'inv_brand' => $catalogProduct->product_brand,
+            'inv_category' => $catalogProduct->productgroup_code,
+            'inv_uom' => $catalogProduct->product_uom,
+            'inv_spec' => $catalogProduct->product_spec,
+            'inv_price' => $catalogProduct->product_price,
+            'prodin_image' => '<img class="img-account-profile mb-3 mx-auto" src="'.$imgUrl.'" id="image-preview" style="max-width: 10%;" />'
+        ], 200);
+    }
+
     public function edit(Prodin $prodin)
     {
         return response()->json([

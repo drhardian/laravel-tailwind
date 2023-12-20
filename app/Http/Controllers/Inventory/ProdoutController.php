@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
+use App\Models\Inventory\Prodin;
 use Illuminate\Http\Request;
 use App\Models\Inventory\Prodout;
 use Carbon\Carbon;
@@ -136,6 +137,25 @@ class ProdoutController extends Controller
             'title' => $this->pageProfile,
             'prodout' => $prodout
         ]);
+    }
+
+    public function loadprofilefromitemcode()
+    {
+        $prodIn = Prodin::where('itemcode',request('itemcode'))->first();
+
+        return response()->json([
+            // 'prodout_image' => $prodIn->prodin_image,
+            'prodout_owner' => $prodIn->inv_owner,
+            'prodout_name' => $prodIn->prod_name,
+            'prodout_supplier' => $prodIn->inv_supplier,
+            'prodout_brand' => $prodIn->inv_brand,
+            'prodoutstock_loc' => $prodIn->stock_loc,
+            'prodout_category' => $prodIn->inv_category,
+            'prodout_stock' => $prodIn->inv_stock,
+            'prodout_uom' => $prodIn->inv_uom,
+            'prodout_spec' => $prodIn->inv_spec,
+            'prodout_price' => $prodIn->inv_price,
+        ], 200);
     }
 
     //PRINT PDF

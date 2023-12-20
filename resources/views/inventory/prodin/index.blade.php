@@ -24,7 +24,7 @@
                         class="text-white bg-yellow-400 sm:block hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
                         <i class="fa-solid fa-file-export"></i> Export
                     </a>
-                    <button type="button" id="newBtn" onclick="openForm(`{{ route('eprocfbo.store') }}`)"
+                    <button type="button" id="newBtn" onclick="openForm(`{{ route('inventory.prodin.store') }}`)"
                         class="text-white bg-blue-700 sm:block hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <i class="fa-solid fa-plus"></i> New
                     </button>
@@ -147,18 +147,16 @@
                                                 <div class="card-header"><b>Image Product In</b></div>
                                                 <div class="card-body">
                                                     <!-- Product image -->
-                                                    <img class="img-account-profile mb-3 mx-auto"
-                                                        src="{{ asset('storage/assets/img/catalogproducts/default.webp') }}"
-                                                        alt="" id="image-preview" style="max-width: 10%;" />
+                                                    <div id = "imageprofilecontainer"></div>
+                                                    
                                                     <!-- Product image help block -->
-                                                    <div class="small font-italic text-muted mb-2">JPG or PNG no larger than
+                                                    {{-- <div class="small font-italic text-muted mb-2">JPG or PNG no larger than
                                                         2
-                                                        MB</div>
+                                                        MB</div> --}}
                                                     <!-- Product image input -->
-                                                    <input
+                                                    {{-- <input
                                                         class="form-control form-control-solid mb-3 @error('prodin_image') is-invalid @enderror"
-                                                        type="file" id="image" name="prodin_image" accept="image/*"
-                                                        onchange="previewImage();">
+                                                        type="file" id="image" name="prodin_image" accept="image/*"> --}}
                                                     {{-- @error('prodin_image')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
@@ -178,7 +176,7 @@
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Code</label>
                                                 <input type="text" id="prod_code" name="prod_code"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Enter Product Code">
+                                                    required placeholder="Enter Product Code" onblur="autoRecord($(this).val(),'{{ route('prodin.loadprofile.itemcode') }}')">
                                             </div>
                                             <div class="sm:w-1/2 w- full sm:pr-2">
                                                 <label for="inv_stock"
@@ -262,15 +260,10 @@
                                     <div class="row sm:flex">
                                         <div class="sm:w-1/2 w-full sm:pr-2">
                                             <label for="inv_uom"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                                UOM</label>
-                                            <select id="inv_uom" name="inv_uom"
-                                                class="select2-general-dropdown"
-                                                data-show="{{ route('general.options.showondropdown') }}"
-                                                data-store="{{ route('general.options.storefromdropdown') }}"
-                                                data-alias="inv-uom" data-change="true"
-                                                data-form="uom">
-                                            </select>
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UOM</label>
+                                                <input type="text" id="inv_uom" name="inv_uom"
+                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required placeholder="Enter UOM">
                                         </div>
                                         <div class="sm:w-1/2 w- full sm:pr-2">
                                             <label for="inv_supplier"

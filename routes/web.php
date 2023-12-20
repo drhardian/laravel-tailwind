@@ -28,6 +28,7 @@ use App\Http\Controllers\Eproc\EprocfboController;
 use App\Http\Controllers\Catalog\Admin\CatalogcodeitemController;
 use App\Http\Controllers\Catalog\Admin\CatalogDropdownCodeitemController;
 use App\Http\Controllers\Catalog\Admin\CatalogproductController as AdminCatalogproductController;
+use App\Http\Controllers\Catalog\Admin\CatalogDropdownProductController;
 use App\Http\Controllers\Catalog\Frontend\CatalogproductController as FrontendCatalogproductController;
 use App\Http\Controllers\Inventory\ProdinController;
 use App\Http\Controllers\Inventory\ProdoutController;
@@ -250,9 +251,10 @@ Route::resource('admin/catalogproduct', AdminCatalogproductController::class)->n
 ]);
 
 Route::prefix('admin/catalogproduct')->controller(AdminCatalogproductController::class)->group(function () {
-    Route::get('show/dropdown', 'showOnDropdown')->name('admin.catalogproduct.show.dropdown');
+    Route::get('show/dropdown', 'showOnDropdown')->name('admin.catalogproduct.show.dropddown');
     Route::get('show/datatable', 'showDatatable')->name('admin.catalogproduct.main.table');
 });
+
 
 Route::resource('frontend/catalogproduct', FrontendCatalogproductController::class)->names([
     'index' => 'frontend.catalogproduct.index',
@@ -269,21 +271,43 @@ Route::prefix('frontend/catalogproduct')->controller(FrontendCatalogproductContr
     Route::get('show/datatable', 'showDatatable')->name('frontend.catalogproduct.main.table');
 });
 
+Route::resource('inventory/prodin', ProdinController::class)->names([
+    'index' => 'inventory.prodin.index',
+    'create' => 'inventory.prodin.create',
+    'store' => 'inventory.prodin.store',
+    'show' => 'inventory.prodin.show',
+    'edit' => 'inventory.prodin.edit',
+    'update' => 'inventory.prodin.update',
+    'destroy' => 'inventory.prodin.destroy',
+]);
+
 Route::resource('prodin', ProdinController::class);
 Route::prefix('prodin')->controller(ProdinController::class)->group(function () {
     Route::get('show/dropdown', 'showOnDropdown')->name('prodin.show.dropdown');
     Route::get('show/datatable', 'showDatatable')->name('prodin.main.table');
+    Route::get('loadprofile/itemcode', 'loadprofilefromitemcode')->name('prodin.loadprofile.itemcode');
     // Route::get('eproccodeitem/export', 'exportExcel')->name('eproccodeitem.export');
     // Route::post('eproccodeitem/import', 'importExcel')->name('eproccodeitem.import');
     // Route::get('/eproccodeitem/{id}', 'cetakPdf')->name('eproccodeitem.pdf');
     // Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
-
 });
+
+Route::resource('inventory/prodout', ProdoutController::class)->names([
+    'index' => 'inventory.prodout.index',
+    'create' => 'inventory.prodout.create',
+    'store' => 'inventory.prodout.store',
+    'show' => 'inventory.prodout.show',
+    'edit' => 'inventory.prodout.edit',
+    'update' => 'inventory.prodout.update',
+    'destroy' => 'inventory.prodout.destroy',
+]);
 
 Route::resource('prodout', ProdoutController::class);
 Route::prefix('prodout')->controller(ProdoutController::class)->group(function () {
     Route::get('show/dropdown', 'showOnDropdown')->name('prodout.show.dropdown');
     Route::get('show/datatable', 'showDatatable')->name('prodout.main.table');
+    Route::get('loadprofile/itemcode', 'loadprofilefromitemcode')->name('prodout.loadprofile.itemcode');
+
     // Route::get('eproccodeitem/export', 'exportExcel')->name('eproccodeitem.export');
     // Route::post('eproccodeitem/import', 'importExcel')->name('eproccodeitem.import');
     // Route::get('/eproccodeitem/{id}', 'cetakPdf')->name('eproccodeitem.pdf');

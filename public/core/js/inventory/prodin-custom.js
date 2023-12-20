@@ -33,6 +33,29 @@ modalHideAndReset = () => {
     formReset();    
 }
 
+autoRecord = (itemcode,url) => {
+    $.ajax({
+        type: "get",
+        url: url,
+        data: {
+            itemcode:itemcode
+        },
+        dataType: "json",
+        success: function (response) {
+            $.each(response, function (index, value) { 
+                if(index == "prodin_image") {
+                    $('#imageprofilecontainer').append(value);
+                } else {
+                    $('#' + index).val(value);
+                }
+            });
+
+            // $('#form_url').val(response.update_url);
+            $('#mainForm').attr('method', 'PUT');
+        }
+    });
+}
+
 saveRecord = () => {
     Swal.fire({
         template: '#create-template',
@@ -94,6 +117,7 @@ saveRecord = () => {
         }
     });
 }
+
 
 editRecord = (url) => {
     modalShowAndReset();

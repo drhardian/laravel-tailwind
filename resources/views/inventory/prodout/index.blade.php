@@ -24,7 +24,7 @@
                         class="text-white bg-yellow-400 sm:block hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
                         <i class="fa-solid fa-file-export"></i> Export
                     </a>
-                    <button type="button" id="newBtn" onclick="openForm(`{{ route('eprocfbo.store') }}`)"
+                    <button type="button" id="newBtn" onclick="openForm(`{{ route('inventory.prodout.store') }}`)"
                         class="text-white bg-blue-700 sm:block hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <i class="fa-solid fa-plus"></i> New
                     </button>
@@ -156,8 +156,7 @@
                                                     <!-- Product image input -->
                                                     <input
                                                         class="form-control form-control-solid mb-3 @error('prodout_image') is-invalid @enderror"
-                                                        type="file" id="image" name="prodout_image" accept="image/*"
-                                                        onchange="previewImage();">
+                                                        type="file" id="image" name="prodout_image" accept="image/*">
                                                     {{-- @error('prodout_image')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
@@ -178,7 +177,7 @@
                                                     Code</label>
                                                 <input type="text" id="prodout_code" name="prodout_code"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Enter Product Code">
+                                                    required placeholder="Enter Product Code" onblur="autoRecord($(this).val(),'{{ route('prodout.loadprofile.itemcode') }}')">
                                             </div>
                                             <div class="sm:w-1/2 w- full sm:pr-2">
                                                 <label for="prodout_owner"

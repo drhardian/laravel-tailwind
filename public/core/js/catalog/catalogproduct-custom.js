@@ -8,6 +8,10 @@ openForm = (url) => {
     modalShowAndReset();
     $('.modal-title').text('New Input Product e-Proc');
     $('#form_url').val(url);
+    $('#productmain_code_frame').show();
+    $('#product_code_frame').show();
+    $('#productsub_code_frame').show();
+    $('#productgroup_code_frame').show();
 }
 
 modalShowAndReset = () => {
@@ -40,6 +44,7 @@ saveRecord = () => {
         if (result.isConfirmed) {
             const formInput = $('#mainForm')[0];
             const formData = new FormData(formInput);
+            formData.append('_method',$('#mainForm').attr('method'));
 
             $.ajax({
                 type: "post",
@@ -66,6 +71,7 @@ saveRecord = () => {
                     modalHideAndReset();
                     toastr.success(response.message);
                     $('#main-table').DataTable().ajax.reload();
+                   
                 },
                 error: function(response) {
                     Swal.close();
@@ -109,6 +115,10 @@ editRecord = (url) => {
         url: url,
         dataType: "json",
         success: function (response) {
+            $('#productmain_code_frame').hide();
+            $('#product_code_frame').hide();
+            $('#productsub_code_frame').hide();
+            $('#productgroup_code_frame').hide();
             // console.log(response);
             var productmain_codeOptions = new Option(response.dropdown.productmain_code, response.dropdown.productmain_code, true, true);
             $('#productmain_code').append(productmain_codeOptions).trigger('change');

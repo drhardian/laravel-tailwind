@@ -33,6 +33,33 @@ modalHideAndReset = () => {
     formReset();    
 }
 
+autoRecord = (itemcode,url) => {
+    // modalShowAndReset();
+    // $('.modal-title').text('Auto Item Code Product In');
+
+    // $('#warning-alert').removeClass('flex').addClass('hidden');
+
+    // $('.warning-alert-message').html('');
+    // $('.warning-alert-title').text('');
+
+    $.ajax({
+        type: "get",
+        url: url,
+        data: {
+            itemcode:itemcode
+        },
+        dataType: "json",
+        success: function (response) {
+            $.each(response, function (index, value) { 
+                $('#' + index).val(value);
+            });
+
+            // $('#form_url').val(response.update_url);
+            $('#mainForm').attr('method', 'PUT');
+        }
+    });
+}
+
 saveRecord = () => {
     Swal.fire({
         template: '#create-template',
