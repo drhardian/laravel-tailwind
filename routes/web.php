@@ -29,6 +29,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Eproc\EprocitemcodeController;
 use App\Http\Controllers\Eproc\EprocproductController;
 use App\Http\Controllers\PsvMasterData\PdfController;
+use App\Http\Controllers\ValveRepair\CalibrationValveRepairController;
+use App\Http\Controllers\ValveRepair\OptionalServicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -151,82 +153,97 @@ Route::prefix('tablemap')
         Route::get('show/datatable', 'showDatatable')->name('tablemap.main.table');
     });
 
-Route::prefix('customer-inventory')->group(function() {
+Route::prefix('customer-inventory')->group(function () {
     Route::resource('products', ProductController::class, [
-        'as' => 'cina'
+        'as' => 'cina',
     ]);
 
-    Route::prefix('products')->controller(ProductController::class)->group(function() {
-        Route::get('dashboard/show', 'dashboard')->name('cina.products.dashboard');
-        Route::get('show/datatable', 'showDatatable')->name('cina.products.main.table');
-        Route::get('file/export', 'export')->name('cina.products.export');
-        Route::post('file/import', 'import')->name('cina.products.import');
-        Route::get('template/origin/{product}', 'formOriginTemplate')->name('cina.products.getformtemplate');
-        Route::get('template/asset/{product}', 'formAssetTemplate')->name('cina.asset.getformtemplate');
+    Route::prefix('products')
+        ->controller(ProductController::class)
+        ->group(function () {
+            Route::get('dashboard/show', 'dashboard')->name('cina.products.dashboard');
+            Route::get('show/datatable', 'showDatatable')->name('cina.products.main.table');
+            Route::get('file/export', 'export')->name('cina.products.export');
+            Route::post('file/import', 'import')->name('cina.products.import');
+            Route::get('template/origin/{product}', 'formOriginTemplate')->name('cina.products.getformtemplate');
+            Route::get('template/asset/{product}', 'formAssetTemplate')->name('cina.asset.getformtemplate');
+        });
+});
+
+Route::prefix('cinaproductorigin')
+    ->controller(CinaProductOriginController::class)
+    ->group(function () {
+        Route::get('selectbox/show', 'showOnDropdown')->name('cinaproductorigin.showondropdown');
+        Route::post('selectbox/new', 'storeFromDropdown')->name('cinaproductorigin.storefromdropdown');
     });
-});
 
-Route::prefix('cinaproductorigin')->controller(CinaProductOriginController::class)->group(function() {
-    Route::get('selectbox/show', 'showOnDropdown')->name('cinaproductorigin.showondropdown');
-    Route::post('selectbox/new', 'storeFromDropdown')->name('cinaproductorigin.storefromdropdown');
-});
+Route::prefix('cinaassettype')
+    ->controller(CinaAssetTypeController::class)
+    ->group(function () {
+        Route::get('selectbox/show', 'showOnDropdown')->name('cinaassettype.showondropdown');
+        Route::post('selectbox/new', 'storeFromDropdown')->name('cinaassettype.storefromdropdown');
+    });
 
-Route::prefix('cinaassettype')->controller(CinaAssetTypeController::class)->group(function() {
-    Route::get('selectbox/show', 'showOnDropdown')->name('cinaassettype.showondropdown');
-    Route::post('selectbox/new', 'storeFromDropdown')->name('cinaassettype.storefromdropdown');
-});
-
-Route::prefix('cinaproductuom')->controller(CinaProductUomController::class)->group(function() {
-    Route::get('selectbox/show', 'showOnDropdown')->name('cinaproductuom.showondropdown');
-    Route::post('selectbox/new', 'storeFromDropdown')->name('cinaproductuom.storefromdropdown');
-});
+Route::prefix('cinaproductuom')
+    ->controller(CinaProductUomController::class)
+    ->group(function () {
+        Route::get('selectbox/show', 'showOnDropdown')->name('cinaproductuom.showondropdown');
+        Route::post('selectbox/new', 'storeFromDropdown')->name('cinaproductuom.storefromdropdown');
+    });
 Route::resource('psvdatamaster', PsvdatamasterController::class);
-Route::prefix('psvdatamaster')->controller(PsvdatamasterController::class)->group(function() {
-    Route::get('show/dropdown', 'showOnDropdown')->name('psvdatamaster.show.dropdown');
-    Route::get('show/datatable', 'showDatatable')->name('psvdatamaster.main.table');
-    Route::get('psvdatamaster/export', 'exportExcel')->name('psvdatamaster.export');
-    Route::post('psvdatamaster/import', 'importExcel')->name('psvdatamaster.import');
-    Route::get('/psvdatamaster/{id}', 'cetakPdf')->name('psvdatamaster.pdf');
-    Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
-
-});
+Route::prefix('psvdatamaster')
+    ->controller(PsvdatamasterController::class)
+    ->group(function () {
+        Route::get('show/dropdown', 'showOnDropdown')->name('psvdatamaster.show.dropdown');
+        Route::get('show/datatable', 'showDatatable')->name('psvdatamaster.main.table');
+        Route::get('psvdatamaster/export', 'exportExcel')->name('psvdatamaster.export');
+        Route::post('psvdatamaster/import', 'importExcel')->name('psvdatamaster.import');
+        Route::get('/psvdatamaster/{id}', 'cetakPdf')->name('psvdatamaster.pdf');
+        Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
+    });
 
 // Route::get('/cetak-pdf/{id}', [PdfController::class, 'cetakPdf'])->name('pdf.cetak');
 
 Route::get('/psvdashboard', [PsvdashboardController::class, 'index'])->name('psvdashboard');
 // Route::get('/psvdashboard', 'getPSVOperational')->name('psvoperational');
 
-Route::prefix('dropdown/options/')->controller(DropdownOptionController::class)->group(function() {
-    Route::get('show', 'showOnDropdown')->name('general.options.showondropdown');
-    Route::post('new', 'storeFromDropdown')->name('general.options.storefromdropdown');
-});
+Route::prefix('dropdown/options/')
+    ->controller(DropdownOptionController::class)
+    ->group(function () {
+        Route::get('show', 'showOnDropdown')->name('general.options.showondropdown');
+        Route::post('new', 'storeFromDropdown')->name('general.options.storefromdropdown');
+    });
 
 Route::resource('eprocitemcode', EprocitemcodeController::class);
-Route::prefix('eprocitemcode')->controller(EprocitemcodeController::class)->group(function() {
-    Route::get('show/dropdown', 'showOnDropdown')->name('eprocitemcode.show.dropdown');
-    Route::get('show/datatable', 'showDatatable')->name('eprocitemcode.main.table');
-    // Route::get('eprocitemcode/export', 'exportExcel')->name('eprocitemcode.export');
-    // Route::post('eprocitemcode/import', 'importExcel')->name('eprocitemcode.import');
-    // Route::get('/eprocitemcode/{id}', 'cetakPdf')->name('eprocitemcode.pdf');
-    // Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
-
-});
+Route::prefix('eprocitemcode')
+    ->controller(EprocitemcodeController::class)
+    ->group(function () {
+        Route::get('show/dropdown', 'showOnDropdown')->name('eprocitemcode.show.dropdown');
+        Route::get('show/datatable', 'showDatatable')->name('eprocitemcode.main.table');
+        // Route::get('eprocitemcode/export', 'exportExcel')->name('eprocitemcode.export');
+        // Route::post('eprocitemcode/import', 'importExcel')->name('eprocitemcode.import');
+        // Route::get('/eprocitemcode/{id}', 'cetakPdf')->name('eprocitemcode.pdf');
+        // Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
+    });
 
 Route::resource('eprocproduct', EprocproductController::class);
-Route::prefix('eprocproduct')->controller(EprocproductController::class)->group(function() {
-    Route::get('show/dropdown', 'showOnDropdown')->name('eprocproduct.show.dropdown');
-    Route::get('show/datatable', 'showDatatable')->name('eprocproduct.main.table');
-    // Route::get('eprocitemcode/export', 'exportExcel')->name('eprocitemcode.export');
-    // Route::post('eprocitemcode/import', 'importExcel')->name('eprocitemcode.import');
-    // Route::get('/eprocitemcode/{id}', 'cetakPdf')->name('eprocitemcode.pdf');
-    // Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
+Route::prefix('eprocproduct')
+    ->controller(EprocproductController::class)
+    ->group(function () {
+        Route::get('show/dropdown', 'showOnDropdown')->name('eprocproduct.show.dropdown');
+        Route::get('show/datatable', 'showDatatable')->name('eprocproduct.main.table');
+        // Route::get('eprocitemcode/export', 'exportExcel')->name('eprocitemcode.export');
+        // Route::post('eprocitemcode/import', 'importExcel')->name('eprocitemcode.import');
+        // Route::get('/eprocitemcode/{id}', 'cetakPdf')->name('eprocitemcode.pdf');
+        // Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
+    });
 
-});
-
-Route::prefix('dropdown/itemcode/')->controller(EprocDropdownItemcodeController::class)->group(function() {
-    Route::get('show', 'showOnDropdown')->name('eproc.options.showondropdown');
-    Route::post('new', 'storeFromDropdown')->name('eproc.options.storefromdropdown');
-});
+Route::prefix('dropdown/itemcode/')
+    ->controller(EprocDropdownItemcodeController::class)
+    ->group(function () {
+        Route::get('show', 'showOnDropdown')->name('eproc.options.showondropdown');
+        Route::post('new', 'storeFromDropdown')->name('eproc.options.storefromdropdown');
+    });
 
 Route::resource('valverepair', RepairReportController::class)->except('create');
 Route::prefix('valverepair')
@@ -260,4 +277,28 @@ Route::prefix('cvrepair')
         Route::put('scopeofwork/constructionpositionerisolation/{consIsolValve}', 'storeConstructionPositionerIsolation')->name('valverepair.scopeofwork.store.constructionpositionerisolation');
         Route::get('scopeofwork/constructionaccesoriesisolation/{consIsolValve}', 'editConstructionAccessoriesIsolation')->name('valverepair.scopeofwork.get.constructionaccesoriesisolation');
         Route::put('scopeofwork/constructionaccesoriesisolation/{consIsolValve}', 'storeConstructionAccessoriesIsolation')->name('valverepair.scopeofwork.store.constructionaccesoriesisolation');
+    });
+
+# calibration
+Route::prefix('valverepair/calibration')
+    ->controller(CalibrationValveRepairController::class)
+    ->name('valverepair.calibration.')
+    ->group(function () {
+        Route::resource('/', CalibrationValveRepairController::class)->parameters(['' => 'calibration']);
+        Route::get('calibration/getdata', 'getData')->name('getdata');
+    });
+
+# Optional Services
+Route::prefix('valverepair/optionalservices')
+    ->controller(OptionalServicesController::class)
+    ->name('valverepair.optionalservices.')
+    ->group(function () {
+        // Route::resource('/', OptionalServicesController::class)->parameters(['' => 'optionalservices']);
+        Route::get('/valvepretest/{id}', 'getOptionalServiceValvePreTest')->name('get.valvepretest');
+        Route::post('/valvepretest', 'storeOptionalServiceValvePreTest')->name('store.valvepretest');
+        Route::put('valvepretest/{optionalservice}', 'updateOptionalServiceValvePreTest')->name('update.valvepretest');
+
+        Route::get('valvepretest/materialverification/{scopeofworkid}', 'getMaterialverification')->name('get.materialverification');
+        Route::put('valvepretest/materialverification/{optionalservice}', 'updateMaterialverification')->name('update.materialverification');
+
     });
