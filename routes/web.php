@@ -285,6 +285,7 @@ Route::resource('prodin', ProdinController::class);
 Route::prefix('prodin')->controller(ProdinController::class)->group(function () {
     Route::get('show/dropdown', 'showOnDropdown')->name('prodin.show.dropdown');
     Route::get('show/datatable', 'showDatatable')->name('prodin.main.table');
+    Route::get('loadprofile/product_name', 'loadprofilefromproductname')->name('prodin.loadprofile.productname');
     Route::get('loadprofile/itemcode', 'loadprofilefromitemcode')->name('prodin.loadprofile.itemcode');
     // Route::get('eproccodeitem/export', 'exportExcel')->name('eproccodeitem.export');
     // Route::post('eproccodeitem/import', 'importExcel')->name('eproccodeitem.import');
@@ -306,7 +307,7 @@ Route::resource('prodout', ProdoutController::class);
 Route::prefix('prodout')->controller(ProdoutController::class)->group(function () {
     Route::get('show/dropdown', 'showOnDropdown')->name('prodout.show.dropdown');
     Route::get('show/datatable', 'showDatatable')->name('prodout.main.table');
-    Route::get('loadprofile/itemcode', 'loadprofilefromitemcode')->name('prodout.loadprofile.itemcode');
+    Route::get('loadprofile/product_name', 'loadprofilefromproduct_name')->name('prodout.loadprofile.product_name');
 
     // Route::get('eproccodeitem/export', 'exportExcel')->name('eproccodeitem.export');
     // Route::post('eproccodeitem/import', 'importExcel')->name('eproccodeitem.import');

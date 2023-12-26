@@ -33,12 +33,35 @@ modalHideAndReset = () => {
     formReset();    
 }
 
-autoRecord = (itemcode,url) => {
+// autoRecord = (itemcode,url) => {
+//     $.ajax({
+//         type: "get",
+//         url: url,
+//         data: {
+//             itemcode:itemcode
+//         },
+//         dataType: "json",
+//         success: function (response) {
+//             $.each(response, function (index, value) { 
+//                 if(index == "prodin_image") {
+//                     $('#imageprofilecontainer').append(value);
+//                 } else {
+//                     $('#' + index).val(value);
+//                 }
+//             });
+
+//             // $('#form_url').val(response.update_url);
+//             $('#mainForm').attr('method', 'PUT');
+//         }
+//     });
+// }
+
+autoRecord = (product_name,url) => {
     $.ajax({
         type: "get",
         url: url,
         data: {
-            itemcode:itemcode
+            product_name:product_name
         },
         dataType: "json",
         success: function (response) {
@@ -134,6 +157,8 @@ editRecord = (url) => {
         dataType: "json",
         success: function (response) {
             // console.log(response);
+            var prod_nameOptions = new Option(response.dropdown.prod_name, response.dropdown.prod_name, true, true);
+            $('#prod_name').append(prod_nameOptions).trigger('change');
             var inv_ownerOptions = new Option(response.dropdown.inv_owner, response.dropdown.inv_owner, true, true);
             $('#inv_owner').append(inv_ownerOptions).trigger('change');
             var inv_uomOptions = new Option(response.dropdown.inv_uom, response.dropdown.inv_uom, true, true);

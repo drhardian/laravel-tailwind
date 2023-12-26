@@ -137,6 +137,8 @@ editRecord = (url) => {
         dataType: "json",
         success: function (response) {
             // console.log(response);
+            var prodout_nameOptions = new Option(response.dropdown.prodout_name, response.dropdown.prodout_name, true, true);
+            $('#prodout_name').append(prodout_nameOptions).trigger('change');
             var prodout_statusOptions = new Option(response.dropdown.prodout_status, response.dropdown.prodout_status, true, true);
             $('#prodout_status').append(prodout_statusOptions).trigger('change');
             var prodout_uomOptions = new Option(response.dropdown.prodout_uom, response.dropdown.prodout_uom, true, true);

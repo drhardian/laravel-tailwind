@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('inventory_prodouts', function (Blueprint $table) {
             $table->id();
             $table->string('prodout_image')->nullable();
+            $table->string('prodout_origin')->nullable();
+            $table->string('prodout_noref')->nullable();
             $table->string('prodout_code')->nullable();
             $table->string('prodout_owner')->nullable();
             $table->string('prodout_name')->nullable();
@@ -21,9 +23,9 @@ return new class extends Migration
             $table->string('prodout_brand')->nullable();
             $table->string('prodoutstock_loc')->nullable();
             $table->string('prodout_category')->nullable();
-            $table->date('prodout_stock')->nullable();
             $table->string('prodout_uom')->nullable();
-            $table->string('prodout_qty')->nullable();
+            $table->string('prodout_remstock')->nullable();
+            $table->string('prodout_stock')->nullable();
             $table->string('prodout_spec')->nullable();
             $table->date('date_out')->nullable();
             $table->decimal('prodout_price', 15, 2)->nullable();

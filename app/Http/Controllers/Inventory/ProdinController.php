@@ -79,7 +79,7 @@ class ProdinController extends Controller
                         'prodin_image' => $fileName,
                         'date_in' => Carbon::createFromFormat('d/m/Y', $request->date_in)->format('Y-m-d'),
                     ],
-                $request->only('prodin_image','prod_code','inv_stock','prod_name','remaining_stock','inv_brand','inv_owner','inv_category','inv_uom','inv_supplier','inv_spec', 'stock_loc', 'inv_price')
+                $request->only('prodin_image','prod_code','prodin_origin','prodin_noref','inv_stock','prod_name','inv_brand','inv_owner','inv_category','inv_uom','inv_supplier','inv_spec', 'stock_loc', 'inv_price')
                 )
             ); 
             
@@ -184,6 +184,24 @@ class ProdinController extends Controller
             'prodin_image' => '<img class="img-account-profile mb-3 mx-auto" src="'.$imgUrl.'" id="image-preview" style="max-width: 10%;" />'
         ], 200);
     }
+    
+    public function loadprofilefromproductname()
+    {
+        $catalogProduct = Catalogproduct::where('product_name',request('product_name'))->first();
+
+        $imgUrl = asset('').$catalogProduct->product_image;
+
+        return response()->json([
+            // 'prodin_image' => $catalogProduct->product_image,
+            'prod_code' => $catalogProduct->itemcode,
+            'inv_brand' => $catalogProduct->product_brand,
+            'inv_category' => $catalogProduct->productgroup_code,
+            'inv_uom' => $catalogProduct->product_uom,
+            'inv_spec' => $catalogProduct->product_spec,
+            'inv_price' => $catalogProduct->product_price,
+            'prodin_image' => '<img class="img-account-profile mb-3 mx-auto" src="'.$imgUrl.'" id="image-preview" style="max-width: 10%;" />'
+        ], 200);
+    }
 
     public function edit(Prodin $prodin)
     {
@@ -192,12 +210,15 @@ class ProdinController extends Controller
                 'uom' => $prodin->uom,
                 'stock_loc' => $prodin->stock_loc,
                 'inv_owner' => $prodin->inv_owner,
+                'prod_name' => $prodin->prod_name,
+
             ],
             'form' => [
                 ['prod_code', $prodin->prod_code],
                 ['inv_stock', $prodin->inv_stock],
-                ['prod_name', $prodin->prod_name],
-                ['remaining_stock', $prodin->remaining_stock],
+                ['prodin_origin', $prodin->prodin_origin],
+                ['prodin_noref', $prodin->prodin_noref],
+                // [ $prodin->remaining_stock],
                 ['inv_brand', $prodin->inv_brand],
                 ['inv_owner', $prodin->inv_owner],
                 ['inv_category', $prodin->inv_category],
@@ -242,7 +263,7 @@ class ProdinController extends Controller
                 [
                     'prodin_image' => $fileName
                 ],
-            $request->only('prodin_image','prod_code','inv_stock','prod_name','remaining_stock','inv_brand','inv_owner','inv_category','date_in','inv_uom','inv_supplier','inv_spec', 'stock_loc', 'inv_price')
+            $request->only('prodin_image','prod_code','prodin_origin','prodin_noref','inv_stock','prod_name','inv_brand','inv_owner','inv_category','date_in','inv_uom','inv_supplier','inv_spec', 'stock_loc', 'inv_price')
         ); 
 
             DB::commit();
@@ -397,7 +418,6 @@ class ProdinController extends Controller
             'prod_name',
             'inv_price',
             'inv_stock',
-            'remaining_stock',
             'date_in',
             'inv_category',
             'inv_owner',

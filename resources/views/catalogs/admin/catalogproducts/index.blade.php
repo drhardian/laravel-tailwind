@@ -213,9 +213,12 @@
                                                     <label for="product_name"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
                                                         Name</label>
-                                                    <input type="text" id="product_name" name="product_name"
-                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                        required placeholder="product name">
+                                                        <select id="product_name" name="product_name"
+                                                        class="select2-catalog-dropdown"
+                                                        data-show="{{ route('catalog.options.showondropdown') }}"
+                                                        data-store="{{ route('catalog.options.storefromdropdown') }}"
+                                                        data-alias="catalog-name" data-change="true"
+                                                        data-form="product name"></select>
                                                 </div>
                                                 <div class="sm:w-1/2 w-full mr-2">
                                                     <label for="product_brand"

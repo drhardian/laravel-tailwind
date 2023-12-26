@@ -77,7 +77,7 @@ class ProdoutController extends Controller
                     [
                         'prodout_image' => $fileName
                     ],
-                $request->only('prodout_image','prodout_code','prodout_owner','prodout_name','prodout_supplier','prodout_brand','prodoutstock_loc','prodout_category','prodout_stock','prodout_uom','prodout_qty','prodout_spec', 'date_out', 'prodout_price', 'prodout_status')
+                $request->only('prodout_image','prodout_origin','prodout_noref','prodout_code','prodout_owner','prodout_name','prodout_supplier','prodout_brand','prodoutstock_loc','prodout_category','prodout_uom','prodout_remstock','prodout_stock','prodout_spec', 'date_out', 'prodout_price', 'prodout_status')
                 )
             ); 
             
@@ -151,7 +151,7 @@ class ProdoutController extends Controller
             'prodout_brand' => $prodIn->inv_brand,
             'prodoutstock_loc' => $prodIn->stock_loc,
             'prodout_category' => $prodIn->inv_category,
-            'prodout_stock' => $prodIn->inv_stock,
+            'prodout_remstock' => $prodIn->inv_stock,
             'prodout_uom' => $prodIn->inv_uom,
             'prodout_spec' => $prodIn->inv_spec,
             'prodout_price' => $prodIn->inv_price,
@@ -195,13 +195,15 @@ class ProdoutController extends Controller
             ],
             'form' => [
                 ['prodout_code', $prodout->prodout_code],
+                ['prodout_origin', $prodout->prodout_origin],
+                ['prodout_noref', $prodout->prodout_noref],
                 ['prodout_owner', $prodout->prodout_owner],
                 ['prodout_name', $prodout->prodout_name],
                 ['prodout_supplier', $prodout->prodout_supplier],
                 ['prodout_brand', $prodout->prodout_brand],
                 ['prodout_category', $prodout->prodout_category],
+                ['prodout_remstock', $prodout->prodout_remstock],
                 ['prodout_stock', $prodout->prodout_stock],
-                ['prodout_qty', $prodout->prodout_qty],
                 ['prodout_spec', $prodout->prodout_spec],
                 ['date_out', Carbon::parse($prodout->date_out)->format('d/m/Y')],
                 ['prodout_price', $prodout->prodout_price],
@@ -242,7 +244,7 @@ class ProdoutController extends Controller
                 [
                     'prodout_image' => $fileName
                 ],
-            $request->only('prodout_image','prodout_code','prodout_owner','prodout_name','prodout_supplier','prodout_brand','prodoutstock_loc','prodout_category','prodout_stock','prodout_uom','prodout_qty','prodout_spec', 'date_out', 'prodout_price', 'prodout_status')
+            $request->only('prodout_image','prodout_origin','prodout_noref','prodout_code','prodout_owner','prodout_name','prodout_supplier','prodout_brand','prodoutstock_loc','prodout_category','prodout_uom','prodout_remstock','prodout_stock','prodout_spec', 'date_out', 'prodout_price', 'prodout_status')
             );
 
             DB::commit();
@@ -403,7 +405,7 @@ class ProdoutController extends Controller
             'prodout_category',
             'prodout_stock',
             'prodout_uom',
-            'prodout_qty',
+            'prodout_stock',
             'prodout_spec',
             'date_out',
             'prodout_price',

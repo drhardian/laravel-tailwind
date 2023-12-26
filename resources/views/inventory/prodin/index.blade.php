@@ -38,8 +38,8 @@
                             <th>Image</th>
                             <th>Products Name</th>
                             <th>Price</th>
-                            <th>Stock</th>
-                            <th>Remaining Stock</th>
+                            <th>Stock In</th>
+                            {{-- <th>Remaining Stock</th> --}}
                             <th>Date In</th>
                             <th>Categories</th>
                             <th>Owner</th>
@@ -171,38 +171,47 @@
                                     <div class="mb-6">
                                         {{-- <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LOCATION INFORMATION</label> --}}
                                         <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
-                                                <label for="prod_code"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Code</label>
-                                                <input type="text" id="prod_code" name="prod_code"
+                                            <div class="sm:w-1/2 w- full sm:pr-2">
+                                                <label for="prod_name"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
+                                                    <select id="prod_name" name="prod_name"
+                                                        class="select2-catalog-dropdown"
+                                                        data-show="{{ route('catalog.options.showondropdown') }}"
+                                                        data-store="{{ route('catalog.options.storefromdropdown') }}"
+                                                        data-alias="catalog-name" data-change="true"
+                                                        {{-- data-form="product name"> --}}
+                                                        data-form="product name" onblur="autoRecord($(this).val(),'{{ route('prodin.loadprofile.productname') }}')">
+                                                    </select>
+                                                {{-- <input type="text" id="prod_name" name="prod_name"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Enter Product Code" onblur="autoRecord($(this).val(),'{{ route('prodin.loadprofile.itemcode') }}')">
+                                                    required placeholder="Enter Product Name" onblur="autoRecord($(this).val(),'{{ route('prodin.loadprofile.productname') }}')"> --}}
                                             </div>
                                             <div class="sm:w-1/2 w- full sm:pr-2">
-                                                <label for="inv_stock"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock</label>
-                                                <input type="number" id="inv_stock" name="inv_stock"
+                                                <label for="prodin_origin"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Origin</label>
+                                                <input type="text" id="prodin_origin" name="prodin_origin"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Enter Stock">
+                                                    required placeholder="Product Origin">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-6">
                                         {{-- <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LOCATION INFORMATION</label> --}}
                                         <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w- full sm:pr-2">
-                                                <label for="prod_name"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
-                                                <input type="text" id="prod_name" name="prod_name"
+                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                                <label for="prod_code"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Code</label>
+                                                <input type="text" id="prod_code" name="prod_code"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Enter Product Name">
+                                                    {{-- required placeholder="Enter Product Code"> --}}
+                                                    required placeholder="Enter Product Code" onblur="autoRecord($(this).val(),'{{ route('prodin.loadprofile.itemcode') }}')">
                                             </div>
                                             <div class="sm:w-1/2 w- full sm:pr-2">
-                                                <label for="remaining_stock"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Remaining Stock</label>
-                                                <input type="number" id="remaining_stock" name="remaining_stock"
+                                                <label for="prodin_noref"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No. Ref</label>
+                                                <input type="number" id="prodin_noref" name="prodin_noref"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Enter Remaining Stock">
+                                                    required placeholder="Enter No. Ref">
                                             </div>
                                         </div>
                                     </div>
@@ -274,7 +283,7 @@
                                         </div>
                                     </div>
                                     <div class="row sm:flex">
-                                        <div class="w-full">
+                                        <div class="sm:w-1/2 w- full sm:pr-2">
                                             <label for="inv_spec"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Specification</label>
                                                 <textarea 
@@ -282,6 +291,13 @@
                                                 placeholder="Write specification here..."
                                                 id="inv_spec" 
                                                 name="specification"></textarea>
+                                        </div>
+                                        <div class="sm:w-1/2 w- full sm:pr-2">
+                                            <label for="inv_stock"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock In</label>
+                                            <input type="number" id="inv_stock" name="inv_stock"
+                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required placeholder="Enter Stock">
                                         </div>
                                     </div>
                                     <div class="row sm:flex">
@@ -435,11 +451,11 @@
                         name: 'inv_stock',
                         className: 'all'
                     }, 
-                    {
-                        data: 'remaining_stock',
-                        name: 'remaining_stock',
-                        className: 'all'
-                    }, 
+                    // {
+                    //     data: 'remaining_stock',
+                    //     name: 'remaining_stock',
+                    //     className: 'all'
+                    // }, 
                     {
                         data: 'date_in',
                         name: 'date_in',
@@ -551,6 +567,74 @@
 
             });
 
+            $('.select2-catalog-dropdown').select2({
+                allowClear: true,
+                tags: true,
+                ajax: {
+                    url: function() {
+                        return $(this).attr('data-show');
+                    },
+                    type: 'GET',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            search: params.term,
+                            alias: $(this).attr('data-alias'),
+                            dataChange: $(this).attr('data-change'),
+                        };
+                    },
+                    processResults: function(response) {
+                        return {
+                            results: response
+                        }
+                    },
+                    cache: true
+                },
+                placeholder: 'Search here..',
+            });
+
+            $('.select2-catalog-dropdown').on('select2:close', function(e) {
+                let getText = $(this).find(':selected');
+                var paramsData = getText[0].label;
+
+                if (paramsData) {
+                    let url = $(this).attr("data-store");
+                    let dataForm = $(this).attr("data-form");
+                    let dataChange = $(this).attr("data-change");
+
+                    if (url) {
+                        $.ajax({
+                            url: url,
+                            method: "POST",
+                            data: {
+                                _token: CSRF_TOKEN,
+                                newoption: paramsData,
+                                alias: $(this).attr('data-alias')
+                            },
+                            dataType: "json",
+                            success: function(response) {
+
+                                $('#' + dataForm).val(null).trigger('change');
+
+                                if (dataChange == "true") {
+                                    var option = new Option(response.message.text, response
+                                        .message.text, true, true);
+                                } else {
+                                    var option = new Option(response.message.text, response
+                                        .message.id, true, true);
+                                }
+
+                                $('#' + dataForm).append(option).trigger('change');
+                                $('#' + dataForm).trigger('change');
+
+                            }
+                        });
+                    }
+                }
+
+            });
+
             // $('#status').on('select2:close', function(e) {
             //     if ($(this).val() == 'ACTIVE') {
             //         $('#operational').val('YES');
@@ -562,7 +646,7 @@
             $('#newBtn').on('click', function(e) {
                 e.preventDefault();
 
-                $('.modal-title').text('New FBO');
+                $('.modal-title').text('New Product In');
             });
         });
     </script>

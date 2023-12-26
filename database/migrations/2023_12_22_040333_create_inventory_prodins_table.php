@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('inventory_prodins', function (Blueprint $table) {
             $table->id();
             $table->string('prodin_image')->nullable();
+            $table->string('prodin_origin')->nullable();
+            $table->string('prodin_noref')->nullable();
             $table->string('prod_code')->nullable();
             $table->string('inv_stock')->nullable();
             $table->string('prod_name')->nullable();
-            $table->string('remaining_stock')->nullable();
+            // $table->string('remaining_stock')->nullable();
             $table->string('inv_brand')->nullable();
             $table->string('inv_owner')->nullable();
             $table->string('inv_category')->nullable();
