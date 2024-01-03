@@ -36,6 +36,7 @@
                     <thead>
                         <tr>
                             <th>Image</th>
+                            <th>Item Code</th>
                             <th>Main Code</th>
                             <th>Code</th>
                             <th>Sub Code</th>
@@ -129,10 +130,11 @@
                                             <div class="card mb-4 mb-xl-0 text-center">
                                                 <div class="card-header"><b>Image Product</b></div>
                                                 <div class="card-body">
+                                                    <div id="image_container" class="grid justify-items-center w-100 my-2 rounded-lg"></div>
                                                     <!-- Product image -->
-                                                    <img class="img-account-profile mb-3 mx-auto"
+                                                    {{-- <img class="img-account-profile mb-3 mx-auto"
                                                         src="{{ asset('storage/assets/img/catalogproducts/default.webp') }}"
-                                                        alt="" id="image-preview" style="max-width: 10%;" />
+                                                        alt="" id="image-preview" style="max-width: 10%;" /> --}}
                                                     <!-- Product image help block -->
                                                     <div class="small font-italic text-muted mb-2">JPG or PNG no larger than
                                                         2
@@ -140,8 +142,7 @@
                                                     <!-- Product image input -->
                                                     <input
                                                         class="form-control form-control-solid mb-3 @error('product_image') is-invalid @enderror"
-                                                        type="file" id="image" name="product_image" accept="image/*"
-                                                        onchange="previewImage();">
+                                                        type="file" id="image" name="product_image" accept="image/*">
                                                     {{-- @error('product_image')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
@@ -155,7 +156,7 @@
                                 <div class="space-y-6">
                                     <div class="col-xl-8">
                                         <div class="row sm:flex">
-                                            <div class="sm:w-1/4 w-full mr-2">
+                                            <div class="sm:w-1/4 w-full mr-2" id="productmain_code_frame">
                                                 {{-- <!-- ITEM CODE --> --}}
                                                 <label for="productmain_code"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Main
@@ -164,20 +165,20 @@
                                                     class="select2-catalog-dropdown"
                                                     data-show="{{ route('catalog.options.showondropdown') }}"
                                                     data-store="{{ route('catalog.options.storefromdropdown') }}"
-                                                    data-alias="catalog-productmain_code" data-change="true"
+                                                    data-alias="catalog-titlemain_code" data-change="true"
                                                     data-form="product main code"></select>
                                             </div>
-                                            <div class="sm:w-1/4 w-full mr-2">
+                                            <div class="sm:w-1/4 w-full mr-2" id="product_code_frame">
                                                 <label for="product_code"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Code</label>
                                                 <select id="product_code" name="product_code"
                                                     class="select2-catalog-dropdown"
                                                     data-show="{{ route('catalog.options.showondropdown') }}"
                                                     data-store="{{ route('catalog.options.storefromdropdown') }}"
-                                                    data-alias="catalog-product_code" data-change="true"
+                                                    data-alias="catalog-title_code" data-change="true"
                                                     data-form="product code"></select>
                                             </div>
-                                            <div class="sm:w-1/4 w-full mr-2">
+                                            <div class="sm:w-1/4 w-full mr-2" id="productsub_code_frame">
                                                 <label for="productsub_code"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sub
                                                     Code</label>
@@ -185,10 +186,10 @@
                                                     class="select2-catalog-dropdown"
                                                     data-show="{{ route('catalog.options.showondropdown') }}"
                                                     data-store="{{ route('catalog.options.storefromdropdown') }}"
-                                                    data-alias="catalog-productsub_code" data-change="true"
+                                                    data-alias="catalog-titlesub_code" data-change="true"
                                                     data-form="product sub code"></select>
                                             </div>
-                                            <div class="sm:w-1/4 w-full mr-2">
+                                            <div class="sm:w-1/4 w-full mr-2" id="productgroup_code_frame">
                                                 <label for="productgroup_code"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Group
                                                     Code</label>
@@ -196,100 +197,102 @@
                                                     class="select2-catalog-dropdown"
                                                     data-show="{{ route('catalog.options.showondropdown') }}"
                                                     data-store="{{ route('catalog.options.storefromdropdown') }}"
-                                                    data-alias="catalog-productgroup_code" data-change="true"
+                                                    data-alias="catalog-titlegroup_code" data-change="true"
                                                     data-form="product group code"></select>
                                             </div>
                                         </div>
                                     </div>
-                                        {{-- </div> --}}
-                                        <!-- PRODUCT INFORMATION -->
-                                        <div class="space-y-6">
-                                            <div class="mb-6">
-                                                <label
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PRODUCT
-                                                    INFORMATION</label>
-                                                <div class="row sm:flex">
-                                                    <div class="sm:w-1/2 w-full mr-2">
-                                                        <label for="product_name"
-                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
-                                                        <input type="text" id="product_name" name="product_name"
-                                                            class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                            required placeholder="product name">
-                                                    </div>
-                                                    <div class="sm:w-1/2 w-full mr-2">
-                                                        <label for="product_brand"
-                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
-                                                        <input type="text" id="product_brand" name="product_brand"
-                                                            class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                            required placeholder="brand">
-                                                    </div>
+                                    {{-- </div> --}}
+                                    <!-- PRODUCT INFORMATION -->
+                                    <div class="space-y-6">
+                                        <div class="mb-6">
+                                            <label
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PRODUCT
+                                                INFORMATION</label>
+                                            <div class="row sm:flex">
+                                                <div class="sm:w-1/2 w-full mr-2">
+                                                    <label for="product_name"
+                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
+                                                        Name</label>
+                                                        <select id="product_name" name="product_name"
+                                                        class="select2-catalog-dropdown"
+                                                        data-show="{{ route('catalog.options.showondropdown') }}"
+                                                        data-store="{{ route('catalog.options.storefromdropdown') }}"
+                                                        data-alias="catalog-name" data-change="true"
+                                                        data-form="product name"></select>
+                                                </div>
+                                                <div class="sm:w-1/2 w-full mr-2">
+                                                    <label for="product_brand"
+                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
+                                                    <input type="text" id="product_brand" name="product_brand"
+                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required placeholder="brand">
                                                 </div>
                                             </div>
-                                            <div class="row sm:flex">
-                                                {{-- <div class="sm:w-1/2 w-full mr-2">
+                                        </div>
+                                        <div class="row sm:flex">
+                                            {{-- <div class="sm:w-1/2 w-full mr-2">
                                                     <label for="product_descrip"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
                                                     <input type="text" id="product_descrip" name="product_descrip"
                                                         class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required placeholder="description">
                                                 </div> --}}
-                                                <div class="w-full">
-                                                    <label for="product_spec"
-                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Specification</label>
-                                                        <textarea 
-                                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                                        placeholder="Write specification here..."
-                                                        id="product_spec" 
-                                                        name="specification"></textarea>
-                                                </div>
+                                            <div class="w-full">
+                                                <label for="product_spec"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Specification</label>
+                                                <textarea
+                                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    placeholder="Write specification here..." id="product_spec" name="product_spec"></textarea>
                                             </div>
-                                            <div class="mb-6">
-                                                <div class="row sm:flex">
-                                                    {{-- <div class="sm:w-1/3 w-full mr-2">
-                                                        <label for="product_brand"
-                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
-                                                        <input type="text" id="product_brand" name="product_brand"
+                                        </div>
+                                        <div class="mb-6">
+                                            <div class="row sm:flex">
+                                                <div class="sm:w-1/3 w-full mr-2">
+                                                        <label for="product_minstock"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Minimum Stock</label>
+                                                        <input type="number" id="product_minstock" name="product_minstock"
                                                             class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                            required placeholder="brand">
-                                                    </div> --}}
-                                                    <div class="sm:w-1/2 w-full mr-2">
-                                                        <label for="product_uom"
-                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UOM</label>
-                                                        <select id="product_uom" name="product_uom"
-                                                            class="select2-general-dropdown"
-                                                            data-show="{{ route('general.options.showondropdown') }}"
-                                                            data-store="{{ route('general.options.storefromdropdown') }}"
-                                                            data-alias="catalog-product_uom" data-change="true"
-                                                            data-form="product group code"></select>
+                                                            required placeholder="minimum stock">
                                                     </div>
-                                                    <div class="sm:w-1/2 w-full mr-2">
-                                                        <label for="product_price"
-                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unit
-                                                            Price</label>
-                                                        <input type="number" id="product_price" name="product_price"
-                                                            class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                            required placeholder="price">
-                                                    </div>
+                                                <div class="sm:w-1/3 w-full mr-2">
+                                                    <label for="product_uom"
+                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UOM</label>
+                                                    <select id="product_uom" name="product_uom"
+                                                        class="select2-general-dropdown"
+                                                        data-show="{{ route('general.options.showondropdown') }}"
+                                                        data-store="{{ route('general.options.storefromdropdown') }}"
+                                                        data-alias="catalog-product_uom" data-change="true"
+                                                        data-form="product uom"></select>
+                                                </div>
+                                                <div class="sm:w-1/3 w-full mr-2">
+                                                    <label for="product_price"
+                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unit
+                                                        Price</label>
+                                                    <input type="number" id="product_price" name="product_price"
+                                                        class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required placeholder="price">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Modal footer -->
-                            <div
-                                class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600 py-4">
-                                <button type="button"
-                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                    onClick="saveRecord()">Save</button>
-                                <button id="cancelBtn" type="button"
-                                    class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
-                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div
+                            class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600 py-4">
+                            <button type="button"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                onClick="saveRecord()">Save</button>
+                            <button id="cancelBtn" type="button"
+                                class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
                         </div>
                 </div>
             </div>
-            </form>
         </div>
+        </form>
+    </div>
     </div>
     </div>
 
@@ -391,6 +394,11 @@
                 columns: [{
                         data: 'product_image',
                         name: 'product_image',
+                        className: ['text-center', 'min-tablet']
+                    },
+                    {
+                        data: 'itemcode',
+                        name: 'itemcode',
                         className: ['text-center', 'min-tablet']
                     },
                     {
@@ -634,7 +642,7 @@
 
             $.ajax({
                 type: "post",
-                url: "{{ route('psvdatamaster.import') }}",
+                url: "{{ route('catalogproduct.import') }}",
                 data: formData,
                 dataType: "json",
                 contentType: false,

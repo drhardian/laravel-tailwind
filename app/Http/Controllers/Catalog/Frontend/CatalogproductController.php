@@ -51,15 +51,11 @@ class CatalogproductController extends Controller
         // $catalogproducts = $this->_filterCatalogsByAttribute($catalogproducts, $request);
         // $catalogproducts = $this->_sortCatalogs($catalogproducts, $request);
     //     $selectedSort = $this->selectedSort;
-    //     $catalogproducts = $catalogproducts->paginate(10);
+        // $catalogproducts = $catalogproducts->paginate(10);
 
-    //     return view('catalogs.frontend.catalogproducts.index', compact('catalogproducts', 'minPrice', 'maxPrice', 'sorts', 'selectedSort'));
+        $catalogproducts = Catalogproduct::all();
 
-
-        $catalogproducts = Catalogproduct::get();
-        $totalcatalogproducts = Catalogproduct::count();
-
-        return view('catalogs.frontend.catalogproducts.index', compact('catalogproducts','totalcatalogproducts'));
+        return view('catalogs.frontend.catalogproducts.index', compact('catalogproducts'));
     }
 
     // private function _filterCatalogsByPriceRange($catalogproducts, $request)
@@ -173,6 +169,7 @@ class CatalogproductController extends Controller
 
         // $colors = ProductAttributeValue::getAttributeOptions($product, 'color')->pluck('text_value', 'text_value');
         // $sizes = ProductAttributeValue::getAttributeOptions($product, 'size')->pluck('text_value', 'text_value');
-        return view('catalogs.frontend.catalogproducts.index', compact('catalogproduct'));
+        return view('catalogs.frontend.catalogproducts.index', compact('catalogproduct', 'totalcatalogproducts'));
     }
 }
+ 

@@ -417,9 +417,39 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Inventory</a>
+                                <li aria-labelledby="dropdownNavbarLink">
+                                    <button id="inventoryDropdownButton" data-dropdown-toggle="inventoryDropdown"
+                                        data-dropdown-placement="right-start" type="button"
+                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Inventory<svg
+                                            class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                        </svg>
+                                    </button>
+                                    <div id="inventoryDropdown"
+                                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                        <div>
+                                            <ul class="text-sm text-gray-700 dark:text-gray-200">
+                                                <li>
+                                                    <a href="{{ route('prodin.index') }}"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Dashboard</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ route('prodin.index') }}"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Stock Products In</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ route('prodout.index') }}"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Stock Products Out</a>
+                                                </li>
+                                                {{-- <li>
+                                                    <a href="{{ route() }}"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Junk</a>
+                                                </li> --}}
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </li>
                                 <li>
                                     <a href="#"

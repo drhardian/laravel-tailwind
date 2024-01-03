@@ -40,6 +40,7 @@ saveRecord = () => {
         if (result.isConfirmed) {
             const formInput = $('#mainForm')[0];
             const formData = new FormData(formInput);
+            formData.append("_method", $('#mainForm').attr('method'));
 
             $.ajax({
                 type: "post",
@@ -112,18 +113,25 @@ editRecord = (url) => {
             // console.log(response);
             var main_codeOptions = new Option(response.dropdown.main_code, response.dropdown.main_code, true, true);
             $('#main_code').append(main_codeOptions).trigger('change');
+
             var titlemain_codeOptions = new Option(response.dropdown.titlemain_code, response.dropdown.titlemain_code, true, true);
             $('#titlemain_code').append(titlemain_codeOptions).trigger('change');
+
             var codeOptions = new Option(response.dropdown.code, response.dropdown.code, true, true);
             $('#code').append(codeOptions).trigger('change');
+
             var title_codeOptions = new Option(response.dropdown.title_code, response.dropdown.title_code, true, true);
             $('#title_code').append(title_codeOptions).trigger('change');
+
             var sub_codeOptions = new Option(response.dropdown.sub_code, response.dropdown.sub_code, true, true);
             $('#sub_code').append(sub_codeOptions).trigger('change');
+
             var titlesub_codeOptions = new Option(response.dropdown.titlesub_code, response.dropdown.titlesub_code, true, true);
             $('#titlesub_code').append(titlesub_codeOptions).trigger('change');
+
             var group_codeOptions = new Option(response.dropdown.group_code, response.dropdown.group_code, true, true);
             $('#group_code').append(group_codeOptions).trigger('change');
+
             var titlegroup_codeOptions = new Option(response.dropdown.titlegroup_code, response.dropdown.titlegroup_code, true, true);
             $('#titlegroup_code').append(titlegroup_codeOptions).trigger('change');
             

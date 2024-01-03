@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Catalog\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Catalog\Catalogcodeitem;
 use Illuminate\Http\Request;
 use App\Models\Catalog\Catalogproduct;
 use Carbon\Carbon;
@@ -10,6 +11,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\CatalogproductImport;
+// use App\Exports\PsvdatamasterExport;
 
 
 class CatalogproductController extends Controller
@@ -58,26 +62,51 @@ class CatalogproductController extends Controller
         DB::beginTransaction();
 
         try {
+            $catalogCode = Catalogcodeitem::select(
+                'main_code',
+                'code',
+                'sub_code',
+                'group_code',
+            )->where([
+                ['titlemain_code','=',$request->productmain_code],
+                ['title_code','=',$request->product_code],
+                ['titlesub_code','=',$request->productsub_code],
+                ['titlegroup_code','=',$request->productgroup_code],
+            ])->first();
+
+            // dd([$request->productmain_code,$request->product_code,$request->productsub_code,$request->productgroup_code]);
+
+            $getLastItemTotal = Catalogproduct::where([
+                ['productmain_code','=',$request->productmain_code],
+                ['product_code','=',$request->product_code],
+                ['productsub_code','=',$request->productsub_code],
+                ['productgroup_code','=',$request->productgroup_code],
+            ])->count();
+
+            $itemcode = $catalogCode->main_code.$catalogCode->code.$catalogCode->sub_code.$catalogCode->group_code.(intval($getLastItemTotal)+1);
+
             /**
              * Handle upload image
              */
             if ($file = $request->file('product_image')) {
-                $fileName = hexdec(uniqid()) . '.' . $file->getClientOriginalExtension();
+                // $fileName = hexdec(uniqid()) . '.' . $file->getClientOriginalExtension();
+                $fileName = $itemcode . '.' . $file->getClientOriginalExtension();
                 $path = 'public/assets/img/catalogproducts';
                 /**
                  * Upload an image to Storage
                  */
                 $file->storeAs($path, $fileName);
-                $fileName = 'storage/assets/img/catalogproducts/' . $fileName;
-                $validatedData['product_image'] = $fileName;
+                // $fileName = 'storage/assets/img/catalogproducts/' . $fileName;
+                // $validatedData['product_image'] = $fileName;
             }
 
             $catalogproduct = Catalogproduct::create(
                 array_merge(
                     [
-                        'product_image' => $fileName
+                        'product_image' => 'catalogproducts/'.$fileName,
+                        'itemcode' => $itemcode
                     ],
-                    $request->only('product_image','productmain_code', 'product_code', 'productsub_code', 'productgroup_code', 'product_name', 'slug', 'product_spec', 'product_brand', 'product_uom', 'product_price')
+                    $request->only('productmain_code', 'product_code', 'productsub_code', 'productgroup_code', 'product_name', 'product_spec', 'product_brand', 'product_minstock', 'product_uom', 'product_price')
                 )
             );
 
@@ -175,23 +204,19 @@ class CatalogproductController extends Controller
                 'product_code' => $catalogproduct->product_code,
                 'productsub_code' => $catalogproduct->productsub_code,
                 'productgroup_code' => $catalogproduct->productgroup_code,
-                'product_uom', $catalogproduct->product_uom,
-
+                'product_uom' => $catalogproduct->product_uom,
+                'product_name' => $catalogproduct->product_name,
 
             ],
             'form' => [
-                ['product_name', $catalogproduct->product_name],
-                ['slug', $catalogproduct->slug],
-                // ['product_merk', $catalogproduct->product_merk],
+                ['product_minstock', $catalogproduct->product_minstock],
                 // ['product_descrip', $catalogproduct->product_descrip],
                 ['product_spec', $catalogproduct->product_spec],
                 ['product_brand', $catalogproduct->product_brand],
                 ['product_price', $catalogproduct->product_price],
-                // ['product_image', $catalogproduct->product_image],
-
             ],
-
-            'update_url' => route('admin.catalogproduct.update', ['catalogproduct' => $catalogproduct->id])
+            'update_url' => route('admin.catalogproduct.update', ['catalogproduct' => $catalogproduct->id]),
+            'product_image' => '<img src="'.asset($catalogproduct->product_image).'" width="20%">'
         ], 200);
     }
 
@@ -203,29 +228,29 @@ class CatalogproductController extends Controller
         DB::beginTransaction();
 
         try {
+            if(!empty($request->file('product_image'))) {
+                /**
+                 * Handle upload an image
+                 */
+                if ($file = $request->file('product_image')) {
+                    // $fileName = hexdec(uniqid()) . '.' . $file->getClientOriginalExtension();
+                    $fileName = $catalogproduct->itemcode . '.' . $file->getClientOriginalExtension();
+                    $path = 'public/assets/img/catalogproducts';
+                    /**
+                     * Upload an image to Storage
+                     */
+                    $file->storeAs($path, $fileName);
+                    // $fileName = 'storage/assets/img/catalogproducts/' . $fileName;
+                    // $validatedData['product_image'] = $fileName;
+                }
 
-            /**
-         * Handle upload an image
-         */
-        if ($file = $request->file('product_image')) {
-            $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
-            $path = 'public/assets/img/catalogproducts/';
-
-            /**
-             * Delete photo if exists.
-             */
-            if($catalogproduct->product_image){
-                $result = str_replace('storage/', '', $catalogproduct->product_image);
-                Storage::delete('public/' . $result);
+                $queryUpdate = array_merge(
+                    [ 'product_image' => 'catalogproducts/'.$fileName, ],
+                    $request->only('product_name', 'product_spec', 'product_brand', 'product_minstock', 'product_uom', 'product_price')
+                );
+            } else {
+                $queryUpdate = $request->only('product_name', 'product_spec', 'product_brand', 'product_minstock', 'product_uom', 'product_price');
             }
-
-            /**
-             * Store an image to Storage
-             */
-            $file->storeAs($path, $fileName);
-            $fileName = 'storage/assets/img/catalogproducts/'.$fileName;
-            $validatedData['product_image'] = $fileName;
-        }
 
             // if ($file = $request->file('cert_doc')) {
             //     $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
@@ -247,13 +272,7 @@ class CatalogproductController extends Controller
             //     // $validatedData['cert_doc'] = $fileName;
             // }
 
-            Catalogproduct::where('id', $catalogproduct->id)->update(
-                [
-                    'product_image' => $fileName
-                ],
-                $request->only('product_image','productmain_code', 'product_code', 'productsub_code', 'productgroup_code', 'product_name', 'slug', 'product_spec', 'product_brand', 'product_uom', 'product_price')
-
-            );
+            Catalogproduct::where('id', $catalogproduct->id)->update($queryUpdate);
 
             DB::commit();
 
@@ -383,39 +402,40 @@ class CatalogproductController extends Controller
     /**
      * IMPORT EXCEL 
      */
-    // public function importExcel(Request $request)
-    // {
-    //     try {
-    //         Excel::import(new PsvdatamasterImport, $request->file('filexls'));
+    public function importExcel(Request $request)
+    {
+        try {
+            Excel::import(new CatalogproductImport, $request->file('filexls'));
 
-    //         return response()->json([
-    //             'message' => 'Data imported successfully'
-    //         ], 200);
-    //     } catch (ParseError $e) {
-    //         return response()->json([
-    //             'message' => $e->getMessage()
-    //         ], 500);
-    //     } catch (Exception $e) {
-    //         return response()->json([
-    //             'message' => $e->getMessage()
-    //         ], 500);
-    //     }
+            return response()->json([
+                'message' => 'Data imported successfully'
+            ], 200);
+        } catch (ParseError $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
 
-    // }
+    }
 
     public function showDatatable()
     {
         $model = Catalogproduct::select(
             'id',
+            'itemcode',
             'product_image',
             'productmain_code',
             'product_code',
             'productsub_code',
             'productgroup_code',
             'product_name',
-            'slug',
             // 'product_merk',
             // 'product_descrip',
+            // 'product_minstock',
             'product_spec',
             'product_brand',
             'product_uom',
@@ -434,10 +454,13 @@ class CatalogproductController extends Controller
 
                 return $actions;
             })
+            ->editColumn('product_image', function ($model) {
+                return '<img src="'.asset('').$model->product_image.'">';
+            })
             ->editColumn('updated_at', function ($model) {
                 return Carbon::parse($model->updated_at)->format('d/m/Y H:i:s');
             })
-            ->rawColumns(['actions'])
+            ->rawColumns(['actions','product_image'])
             ->removeColumn('catalogproducts')
             ->make(true);
     }
