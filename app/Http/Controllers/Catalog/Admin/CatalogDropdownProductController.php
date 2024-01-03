@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Catalog\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Catalog\CatalogDropdownProduct;
+use App\Models\Catalog\Catalogproduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -17,20 +18,24 @@ class CatalogDropdownProductController extends Controller
      */
     public function showOnDropdown()
     {
-        $queries = CatalogDropdownProduct::select('id','code','title')
+        // $queries = CatalogDropdownProduct::select('id','code','title')
+        //             ->when(request('search', false), function($query) {
+        //                 return $query->where('title', 'like', '%'.request('search').'%');
+        //             })
+        //             -> where('dropdown_alias',request('alias'))
+        //             ->get();
+        $queries = Catalogproduct::select('id','product_name')
                     ->when(request('search', false), function($query) {
-                        return $query->where('title', 'like', '%'.request('search').'%');
+                        return $query->where('product_name', 'like', '%'.request('search').'%');
                     })
-                    -> where('dropdown_alias',request('alias'))
                     ->get();
 
         $response = [];
 
         foreach($queries as $query){
             $response[] = array(
-                "id" => request('dataChange')==="false"?$query->id : $query->title,
-                "string" => $query->code,
-                "text" => $query->title
+                "id" => $query->id,
+                "text" => $query->product_name
             );
         }
 

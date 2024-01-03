@@ -128,12 +128,20 @@ editRecord = (url) => {
             $('#productsub_code').append(productsub_codeOptions).trigger('change');
             var productgroup_codeOptions = new Option(response.dropdown.productgroup_code, response.dropdown.productgroup_code, true, true);
             $('#productgroup_code').append(productgroup_codeOptions).trigger('change');
+            var product_nameOptions = new Option(response.dropdown.product_name, response.dropdown.product_name, true, true);
+            $('#product_name').append(product_nameOptions).trigger('change');
             var product_uomOptions = new Option(response.dropdown.product_uom, response.dropdown.product_uom, true, true);
             $('#product_uom').append(product_uomOptions).trigger('change');
+            var inv_categoryOptions = new Option(response.dropdown.inv_category, response.dropdown.inv_category, true, true);
+            $('#inv_category').append(inv_categoryOptions).trigger('change');
+
 
             $.each(response.form, function (index, value) { 
                 $('#' + value[0]).val(value[1]);
             });
+
+            $('#image_container').html('');
+            $('#image_container').append(response.product_image);
 
             $('#form_url').val(response.update_url);
             $('#mainForm').attr('method', 'PUT');
@@ -192,7 +200,7 @@ let closeUploadXlsIco = document.getElementById('closeUploadXlsIco');
 
 openUploadForm = () => {
     modalUploadShowAndReset();
-    $('.modal-title').text('Import Product e-Proc');
+    $('.modal-title').text('Import Catalog Product');
     $('#form_url').val(url);
 }
 

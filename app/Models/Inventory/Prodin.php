@@ -2,9 +2,11 @@
 
 namespace App\Models\Inventory;
 
+use App\Models\Catalog\Catalogproduct;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Prodin extends Model
 {
@@ -32,5 +34,15 @@ class Prodin extends Model
 
         
 //     }
+
+    /**
+     * Get the catalogProduct that owns the Prodin
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function catalogProduct(): BelongsTo
+    {
+        return $this->belongsTo(Catalogproduct::class);
+    }
 }
 

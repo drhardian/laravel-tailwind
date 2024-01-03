@@ -130,10 +130,11 @@
                                             <div class="card mb-4 mb-xl-0 text-center">
                                                 <div class="card-header"><b>Image Product</b></div>
                                                 <div class="card-body">
+                                                    <div id="image_container" class="grid justify-items-center w-100 my-2 rounded-lg"></div>
                                                     <!-- Product image -->
-                                                    <img class="img-account-profile mb-3 mx-auto"
+                                                    {{-- <img class="img-account-profile mb-3 mx-auto"
                                                         src="{{ asset('storage/assets/img/catalogproducts/default.webp') }}"
-                                                        alt="" id="image-preview" style="max-width: 10%;" />
+                                                        alt="" id="image-preview" style="max-width: 10%;" /> --}}
                                                     <!-- Product image help block -->
                                                     <div class="small font-italic text-muted mb-2">JPG or PNG no larger than
                                                         2
@@ -247,14 +248,14 @@
                                         </div>
                                         <div class="mb-6">
                                             <div class="row sm:flex">
-                                                {{-- <div class="sm:w-1/3 w-full mr-2">
-                                                        <label for="product_brand"
-                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
-                                                        <input type="text" id="product_brand" name="product_brand"
+                                                <div class="sm:w-1/3 w-full mr-2">
+                                                        <label for="product_minstock"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Minimum Stock</label>
+                                                        <input type="number" id="product_minstock" name="product_minstock"
                                                             class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                            required placeholder="brand">
-                                                    </div> --}}
-                                                <div class="sm:w-1/2 w-full mr-2">
+                                                            required placeholder="minimum stock">
+                                                    </div>
+                                                <div class="sm:w-1/3 w-full mr-2">
                                                     <label for="product_uom"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UOM</label>
                                                     <select id="product_uom" name="product_uom"
@@ -262,9 +263,9 @@
                                                         data-show="{{ route('general.options.showondropdown') }}"
                                                         data-store="{{ route('general.options.storefromdropdown') }}"
                                                         data-alias="catalog-product_uom" data-change="true"
-                                                        data-form="product group code"></select>
+                                                        data-form="product uom"></select>
                                                 </div>
-                                                <div class="sm:w-1/2 w-full mr-2">
+                                                <div class="sm:w-1/3 w-full mr-2">
                                                     <label for="product_price"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unit
                                                         Price</label>
@@ -641,7 +642,7 @@
 
             $.ajax({
                 type: "post",
-                url: "{{ route('psvdatamaster.import') }}",
+                url: "{{ route('catalogproduct.import') }}",
                 data: formData,
                 dataType: "json",
                 contentType: false,

@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\PsvdatamasterImport;
+use App\Exports\PsvdatamasterExport;
 
 class ProdinController extends Controller
 {
@@ -19,8 +22,8 @@ class ProdinController extends Controller
 
     public function __construct()
     {
-        $this->pageTitle = 'Product In';
-        $this->pageProfile = 'Product In';
+        $this->pageTitle = 'Stock Product In';
+        $this->pageProfile = 'Stock Product In';
     }
 
     /**
@@ -61,25 +64,24 @@ class ProdinController extends Controller
              /**
              * Handle upload image
              */
-            if ($file = $request->file('prodin_image')) {
-                $fileName = hexdec(uniqid()) . '.' . $file->getClientOriginalExtension();
-                $path = 'public/assets/img/invproductin';
-                /**
-                 * Upload an image to Storage
-                 */
-                $file->storeAs($path, $fileName);
-                $fileName = 'storage/assets/img/invproductin/' . $fileName;
-                $validatedData['prodin_image'] = $fileName;
-            }
+            // if ($file = $request->file('prodin_image')) {
+            //     $fileName = hexdec(uniqid()) . '.' . $file->getClientOriginalExtension();
+            //     $path = 'public/assets/img/invproductin';
+            //     /**
+            //      * Upload an image to Storage
+            //      */
+            //     $file->storeAs($path, $fileName);
+            //     $fileName = 'storage/assets/img/invproductin/' . $fileName;
+            //     $validatedData['prodin_image'] = $fileName;
+            // }
             
-
             $prodin = Prodin::create(
                 array_merge(
                     [
-                        'prodin_image' => $fileName,
-                        'date_in' => Carbon::createFromFormat('d/m/Y', $request->date_in)->format('Y-m-d'),
+                        // 'prodin_image' => $fileName,
+                        'prodin_datein' => Carbon::createFromFormat('d/m/Y', $request->prodin_datein)->format('Y-m-d'),
                     ],
-                $request->only('prodin_image','prod_code','prodin_origin','prodin_noref','inv_stock','prod_name','inv_brand','inv_owner','inv_category','inv_uom','inv_supplier','inv_spec', 'stock_loc', 'inv_price')
+                $request->only('catalog_product_id','prodin_origin','prodin_budgetorigin','prodin_noref','prodin_stockin','prodin_owner','prodin_supplier', 'prodin_stockloc','prodin_detailloc')
                 )
             ); 
             
@@ -167,28 +169,28 @@ class ProdinController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function loadprofilefromitemcode()
-    {
-        $catalogProduct = Catalogproduct::where('itemcode',request('itemcode'))->first();
+    // public function loadprofilefromitemcode()
+    // {
+    //     $catalogProduct = Catalogproduct::where('itemcode',request('itemcode'))->first();
+    //     // dd($catalogProduct);
+    //     $imgUrl = asset('').$catalogProduct->product_image;
 
-        $imgUrl = asset('').$catalogProduct->product_image;
-
-        return response()->json([
-            // 'prodin_image' => $catalogProduct->product_image,
-            'prod_name' => $catalogProduct->product_name,
-            'inv_brand' => $catalogProduct->product_brand,
-            'inv_category' => $catalogProduct->productgroup_code,
-            'inv_uom' => $catalogProduct->product_uom,
-            'inv_spec' => $catalogProduct->product_spec,
-            'inv_price' => $catalogProduct->product_price,
-            'prodin_image' => '<img class="img-account-profile mb-3 mx-auto" src="'.$imgUrl.'" id="image-preview" style="max-width: 10%;" />'
-        ], 200);
-    }
+    //     return response()->json([
+    //         // 'prodin_image' => $catalogProduct->product_image,
+    //         'prod_name' => $catalogProduct->product_name,
+    //         'inv_brand' => $catalogProduct->product_brand,
+    //         'inv_category' => $catalogProduct->productgroup_code,
+    //         'inv_uom' => $catalogProduct->product_uom,
+    //         'inv_spec' => $catalogProduct->product_spec,
+    //         'inv_price' => $catalogProduct->product_price,
+    //         'prodin_image' => '<img class="img-account-profile mb-3 mx-auto" src="'.$imgUrl.'" id="image-preview" style="max-width: 10%;" />'
+    //     ], 200);
+    // }
     
-    public function loadprofilefromproductname()
+    public function loadprofilefromproductname(Catalogproduct $catalogProduct)
     {
-        $catalogProduct = Catalogproduct::where('product_name',request('product_name'))->first();
-
+        // $catalogProduct = Catalogproduct::where('product_name','like','%'.request('product_name').'%')->first();
+        // $catalogProduct = Catalogproduct::find(request('id'));
         $imgUrl = asset('').$catalogProduct->product_image;
 
         return response()->json([
@@ -207,25 +209,20 @@ class ProdinController extends Controller
     {
         return response()->json([
             'dropdown' => [
-                'uom' => $prodin->uom,
-                'stock_loc' => $prodin->stock_loc,
-                'inv_owner' => $prodin->inv_owner,
-                'prod_name' => $prodin->prod_name,
-
+                'catalog_product_id' => $prodin->catalog_product_id,
+                'prodin_origin' => $prodin->prodin_origin,
+                'prodin_budgetorigin' => $prodin->prodin_budgetorigin,
+                'prodin_stockloc' => $prodin->prodin_stockloc,
+                'prodin_owner' => $prodin->prodin_owner,
             ],
             'form' => [
-                ['prod_code', $prodin->prod_code],
-                ['inv_stock', $prodin->inv_stock],
-                ['prodin_origin', $prodin->prodin_origin],
                 ['prodin_noref', $prodin->prodin_noref],
-                // [ $prodin->remaining_stock],
-                ['inv_brand', $prodin->inv_brand],
-                ['inv_owner', $prodin->inv_owner],
-                ['inv_category', $prodin->inv_category],
-                ['date_in', Carbon::parse($prodin->date_in)->format('d/m/Y')],
-                ['inv_supplier', $prodin->inv_supplier],
-                ['inv_spec', $prodin->inv_spec],
-                ['inv_price', $prodin->inv_price],
+                ['prodin_datein', Carbon::parse($prodin->prodin_datein)->format('d/m/Y')],
+                ['prodin_owner', $prodin->prodin_owner],
+                ['prodin_supplier', $prodin->prodin_supplier],
+                ['prodin_stockin', $prodin->prodin_stockin],
+                ['prodin_stockloc', $prodin->prodin_stockloc],
+                ['prodin_detailloc', $prodin->prodin_detailloc],
             ],
             'update_url' => route('inventory.prodin.update', ['prodin' => $prodin->id])
         ], 200);
@@ -240,38 +237,43 @@ class ProdinController extends Controller
 
         try {
 
-            if ($file = $request->file('prodin_image')) {
-                $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
-                $path = 'public/assets/img/invproductin/';
+            // if ($file = $request->file('prodin_image')) {
+            //     $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
+            //     $path = 'public/assets/img/invproductin/';
     
-                /**
-                 * Delete photo if exists.
-                 */
-                if($prodin->prodin_image){
-                    $result = str_replace('storage/', '', $prodin->prodin_image);
-                    Storage::delete('public/' . $result);
-                }
+            //     /**
+            //      * Delete photo if exists.
+            //      */
+            //     if($prodin->prodin_image){
+            //         $result = str_replace('storage/', '', $prodin->prodin_image);
+            //         Storage::delete('public/' . $result);
+            //     }
     
-                /**
-                 * Store an image to Storage
-                 */
-                $file->storeAs($path, $fileName);
-                $fileName = 'storage/assets/img/invproductin/'.$fileName;
-                $validatedData['prodin_image'] = $fileName;
-            }
+            //     /**
+            //      * Store an image to Storage
+            //      */
+            //     $file->storeAs($path, $fileName);
+            //     $fileName = 'storage/assets/img/invproductin/'.$fileName;
+            //     $validatedData['prodin_image'] = $fileName;
+            // }
             Prodin::where('id', $prodin->id)->update(
+                array_merge(
                 [
-                    'prodin_image' => $fileName
+                    // 'prodin_image' => $fileName
+                    'prodin_datein' => Carbon::createFromFormat('d/m/Y', $request->prodin_datein)->format('Y-m-d'),
+
                 ],
-            $request->only('prodin_image','prod_code','prodin_origin','prodin_noref','inv_stock','prod_name','inv_brand','inv_owner','inv_category','date_in','inv_uom','inv_supplier','inv_spec', 'stock_loc', 'inv_price')
+            $request->only('catalog_product_id', 'prodin_origin', 'prodin_budgetorigin', 'prodin_noref', 'prodin_stockin', 'prodin_owner', 'prodin_supplier', 'prodin_stockloc', 'prodin_detailloc')
+            )
         ); 
 
-            DB::commit();
+        DB::commit();
 
-            return response()->json([
-                'message' => 'Product In successfully updated'
-            ], 200);
-        } catch (\Exception $e) {
+        return response()->json([
+            'message' => 'Product In successfully updated'
+        ], 200);
+
+    } catch (\Exception $e) {
             DB::rollBack();
             Log::error($e->getMessage());
 
@@ -280,6 +282,7 @@ class ProdinController extends Controller
             ], 500);
         }
     }
+
          /**
          * Handle upload an upload_srf
          */
@@ -383,18 +386,18 @@ class ProdinController extends Controller
      */
     // public function exportExcel()
     // {
-    //     return Excel::download(new PsvdatamasterExport, 'psvdatamaster_data.xlsx');
+    //     return Excel::download(new CatalogproductExport, 'catalogproduct_data.xlsx');
     //     // return redirect()->back()->with('success', 'Data exported successfully');
 
     // }
 
-    //  /**
-    //  * IMPORT EXCEL 
-    //  */
+    // //  /**
+    // //  * IMPORT EXCEL 
+    // //  */
     // public function importExcel(Request $request)
     // {
     //     try {
-    //         Excel::import(new PsvdatamasterImport, $request->file('filexls'));
+    //         Excel::import(new CatalogproductImport, $request->file('filexls'));
 
     //         return response()->json([
     //             'message' => 'Data imported successfully'
@@ -412,17 +415,16 @@ class ProdinController extends Controller
 
     public function showDatatable()
     {
-        $model = Prodin::select(
+        $model = Prodin::with('catalogProduct')->select(
             'id',
-            'prodin_image',
-            'prod_name',
-            'inv_price',
-            'inv_stock',
-            'date_in',
-            'inv_category',
-            'inv_owner',
+            'catalog_product_id',
+            'prodin_stockin',
+            'prodin_datein',
+            'prodin_owner',
             'updated_at'
         );
+
+        // dd($model);
 
         return DataTables::of($model)
             ->addColumn('actions', function($model) {
@@ -438,7 +440,10 @@ class ProdinController extends Controller
             ->editColumn('updated_at', function($model) {
                 return Carbon::parse($model->updated_at)->format('d/m/Y H:i:s');
             })
-            ->rawColumns(['actions'])
+            ->addColumn('prodin_image', function($model) {
+                return !empty($model->catalogProduct->product_image) ? '<img src="'. asset('').$model->catalogProduct->product_image.'">' : '';
+            })
+            ->rawColumns(['actions','prodin_image'])
             ->removeColumn('prodins')
             ->make(true);
     }

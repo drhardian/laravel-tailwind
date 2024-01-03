@@ -37,7 +37,6 @@
                         <tr>
                             <th>Image</th>
                             <th>Products Name</th>
-                            <th>Price</th>
                             <th>Stock In</th>
                             {{-- <th>Remaining Stock</th> --}}
                             <th>Date In</th>
@@ -148,7 +147,7 @@
                                                 <div class="card-body">
                                                     <!-- Product image -->
                                                     <div id = "imageprofilecontainer"></div>
-                                                    
+
                                                     <!-- Product image help block -->
                                                     {{-- <div class="small font-italic text-muted mb-2">JPG or PNG no larger than
                                                         2
@@ -169,46 +168,94 @@
                                 </div>
                                 <div class="space-y-6">
                                     <div class="mb-6">
-                                        {{-- <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LOCATION INFORMATION</label> --}}
                                         <div class="row sm:flex">
                                             <div class="sm:w-1/2 w- full sm:pr-2">
-                                                <label for="prod_name"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
-                                                    <select id="prod_name" name="prod_name"
-                                                        class="select2-catalog-dropdown"
-                                                        data-show="{{ route('catalog.options.showondropdown') }}"
-                                                        data-store="{{ route('catalog.options.storefromdropdown') }}"
-                                                        data-alias="catalog-name" data-change="true"
-                                                        {{-- data-form="product name"> --}}
-                                                        data-form="product name" onblur="autoRecord($(this).val(),'{{ route('prodin.loadprofile.productname') }}')">
-                                                    </select>
-                                                {{-- <input type="text" id="prod_name" name="prod_name"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Enter Product Name" onblur="autoRecord($(this).val(),'{{ route('prodin.loadprofile.productname') }}')"> --}}
+                                                <label for="catalog_product_id"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
+                                                    Name</label>
+                                                <select id="catalog_product_id" name="catalog_product_id" class="select2-catalog-dropdown"
+                                                    data-show="{{ route('catalog.product.details') }}"
+                                                    data-alias="catalog-name" data-change="true" {{-- data-form="product name"> --}}
+                                                    data-form="product name"
+                                                    onChange="autoRecord($(this).val(),'{{ route('prodin.loadprofile.productname', ['catalogProduct']) }}')">
+                                                    <option value="" selected disabled></option>
+                                                </select>
                                             </div>
                                             <div class="sm:w-1/2 w- full sm:pr-2">
-                                                <label for="prodin_origin"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Origin</label>
-                                                <input type="text" id="prodin_origin" name="prodin_origin"
+                                                <label for="prod_code"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
+                                                    Code</label>
+                                                <input type="text" id="prod_code" name="prod_code"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Product Origin">
+                                                    required placeholder="Enter Product Code">
+                                                {{-- required placeholder="Enter Product Code" onblur="autoRecord($(this).val(),'{{ route('prodin.loadprofile.itemcode') }}')"> --}}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-6">
-                                        {{-- <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LOCATION INFORMATION</label> --}}
                                         <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w-full sm:pr-2">
-                                                <label for="prod_code"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Code</label>
-                                                <input type="text" id="prod_code" name="prod_code"
+                                            <div class="sm:w-1/3 w- full sm:pr-2">
+                                                <label for="inv_brand"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
+                                                <input type="text" id="inv_brand" name="inv_brand"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    {{-- required placeholder="Enter Product Code"> --}}
-                                                    required placeholder="Enter Product Code" onblur="autoRecord($(this).val(),'{{ route('prodin.loadprofile.itemcode') }}')">
+                                                    required placeholder="Enter Brand">
                                             </div>
-                                            <div class="sm:w-1/2 w- full sm:pr-2">
+                                            <div class="sm:w-1/3 w- full sm:pr-2">
+                                                <label for="inv_category"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                                                    <input type="text" id="inv_category" name="inv_category"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="Enter category">
+                                            </div>
+                                            <div class="sm:w-1/3 w-full sm:pr-2">
+                                                <label for="inv_uom"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UOM</label>
+                                                    <input type="text" id="inv_uom" name="inv_uom"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="Enter uom">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-6">
+                                        <div class="w- full">
+                                            <label for="inv_spec"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Specification</label>
+                                            <textarea
+                                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Write specification here..." id="inv_spec" name="specification"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="mb-6">
+                                        <div class="row sm:flex">
+                                            <div class="sm:w-1/3 w- full sm:pr-2">
+                                                <label for="prodin_origin"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
+                                                    Origin</label>
+                                                <select id="prodin_origin" name="prodin_origin"
+                                                    class="select2-catalog-dropdown"
+                                                    data-show="{{ route('catalog.options.showondropdown') }}"
+                                                    data-store="{{ route('catalog.options.storefromdropdown') }}"
+                                                    data-alias="catalog-origin" data-change="true"
+                                                    data-form="product origin">
+                                                </select>
+                                            </div>
+                                            <div class="sm:w-1/3 w- full sm:pr-2">
+                                                <label for="prodin_budgetorigin"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Budget
+                                                    Origin</label>
+                                                <select id="prodin_budgetorigin" name="prodin_budgetorigin"
+                                                    class="select2-catalog-dropdown"
+                                                    data-show="{{ route('catalog.options.showondropdown') }}"
+                                                    data-store="{{ route('catalog.options.storefromdropdown') }}"
+                                                    data-alias="catalog-budgetorigin" data-change="true"
+                                                    data-form="product budget origin">
+                                                </select>
+                                            </div>
+                                            <div class="sm:w-1/3 w- full sm:pr-2">
                                                 <label for="prodin_noref"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No. Ref</label>
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No.
+                                                    Ref</label>
                                                 <input type="number" id="prodin_noref" name="prodin_noref"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required placeholder="Enter No. Ref">
@@ -216,109 +263,83 @@
                                         </div>
                                     </div>
                                     <div class="mb-6">
-                                        {{-- <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LOCATION INFORMATION</label> --}}
                                         <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w- full sm:pr-2">
-                                                <label for="inv_brand"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
-                                                <input type="text" id="inv_brand" name="inv_brand"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Enter Brand">
+                                            <div class="sm:w-1/3 w- full sm:pr-2">
+                                                <label for="prodin_datein"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date
+                                                    In</label>
+                                                <div class="relative max-w-sm">
+                                                    <div
+                                                        class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                            fill="currentColor" viewBox="0 0 20 20">
+                                                            <path
+                                                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                                        </svg>
+                                                    </div>
+                                                    <input datepicker id="prodin_datein" datepicker-format="dd/mm/yyyy"
+                                                        name="prodin_datein" type="text"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        placeholder="Select date">
+                                                </div>
                                             </div>
-                                            <div class="sm:w-1/2 w- full sm:pr-2">
-                                                <label for="inv_owner"
+                                            <div class="sm:w-1/3 w- full sm:pr-2">
+                                                <label for="prodin_owner"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Owner</label>
-                                                    <select id="inv_owner" name="inv_owner"
-                                                    class="select2-general-dropdown"
+                                                <select id="prodin_owner" name="prodin_owner" class="select2-general-dropdown"
                                                     data-show="{{ route('general.options.showondropdown') }}"
                                                     data-store="{{ route('general.options.storefromdropdown') }}"
-                                                    data-alias="inv-owner" data-change="true"
-                                                    data-form="owner">
+                                                    data-alias="prodin-owner" data-change="true" data-form="owner">
+                                                </select>
+                                            </div>
+                                            <div class="sm:w-1/3 w- full sm:pr-2">
+                                                <label for="prodin_supplier"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Supplier</label>
+                                                <input type="text" id="prodin_supplier" name="prodin_supplier"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="Enter Supplier">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-6">
+                                        <div class="row sm:flex">
+                                            <div class="sm:w-1/2 w- full sm:pr-2">
+                                                <label for="prodin_stockin"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock
+                                                    In</label>
+                                                <input type="number" id="prodin_stockin" name="prodin_stockin"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="Enter Stock">
+                                            </div>
+                                            <div class="sm:w-1/2 w- full sm:pr-2">
+                                                <label for="prodin_stockloc"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock
+                                                    Location</label>
+                                                <select id="prodin_stockloc" name="prodin_stockloc" class="select2-general-dropdown"
+                                                    data-show="{{ route('general.options.showondropdown') }}"
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="inv-stockloc" data-change="true" data-form="prodin_stocloc">
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row sm:flex">
-                                        <div class="sm:w-1/2 w- full sm:pr-2">
-                                            <label for="inv_category"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                                            <input type="text" id="inv_category" name="inv_category"
+                                    <div class="mb-6">
+                                        <div class="w- full">
+                                            <label for="prodin_detailloc"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Detail Location</label>
+                                            <input type="detail location" id="prodin_detailloc" name="prodin_detailloc"
                                                 class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="Enter Category">
+                                                required placeholder="Enter detail location">
                                         </div>
-                                        <div class="sm:w-1/2 w- full sm:pr-2">
-                                            <label for="date_in"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date In</label>
-                                            <div class="relative max-w-sm">
-                                                <div
-                                                    class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                        fill="currentColor" viewBox="0 0 20 20">
-                                                        <path
-                                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                    </svg>
-                                                </div>
-                                                <input datepicker id="date_in" datepicker-format="dd/mm/yyyy"
-                                                    name="date_in" type="text"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="Select date">
-                                            </div>
-                                        </div>
+                                        {{-- <div class="w- full">
+                                            <label for="prodin_detailloc"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Detail Location</label>
+                                            <textarea
+                                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Write specification here..." id="prodin_detailloc" name="detail location"></textarea>
+                                        </div> --}}
                                     </div>
-                                    <div class="row sm:flex">
-                                        <div class="sm:w-1/2 w-full sm:pr-2">
-                                            <label for="inv_uom"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UOM</label>
-                                                <input type="text" id="inv_uom" name="inv_uom"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="Enter UOM">
-                                        </div>
-                                        <div class="sm:w-1/2 w- full sm:pr-2">
-                                            <label for="inv_supplier"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Supplier</label>
-                                            <input type="text" id="inv_supplier" name="inv_supplier"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="Enter Supplier">
-                                        </div>
-                                    </div>
-                                    <div class="row sm:flex">
-                                        <div class="sm:w-1/2 w- full sm:pr-2">
-                                            <label for="inv_spec"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Specification</label>
-                                                <textarea 
-                                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                                placeholder="Write specification here..."
-                                                id="inv_spec" 
-                                                name="specification"></textarea>
-                                        </div>
-                                        <div class="sm:w-1/2 w- full sm:pr-2">
-                                            <label for="inv_stock"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock In</label>
-                                            <input type="number" id="inv_stock" name="inv_stock"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="Enter Stock">
-                                        </div>
-                                    </div>
-                                    <div class="row sm:flex">
-                                        <div class="sm:w-1/2 w- full sm:pr-2">
-                                            <label for="stock_loc"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock Location</label>
-                                                <select id="stock_loc" name="stock_loc"
-                                                class="select2-general-dropdown"
-                                                data-show="{{ route('general.options.showondropdown') }}"
-                                                data-store="{{ route('general.options.storefromdropdown') }}"
-                                                data-alias="inv-stockloc" data-change="true"
-                                                data-form="stock_loc">
-                                            </select>
-                                        </div>
-                                    <div class="sm:w-1/2 w- full sm:pr-2">
-                                            <label for="inv_price"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-                                            <input type="number" id="inv_price" name="inv_price"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="Enter Price">
-                                        </div>
                                 </div>
                             </div>
                             <!-- Modal footer -->
@@ -331,8 +352,8 @@
                                     class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
                             </div>
                         </div>
-                    </div>
                 </div>
+            </div>
             </form>
         </div>
     </div>
@@ -414,7 +435,8 @@
 
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/datepicker.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js">
+    </script>
     <script type="text/javascript" src="{{ asset('core/js/inventory/prodin-custom.js') }}"></script>
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -437,38 +459,33 @@
                         className: ['text-center', 'min-tablet']
                     },
                     {
-                        data: 'prod_name',
-                        name: 'prod_name',
+                        data: 'catalog_product.product_name',
+                        name: 'catalog_product.product_name',
                         class: 'all'
                     },
                     {
-                        data: 'inv_price',
-                        name: 'inv_price',
+                        data: 'prodin_stockin',
+                        name: 'prodin_stockin',
                         className: 'all'
                     },
-                    {
-                        data: 'inv_stock',
-                        name: 'inv_stock',
-                        className: 'all'
-                    }, 
                     // {
                     //     data: 'remaining_stock',
                     //     name: 'remaining_stock',
                     //     className: 'all'
                     // }, 
                     {
-                        data: 'date_in',
-                        name: 'date_in',
+                        data: 'prodin_datein',
+                        name: 'prodin_datein',
                         className: 'all'
                     },
                     {
-                        data: 'inv_category',
-                        name: 'inv_category',
+                        data: 'catalog_product.productgroup_code',
+                        name: 'catalog_product.productgroup_code',
                         className: 'all'
                     },
                     {
-                        data: 'inv_owner',
-                        name: 'inv_owner',
+                        data: 'prodin_owner',
+                        name: 'prodin_owner',
                         className: 'all'
                     },
                     {

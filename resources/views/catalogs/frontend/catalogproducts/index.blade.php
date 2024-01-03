@@ -35,13 +35,13 @@
                         <div class="px-5 py-5">
                             <a href="#" class="text-lg font-normal text-heading text-hover-primary mb-2 inline-block leading-none">{{ $catalogproduct->product_name }}</a>
                             <div class="flex items-center space-x-1 text-sm mb-5">
-                                <span class="text-yellow-300 flex items-center space-x-1">
+                                {{-- <span class="text-yellow-300 flex items-center space-x-1">
                                     <i class="fa-solid fa-star"></i>
                                     <i class="fa-solid fa-star"></i>
                                     <i class="fa-solid fa-star"></i>
                                     <i class="fa-solid fa-star"></i>
                                     <i class="fa-solid fa-star"></i>
-                                </span>
+                                </span> --}}
                             </div>
                             <div class="leading-none mb-2">
                                 <span class="text-base font-medium text-black">Rp. {{ $catalogproduct->product_price }}</span>

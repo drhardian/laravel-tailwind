@@ -6,7 +6,7 @@ let closeIco = document.getElementById('closeIco');
 
 openForm = (url) => {
     modalShowAndReset();
-    $('.modal-title').text('New Input Product Out');
+    $('.modal-title').text('New Input Stock Product Out');
     $('#form_url').val(url);
 }
 
@@ -124,7 +124,7 @@ saveRecord = () => {
 
 editRecord = (url) => {
     modalShowAndReset();
-    $('.modal-title').text('Edit Input Product Out');
+    $('.modal-title').text('Edit Input Stock Product Out');
 
     $('#warning-alert').removeClass('flex').addClass('hidden');
 
@@ -207,7 +207,7 @@ let closeUploadXlsIco = document.getElementById('closeUploadXlsIco');
 
 openUploadForm = () => {
     modalUploadShowAndReset();
-    $('.modal-title').text('Import Product Out');
+    $('.modal-title').text('Import Stock Product Out');
     $('#form_url').val(url);
 }
 

@@ -3,7 +3,6 @@
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css">
 @endsection
-
 @section('content')
     <div class="min-h-screen w-full mx-auto max-w-4xl lg:max-w-7xl">
         <div class="p-4 mt-2">
@@ -15,7 +14,6 @@
                 @endunless
             </div>
         </div>
-
         <div id="myTabContent">
             <div class id="prodin" role="tab" aria-labelledby="prodin-tab">
                 <div class="space-y-6">
@@ -26,18 +24,16 @@
                                 <div class="card-header"><b>Image Product In</b></div>
                                 <div class="card-body">
                                     <!-- Product image -->
-                                    <img class="img-account-profile mb-3 mx-auto"
-                                        src="{{ asset('storage/assets/img/catalogproducts/default.webp') }}" alt=""
-                                        id="image-preview" style="max-width: 10%;" />
+                                    <div id = "imageprofilecontainer"></div>
+
                                     <!-- Product image help block -->
-                                    <div class="small font-italic text-muted mb-2">JPG or PNG no larger than
-                                        2
-                                        MB</div>
+                                    {{-- <div class="small font-italic text-muted mb-2">JPG or PNG no larger than
+                                                        2
+                                                        MB</div> --}}
                                     <!-- Product image input -->
-                                    <input
-                                        class="form-control form-control-solid mb-3 @error('prodin_image') is-invalid @enderror"
-                                        type="file" id="image" name="prodin_image" accept="image/*"
-                                        onchange="previewImage();">
+                                    {{-- <input
+                                                        class="form-control form-control-solid mb-3 @error('prodin_image') is-invalid @enderror"
+                                                        type="file" id="image" name="prodin_image" accept="image/*"> --}}
                                     {{-- @error('prodin_image')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
@@ -50,211 +46,181 @@
                 </div>
                 <div class="space-y-6">
                     <div class="mb-6">
-                        {{-- <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LOCATION INFORMATION</label> --}}
                         <div class="row sm:flex">
-                            <div class="sm:w-1/2 w-full sm:pr-2">
+                            <div class="sm:w-1/2 w- full sm:pr-2">
+                                <label for="catalog_product_id"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
+                                    Name</label>
+                                <select id="catalog_product_id" name="catalog_product_id" class="select2-catalog-dropdown"
+                                    data-show="{{ route('catalog.product.details') }}" data-alias="catalog-name"
+                                    data-change="true" {{-- data-form="product name"> --}} data-form="product name"
+                                    onChange="autoRecord($(this).val(),'{{ route('prodin.loadprofile.productname', ['catalogProduct']) }}')">
+                                    <option value="" selected disabled></option>
+                                </select>
+                            </div>
+                            <div class="sm:w-1/2 w- full sm:pr-2">
                                 <label for="prod_code"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
                                     Code</label>
-                                <div
+                                    <div
                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    @if ($prodin->prod_code)
+                                    @if ($catalogproduct->itemcode)
                                         <div class="form-control form-control-solid">
-                                            {{ $prodin->prod_code }}</div>
+                                            {{ $catalogproduct->itemcode }}</div>
                                     @else
                                         <div class="form-control form-control-solid">N/A</div>
                                     @endif
                                 </div>
-                            </div>
-                            <div class="sm:w-1/2 w- full sm:pr-2">
-                                <label for="inv_stock"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock</label>
-                                <div
-                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    @if ($prodin->inv_stock)
-                                        <div class="form-control form-control-solid">{{ $prodin->inv_stock }}
-                                        </div>
-                                    @else
-                                        <div class="form-control form-control-solid">N/A</div>
-                                    @endif
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="mb-6">
-                        {{-- <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LOCATION INFORMATION</label> --}}
                         <div class="row sm:flex">
-                            <div class="sm:w-1/2 w- full sm:pr-2">
-                                <label for="prod_name"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
-                                    Name</label>
-                                <div
-                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    @if ($prodin->prod_name)
-                                        <div class="form-control form-control-solid">{{ $prodin->prod_name }}
-                                        </div>
-                                    @else
-                                        <div class="form-control form-control-solid">N/A</div>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="sm:w-1/2 w- full sm:pr-2">
-                                <label for="remaining_stock"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Remaining
-                                    Stock</label>
-                                <div
-                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    @if ($prodin->remaining_stock)
-                                        <div class="form-control form-control-solid">{{ $prodin->remaining_stock }}
-                                        </div>
-                                    @else
-                                        <div class="form-control form-control-solid">N/A</div>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-6">
-                        {{-- <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LOCATION INFORMATION</label> --}}
-                        <div class="row sm:flex">
-                            <div class="sm:w-1/2 w- full sm:pr-2">
+                            <div class="sm:w-1/3 w- full sm:pr-2">
                                 <label for="inv_brand"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
-                                <div
-                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    @if ($prodin->inv_brand)
-                                        <div class="form-control form-control-solid">{{ $prodin->inv_brand }}
-                                        </div>
-                                    @else
-                                        <div class="form-control form-control-solid">N/A</div>
-                                    @endif
-                                </div>
+                                <input type="text" id="inv_brand" name="inv_brand"
+                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    required placeholder="Enter Brand">
                             </div>
-                            <div class="sm:w-1/2 w- full sm:pr-2">
-                                <label for="inv_owner"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Owner</label>
-                                <div
-                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    @if ($prodin->inv_owner)
-                                        <div class="form-control form-control-solid">{{ $prodin->inv_owner }}
-                                        </div>
-                                    @else
-                                        <div class="form-control form-control-solid">N/A</div>
-                                    @endif
-                                </div>
+                            <div class="sm:w-1/3 w- full sm:pr-2">
+                                <label for="inv_category"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                                <input type="text" id="inv_category" name="inv_category"
+                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    required placeholder="Enter category">
+                            </div>
+                            <div class="sm:w-1/3 w-full sm:pr-2">
+                                <label for="inv_uom"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UOM</label>
+                                <input type="text" id="inv_uom" name="inv_uom"
+                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    required placeholder="Enter uom">
                             </div>
                         </div>
                     </div>
-                    <div class="row sm:flex">
-                        <div class="sm:w-1/2 w- full sm:pr-2">
-                            <label for="inv_category"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                            <div
-                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                @if ($prodin->inv_category)
-                                    <div class="form-control form-control-solid">{{ $prodin->inv_category }}
-                                    </div>
-                                @else
-                                    <div class="form-control form-control-solid">N/A</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="sm:w-1/2 w- full sm:pr-2">
-                            <label for="date_in" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date
-                                In</label>
-                            <div
-                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                @if ($prodin->date_in)
-                                    <div class="form-control form-control-solid">{{ $prodin->date_in }}
-                                    </div>
-                                @else
-                                    <div class="form-control form-control-solid">N/A</div>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row sm:flex">
-                        <div class="sm:w-1/2 w-full sm:pr-2">
-                            <label for="inv_uom" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                UOM</label>
-                            <div
-                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                @if ($prodin->inv_uom)
-                                    <div class="form-control form-control-solid">{{ $prodin->inv_uom }}
-                                    </div>
-                                @else
-                                    <div class="form-control form-control-solid">N/A</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="sm:w-1/2 w- full sm:pr-2">
-                            <label for="inv_supplier"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Supplier</label>
-                            <div
-                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                @if ($prodin->inv_supplier)
-                                    <div class="form-control form-control-solid">{{ $prodin->inv_supplier }}
-                                    </div>
-                                @else
-                                    <div class="form-control form-control-solid">N/A</div>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row sm:flex">
-                        <div class="w-full">
+                    <div class="mb-6">
+                        <div class="w- full">
                             <label for="inv_spec"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Specification</label>
-                            <div
-                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                @if ($prodin->inv_spec)
-                                    <div class="form-control form-control-solid">{{ $prodin->inv_spec }}
-                                    </div>
-                                @else
-                                    <div class="form-control form-control-solid">N/A</div>
-                                @endif
+                            <textarea
+                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Write specification here..." id="inv_spec" name="specification"></textarea>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <div class="row sm:flex">
+                            <div class="sm:w-1/3 w- full sm:pr-2">
+                                <label for="prodin_origin"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
+                                    Origin</label>
+                                <select id="prodin_origin" name="prodin_origin" class="select2-catalog-dropdown"
+                                    data-show="{{ route('catalog.options.showondropdown') }}"
+                                    data-store="{{ route('catalog.options.storefromdropdown') }}"
+                                    data-alias="catalog-origin" data-change="true" data-form="product origin">
+                                </select>
+                            </div>
+                            <div class="sm:w-1/3 w- full sm:pr-2">
+                                <label for="prodin_budgetorigin"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Budget
+                                    Origin</label>
+                                <select id="prodin_budgetorigin" name="prodin_budgetorigin" class="select2-catalog-dropdown"
+                                    data-show="{{ route('catalog.options.showondropdown') }}"
+                                    data-store="{{ route('catalog.options.storefromdropdown') }}"
+                                    data-alias="catalog-budgetorigin" data-change="true" data-form="product budget origin">
+                                </select>
+                            </div>
+                            <div class="sm:w-1/3 w- full sm:pr-2">
+                                <label for="prodin_noref"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No.
+                                    Ref</label>
+                                <input type="number" id="prodin_noref" name="prodin_noref"
+                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    required placeholder="Enter No. Ref">
                             </div>
                         </div>
                     </div>
-                    <div class="row sm:flex">
-                        <div class="sm:w-1/2 w- full sm:pr-2">
-                            <label for="stock_loc"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock Location</label>
-                            <div
-                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                @if ($prodin->stock_loc)
-                                    <div class="form-control form-control-solid">{{ $prodin->stock_loc }}
+                    <div class="mb-6">
+                        <div class="row sm:flex">
+                            <div class="sm:w-1/3 w- full sm:pr-2">
+                                <label for="prodin_datein"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date
+                                    In</label>
+                                <div class="relative max-w-sm">
+                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                        </svg>
                                     </div>
-                                @else
-                                    <div class="form-control form-control-solid">N/A</div>
-                                @endif
+                                    <input datepicker id="prodin_datein" datepicker-format="dd/mm/yyyy"
+                                        name="prodin_datein" type="text"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Select date">
+                                </div>
                             </div>
-                        </div>
-                        <div class="sm:w-1/2 w- full sm:pr-2">
-                            <label for="inv_price"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-                            <div
-                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                @if ($prodin->inv_price)
-                                    <div class="form-control form-control-solid">{{ $prodin->inv_price }}
-                                    </div>
-                                @else
-                                    <div class="form-control form-control-solid">N/A</div>
-                                @endif
+                            <div class="sm:w-1/3 w- full sm:pr-2">
+                                <label for="prodin_owner"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Owner</label>
+                                <select id="prodin_owner" name="prodin_owner" class="select2-general-dropdown"
+                                    data-show="{{ route('general.options.showondropdown') }}"
+                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                    data-alias="prodin-owner" data-change="true" data-form="owner">
+                                </select>
+                            </div>
+                            <div class="sm:w-1/3 w- full sm:pr-2">
+                                <label for="prodin_supplier"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Supplier</label>
+                                <input type="text" id="prodin_supplier" name="prodin_supplier"
+                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    required placeholder="Enter Supplier">
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Modal footer -->
-                <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600 py-4">
-                    <button type="button"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        onClick="saveRecord()">Save</button>
-                    <button id="cancelBtn" type="button"
-                        class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
+                    <div class="mb-6">
+                        <div class="row sm:flex">
+                            <div class="sm:w-1/2 w- full sm:pr-2">
+                                <label for="prodin_stock"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock
+                                    In</label>
+                                <input type="number" id="prodin_stock" name="prodin_stock"
+                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    required placeholder="Enter Stock">
+                            </div>
+                            <div class="sm:w-1/2 w- full sm:pr-2">
+                                <label for="prodin_stockloc"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock
+                                    Location</label>
+                                <select id="prodin_stockloc" name="prodin_stockloc" class="select2-general-dropdown"
+                                    data-show="{{ route('general.options.showondropdown') }}"
+                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                    data-alias="inv-stockloc" data-change="true" data-form="prodin_stockloc">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <div class="w- full">
+                            <label for="prodin_detailloc"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Detail
+                                Location</label>
+                            <textarea
+                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Write detail location here..." id="prodin_detailloc" name="detaillocation"></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <!-- Modal footer -->
+            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600 py-4">
+                <button type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    onClick="saveRecord()">Save</button>
+                <button id="cancelBtn" type="button"
+                    class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
+            </div>
         </div>
+    </div>
     </div>
     </form>
     </div>

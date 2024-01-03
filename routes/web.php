@@ -229,7 +229,7 @@ Route::prefix('catalogcodeitem')->controller(CatalogcodeitemController::class)->
     Route::get('show/dropdown', 'showOnDropdown')->name('catalogccodeitem.show.dropdown');
     Route::get('show/datatable', 'showDatatable')->name('catalogcodeitem.main.table');
     // Route::get('eproccodeitem/export', 'exportExcel')->name('eproccodeitem.export');
-    // Route::post('eproccodeitem/import', 'importExcel')->name('eproccodeitem.import');
+    Route::post('catalogcodeitem/import', 'importExcel')->name('catalogcodeitem.import');
     // Route::get('/eproccodeitem/{id}', 'cetakPdf')->name('eproccodeitem.pdf');
     // Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
 
@@ -253,6 +253,8 @@ Route::resource('admin/catalogproduct', AdminCatalogproductController::class)->n
 Route::prefix('admin/catalogproduct')->controller(AdminCatalogproductController::class)->group(function () {
     Route::get('show/dropdown', 'showOnDropdown')->name('admin.catalogproduct.show.dropddown');
     Route::get('show/datatable', 'showDatatable')->name('admin.catalogproduct.main.table');
+    Route::post('catalogproduct/import', 'importExcel')->name('catalogproduct.import');
+
 });
 
 
@@ -285,7 +287,7 @@ Route::resource('prodin', ProdinController::class);
 Route::prefix('prodin')->controller(ProdinController::class)->group(function () {
     Route::get('show/dropdown', 'showOnDropdown')->name('prodin.show.dropdown');
     Route::get('show/datatable', 'showDatatable')->name('prodin.main.table');
-    Route::get('loadprofile/product_name', 'loadprofilefromproductname')->name('prodin.loadprofile.productname');
+    Route::get('loadprofile/{catalogProduct}', 'loadprofilefromproductname')->name('prodin.loadprofile.productname');
     Route::get('loadprofile/itemcode', 'loadprofilefromitemcode')->name('prodin.loadprofile.itemcode');
     // Route::get('eproccodeitem/export', 'exportExcel')->name('eproccodeitem.export');
     // Route::post('eproccodeitem/import', 'importExcel')->name('eproccodeitem.import');
@@ -315,6 +317,13 @@ Route::prefix('prodout')->controller(ProdoutController::class)->group(function (
     // Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
 
 });
+
+Route::prefix('catalog')
+    ->name('catalog.')
+    ->controller(CatalogDropdownProductController::class)
+    ->group(function () {
+        Route::get('product/details', 'showOnDropdown')->name('product.details');
+    });
 
 
 

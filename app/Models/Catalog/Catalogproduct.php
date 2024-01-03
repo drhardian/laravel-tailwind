@@ -4,26 +4,26 @@ namespace App\Models\Catalog;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
+// use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
 class Catalogproduct extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory;
 
     protected $table = 'catalog_products';
     protected $guarded = [];
 
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'product_name',
-                'onUpdate' => true
-            ]
-        ];
-    }
+    // public function sluggable(): array
+    // {
+    //     return [
+    //         'slug' => [
+    //             'source' => 'product_name',
+    //             'onUpdate' => true
+    //         ]
+    //     ];
+    // }
     /**
      * Get the activity that owns the Catalogproduct
      *

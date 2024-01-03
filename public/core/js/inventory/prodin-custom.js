@@ -6,7 +6,7 @@ let closeIco = document.getElementById('closeIco');
 
 openForm = (url) => {
     modalShowAndReset();
-    $('.modal-title').text('New Input Product In');
+    $('.modal-title').text('New Input Stock Product In');
     $('#form_url').val(url);
 }
 
@@ -56,13 +56,18 @@ modalHideAndReset = () => {
 //     });
 // }
 
-autoRecord = (product_name,url) => {
+autoRecord = (id,url) => {
+    if(id == null){
+        return;
+    } 
+
+    urlSearch = url.replace('catalogProduct',id);
+
+    console.log(urlSearch);
+
     $.ajax({
         type: "get",
-        url: url,
-        data: {
-            product_name:product_name
-        },
+        url: urlSearch,
         dataType: "json",
         success: function (response) {
             $.each(response, function (index, value) { 
@@ -144,7 +149,7 @@ saveRecord = () => {
 
 editRecord = (url) => {
     modalShowAndReset();
-    $('.modal-title').text('Edit Input Product In');
+    $('.modal-title').text('Edit Input Stock Product In');
 
     $('#warning-alert').removeClass('flex').addClass('hidden');
 
@@ -157,14 +162,16 @@ editRecord = (url) => {
         dataType: "json",
         success: function (response) {
             // console.log(response);
-            var prod_nameOptions = new Option(response.dropdown.prod_name, response.dropdown.prod_name, true, true);
-            $('#prod_name').append(prod_nameOptions).trigger('change');
-            var inv_ownerOptions = new Option(response.dropdown.inv_owner, response.dropdown.inv_owner, true, true);
-            $('#inv_owner').append(inv_ownerOptions).trigger('change');
-            var inv_uomOptions = new Option(response.dropdown.inv_uom, response.dropdown.inv_uom, true, true);
-            $('#inv_uom').append(inv_uomOptions).trigger('change');
-            var stock_locOptions = new Option(response.dropdown.stock_loc, response.dropdown.stock_loc, true, true);
-            $('#stock_loc').append(stock_locOptions).trigger('change');
+            var catalog_product_idOptions = new Option(response.dropdown.catalog_product_id, response.dropdown.catalog_product_id, true, true);
+            $('#catalog_product_id').append(catalog_product_idOptions).trigger('change');
+            var prodin_originOptions = new Option(response.dropdown.prodin_origin, response.dropdown.prodin_origin, true, true);
+            $('#prodin_origin').append(prodin_originOptions).trigger('change');
+            var prodin_budgetoriginOptions = new Option(response.dropdown.prodin_budgetorigin, response.dropdown.prodin_budgetorigin, true, true);
+            $('#prodin_budgetorigin').append(prodin_budgetoriginOptions).trigger('change');
+            var prodin_ownerOptions = new Option(response.dropdown.prodin_owner, response.dropdown.prodin_owner, true, true);
+            $('#prodin_owner').append(prodin_ownerOptions).trigger('change');
+            var prodin_stocklocOptions = new Option(response.dropdown.prodin_stockloc, response.dropdown.prodin_stockloc, true, true);
+            $('#prodin_stockloc').append(prodin_stocklocOptions).trigger('change');
 
             $.each(response.form, function (index, value) { 
                 $('#' + value[0]).val(value[1]);
@@ -227,7 +234,7 @@ let closeUploadXlsIco = document.getElementById('closeUploadXlsIco');
 
 openUploadForm = () => {
     modalUploadShowAndReset();
-    $('.modal-title').text('Import Product In');
+    $('.modal-title').text('Import Stock Product In');
     $('#form_url').val(url);
 }
 

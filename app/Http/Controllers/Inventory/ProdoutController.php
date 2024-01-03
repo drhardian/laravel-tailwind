@@ -19,8 +19,8 @@ class ProdoutController extends Controller
 
     public function __construct()
     {
-        $this->pageTitle = 'Product Out';
-        $this->pageProfile = 'Product Out';
+        $this->pageTitle = 'Stock Product Out';
+        $this->pageProfile = 'Stock Product Out';
     }
 
     /**

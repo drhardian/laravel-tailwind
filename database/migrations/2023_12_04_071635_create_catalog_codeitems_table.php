@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('sub_code');
             $table->string('titlesub_code');
             $table->string('group_code');
-            $table->string('titlegroup_code')->unique();
+            $table->string('titlegroup_code');
             $table->timestamps();
         });
     }

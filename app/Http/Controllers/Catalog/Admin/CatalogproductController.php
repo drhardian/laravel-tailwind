@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\CatalogproductImport;
+// use App\Exports\PsvdatamasterExport;
 
 
 class CatalogproductController extends Controller
@@ -103,7 +106,7 @@ class CatalogproductController extends Controller
                         'product_image' => 'catalogproducts/'.$fileName,
                         'itemcode' => $itemcode
                     ],
-                    $request->only('productmain_code', 'product_code', 'productsub_code', 'productgroup_code', 'product_name', 'slug', 'product_spec', 'product_brand', 'product_uom', 'product_price')
+                    $request->only('productmain_code', 'product_code', 'productsub_code', 'productgroup_code', 'product_name', 'product_spec', 'product_brand', 'product_minstock', 'product_uom', 'product_price')
                 )
             );
 
@@ -202,22 +205,18 @@ class CatalogproductController extends Controller
                 'productsub_code' => $catalogproduct->productsub_code,
                 'productgroup_code' => $catalogproduct->productgroup_code,
                 'product_uom' => $catalogproduct->product_uom,
-
+                'product_name' => $catalogproduct->product_name,
 
             ],
             'form' => [
-                ['product_name', $catalogproduct->product_name],
-                ['slug', $catalogproduct->slug],
-                // ['product_merk', $catalogproduct->product_merk],
+                ['product_minstock', $catalogproduct->product_minstock],
                 // ['product_descrip', $catalogproduct->product_descrip],
                 ['product_spec', $catalogproduct->product_spec],
                 ['product_brand', $catalogproduct->product_brand],
                 ['product_price', $catalogproduct->product_price],
-                // ['product_image', $catalogproduct->product_image],
-
             ],
-
-            'update_url' => route('admin.catalogproduct.update', ['catalogproduct' => $catalogproduct->id])
+            'update_url' => route('admin.catalogproduct.update', ['catalogproduct' => $catalogproduct->id]),
+            'product_image' => '<img src="'.asset($catalogproduct->product_image).'" width="20%">'
         ], 200);
     }
 
@@ -247,10 +246,10 @@ class CatalogproductController extends Controller
 
                 $queryUpdate = array_merge(
                     [ 'product_image' => 'catalogproducts/'.$fileName, ],
-                    $request->only('product_name', 'slug', 'product_spec', 'product_brand', 'product_uom', 'product_price')
+                    $request->only('product_name', 'product_spec', 'product_brand', 'product_minstock', 'product_uom', 'product_price')
                 );
             } else {
-                $queryUpdate = $request->only('product_name', 'slug', 'product_spec', 'product_brand', 'product_uom', 'product_price');
+                $queryUpdate = $request->only('product_name', 'product_spec', 'product_brand', 'product_minstock', 'product_uom', 'product_price');
             }
 
             // if ($file = $request->file('cert_doc')) {
@@ -403,25 +402,25 @@ class CatalogproductController extends Controller
     /**
      * IMPORT EXCEL 
      */
-    // public function importExcel(Request $request)
-    // {
-    //     try {
-    //         Excel::import(new PsvdatamasterImport, $request->file('filexls'));
+    public function importExcel(Request $request)
+    {
+        try {
+            Excel::import(new CatalogproductImport, $request->file('filexls'));
 
-    //         return response()->json([
-    //             'message' => 'Data imported successfully'
-    //         ], 200);
-    //     } catch (ParseError $e) {
-    //         return response()->json([
-    //             'message' => $e->getMessage()
-    //         ], 500);
-    //     } catch (Exception $e) {
-    //         return response()->json([
-    //             'message' => $e->getMessage()
-    //         ], 500);
-    //     }
+            return response()->json([
+                'message' => 'Data imported successfully'
+            ], 200);
+        } catch (ParseError $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
 
-    // }
+    }
 
     public function showDatatable()
     {
@@ -434,9 +433,9 @@ class CatalogproductController extends Controller
             'productsub_code',
             'productgroup_code',
             'product_name',
-            'slug',
             // 'product_merk',
             // 'product_descrip',
+            // 'product_minstock',
             'product_spec',
             'product_brand',
             'product_uom',

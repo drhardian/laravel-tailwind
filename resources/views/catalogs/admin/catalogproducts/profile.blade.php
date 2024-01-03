@@ -179,7 +179,20 @@
                                     @endif
                                 </div>
                             </div> --}}
-                            <div class="sm:w-1/2 w-full mr-2">
+                            <div class="sm:w-1/3 w-full mr-2">
+                                <label for="product_minstock"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Minimum Stock</label>
+                                <div
+                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    @if ($catalogproduct->product_minstock)
+                                        <div class="form-control form-control-solid">
+                                            {{ $catalogproduct->product_minstock }}</div>
+                                    @else
+                                        <div class="form-control form-control-solid">N/A</div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="sm:w-1/3 w-full mr-2">
                                 <label for="product_uom"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UOM</label>
                                 <div
@@ -192,7 +205,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="sm:w-1/2 w-full mr-2">
+                            <div class="sm:w-1/3 w-full mr-2">
                                 <label for="product_price"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unit
                                     Price</label>
