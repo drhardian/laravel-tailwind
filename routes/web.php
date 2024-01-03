@@ -20,6 +20,11 @@ use App\Http\Controllers\MappingTable\MappingTableController;
 use App\Http\Controllers\PsvMasterData\PsvdatamasterController;
 use App\Http\Controllers\PsvMasterData\PsvdashboardController;
 use App\Http\Controllers\DropdownOptionController;
+use App\Http\Controllers\Eproc\EprocDropdownItemcodeController;
+use App\Http\Controllers\ValveRepair\ConstructionValveRepairController;
+use App\Http\Controllers\ValveRepair\RepairReportController;
+use App\Http\Controllers\ValveRepair\ScopeOfWorkController;
+use App\Models\ValveRepair\ScopeOfWork;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\Eproc\EprocDropdownCodeitemController;
 // use App\Http\Controllers\Eproc\EproccodeitemController;
@@ -54,95 +59,122 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('auth')->controller(AuthController::class)->group(function () {
-    Route::post('process', 'authProcess')->name('auth.process');
-});
+Route::prefix('auth')
+    ->controller(AuthController::class)
+    ->group(function () {
+        Route::post('process', 'authProcess')->name('auth.process');
+    });
 
 Route::prefix('request_order')->group(function () {
-    Route::prefix('dashboard')->controller(DashboardController::class)->group(function () {
-        Route::get('internal', 'indexInternal')->name('ro.dashboard.internal');
-        Route::get('internal/rostatus', 'getRequestOrderStatus')->name('ro.dashboard.rostatus');
-        Route::get('internal/roamount', 'getRequestOrderAmountStatus')->name('ro.dashboard.roamount');
-        Route::get('external', 'indexExternal')->name('ro.dashboard.external');
-        Route::get('external/chart/activities', 'getDataChartActivities')->name('ro.dashboard.external.chart.activities');
-        Route::get('external/chart/activities/detail', 'getDetailChartActivities')->name('ro.dashboard.external.chart.activities.detail');
-    });
+    Route::prefix('dashboard')
+        ->controller(DashboardController::class)
+        ->group(function () {
+            Route::get('internal', 'indexInternal')->name('ro.dashboard.internal');
+            Route::get('internal/rostatus', 'getRequestOrderStatus')->name('ro.dashboard.rostatus');
+            Route::get('internal/roamount', 'getRequestOrderAmountStatus')->name('ro.dashboard.roamount');
+            Route::get('external', 'indexExternal')->name('ro.dashboard.external');
+            Route::get('external/chart/activities', 'getDataChartActivities')->name('ro.dashboard.external.chart.activities');
+            Route::get('external/chart/activities/detail', 'getDetailChartActivities')->name('ro.dashboard.external.chart.activities.detail');
+        });
 });
 
 Route::resource('client', ClientController::class)->except('create');
-Route::prefix('client')->controller(ClientController::class)->group(function () {
-    Route::get('show/datatable', 'showDatatable')->name('client.main.table');
-});
+Route::prefix('client')
+    ->controller(ClientController::class)
+    ->group(function () {
+        Route::get('show/datatable', 'showDatatable')->name('client.main.table');
+    });
 
 Route::resource('contract', ContractController::class)->only('show', 'store', 'edit', 'update', 'destroy');
-Route::prefix('contract')->controller(ContractController::class)->group(function () {
-    Route::get('show/dropdown', 'showOnDropdown')->name('contract.show.dropdown');
-    Route::get('show/cards', 'showAsCards')->name('contract.show.cards');
-});
+Route::prefix('contract')
+    ->controller(ContractController::class)
+    ->group(function () {
+        Route::get('show/dropdown', 'showOnDropdown')->name('contract.show.dropdown');
+        Route::get('show/cards', 'showAsCards')->name('contract.show.cards');
+    });
 
 Route::resource('itemtype', ItemTypeController::class)->only('index', 'store', 'edit', 'update', 'destroy');
-Route::prefix('itemtype')->controller(ItemTypeController::class)->group(function () {
-    Route::get('show/datatable', 'showDatatable')->name('itemtype.main.table');
-    Route::get('show/dropdown', 'showOnDropdown')->name('itemtype.show.dropdown');
-});
+Route::prefix('itemtype')
+    ->controller(ItemTypeController::class)
+    ->group(function () {
+        Route::get('show/datatable', 'showDatatable')->name('itemtype.main.table');
+        Route::get('show/dropdown', 'showOnDropdown')->name('itemtype.show.dropdown');
+    });
 
 Route::resource('item', ItemController::class)->only('index', 'store', 'edit', 'update', 'destroy');
-Route::prefix('item')->controller(ItemController::class)->group(function () {
-    Route::get('show/dropdown', 'showOnDropdown')->name('item.show.dropdown');
-    Route::get('show/datatable', 'showDatatable')->name('item.main.table');
-});
+Route::prefix('item')
+    ->controller(ItemController::class)
+    ->group(function () {
+        Route::get('show/dropdown', 'showOnDropdown')->name('item.show.dropdown');
+        Route::get('show/datatable', 'showDatatable')->name('item.main.table');
+    });
 
 Route::resource('unitrate', UnitRateController::class)->only('index', 'store', 'edit', 'update', 'destroy');
-Route::prefix('unitrate')->controller(UnitRateController::class)->group(function () {
-    Route::get('show/dropdown', 'showOnDropdown')->name('unitrate.show.dropdown');
-    Route::get('activity/show/dropdown', 'showActivityUnitrateOnDropdown')->name('unitrate.activity.show.dropdown');
-    Route::get('show/datatable', 'showDatatable')->name('unitrate.main.table');
-});
+Route::prefix('unitrate')
+    ->controller(UnitRateController::class)
+    ->group(function () {
+        Route::get('show/dropdown', 'showOnDropdown')->name('unitrate.show.dropdown');
+        Route::get('activity/show/dropdown', 'showActivityUnitrateOnDropdown')->name('unitrate.activity.show.dropdown');
+        Route::get('show/datatable', 'showDatatable')->name('unitrate.main.table');
+    });
 
 Route::resource('activity', ActivityController::class)->only('index', 'store', 'edit', 'update', 'destroy');
-Route::prefix('activity')->controller(ActivityController::class)->group(function () {
-    Route::get('show/dropdown', 'showOnDropdown')->name('activity.show.dropdown');
-    Route::get('show/datatable', 'showDatatable')->name('activity.main.table');
-});
+Route::prefix('activity')
+    ->controller(ActivityController::class)
+    ->group(function () {
+        Route::get('show/dropdown', 'showOnDropdown')->name('activity.show.dropdown');
+        Route::get('show/datatable', 'showDatatable')->name('activity.main.table');
+    });
 
 Route::resource('costing', CostingController::class)->only('store', 'edit', 'update', 'destroy');
-Route::prefix('costing')->controller(CostingController::class)->group(function () {
-    Route::get('show/dropdown', 'showOnDropdown')->name('costing.show.dropdown');
-    Route::get('show/datatable', 'showDatatable')->name('costing.table');
-});
+Route::prefix('costing')
+    ->controller(CostingController::class)
+    ->group(function () {
+        Route::get('show/dropdown', 'showOnDropdown')->name('costing.show.dropdown');
+        Route::get('show/datatable', 'showDatatable')->name('costing.table');
+    });
 
 Route::resource('contractactivity', ContractActivityController::class)->only('store', 'edit', 'update', 'destroy');
-Route::prefix('contractactivity')->controller(ContractActivityController::class)->group(function () {
-    Route::get('show/datatable', 'showDatatable')->name('contractactivity.table');
-});
+Route::prefix('contractactivity')
+    ->controller(ContractActivityController::class)
+    ->group(function () {
+        Route::get('show/datatable', 'showDatatable')->name('contractactivity.table');
+    });
 
 Route::resource('requestorder', RequestOrderController::class)->except('create');
-Route::prefix('requestorder')->controller(RequestOrderController::class)->group(function () {
-    Route::get('show/datatable', 'showDatatable')->name('requestorder.main.table');
-    Route::get('bycontract/show/datatable', 'showDatatableByContract')->name('requestorder.bycontract.main.table');
-});
+Route::prefix('requestorder')
+    ->controller(RequestOrderController::class)
+    ->group(function () {
+        Route::get('show/datatable', 'showDatatable')->name('requestorder.main.table');
+        Route::get('bycontract/show/datatable', 'showDatatableByContract')->name('requestorder.bycontract.main.table');
+    });
 
 Route::resource('requestorderitem', RequestOrderItemController::class)->except('create');
-Route::prefix('requestorderitem')->controller(RequestOrderItemController::class)->group(function () {
-    Route::get('show/datatable', 'showDatatable')->name('requestorderitem.main.table');
-    Route::get('show/datatable/dashboard/external', 'showDatatableOnDashboardExternal')->name('requestorderitem.main.dashboard.external.table');
-    Route::get('show/totalamount', 'showTotalAmount')->name('requestorderitem.totalamount');
-});
+Route::prefix('requestorderitem')
+    ->controller(RequestOrderItemController::class)
+    ->group(function () {
+        Route::get('show/datatable', 'showDatatable')->name('requestorderitem.main.table');
+        Route::get('show/datatable/dashboard/external', 'showDatatableOnDashboardExternal')->name('requestorderitem.main.dashboard.external.table');
+        Route::get('show/totalamount', 'showTotalAmount')->name('requestorderitem.totalamount');
+    });
 
 Route::resource('tablemap', MappingTableController::class)->except('show');
-Route::prefix('tablemap')->controller(MappingTableController::class)->group(function () {
-    Route::get('show/datatable', 'showDatatable')->name('tablemap.main.table');
-});
+Route::prefix('tablemap')
+    ->controller(MappingTableController::class)
+    ->group(function () {
+        Route::get('show/datatable', 'showDatatable')->name('tablemap.main.table');
+    });
 
 Route::prefix('customer-inventory')->group(function () {
     Route::resource('products', ProductController::class, [
         'as' => 'cina'
     ]);
 
-    Route::prefix('products')->controller(ProductController::class)->group(function () {
+    Route::prefix('products')->controller(ProductController::class)->group(function() {
+        Route::get('dashboard/show', 'dashboard')->name('cina.products.dashboard');
         Route::get('show/datatable', 'showDatatable')->name('cina.products.main.table');
-        Route::get('export', 'export')->name('cina.products.export');
-        Route::post('import', 'import')->name('cina.products.import');
+        Route::get('file/export', 'export')->name('cina.products.export');
+        Route::post('file/import', 'import')->name('cina.products.import');
         Route::get('template/origin/{product}', 'formOriginTemplate')->name('cina.products.getformtemplate');
         Route::get('template/asset/{product}', 'formAssetTemplate')->name('cina.asset.getformtemplate');
     });
@@ -327,3 +359,36 @@ Route::prefix('catalog')
 
 
 
+Route::resource('valverepair', RepairReportController::class)->except('create');
+Route::prefix('valverepair')
+    ->controller(RepairReportController::class)
+    ->group(function () {
+        Route::get('show/datatable', 'showDatatable')->name('valverepair.main.table');
+        Route::post('construction/deleteimage', 'destroyImage')->name('valverepair.delete.image');
+    });
+Route::resource('valverepair/scopeofwork', ScopeOfWorkController::class)->names([
+    'show' => 'valverepair.scopeofwork.show',
+    'store' => 'valverepair.scopeofwork.store',
+]);
+Route::prefix('scopeofwork')
+    ->controller(ScopeOfWorkController::class)
+    ->group(function () {
+        Route::get('show/datatable', 'showDatatable')->name('scopeofwork.main.table');
+    });
+
+Route::prefix('cvrepair')
+    ->controller(ConstructionValveRepairController::class)
+    ->group(function () {
+        Route::post('scopeofwork/constructionbody', 'storeConstructionBody')->name('valverepair.scopeofwork.store.constructionbody');
+        Route::get('scopeofwork/constructionbody/{id}', 'editConstructionBody')->name('valverepair.scopeofwork.get.constructionbody');
+        Route::put('scopeofwork/constructionbody/{consIsolValve}', 'updateConstructionBody')->name('valverepair.scopeofwork.update.constructionbody');
+        Route::get('scopeofwork/constructionactuatorwheel/{consIsolValve}', 'editConstructionActuatorWheel')->name('valverepair.scopeofwork.get.constructionactuatorwheel');
+        Route::put('scopeofwork/constructionactuatorwheel/{consIsolValve}', 'storeConstructionActuatorWheel')->name('valverepair.scopeofwork.store.constructionactuatorwheel');
+        Route::get('scopeofwork/constructionactuatorautomation/{consIsolValve}', 'editConstructionActuatorAutomation')->name('valverepair.scopeofwork.get.constructionactuatorautomation');
+        Route::get('scopeofwork/constructionactuatorautomation/{consIsolValve}', 'editConstructionActuatorAutomation')->name('valverepair.scopeofwork.get.constructionactuatorautomation');
+        Route::put('scopeofwork/constructionactuatorautomation/{consIsolValve}', 'storeConstructionActuatorAutomation')->name('valverepair.scopeofwork.store.constructionactuatorautomation');
+        Route::get('scopeofwork/constructionpositionerisolation/{consIsolValve}', 'editConstructionPositionerIsolation')->name('valverepair.scopeofwork.get.constructionpositionerisolation');
+        Route::put('scopeofwork/constructionpositionerisolation/{consIsolValve}', 'storeConstructionPositionerIsolation')->name('valverepair.scopeofwork.store.constructionpositionerisolation');
+        Route::get('scopeofwork/constructionaccesoriesisolation/{consIsolValve}', 'editConstructionAccessoriesIsolation')->name('valverepair.scopeofwork.get.constructionaccesoriesisolation');
+        Route::put('scopeofwork/constructionaccesoriesisolation/{consIsolValve}', 'storeConstructionAccessoriesIsolation')->name('valverepair.scopeofwork.store.constructionaccesoriesisolation');
+    });
