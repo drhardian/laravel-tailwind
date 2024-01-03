@@ -33,9 +33,9 @@ class CatalogproductController extends Controller
         //             ->where('is_filterable', 1);
         //     }
         // )->orderBy('group_code', 'asc')->get();
-    //     $catalogproducts = Catalogproduct::parentCatalogproducts()
-    //         ->orderBy('productgroup_code', 'asc')
-    //         ->get();
+        // $catalogproducts = Catalogproduct::parentCatalogproducts()
+        //     ->orderBy('productgroup_code', 'asc')
+        //     ->get();
 
     //     $selectedSort = url('catalogproducts');
     //     $sorts = [
@@ -54,7 +54,13 @@ class CatalogproductController extends Controller
     //     $catalogproducts = $catalogproducts->paginate(10);
 
     //     return view('catalogs.frontend.catalogproducts.index', compact('catalogproducts', 'minPrice', 'maxPrice', 'sorts', 'selectedSort'));
-    // }
+
+
+        $catalogproducts = Catalogproduct::get();
+        $totalcatalogproducts = Catalogproduct::count();
+
+        return view('catalogs.frontend.catalogproducts.index', compact('catalogproducts','totalcatalogproducts'));
+    }
 
     // private function _filterCatalogsByPriceRange($catalogproducts, $request)
     // {
@@ -146,7 +152,7 @@ class CatalogproductController extends Controller
     //     }
 
     //     return $catalogproducts ;
-    }
+    // }
 
     public function show(Catalogproduct $catalogproduct)
     {
