@@ -20,23 +20,39 @@
                             <div class="flex justify-end px-4 pt-4">
                             </div>
                             <div class="flex flex-col items-center ">
-                                <img class="w-24 h-24 mb-3 shadow-lg rounded-full" src="{{ asset('theme/assets/images/menu.png') }}"
-                                    alt="Bonnie image" />
-                                <h6 class="p-4 text-center mb-1 text-md font-medium text-gray-900 dark:text-white">Construction
+                                <img class="w-24 h-24 mb-3 shadow-lg rounded-full"
+                                    src="{{ asset('theme/assets/images/menu.png') }}" alt="Bonnie image" />
+                                <h6 class="p-4 text-center mb-1 text-md font-medium text-gray-900 dark:text-white">
+                                    Construction
                                 </h6>
                             </div>
                         </div>
                     </div>
-
-                    <div onclick="openFormConstruction('{{ route('valverepair.store') }}')">
+                    <div onclick="openFormCalibration('{{ route('valverepair.calibration.getdata') }}')">
                         <div
                             class="w-72 max-w-sm hover:bg-gray-100 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                             <div class="flex justify-end px-4 pt-4">
                             </div>
                             <div class="flex flex-col items-center ">
-                                <img class="w-24 h-24 mb-3 shadow-lg rounded-full" src="{{ asset('theme/assets/images/menu.png') }}"
-                                    alt="Bonnie image" />
-                                <h6 class="p-4 text-center mb-1 text-md font-medium text-gray-900 dark:text-white">Calibration
+                                <img class="w-24 h-24 mb-3 shadow-lg rounded-full"
+                                    src="{{ asset('theme/assets/images/menu.png') }}" alt="Bonnie image" />
+                                <h6 class="p-4 text-center mb-1 text-md font-medium text-gray-900 dark:text-white">
+                                    Calibration
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div onclick="openFormOptionalServices('{{ route('valverepair.optionalservices.store.valvepretest') }}')">
+                        <div
+                            class="w-72 max-w-sm hover:bg-gray-100 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            <div class="flex justify-end px-4 pt-4">
+                            </div>
+                            <div class="flex flex-col items-center ">
+                                <img class="w-24 h-24 mb-3 shadow-lg rounded-full"
+                                    src="{{ asset('theme/assets/images/menu.png') }}" alt="Bonnie image" />
+                                <h6 class="p-4 text-center mb-1 text-md font-medium text-gray-900 dark:text-white">
+                                    Optional Services
                                 </h6>
                             </div>
                         </div>
@@ -46,24 +62,32 @@
         </div>
     </div>
 
+
     @include('valve_repair.construction.modal')
+
+    @include('valve_repair.calibration.modal')
+
+    @include('valve_repair.optionalservices.modal')
+
 @endsection
 
 @section('js')
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js">
-    </script>
-    <script type="text/javascript" src="{{ asset('core/js/valve_repair/construction/custom.js') }}"></script>
-    {{-- <script type="text/javascript" src="{{ asset('core/js/valve_repair/custom.js') }}"></script> --}}
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
+<script type="text/javascript" src="{{ asset('core/js/valve_repair/construction/custom.js') }}"></script>
+<script type="text/javascript" src="{{ asset('core/js/valve_repair/calibration/calibration.js') }}"></script>
+<script type="text/javascript" src="{{ asset('core/js/valve_repair/optionalservices/optionalservices.js') }}"></script>
     <script>
         var CSRF_TOKEN = $('[name="csrf-token"]').attr('content');
         var array_dropdown = @json($vrr_dropdown);
         var valveRepair = @json($valverepair);
         var scopeofwork = @json($scopeofwork);
+        var sowtype = @json($sowtype);
+
         $(document).ready(function() {
             $('.select2').select2({
                 placeholder: 'Select here..'
             });
         });
     </script>
+
 @endsection

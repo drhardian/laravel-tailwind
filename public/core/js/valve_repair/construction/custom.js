@@ -126,6 +126,8 @@ bodyCheckBox = () => {
     });
 };
 
+
+
 const checkbox_actuator = document.getElementById("id_ahc_checkbox");
 
 // Add an event listener to the checkbox
@@ -329,12 +331,10 @@ bodyIsolationClick.onclick = function () {
         },
         success: function (response) {
             if (response.status == "empty") {
-                if(scopeofwork.scope_of_work_id != 1){
-                    hideLeftFormConstruction("body_construction_left");
-                }
-
+                // if(scopeofwork.scope_of_work_id != 1){
+                //     hideLeftFormConstruction("body_construction_left");
+                // }
                 Swal.close();
-
             } else {
                 $.each(response.form[0], function (key, value) {
                     // Find the input element with the corresponding ID
@@ -356,12 +356,17 @@ bodyIsolationClick.onclick = function () {
 
                 });
 
-
-                if (response.is_change == 0) {
-                    hideLeftFormConstruction("body_construction_left");
-                }else{
+                if(sowtype == 'Repair'){
                     resetLeftFormConstruction("body_construction_left");
+                }else{
+                    hideLeftFormConstruction("body_construction_left");
                 }
+                // Kalo mau  menghilangkan left
+                // if (response.is_change == 0) {
+                //     hideLeftFormConstruction("body_construction_left");
+                // }else{
+                //     resetLeftFormConstruction("body_construction_left");
+                // }
 
                 Swal.close();
                 $("#form_url_construction").val(response.update_url);
@@ -530,11 +535,18 @@ actuatorHandwheelClick.onclick = function () {
                     }
                 });
 
-                if (response.is_change == 0) {
-                    hideLeftFormConstruction("actuator_construction_left");
-                }else{
+
+                if(sowtype == 'Repair'){
                     resetLeftFormConstruction("actuator_construction_left");
+                }else{
+                    hideLeftFormConstruction("actuator_construction_left");
                 }
+
+                // if (response.is_change == 0) {
+                //     hideLeftFormConstruction("actuator_construction_left");
+                // }else{
+                //     resetLeftFormConstruction("actuator_construction_left");
+                // }
             }
 
             Swal.close();
@@ -704,11 +716,18 @@ positionerIsolationClick.onclick = function () {
                         inputElement.val(value);
                     }
                 });
-                if (response.is_change == 0) {
-                    hideLeftFormConstruction("isolation_positioner_left");
-                }else{
+
+                if(sowtype == 'Repair'){
                     resetLeftFormConstruction("isolation_positioner_left");
+                }else{
+                    hideLeftFormConstruction("isolation_positioner_left");
                 }
+
+                // if (response.is_change == 0) {
+                //     hideLeftFormConstruction("isolation_positioner_left");
+                // }else{
+                //     resetLeftFormConstruction("isolation_positioner_left");
+                // }
             }
             Swal.close();
             console.log(forms);
@@ -738,7 +757,6 @@ $("#ac_selected_found").on("change", function () {
     // Dapatkan nilai yang dipilih dari Select2
     var selectedAccessories = $(this).val();
     var data = $("#ac_selected_found").select2("data");
-
     // Tampilkan aksesori yang dipilih di dalam tabel
     if (selectedAccessories) {
         for (var i = 0; i < selectedAccessories.length; i++) {
@@ -863,11 +881,17 @@ accesoriesIsolationClick.onclick = function () {
                     }
                 );
 
-                if (response.is_change == 0) {
-                    hideLeftFormConstruction("isolation_accessories_left");
-                }else{
+                if(sowtype == 'Repair'){
                     resetLeftFormConstruction("isolation_accessories_left");
+                }else{
+                    hideLeftFormConstruction("isolation_accessories_left");
                 }
+
+                // if (response.is_change == 0) {
+                //     hideLeftFormConstruction("isolation_accessories_left");
+                // }else{
+                //     resetLeftFormConstruction("isolation_accessories_left");
+                // }
 
                 $("#ac_selected_found")
                     .val(response.form[0].selectedValueFound)
