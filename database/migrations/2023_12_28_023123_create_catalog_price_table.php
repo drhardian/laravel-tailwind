@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('catalog_price', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('catalog_price_id');
+            $table->foreignId('catalog_product_id')->constrained()->cascadeOnDelete();
             $table->string('ctg_price');
             $table->string('ctg_status');
             $table->timestamps();
-            $table->foreign('catalog_price_id')->references('id')->on('catalog_products');
         });
     }
 

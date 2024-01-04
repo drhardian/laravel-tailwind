@@ -448,4 +448,8 @@ class ProdinController extends Controller
             ->make(true);
     }
 
+    public function showDashboard()
+    {
+        return view('inventory.prodin.dashboard');
+    }
 }

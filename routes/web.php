@@ -329,6 +329,13 @@ Route::resource('inventory/prodin', ProdinController::class)->names([
     'destroy' => 'inventory.prodin.destroy',
 ]);
 
+Route::prefix('inventory/prodin')
+    ->controller(ProdinController::class)
+    ->name('prodin.')
+    ->group(function () {
+        Route::get('show/dashboard','showDashboard')->name('dashboard');
+    });
+
 Route::resource('prodin', ProdinController::class);
 Route::prefix('prodin')->controller(ProdinController::class)->group(function () {
     Route::get('show/dropdown', 'showOnDropdown')->name('prodin.show.dropdown');
