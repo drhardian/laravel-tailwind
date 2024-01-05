@@ -29,15 +29,6 @@ class CatalogproductImport implements ToModel, WithHeadingRow
             ['titlegroup_code','=',$row['productgroup_code']],
         ])->first();
 
-        if(!$catalogCode) {
-            dd([
-                $row['productmain_code'],
-                $row['product_code'],
-                $row['productsub_code'],
-                $row['productgroup_code'],
-            ]);
-        }
-
         $getLastItemTotal = Catalogproduct::where([
             ['productmain_code','=',$row['productmain_code']],
             ['product_code','=',$row['product_code']],
@@ -47,6 +38,16 @@ class CatalogproductImport implements ToModel, WithHeadingRow
 
         $itemcode = $catalogCode->main_code.$catalogCode->code.$catalogCode->sub_code.$catalogCode->group_code.(intval($getLastItemTotal)+1);
         
+        $catalogProduct = Catalogproduct::where([
+            ['productmain_code','=',$row['productmain_code']],
+            ['product_code','=',$row['product_code']],
+            ['productsub_code','=',$row['productsub_code']],
+            ['productgroup_code','=',$row['productgroup_code']],
+            ['product_name','=',$row['product_name']],
+        ])->get();
+
+        if ($catalogProduct->count()==0){
+
         return new Catalogproduct([
                 'itemcode' => $itemcode,
                 'product_image' => $row['product_image'],
@@ -61,5 +62,6 @@ class CatalogproductImport implements ToModel, WithHeadingRow
                 'product_uom' => $row['product_uom'],
                 'product_price'=> $row['product_price'],
         ]);
+    }
     }
 }

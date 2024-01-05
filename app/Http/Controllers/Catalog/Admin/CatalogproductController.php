@@ -272,7 +272,9 @@ class CatalogproductController extends Controller
             //     // $validatedData['cert_doc'] = $fileName;
             // }
 
-            Catalogproduct::where('id', $catalogproduct->id)->update($queryUpdate);
+            // dd($queryUpdate);
+
+            $catalogproduct->update($queryUpdate);
 
             DB::commit();
 

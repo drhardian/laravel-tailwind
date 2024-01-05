@@ -183,36 +183,6 @@ Route::prefix('dropdown/options/')->controller(DropdownOptionController::class)-
     Route::post('new', 'storeFromDropdown')->name('general.options.storefromdropdown');
 });
 
-// Route::resource('eproccodeitem', EproccodeitemController::class);
-// Route::prefix('eproccodeitem')->controller(EproccodeitemController::class)->group(function () {
-//     Route::get('show/dropdown', 'showOnDropdown')->name('eproccodeitem.show.dropdown');
-//     Route::get('show/datatable', 'showDatatable')->name('eproccodeitem.main.table');
-//     // Route::get('eproccodeitem/export', 'exportExcel')->name('eproccodeitem.export');
-//     // Route::post('eproccodeitem/import', 'importExcel')->name('eproccodeitem.import');
-//     // Route::get('/eproccodeitem/{id}', 'cetakPdf')->name('eproccodeitem.pdf');
-//     // Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
-
-// });
-
-// Route::resource('eprocproduct', EprocproductController::class);
-// Route::prefix('eprocproduct')->controller(EprocproductController::class)->group(function () {
-//     Route::get('show/dropdown', 'showOnDropdown')->name('eprocproduct.show.dropdown');
-//     Route::get('show/datatable', 'showDatatable')->name('eprocproduct.main.table');
-
-//     // Route::get('eprocproduct/catalog', 'catalogCart')->name('shopping.cart');
-
-//     // Route::get('eproccodeitem/export', 'exportExcel')->name('eproccodeitem.export');
-//     // Route::post('eproccodeitem/import', 'importExcel')->name('eproccodeitem.import');
-//     // Route::get('/eproccodeitem/{id}', 'cetakPdf')->name('eproccodeitem.pdf');
-//     // Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
-
-// });
-
-// Route::prefix('dropdown/codeitem/')->controller(EprocDropdowncodeitemController::class)->group(function () {
-//     Route::get('show', 'showOnDropdown')->name('eproc.options.showondropdown');
-//     Route::post('new', 'storeFromDropdown')->name('eproc.options.storefromdropdown');
-// });
-
 Route::resource('eprocfbo', EprocfboController::class);
 Route::prefix('eprocfbo')->controller(EprocfboController::class)->group(function () {
     Route::get('show/dropdown', 'showOnDropdown')->name('eprocfbo.show.dropdown');
