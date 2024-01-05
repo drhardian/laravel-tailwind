@@ -42,6 +42,7 @@ use App\Http\Controllers\Inventory\ProdoutController;
 
 
 use App\Http\Controllers\PsvMasterData\PdfController;
+use App\Http\Controllers\ScanProductController;
 use App\Models\Eproc\Catalog;
 use App\Http\Controllers\ValveRepair\CalibrationValveRepairController;
 use App\Http\Controllers\ValveRepair\OptionalServicesController;
@@ -334,6 +335,14 @@ Route::prefix('inventory/prodin')
     ->name('prodin.')
     ->group(function () {
         Route::get('show/dashboard','showDashboard')->name('dashboard');
+    });
+
+Route::prefix('inventory/product/scan')
+    ->controller(ScanProductController::class)
+    ->name('inv.qrcode.')
+    ->group(function () {
+        Route::get('/','index')->name('index');
+        Route::get('detail','getProductDetail')->name('product.details');
     });
 
 Route::resource('prodin', ProdinController::class);
