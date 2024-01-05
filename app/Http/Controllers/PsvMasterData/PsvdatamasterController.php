@@ -18,6 +18,7 @@ use Exception;
 use ParseError;
 use PDF;
 
+use function PHPUnit\Framework\isNull;
 
 class PsvdatamasterController extends Controller
 {
@@ -61,30 +62,29 @@ class PsvdatamasterController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         DB::beginTransaction();
 
         try {
-            // /**
-            //  * Handle upload pdf cert_doc
-            //  */
+            /**
+             * Handle upload pdf cert_doc
+             */
             $file = $request->file('cert_doc');
-                $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
-                $path = 'public/assets/documents/psv/'; 
+            $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
+            $path = 'public/assets/documents/psv/'; 
 
-            //     /**
-            //      * Upload an cert_doc to Storage
-            //      */
-                $file->storeAs($path, $fileName);
-                $fileName = 'storage/assets/documents/psv/'.$fileName;
-                // $validatedData['cert_doc'] = $fileName;
-            
+            /**
+             * Upload an cert_doc to Storage
+             */
+            $file->storeAs($path, $fileName);
+            $fileName = 'storage/assets/documents/psv/'.$fileName;
 
             $psvdatamaster = Psvdatamaster::create(array_merge(
                 [
-                'cert_doc'=>$fileName
+                    'cert_doc'  =>  $fileName,
+                    'cert_date' =>  date('Y-m-d',strtotime($request->cert_date)),
+                    'exp_date'  =>  date('Y-m-d',strtotime($request->exp_date)),
                 ],
-                $request->only('area','flow','platform','tag_number','operational','integrity','cert_date','exp_date','valve_number','status','deferal','resetting','resize','demolish','relief','note','cert_package','klarifikasi','by','manufacture','model_number','serial_number','size_in','rating_in','condi_in','size_out','rating_out','condi_out','press','vacuum','psv','design','selection','psv_capacity','psv_capacityunit','bonnet','seat','CAP','body_bonnet','disc_material','spring_material','guide_material','resilient_seat','bellow_material','year_build','year_install','service','equip_number','pid','size_basic','size_code','fluid','required','capacity_unit','mawp','operating_psi','back_psi','operating_temp','cold_diff','allowable','shutdown','valve_upstream','condi_upstream','valve_downstream','condi_downstream','scaffolding','spacer_inlet','spacer_outlet')
+                $request->only('area','flow','platform','tag_number','operational','integrity','valve_number','status','deferal','resetting','resize','demolish','relief','note','cert_package','klarifikasi','by','manufacture','model_number','serial_number','size_in','rating_in','condi_in','size_out','rating_out','condi_out','press','vacuum','psv','design','selection','psv_capacity','psv_capacityunit','bonnet','seat','CAP','body_bonnet','disc_material','spring_material','guide_material','resilient_seat','bellow_material','year_build','year_install','service','equip_number','pid','size_basic','size_code','fluid','required','capacity_unit','mawp','operating_psi','back_psi','operating_temp','cold_diff','allowable','shutdown','valve_upstream','condi_upstream','valve_downstream','condi_downstream','scaffolding','spacer_inlet','spacer_outlet')
                 )
             ); 
             
@@ -93,11 +93,6 @@ class PsvdatamasterController extends Controller
             return response()->json([
                 'message' => 'Psvdatamaster has been created!'
             ], 200);
-
-            // return response()->json([
-            //     'url' => route('psvdatamaster.show', [$psvdatamaster->id])
-            // ], 200);
-
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
             DB::rollBack();
@@ -106,12 +101,6 @@ class PsvdatamasterController extends Controller
                 'error' => 'error'
             ], 500);
         }
-
-        
-
-        // Psvdatamaster::create($validatedData);
-
-        // return redirect()->back()->with('success', 'Psvdatamaster has been created!');
     }
 
 
@@ -442,89 +431,42 @@ class PsvdatamasterController extends Controller
                 'message' => $e->getMessage()
             ], 500);
         }
-
     }
 
     public function showDatatable()
     {
+        $search = !empty(request('search')['value']) ? request('search')['value'] : false;
+
         $model = Psvdatamaster::select(
             'id',
-            //GENERAL INFORMATION
             'area',
             'flow',
             'platform',
             'tag_number',
-            // 'operational',
+            'operational',
             'integrity',
-            // 'cert_date',
-            // 'cert_doc',
-            // 'exp_date',
+            'cert_date',
+            'exp_date',
             'valve_number',
             'status',
-            // 'by',
-            // 'deferal',
-            // 'resetting',
-            // 'resize',
-            // 'demolish',
-            // 'relief',
-            // 'note',
-            // 'cert_package',
-            // 'klarifikasi',
-            //VALVE INFORMATION
-            // 'manufacture',
-            // 'model_number',
-            // 'serial_number',
-            // 'size_in',
-            // 'rating_in',
-            // 'condi_in',
-            // 'size_out',
-            // 'rating_out',
-            // 'condi_out',
-            // 'press',
-            // 'vacuum',
-            // 'psv',
-            // 'design',
-            // 'selection',
-            // 'psv_capacity',
-            // 'psv_capacityunit',
-            // 'bonnet',
-            // 'seat',
-            // 'CAP',
-            // 'body_bonnet',
-            // 'disc_material',
-            // 'spring_material',
-            // 'guide_material',
-            // 'resilient_seat',
-            // 'bellow_material',
-            // 'year_build',
-            // 'year_install',
-            // 'updated_at'
-            //PROCESS CONDITION
-            // 'service',
-            // 'equip_number',
-            // 'pid',
-            // 'size_basic',
-            // 'size_code',
-            // 'fluid',
-            // 'required',
-            // 'capacity_unit',
-            // 'mawp',
-            // 'operating_psi',
-            // 'back_psi',
-            // 'operating_temp',
-            // 'cold_diff',
-            // 'allowable',
-            //CONDITION REPLACEMENT
-            // 'shutdown',
-            // 'valve_upstream',
-            // 'condi_upstream',
-            // 'valve_downstream',
-            // 'condi_downstream',
-            // 'scaffolding',
-            // 'spacer_inlet',
-            // 'spacer_outlet',
             'updated_at'
-        );
+        )
+        ->when($search, function($query,$search) {
+            // if($search=='Warning') {
+            //     $query->where(function($q) {
+            //         $q->whereRaw('TIMESTAMPDIFF(MONTH,CURDATE(),exp_date) > 0')
+            //         ->whereRaw('TIMESTAMPDIFF(MONTH,CURDATE(),exp_date) < 3');
+            //     });
+            // } else {
+                $query->where('status',$search)
+                    ->orWhere('area','like','%'.$search.'%')
+                    ->orWhere('flow','like','%'.$search.'%')
+                    ->orWhere('platform','like','%'.$search.'%')
+                    ->orWhere('tag_number',$search)
+                    ->orWhere('operational',$search)
+                    ->orWhere('valve_number',$search);
+            // }
+        });
 
         return DataTables::of($model)
             ->addColumn('actions', function($model) {
@@ -537,11 +479,72 @@ class PsvdatamasterController extends Controller
 
                 return $actions;
             })
+            ->editColumn('cert_date', function($model) {
+                return Carbon::parse($model->cert_date)->format('d/m/Y');
+            })
+            ->editColumn('exp_date', function($model) {
+                return Carbon::parse($model->exp_date)->format('d/m/Y');
+            })
             ->editColumn('updated_at', function($model) {
                 return Carbon::parse($model->updated_at)->format('d/m/Y H:i:s');
             })
-            ->rawColumns(['actions'])
-            ->removeColumn('psvdatamasters')
+            ->editColumn('integrity', function($model) {
+                $expDate = Carbon::parse($model->exp_date);
+                $nowDate = Carbon::now();
+                $monthDiff = $expDate->diffInMonths($nowDate);
+
+                if($model->exp_date == null) {
+                    return '<span class="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded border border-gray-500 text-center inline-block">Unknown</span>';
+                } else {
+                    if($monthDiff < 0) {
+                        return '<span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded border border-red-400 text-center inline-block">Expired</span>';
+                    } elseif($monthDiff >= 0 && $monthDiff < 3) {
+                        return '<span class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded border border-yellow-300 text-center inline-block">Warning</span>';
+                    } else {
+                        return '<span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded border border-green-400 text-center inline-block">Good</span>';
+                    }
+                }
+            })
+            ->addColumn('integrity_search', function($model) {
+                $expDate = Carbon::parse($model->exp_date);
+                $nowDate = Carbon::now();
+                $monthDiff = $expDate->diffInMonths($nowDate);
+
+                if($model->exp_date == null) {
+                    return 'Unknown';
+                } else {
+                    if($monthDiff < 0) {
+                        return 'Expired';
+                    } elseif($monthDiff > 0 && $monthDiff < 3) {
+                        return 'Warning';
+                    } else {
+                        return 'Good';
+                    }
+                }
+
+            })
+            ->editColumn('operational', function($model) {
+                if($model->operational == "YES") {
+                    $operational = '<span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">'.ucwords(strtolower($model->operational)).'</span>';
+                } else {
+                    $operational = '<span class="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-500">'.ucwords(strtolower($model->operational)).'</span>';
+                }
+
+                return $operational;
+            })
+            ->addColumn('operational_search', function($model) {
+                return $model->operational;
+            })
+            ->addColumn('status_search', function($model) {
+                if($model->status == "ACTIVE") {
+                    $status = '<span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded border border-red-400 text-center inline-block">'.ucwords(strtolower($model->status)).'</span>';
+                } else {
+                    $status = '<span class="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded border border-gray-500 text-center inline-block">'.ucwords(strtolower($model->status)).'</span>';
+                }
+    
+                return $status;
+            })
+            ->rawColumns(['actions','integrity','operational','status_search'])
             ->make(true);
     }
 }
