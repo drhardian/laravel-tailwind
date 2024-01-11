@@ -267,8 +267,7 @@
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     placeholder="RO Number">
                                                 <label for="ro_date"
-                                                    class="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white">Email
-                                                    Address</label>
+                                                    class="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white">RO Date</label>
                                                 <input type="date" id="ro_date" name="ro_date"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     placeholder="RO Date">
