@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('inventory_prodins', function (Blueprint $table) {
             $table->id();
             $table->foreignId('catalog_product_id')->constrained()->restrictOnDelete();
+            $table->string('prodin_actual')->nullable();
             $table->string('prodin_origin')->nullable();
             $table->string('prodin_budgetorigin')->nullable();
             $table->string('prodin_noref')->nullable();

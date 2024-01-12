@@ -253,12 +253,11 @@ Route::resource('admin/catalogproduct', AdminCatalogproductController::class)->n
 ]);
 
 Route::prefix('admin/catalogproduct')->controller(AdminCatalogproductController::class)->group(function () {
-    Route::get('show/dropdown', 'showOnDropdown')->name('admin.catalogproduct.show.dropddown');
+    Route::get('show/dropdown', 'showOnDropdown')->name('admin.catalogproduct.show.dropdown');
     Route::get('show/datatable', 'showDatatable')->name('admin.catalogproduct.main.table');
     Route::post('catalogproduct/import', 'importExcel')->name('catalogproduct.import');
 
 });
-
 
 Route::resource('frontend/catalogproduct', FrontendCatalogproductController::class)->names([
     'index' => 'frontend.catalogproduct.index',
@@ -292,7 +291,7 @@ Route::prefix('prodin')->controller(ProdinController::class)->group(function () 
     Route::get('loadprofile/{catalogProduct}', 'loadprofilefromproductname')->name('prodin.loadprofile.productname');
     Route::get('loadprofile/itemcode', 'loadprofilefromitemcode')->name('prodin.loadprofile.itemcode');
     // Route::get('eproccodeitem/export', 'exportExcel')->name('eproccodeitem.export');
-    // Route::post('eproccodeitem/import', 'importExcel')->name('eproccodeitem.import');
+    Route::post('prodin/import', 'importExcel')->name('prodin.import');
     // Route::get('/eproccodeitem/{id}', 'cetakPdf')->name('eproccodeitem.pdf');
     // Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
 });

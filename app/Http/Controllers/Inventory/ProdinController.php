@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\PsvdatamasterImport;
+use App\Imports\ProdinImport;
 use App\Exports\PsvdatamasterExport;
 
 class ProdinController extends Controller
@@ -81,7 +81,7 @@ class ProdinController extends Controller
                         // 'prodin_image' => $fileName,
                         'prodin_datein' => Carbon::createFromFormat('d/m/Y', $request->prodin_datein)->format('Y-m-d'),
                     ],
-                $request->only('catalog_product_id','prodin_origin','prodin_budgetorigin','prodin_noref','prodin_stockin','prodin_owner','prodin_supplier', 'prodin_stockloc','prodin_detailloc')
+                $request->only('catalog_product_id','prodin_actual','prodin_origin','prodin_budgetorigin','prodin_noref','prodin_stockin','prodin_owner','prodin_supplier', 'prodin_stockloc','prodin_detailloc')
                 )
             ); 
             
@@ -216,6 +216,7 @@ class ProdinController extends Controller
                 'prodin_owner' => $prodin->prodin_owner,
             ],
             'form' => [
+                ['prodin_actual', $prodin->prodin_actual],
                 ['prodin_noref', $prodin->prodin_noref],
                 ['prodin_datein', Carbon::parse($prodin->prodin_datein)->format('d/m/Y')],
                 ['prodin_owner', $prodin->prodin_owner],
@@ -263,7 +264,7 @@ class ProdinController extends Controller
                     'prodin_datein' => Carbon::createFromFormat('d/m/Y', $request->prodin_datein)->format('Y-m-d'),
 
                 ],
-            $request->only('catalog_product_id', 'prodin_origin', 'prodin_budgetorigin', 'prodin_noref', 'prodin_stockin', 'prodin_owner', 'prodin_supplier', 'prodin_stockloc', 'prodin_detailloc')
+            $request->only('catalog_product_id', 'prodin_actual', 'prodin_origin', 'prodin_budgetorigin', 'prodin_noref', 'prodin_stockin', 'prodin_owner', 'prodin_supplier', 'prodin_stockloc', 'prodin_detailloc')
             )
         ); 
 
@@ -394,24 +395,24 @@ class ProdinController extends Controller
     // //  /**
     // //  * IMPORT EXCEL 
     // //  */
-    // public function importExcel(Request $request)
-    // {
-    //     try {
-    //         Excel::import(new CatalogproductImport, $request->file('filexls'));
+    public function importExcel(Request $request)
+    {
+        try {
+            Excel::import(new ProdinImport, $request->file('filexls'));
 
-    //         return response()->json([
-    //             'message' => 'Data imported successfully'
-    //         ], 200);
-    //     } catch (ParseError $e) {
-    //         return response()->json([
-    //             'message' => $e->getMessage()
-    //         ], 500);
-    //     } catch (Exception $e) {
-    //         return response()->json([
-    //             'message' => $e->getMessage()
-    //         ], 500);
-    //     }
-    // }
+            return response()->json([
+                'message' => 'Data imported successfully'
+            ], 200);
+        } catch (ParseError $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
 
     public function showDatatable()
     {
