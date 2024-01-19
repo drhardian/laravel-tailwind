@@ -24,14 +24,14 @@ class ProdinImport implements ToModel, WithHeadingRow
             ['productgroup_code','=',$row['productgroup_code']],
             ['product_name','=',$row['product_name']],
         ])->first();
-        if ($catalogProduct){
+        // if ($catalogProduct){
   
-            if(!empty($row['prodin_datein'])){
-                $carbonDate = Carbon::createFromTimestamp(($row['prodin_datein'] - 25569) * 86400);
-                $formattedDate = $carbonDate->format('Y-m-d');  
-            }else{
-                $formattedDate = null;
-            }
+        //     if(!empty($row['prodin_datein'])){
+        //         $carbonDate = Carbon::createFromTimestamp(($row['prodin_datein'] - 25569) * 86400);
+        //         $formattedDate = $carbonDate->format('Y-m-d');  
+        //     }else{
+        //         $formattedDate = null;
+        //     }
 
             return new Prodin([
                     'catalog_product_id' => $catalogProduct->id,
@@ -39,13 +39,13 @@ class ProdinImport implements ToModel, WithHeadingRow
                     'prodin_origin' => $row['prodin_origin'],
                     'prodin_budgetorigin'=> $row['prodin_budgetorigin'],
                     'prodin_noref'=> $row['prodin_noref'],
-                    'prodin_datein'=> $formattedDate,
+                    'prodin_datein'=> $row['prodin_datein'],
                     'prodin_owner'=> $row['prodin_owner'],
                     'prodin_supplier' => $row['prodin_supplier'],
                     'prodin_stockin' => $row['prodin_stockin'],
                     'prodin_stockloc' => $row['prodin_stockloc'],
                     'prodin_detailloc' => $row['prodin_detailloc'],
             ]);
-        }
+        // }
     }
 }

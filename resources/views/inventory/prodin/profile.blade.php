@@ -52,7 +52,7 @@
                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     @if ($prodin->catalog_product_id)
                                         <div class="form-control form-control-solid">
-                                            {{ $prodin->catalog_product_id }}</div>
+                                            {{ $prodin->catalogProduct->product_name }}</div>
                                     @else
                                         <div class="form-control form-control-solid">N/A</div>
                                     @endif
@@ -66,7 +66,7 @@
                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     @if ($prodin->catalog_product_id)
                                         <div class="form-control form-control-solid">
-                                            {{ $prodin->catalog_product_id }}</div>
+                                            {{ $prodin->catalogProduct->itemcode  }}</div>
                                     @else
                                         <div class="form-control form-control-solid">N/A</div>
                                     @endif
@@ -82,7 +82,7 @@
                                         class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         @if ($prodin->catalog_product_id)
                                             <div class="form-control form-control-solid">
-                                                {{ $prodin->catalog_product_id }}</div>
+                                                {{ $prodin->catalogProduct->product_brand  }}</div>
                                         @else
                                             <div class="form-control form-control-solid">N/A</div>
                                         @endif
@@ -95,7 +95,7 @@
                                         class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         @if ($prodin->catalog_product_id)
                                             <div class="form-control form-control-solid">
-                                                {{ $prodin->catalog_product_id }}</div>
+                                                {{ $prodin->catalogProduct->productgroup_code  }}</div>
                                         @else
                                             <div class="form-control form-control-solid">N/A</div>
                                         @endif
@@ -108,7 +108,7 @@
                                         class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         @if ($prodin->catalog_product_id)
                                             <div class="form-control form-control-solid">
-                                                {{ $prodin->catalog_product_id }}</div>
+                                                {{ $prodin->catalogProduct->product_uom  }}</div>
                                         @else
                                             <div class="form-control form-control-solid">N/A</div>
                                         @endif
@@ -124,7 +124,7 @@
                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     @if ($prodin->catalog_product_id)
                                         <div class="form-control form-control-solid">
-                                            {{ $prodin->catalog_product_id }}</div>
+                                            {{ $prodin->catalogProduct->product_spec  }}</div>
                                     @else
                                         <div class="form-control form-control-solid">N/A</div>
                                     @endif

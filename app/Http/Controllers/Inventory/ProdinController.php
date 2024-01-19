@@ -136,6 +136,8 @@ class ProdinController extends Controller
             ],
         ];
 
+        $prodin = $prodin->load('catalogProduct');
+
         return view('inventory.prodin.profile', [
             'breadcrumbs' => $breadcrumbs,
             'title' => $this->pageProfile,
