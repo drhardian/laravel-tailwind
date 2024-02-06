@@ -35,6 +35,7 @@ class ProdinImport implements ToModel, WithHeadingRow
 
             return new Prodin([
                     'catalog_product_id' => $catalogProduct->id,
+                    'asset_code' => $row['asset_code'],
                     'prodin_actual' => $row['prodin_actual'],
                     'prodin_origin' => $row['prodin_origin'],
                     'prodin_budgetorigin'=> $row['prodin_budgetorigin'],

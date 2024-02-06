@@ -81,7 +81,7 @@ class ProdinController extends Controller
                         // 'prodin_image' => $fileName,
                         'prodin_datein' => Carbon::createFromFormat('d/m/Y', $request->prodin_datein)->format('Y-m-d'),
                     ],
-                $request->only('catalog_product_id','prodin_actual','prodin_origin','prodin_budgetorigin','prodin_noref','prodin_stockin','prodin_owner','prodin_supplier', 'prodin_stockloc','prodin_detailloc')
+                $request->only('catalog_product_id','asset_code','prodin_actual','prodin_origin','prodin_budgetorigin','prodin_noref','prodin_stockin','prodin_owner','prodin_supplier', 'prodin_stockloc','prodin_detailloc')
                 )
             ); 
             
@@ -218,6 +218,7 @@ class ProdinController extends Controller
                 'prodin_owner' => $prodin->prodin_owner,
             ],
             'form' => [
+                ['asset_code', $prodin->asset_code],
                 ['prodin_actual', $prodin->prodin_actual],
                 ['prodin_noref', $prodin->prodin_noref],
                 ['prodin_datein', Carbon::parse($prodin->prodin_datein)->format('d/m/Y')],
@@ -266,7 +267,7 @@ class ProdinController extends Controller
                     'prodin_datein' => Carbon::createFromFormat('d/m/Y', $request->prodin_datein)->format('Y-m-d'),
 
                 ],
-            $request->only('catalog_product_id', 'prodin_actual', 'prodin_origin', 'prodin_budgetorigin', 'prodin_noref', 'prodin_stockin', 'prodin_owner', 'prodin_supplier', 'prodin_stockloc', 'prodin_detailloc')
+            $request->only('catalog_product_id', 'asset_code', 'prodin_actual', 'prodin_origin', 'prodin_budgetorigin', 'prodin_noref', 'prodin_stockin', 'prodin_owner', 'prodin_supplier', 'prodin_stockloc', 'prodin_detailloc')
             )
         ); 
 

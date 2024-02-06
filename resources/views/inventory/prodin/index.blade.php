@@ -169,7 +169,14 @@
                                 <div class="space-y-6">
                                     <div class="mb-6">
                                         <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w- full sm:pr-2">
+                                            <div class="sm:w-1/3 w- full sm:pr-2">
+                                                <label for="asset_code"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Asset Code</label>
+                                                    <input type="text" id="asset_code" name="asset_code"
+                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required placeholder="Enter Asset Code">
+                                            </div>
+                                            <div class="sm:w-1/3 w- full sm:pr-2">
                                                 <label for="catalog_product_id"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
                                                     Name</label>
@@ -181,13 +188,13 @@
                                                     <option value="" selected disabled></option>
                                                 </select>
                                             </div>
-                                            <div class="sm:w-1/2 w- full sm:pr-2">
+                                            <div class="sm:w-1/3 w- full sm:pr-2">
                                                 <label for="catalog_product_id"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
                                                     Code</label>
                                                 <input type="text" id="prod_code" name="prod_code"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Enter Product Code">
+                                                    required placeholder="">
                                                 {{-- required placeholder="Enter Product Code" onblur="autoRecord($(this).val(),'{{ route('prodin.loadprofile.itemcode') }}')"> --}}
                                             </div>
                                         </div>
@@ -199,21 +206,21 @@
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
                                                 <input type="text" id="inv_brand" name="inv_brand"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Enter Brand">
+                                                    required placeholder="">
                                             </div>
                                             <div class="sm:w-1/3 w- full sm:pr-2">
                                                 <label for="inv_category"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
                                                     <input type="text" id="inv_category" name="inv_category"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Enter category">
+                                                    required placeholder="">
                                             </div>
                                             <div class="sm:w-1/3 w-full sm:pr-2">
                                                 <label for="inv_uom"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UOM</label>
                                                     <input type="text" id="inv_uom" name="inv_uom"
                                                     class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Enter uom">
+                                                    required placeholder="">
                                             </div>
                                         </div>
                                     </div>
@@ -223,7 +230,7 @@
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Specification</label>
                                             <textarea
                                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Write specification here..." id="inv_spec" name="specification"></textarea>
+                                                placeholder="" id="inv_spec" name="specification"></textarea>
                                         </div>
                                     </div>
                                     <div class="mb-6">
