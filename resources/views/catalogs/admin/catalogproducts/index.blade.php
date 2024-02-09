@@ -201,7 +201,7 @@
                                                     data-form="product group code"></select>
                                             </div>
                                         </div>
-                                    </div>m
+                                    </div>
                                     {{-- </div> --}}
                                     <!-- PRODUCT INFORMATION -->
                                     <div class="space-y-6">
