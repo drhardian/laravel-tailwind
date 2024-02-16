@@ -233,15 +233,12 @@ class CatalogproductController extends Controller
                  * Handle upload an image
                  */
                 if ($file = $request->file('product_image')) {
-                    // $fileName = hexdec(uniqid()) . '.' . $file->getClientOriginalExtension();
                     $fileName = $catalogproduct->itemcode . '.' . $file->getClientOriginalExtension();
                     $path = 'public/assets/img/catalogproducts';
                     /**
                      * Upload an image to Storage
                      */
                     $file->storeAs($path, $fileName);
-                    // $fileName = 'storage/assets/img/catalogproducts/' . $fileName;
-                    // $validatedData['product_image'] = $fileName;
                 }
 
                 $queryUpdate = array_merge(
@@ -251,31 +248,12 @@ class CatalogproductController extends Controller
             } else {
                 $queryUpdate = $request->only('product_name', 'product_spec', 'product_brand', 'product_minstock', 'product_uom', 'product_price');
             }
-
-            // if ($file = $request->file('cert_doc')) {
-            //     $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
-            //     $path = 'public/assets/documents/psv/';
-
-            //     /**
-            //      * Delete docin if exists.
-            //      */
-            //     if($psvdatamaster->cert_doc){
-            //         $result = str_replace('storage/', '', $psvdatamaster->cert_doc);
-            //         Storage::delete('public/' . $result);
-            //     }
-
-            //     /**
-            //      * Store an docin to Storage
-            //      */
-            //     $file->storeAs($path, $fileName);
-            //     $fileName = 'storage/assets/documents/products/'.$fileName;
-            //     // $validatedData['cert_doc'] = $fileName;
-            // }
-
-            // dd($queryUpdate);
+            
+            // $queryUpdate = $request->only('product_name', 'product_spec', 'product_brand', 'product_minstock', 'product_uom', 'product_price');
+            // dd($fileName);
 
             $catalogproduct->update($queryUpdate);
-
+            
             DB::commit();
 
             return response()->json([
