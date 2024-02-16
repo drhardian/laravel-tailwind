@@ -37,10 +37,22 @@
                                     <div class="flex items-center">
                                         <div class="flex-1 min-w-0">
                                             <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                Current Stock
+                                                Remaining Stock
                                             </p>
                                             <p class="text-sm text-gray-500 truncate dark:text-gray-400">
                                                 <span id="product_stockcurrent">-</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="py-3 sm:py-4">
+                                    <div class="flex items-center">
+                                        <div class="flex-1 min-w-0">
+                                            <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                Actual Stock
+                                            </p>
+                                            <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                                <span id="product_stockactual">-</span>
                                             </p>
                                         </div>
                                     </div>
@@ -103,6 +115,8 @@
                 dataType: "json",
                 success: function (response) {
                     console.log(response);
+
+                    $('#product_description').text('').text(response.product_description);
                 }
             });
         }
