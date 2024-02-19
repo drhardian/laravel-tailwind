@@ -24,14 +24,15 @@ class ProdinImport implements ToModel, WithHeadingRow
             ['productgroup_code','=',$row['productgroup_code']],
             ['product_name','=',$row['product_name']],
         ])->first();
-        // if ($catalogProduct){
+
+        if (!$catalogProduct){
   
-        //     if(!empty($row['prodin_datein'])){
-        //         $carbonDate = Carbon::createFromTimestamp(($row['prodin_datein'] - 25569) * 86400);
-        //         $formattedDate = $carbonDate->format('Y-m-d');  
-        //     }else{
-        //         $formattedDate = null;
-        //     }
+            if(!empty($row['prodin_datein'])){
+                $carbonDate = Carbon::createFromTimestamp(($row['prodin_datein'] - 25569) * 86400);
+                $formattedDate = $carbonDate->format('Y-m-d');  
+            }else{
+                $formattedDate = null;
+            }
 
             return new Prodin([
                     'catalog_product_id' => $catalogProduct->id,
@@ -47,6 +48,6 @@ class ProdinImport implements ToModel, WithHeadingRow
                     'prodin_stockloc' => $row['prodin_stockloc'],
                     'prodin_detailloc' => $row['prodin_detailloc'],
             ]);
-        // }
+        }
     }
 }
