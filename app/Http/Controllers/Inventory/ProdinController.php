@@ -406,14 +406,30 @@ class ProdinController extends Controller
             return response()->json([
                 'message' => 'Data imported successfully'
             ], 200);
-        } catch (ParseError $e) {
+        } catch (\ParseError $e) {
             return response()->json([
                 'message' => $e->getMessage()
             ], 500);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
+            $errorMessage = "";
+
+            if ($e instanceof \Maatwebsite\Excel\Validators\ValidationException) {
+                // Handle validation exception
+                $errorMessage = $e->getMessage();
+            } else if (strpos($e->getMessage(), 'array key') > 0) {
+                // return back()->withError($e->getMessage() . ', please check your file format');
+                $errorMessage = $e->getMessage();
+            } else {
+                // return back()->withError('Something went wrong, check your file');
+                $errorMessage = $e->getMessage();
+            }
+
+            Log::error($errorMessage);
+
             return response()->json([
-                'message' => $e->getMessage()
+                'message' => $errorMessage
             ], 500);
+
         }
     }
 

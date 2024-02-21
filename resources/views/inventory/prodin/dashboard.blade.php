@@ -7,7 +7,7 @@
                 <div class="col-span-1 sm:col-span-4 row-span-2">
                     <div class="w-full h-full border rounded-lg p-3">
                         <div class="flex items-center justify-between mb-5">
-                            <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Category</h5>
+                            <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Product Group</h5>
                             {{-- <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
                                 View others
                             </a> --}}
