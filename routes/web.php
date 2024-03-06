@@ -301,7 +301,6 @@ Route::prefix('admin/catalogproduct')->controller(AdminCatalogproductController:
     Route::get('show/dropdown', 'showOnDropdown')->name('admin.catalogproduct.show.dropdown');
     Route::get('show/datatable', 'showDatatable')->name('admin.catalogproduct.main.table');
     Route::post('catalogproduct/import', 'importExcel')->name('catalogproduct.import');
-
 });
 
 Route::resource('frontend/catalogproduct', FrontendCatalogproductController::class)->names([
@@ -356,28 +355,39 @@ Route::prefix('prodin')->controller(ProdinController::class)->group(function () 
     // Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
 });
 
-Route::resource('inventory/prodout', ProdoutController::class)->names([
-    'index' => 'inventory.prodout.index',
-    'create' => 'inventory.prodout.create',
-    'store' => 'inventory.prodout.store',
-    'show' => 'inventory.prodout.show',
-    'edit' => 'inventory.prodout.edit',
-    'update' => 'inventory.prodout.update',
-    'destroy' => 'inventory.prodout.destroy',
-]);
+Route::prefix('inventory/prodout')
+    ->controller(ProdoutController::class)
+    ->name('inventory.prodout.')
+    ->group(function () {
+        Route::resource('/',ProdoutController::class)->parameters(['' => 'prodout']);
+        Route::get('show/dropdown', 'showOnDropdown')->name('show.dropdown');
+        Route::get('show/datatable', 'showDatatable')->name('main.table');
+        Route::get('loadprofile/product_name', 'loadprofilefromproduct_name')->name('loadprofile.product_name');
+    });
 
-Route::resource('prodout', ProdoutController::class);
-Route::prefix('prodout')->controller(ProdoutController::class)->group(function () {
-    Route::get('show/dropdown', 'showOnDropdown')->name('prodout.show.dropdown');
-    Route::get('show/datatable', 'showDatatable')->name('prodout.main.table');
-    Route::get('loadprofile/product_name', 'loadprofilefromproduct_name')->name('prodout.loadprofile.product_name');
+// Route::resource('inventory/prodout', ProdoutController::class)->names([
+//     'index' => 'inventory.prodout.index',
+//     'create' => 'inventory.prodout.create',
+//     'store' => 'inventory.prodout.store',
+//     'show' => 'inventory.prodout.show',
+//     'edit' => 'inventory.prodout.edit',
+//     'update' => 'inventory.prodout.update',
+//     'destroy' => 'inventory.prodout.destroy',
+// ]);
+
+// Route::resource('prodout', ProdoutController::class);
+
+// Route::prefix('prodout')->controller(ProdoutController::class)->group(function () {
+//     Route::get('show/dropdown', 'showOnDropdown')->name('prodout.show.dropdown');
+//     Route::get('show/datatable', 'showDatatable')->name('prodout.main.table');
+//     Route::get('loadprofile/product_name', 'loadprofilefromproduct_name')->name('prodout.loadprofile.product_name');
 
     // Route::get('eproccodeitem/export', 'exportExcel')->name('eproccodeitem.export');
     // Route::post('eproccodeitem/import', 'importExcel')->name('eproccodeitem.import');
     // Route::get('/eproccodeitem/{id}', 'cetakPdf')->name('eproccodeitem.pdf');
     // Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
 
-});
+// });
 
 Route::prefix('catalog')
     ->name('catalog.')

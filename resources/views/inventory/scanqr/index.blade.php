@@ -52,7 +52,14 @@
                                                 Actual Stock
                                             </p>
                                             <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                <span id="product_stockactual">-</span>
+                                                {{-- <span id="product_stockactual">-</span> --}}
+                                                {{-- <input type="text" class=""> --}}
+                                                <input type="text" 
+                                                    id="asset_code" 
+                                                    name="asset_code" 
+                                                    class="bg-gray-50 sm:p-2 p-1 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full" 
+                                                    required="" 
+                                                    placeholder="Enter Actual Quantity">
                                             </p>
                                         </div>
                                     </div>
@@ -114,9 +121,8 @@
                 },
                 dataType: "json",
                 success: function (response) {
-                    console.log(response);
-
                     $('#product_description').text('').text(response.product_description);
+                    $('#product_stockcurrent').text('').text(response.product_stockcurrent);
                 }
             });
         }

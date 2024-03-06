@@ -34,7 +34,8 @@
                             </div>
                         </div>
                         <div class="px-5 py-5">
-                            <a href="#" class="text-lg font-normal text-heading text-hover-primary mb-2 inline-block leading-none">{{ $catalogproduct->product_name }}</a>
+                            <a href="#" class="text-sm font-normal text-heading text-hover-primary mb-2 inline-block leading-none">{{ $catalogproduct->product_name }}</a>
+                            <p><a href="#" class="text-xs font-normal text-slate-500 text-heading text-hover-primary mb-2 inline-block leading-none">{{ $catalogproduct->productgroup_code }}</a></p>
                             <div class="flex items-center space-x-1 text-sm mb-5">
                                 {{-- <span class="text-yellow-300 flex items-center space-x-1">
                                     <i class="fa-solid fa-star"></i>
@@ -45,7 +46,7 @@
                                 </span> --}}
                             </div>
                             <div class="leading-none mb-2">
-                                <span class="text-base font-medium text-black">Rp. {{ $catalogproduct->product_price }}</span>
+                                <span class="text-base font-medium text-black">Rp. {{number_format($catalogproduct->product_price)}}</span>
                             </div>
                         </div>
                     </div>

@@ -177,7 +177,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="bg-white dark:bg-gray-800">
+                                        @foreach ($stockList as $stock)
+                                            <tr class="bg-white dark:bg-gray-800">
+                                                <th scope="row"
+                                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {{$stock['productName']}}
+                                                </th>
+                                                <td class="px-6 py-4">
+                                                    {{$stock['qty']}}
+                                                </td>
+                                                <td class="px-6 py-4 flex justify-between">
+                                                    <span>Rp.</span>
+                                                    {{$stock['price']}}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        {{-- <tr class="bg-white dark:bg-gray-800">
                                             <th scope="row"
                                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 Apple MacBook Pro 17"
@@ -212,13 +227,13 @@
                                             <td class="px-6 py-4">
                                                 $99
                                             </td>
-                                        </tr>
+                                        </tr> --}}
                                     </tbody>
-                                    <tfoot>
+                                    <tfoot class="border-t border-gray-300">
                                         <tr class="font-semibold text-gray-900 dark:text-white">
                                             <th scope="row" class="px-6 py-3 text-base">Total</th>
-                                            <td class="px-6 py-3">3</td>
-                                            <td class="px-6 py-3">21,000</td>
+                                            <td class="px-6 py-3 total-stock-qty">0</td>
+                                            <td class="px-6 py-3 text-right total-stock-price">0</td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -239,7 +254,23 @@
                             <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="height: 300px; overflow: auto;">
                                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     <tbody>
-                                        <tr
+                                        @foreach ($lowStockList as $minStock)
+                                            <tr
+                                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    <img class="w-14 md:w-14 max-w-full max-h-full rounded-full" src="{{asset($minStock['productImage'])}}" alt="{{$minStock['productName']}}">
+                                                    <div class="ps-3">
+                                                        <div class="text-base font-semibold">{{$minStock['productName']}}</div>
+                                                        <div class="font-normal text-gray-500">{{$minStock['productGroup']}}</div>
+                                                    </div>
+                                                </th>
+                                                <td class="px-6 py-4">
+                                                    <a href="#"
+                                                        class="font-medium text-red-600 dark:text-red-500 hover:underline">Low</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        {{-- <tr
                                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                             <th scope="row" class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 <img class="w-14 md:w-14 max-w-full max-h-full rounded-full" src="{{ asset('theme/assets/images/apple-watch.jpg') }}" alt="Jese image">
@@ -280,7 +311,7 @@
                                                 <a href="#"
                                                     class="font-medium text-red-600 dark:text-red-500 hover:underline">Low</a>
                                             </td>
-                                        </tr>
+                                        </tr> --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -337,10 +368,13 @@
         );
 
         $(document).ready(function() {
+            var productGroupTitle = @json($productGroupTitle);
+
             var options = {
                 series: [{
-                    name: 'Inflation',
-                    data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2]
+                    name: 'Product Group',
+                    data: productGroupTitle.map(item => item[0])
+                    // data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2]
                 }],
                 chart: {
                     height: 350,
@@ -366,10 +400,9 @@
                     }
                 },
                 xaxis: {
-                    categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
-                        "Dec"
-                    ],
-                    position: 'top',
+                    categories: productGroupTitle.map(item => item[1]),
+                    // categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ],
+                    position: 'bottom',
                     axisBorder: {
                         show: false
                     },
@@ -407,7 +440,7 @@
                     }
                 },
                 title: {
-                    text: 'Monthly Inflation in Argentina, 2002',
+                    text: 'Product Group',
                     floating: true,
                     offsetY: 330,
                     align: 'center',
@@ -421,16 +454,20 @@
             chart.render();
 
             var optionsProductInOut = {
-                series: [{
-                    name: 'Net Profit',
-                    data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-                }, {
-                    name: 'Revenue',
-                    data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-                }, {
-                    name: 'Free Cash Flow',
-                    data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
-                }],
+                series: [
+                    {
+                        name: 'Net Profit',
+                        data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+                    }, 
+                    {
+                        name: 'Revenue',
+                        data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+                    }, 
+                    {
+                        name: 'Free Cash Flow',
+                        data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+                    }
+                ],
                 chart: {
                     type: 'bar',
                     height: 350
@@ -545,6 +582,17 @@
             var chartProductInOutQty = new ApexCharts(document.querySelector("#chartProductInOutQty"),
                 optionsProductInOutQty);
             chartProductInOutQty.render();
+
+            var totalInitialPrice = 0;
+            var totalQuantity = 0;
+
+            $.each(@json($stockList), function(index, item) {
+                totalInitialPrice += parseFloat(item.initialPrice);
+                totalQuantity += parseFloat(item.qty);
+            });
+
+            $('.total-stock-qty').text(totalQuantity);
+            $('.total-stock-price').text(totalInitialPrice.toLocaleString());
         });
 
         const $newModal = document.getElementById('newModal');

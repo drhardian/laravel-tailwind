@@ -470,6 +470,54 @@ class ProdinController extends Controller
 
     public function showDashboard()
     {
-        return view('inventory.prodin.dashboard');
+        $productGroupTitle = [];
+        $catalogs = Catalogproduct::select('productgroup_code')
+            ->selectRaw('COUNT(productgroup_code) AS total_group')
+            ->groupBy('productgroup_code')
+            ->orderBy('total_group','DESC')
+            ->take(10)
+            ->get();
+
+        foreach ($catalogs as $catalog) {
+            $productGroupTitle[] = [
+                $catalog->total_group, 
+                $catalog->productgroup_code
+            ];
+        }
+
+        $lowStockList = [];
+        $getMinStock = Catalogproduct::select('product_minstock','product_name','productgroup_code','product_image')
+            ->whereNot('product_minstock','')
+            ->orderBy('product_minstock','DESC')
+            ->take(3)
+            ->get();
+
+        foreach ($getMinStock as $minStock) {
+            $lowStockList[] = [
+                'productName' => $minStock->product_name,
+                'productGroup' => $minStock->productgroup_code,
+                'productImage' => $minStock->product_image
+            ];
+        }
+
+        $stockList = [];
+        $stockinproducts = Prodin::with('catalogProduct')
+            ->select('catalog_product_id')
+            ->selectRaw('SUM(prodin_stockin) AS stockin')
+            ->whereNot('prodin_stockin','')
+            ->groupBy('catalog_product_id')
+            ->take(3)
+            ->get();
+
+        foreach ($stockinproducts as $stockin) {
+            $stockList[] = [
+                'productName' => $stockin->catalogProduct->product_name,
+                'qty' => $stockin->stockin,
+                'initialPrice' => $stockin->catalogProduct->product_price,
+                'price' => number_format($stockin->catalogProduct->product_price)
+            ];
+        }
+
+        return view('inventory.prodin.dashboard', compact('productGroupTitle','lowStockList','stockList'));
     }
 }

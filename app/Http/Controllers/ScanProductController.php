@@ -17,7 +17,8 @@ class ScanProductController extends Controller
         $catalogProduct = Catalogproduct::where('itemcode',request('id'))->first();
 
         return response()->json([
-            'product_description' => $catalogProduct->product_name
+            'product_description' => $catalogProduct->product_name,
+            'product_stockcurrent' => 48
         ], 200);
     }
 }

@@ -440,7 +440,7 @@
                                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Stock Products In</a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{ route('prodout.index') }}"
+                                                    <a href="{{ route('inventory.prodout.index') }}"
                                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Stock Products Out</a>
                                                 </li>
                                                 <li>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Inventory\Prodin;
 use Illuminate\Http\Request;
 use App\Models\Inventory\Prodout;
+use App\Models\InventoryProductoutTransaction;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -393,43 +394,59 @@ class ProdoutController extends Controller
 
     public function showDatatable()
     {
-        $model = Prodout::select(
-            'id',
-            'prodout_image',
-            'prodout_code',
-            'prodout_owner',
-            'prodout_name',
-            'prodout_supplier',
-            'prodout_brand',
-            'prodoutstock_loc',
-            'prodout_category',
-            'prodout_stock',
-            'prodout_uom',
-            'prodout_stock',
-            'prodout_spec',
-            'date_out',
-            'prodout_price',
-            'prodout_status',
-            'updated_at'
-        );
+        $model = InventoryProductoutTransaction::with('requestedBy')->with('approvedBy');
 
         return DataTables::of($model)
             ->addColumn('actions', function($model) {
-                $show = '<a href="'.route('prodout.show', [ $model->id ]).'"><i class="fa-solid fa-eye cursor-pointer"></i></a>';
-                $edit = '<a href="#" class="px-2" onclick="editRecord(\'' . route('prodout.edit', ['prodout' => $model->id]) . '\')"><i class="fa-solid fa-pen-to-square cursor-pointer"></i></a>';
-                $delete = '<a href="#" class="" onclick="deleteRecord(\'' . route('prodout.destroy', ['prodout' => $model->id]) . '\')"><i class="fa-solid fa-trash cursor-pointer"></i></a>';
+                $show = '<a href="'.route('inventory.prodout.show', [ $model->id ]).'"><i class="fa-solid fa-eye cursor-pointer"></i></a>';
+                $edit = '<a href="#" class="px-2" onclick="editRecord(\'' . route('inventory.prodout.edit', ['prodout' => $model->id]) . '\')"><i class="fa-solid fa-pen-to-square cursor-pointer"></i></a>';
+                $delete = '<a href="#" class="" onclick="deleteRecord(\'' . route('inventory.prodout.destroy', ['prodout' => $model->id]) . '\')"><i class="fa-solid fa-trash cursor-pointer"></i></a>';
                 $actions = '<div class="row flex">'.
                     $show.$edit.$delete.
                     '</div>';
 
                 return $actions;
             })
-            ->editColumn('updated_at', function($model) {
-                return Carbon::parse($model->updated_at)->format('d/m/Y H:i:s');
-            })
             ->rawColumns(['actions'])
-            ->removeColumn('prodouts')
             ->make(true);
+
+        // $model = Prodout::select(
+        //     'id',
+        //     'prodout_image',
+        //     'prodout_code',
+        //     'prodout_owner',
+        //     'prodout_name',
+        //     'prodout_supplier',
+        //     'prodout_brand',
+        //     'prodoutstock_loc',
+        //     'prodout_category',
+        //     'prodout_stock',
+        //     'prodout_uom',
+        //     'prodout_stock',
+        //     'prodout_spec',
+        //     'date_out',
+        //     'prodout_price',
+        //     'prodout_status',
+        //     'updated_at'
+        // );
+
+        // return DataTables::of($model)
+        //     ->addColumn('actions', function($model) {
+        //         $show = '<a href="'.route('prodout.show', [ $model->id ]).'"><i class="fa-solid fa-eye cursor-pointer"></i></a>';
+        //         $edit = '<a href="#" class="px-2" onclick="editRecord(\'' . route('prodout.edit', ['prodout' => $model->id]) . '\')"><i class="fa-solid fa-pen-to-square cursor-pointer"></i></a>';
+        //         $delete = '<a href="#" class="" onclick="deleteRecord(\'' . route('prodout.destroy', ['prodout' => $model->id]) . '\')"><i class="fa-solid fa-trash cursor-pointer"></i></a>';
+        //         $actions = '<div class="row flex">'.
+        //             $show.$edit.$delete.
+        //             '</div>';
+
+        //         return $actions;
+        //     })
+        //     ->editColumn('updated_at', function($model) {
+        //         return Carbon::parse($model->updated_at)->format('d/m/Y H:i:s');
+        //     })
+        //     ->rawColumns(['actions'])
+        //     ->removeColumn('prodouts')
+        //     ->make(true);
     }
 
 }

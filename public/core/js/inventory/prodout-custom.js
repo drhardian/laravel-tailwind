@@ -6,7 +6,7 @@ let closeIco = document.getElementById('closeIco');
 
 openForm = (url) => {
     modalShowAndReset();
-    $('.modal-title').text('New Input Stock Product Out');
+    $('.modal-title').text('New Product Out');
     $('#form_url').val(url);
 }
 
