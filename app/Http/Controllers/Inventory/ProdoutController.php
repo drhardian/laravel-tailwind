@@ -50,6 +50,30 @@ class ProdoutController extends Controller
         ]);
     }
 
+    # Create
+    public function create()
+    {
+        $breadcrumbs = [
+            [
+                'title' => 'Overview',
+                'status' => 'active',
+                'url' => route('inventory.prodout.index'),
+                'icon' => 'fa-solid fa-house fa-sm',
+            ],
+            [
+                'title' => 'New Product Out',
+                'status' => '',
+                'url' => '',
+                'icon' => '',
+            ],
+        ];
+
+        return view('inventory.prodout.create', [
+            'breadcrumbs' => $breadcrumbs,
+            'title' => 'New Product Out'
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -72,7 +96,7 @@ class ProdoutController extends Controller
                 $fileName = 'storage/assets/img/invproductout/' . $fileName;
                 $validatedData['prodout_image'] = $fileName;
             }
-            
+
             $prodout = Prodout::create(
                 array_merge(
                     [
@@ -80,8 +104,8 @@ class ProdoutController extends Controller
                     ],
                 $request->only('prodout_image','prodout_origin','prodout_noref','prodout_code','prodout_owner','prodout_name','prodout_supplier','prodout_brand','prodoutstock_loc','prodout_category','prodout_uom','prodout_remstock','prodout_stock','prodout_spec', 'date_out', 'prodout_price', 'prodout_status')
                 )
-            ); 
-            
+            );
+
             DB::commit();
 
             return response()->json([
@@ -100,12 +124,7 @@ class ProdoutController extends Controller
                 'error' => 'error'
             ], 500);
         }
-
-        // Psvdatamaster::create($validatedData);
-
-        // return redirect()->back()->with('success', 'Psvdatamaster has been created!');
     }
-
 
     /**
      * Display the specified resource.
@@ -159,29 +178,6 @@ class ProdoutController extends Controller
         ], 200);
     }
 
-    //PRINT PDF
-
-    // public function cetakPdf($id)
-    // {
-    //     // Ambil data yang akan dicetak
-    //     $eprocfbo = Eprocfbo::findOrFail($id);
-    //     // \Log::debug($Eprocfbo);
-
-    
-    //     // Cetak PDF dari tampilan (view) 'pdf.view' dengan data yang diambil
-    //     $pdf = PDF::loadView('eproc.eprocfbo.pdfview', compact('eprocfbo'));
-    
-    //     // Opsional: Atur ukuran dan orientasi halaman PDF
-    //     $pdf->setPaper('A4', 'portrait');
-    
-    //     // Opsional: Download PDF dengan nama yang sesuai
-    //     return $pdf->download('eprocfbo.pdf');
-    
-    //     // Tampilkan PDF dalam browser
-    //     return $pdf->stream('eprocfbo.pdf');
-
-    // }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -225,7 +221,7 @@ class ProdoutController extends Controller
             if ($file = $request->file('prodout_image')) {
                 $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
                 $path = 'public/assets/img/invproductout/';
-    
+
                 /**
                  * Delete photo if exists.
                  */
@@ -233,7 +229,7 @@ class ProdoutController extends Controller
                     $result = str_replace('storage/', '', $prodout->prodout_image);
                     Storage::delete('public/' . $result);
                 }
-    
+
                 /**
                  * Store an image to Storage
                  */
@@ -262,42 +258,6 @@ class ProdoutController extends Controller
             ], 500);
         }
     }
-         /**
-         * Handle upload an upload_srf
-         */
-        // \Log::debug($request);
-        // if ($file = $request->file('upload_srf')) {
-        //     $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
-        //     $path = 'public/assets/documents/psv/';
-
-        //     /**
-        //      * Delete upload_srf if exists.
-        //      */
-        //     if($eprocfbo->upload_srf){
-        //         $result = str_replace('storage/', '', $eprocfbo->upload_srf);
-        //         Storage::delete('public/' . $result);
-        //     }
-
-        //     /**
-        //      * Store an upload_srf to Storage
-        //      */
-        //     $file->storeAs($path, $fileName);
-        //     $fileName = 'storage/assets/documents/psv/'.$fileName;
-        //     $validatedData['upload_srf'] = $fileName;
-        // }
-
-    //     eprocfbo::where('id', $eprocfbo->id)->update($validatedData);
-    // //     return response()->json([
-    //         'message' => 'eprocfbo successfully updated'
-    //     ], 200);
-    // } catch (\Exception $e) {
-    //     DB::rollBack();
-    //     Log::error($e->getMessage());
-
-    //     return response()->json([
-    //         'message' => 'The server encountered an error and could not complete your request'
-    //     ], 500);
-    // }
 
     /**
      * Remove the specified resource from storage.
@@ -327,14 +287,6 @@ class ProdoutController extends Controller
                 'message' => 'The server encountered an error and could not complete your request'
             ], 500);
         }
-        /**
-         * Delete cer_doc if exists.
-         */
-        // if($psvdatamaster->upload_srf){
-        //     $result = str_replace('storage/', '', $psvdatamaster->upload_srf);
-        //         Storage::delete('public/' . $result);
-        // }
-
     }
 
     // public function uploadSrf(Request $request)
@@ -361,7 +313,7 @@ class ProdoutController extends Controller
     // }
 
      /**
-     * EXPORT EXCEL 
+     * EXPORT EXCEL
      */
     // public function exportExcel()
     // {
@@ -371,7 +323,7 @@ class ProdoutController extends Controller
     // }
 
     //  /**
-    //  * IMPORT EXCEL 
+    //  * IMPORT EXCEL
     //  */
     // public function importExcel(Request $request)
     // {
@@ -409,44 +361,6 @@ class ProdoutController extends Controller
             })
             ->rawColumns(['actions'])
             ->make(true);
-
-        // $model = Prodout::select(
-        //     'id',
-        //     'prodout_image',
-        //     'prodout_code',
-        //     'prodout_owner',
-        //     'prodout_name',
-        //     'prodout_supplier',
-        //     'prodout_brand',
-        //     'prodoutstock_loc',
-        //     'prodout_category',
-        //     'prodout_stock',
-        //     'prodout_uom',
-        //     'prodout_stock',
-        //     'prodout_spec',
-        //     'date_out',
-        //     'prodout_price',
-        //     'prodout_status',
-        //     'updated_at'
-        // );
-
-        // return DataTables::of($model)
-        //     ->addColumn('actions', function($model) {
-        //         $show = '<a href="'.route('prodout.show', [ $model->id ]).'"><i class="fa-solid fa-eye cursor-pointer"></i></a>';
-        //         $edit = '<a href="#" class="px-2" onclick="editRecord(\'' . route('prodout.edit', ['prodout' => $model->id]) . '\')"><i class="fa-solid fa-pen-to-square cursor-pointer"></i></a>';
-        //         $delete = '<a href="#" class="" onclick="deleteRecord(\'' . route('prodout.destroy', ['prodout' => $model->id]) . '\')"><i class="fa-solid fa-trash cursor-pointer"></i></a>';
-        //         $actions = '<div class="row flex">'.
-        //             $show.$edit.$delete.
-        //             '</div>';
-
-        //         return $actions;
-        //     })
-        //     ->editColumn('updated_at', function($model) {
-        //         return Carbon::parse($model->updated_at)->format('d/m/Y H:i:s');
-        //     })
-        //     ->rawColumns(['actions'])
-        //     ->removeColumn('prodouts')
-        //     ->make(true);
     }
 
 }

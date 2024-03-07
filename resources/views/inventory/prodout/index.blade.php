@@ -24,10 +24,11 @@
                         class="text-white bg-yellow-400 sm:block hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
                         <i class="fa-solid fa-file-export"></i> Export
                     </a>
-                    <button type="button" id="newBtn" onclick="openForm(`{{ route('inventory.prodout.store') }}`)"
+
+                    <a href="{{ route('inventory.prodout.create') }}" id="newBtn"
                         class="text-white bg-blue-700 sm:block hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <i class="fa-solid fa-plus"></i> New
-                    </button>
+                    </a>
                 </div>
             </div>
 
@@ -238,6 +239,7 @@
                                     class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
                             </div>
                         </div>
+                    </form>
                 </div>
             </div>
             </form>
@@ -329,8 +331,6 @@
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
         $(document).ready(function() {
-            modal.show();
-
             $('#main-table').DataTable({
                 language: {
                     processing: "Loading. Please wait..."
@@ -551,21 +551,21 @@
             });
         });
 
-        addItemToRow = () => {
-            var selectedId = $('#selected_product').val();
-            var selectedText = $('#selected_product option:selected').text();
+        // addItemToRow = () => {
+        //     var selectedId = $('#selected_product').val();
+        //     var selectedText = $('#selected_product option:selected').text();
 
-            console.log([selectedId,selectedText]);
+        //     console.log([selectedId,selectedText]);
 
-            $('#stockout_product_rows').html('');
-            $('#stockout_product_rows').prepend('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">'+
-                                                    '<input type="text" value="'+selectedId+'">'
-                                                    '<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">'+
-                                                        selectedText
-                                                    '</th>'+
-                                                    '<td class="px-6 py-4">'+
-                                                    '</td>'+
-                                                '</tr>');
-        }
+        //     $('#stockout_product_rows').html('');
+        //     $('#stockout_product_rows').prepend('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">'+
+        //                                             '<input type="text" value="'+selectedId+'">'
+        //                                             '<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">'+
+        //                                                 selectedText
+        //                                             '</th>'+
+        //                                             '<td class="px-6 py-4">'+
+        //                                             '</td>'+
+        //                                         '</tr>');
+        // }
     </script>
 @endsection
