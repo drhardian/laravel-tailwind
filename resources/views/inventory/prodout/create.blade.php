@@ -53,7 +53,7 @@
                                 <div class="mb-6">
                                     <div class="row sm:flex">
                                         <div class="sm:w-1/2 w-full sm:pr-2">
-                                            <label for="date_out"
+                                            <label for="date_request"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date
                                                 Request</label>
                                             <div class="relative">
@@ -66,10 +66,11 @@
                                                             d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                                     </svg>
                                                 </div>
-                                                <input datepicker id="date_out" datepicker-format="dd/mm/yyyy"
-                                                    name="date_out" type="text"
+                                                <input datepicker id="date_request" datepicker-format="dd/mm/yyyy"
+                                                    name="date_request" type="text"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="Select date">
+                                                    placeholder="Select date"
+                                                    autocomplete="off">
                                             </div>
                                         </div>
                                         <div class="sm:w-1/2 w-full sm:pr-2">
@@ -89,7 +90,8 @@
                                                 <input datepicker id="date_out" datepicker-format="dd/mm/yyyy"
                                                     name="date_out" type="text"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="Select date">
+                                                    placeholder="Select date"
+                                                    autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -101,9 +103,8 @@
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Requested
                                                 By</label>
                                             <select id="requested_by" name="requested_by" class="select2-general-dropdown"
-                                                data-show="{{ route('general.options.showondropdown') }}"
-                                                data-store="{{ route('general.options.storefromdropdown') }}"
-                                                data-alias="prodout-owner" data-change="true" data-form="Enter Owner">
+                                                data-show="{{ route('employee.show.dropdown') }}"
+                                                data-change="false">
                                             </select>
                                         </div>
                                         <div class="sm:w-1/2 w-full sm:pr-2">
@@ -111,9 +112,8 @@
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Approved
                                                 By</label>
                                             <select id="approved_by" name="approved_by" class="select2-general-dropdown"
-                                                data-show="{{ route('general.options.showondropdown') }}"
-                                                data-store="{{ route('general.options.storefromdropdown') }}"
-                                                data-alias="prodout-owner" data-change="true" data-form="Enter Owner">
+                                                data-show="{{ route('employee.show.dropdown') }}"
+                                                data-change="false">
                                             </select>
                                         </div>
                                     </div>
@@ -314,7 +314,7 @@
                 selectedText +
                 '</th>' +
                 '<td class="px-6 py-2">' +
-                '<input type="number" id="qty_out" name="qty_out" class="bg-gray-50 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full">' +
+                '<input type="number" id="qty_out" name="qty_out_' + selectedId + '" class="bg-gray-50 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full">' +
                 '</td>' +
                 '<td class="px-6 py-2"><i class="fa-solid fa-trash-can fa-lg cursor-pointer" onclick="removeMyRow(this)"></i></i></td>' +
                 '</tr>');
@@ -347,7 +347,7 @@
 
                     $.ajax({
                         type: "post",
-                        url: "{{ route('inventory.prodout.store') }}",
+                        url: "{{ route('inventory.product.out.store') }}",
                         data: formData,
                         contentType: false,
                         processData: false,
@@ -365,10 +365,9 @@
                             })
                         },
                         success: function(response) {
-                            Swal.close();
-                            modalHideAndReset();
                             toastr.success(response.message);
-                            $('#main-table').DataTable().ajax.reload();
+
+                            window.location.href = "{{ route('inventory.product.out.index') }}";
                         },
                         error: function(response) {
                             Swal.close();

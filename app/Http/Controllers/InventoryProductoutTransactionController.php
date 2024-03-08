@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\InventoryProductoutTransaction;
 use App\Http\Requests\StoreInventoryProductoutTransactionRequest;
 use App\Http\Requests\UpdateInventoryProductoutTransactionRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class InventoryProductoutTransactionController extends Controller
 {
@@ -29,7 +31,32 @@ class InventoryProductoutTransactionController extends Controller
      */
     public function store(StoreInventoryProductoutTransactionRequest $request)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $documentNumber = "INVO/" . date('Y') . "/" . InventoryProductoutTransaction::max('id');
+
+            InventoryProductoutTransaction::create([
+                'document_number' => $documentNumber,
+                'request_date' => $request->request_date,
+                'productout_date' => $request->productout_date,
+                'requested_by' => $request->requested_by,
+                'approved_by' => $request->approved_by,
+                'status' => $request->status
+            ]);
+
+            DB::commit();
+
+            return redirect()->route('inventory-productout-transactions.index')->with('success', 'Data has been saved');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to save data',
+            ], 500);
+        }
     }
 
     /**

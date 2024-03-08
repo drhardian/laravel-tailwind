@@ -35,12 +35,10 @@ use App\Http\Controllers\Catalog\Admin\CatalogDropdownCodeitemController;
 use App\Http\Controllers\Catalog\Admin\CatalogproductController as AdminCatalogproductController;
 use App\Http\Controllers\Catalog\Admin\CatalogDropdownProductController;
 use App\Http\Controllers\Catalog\Frontend\CatalogproductController as FrontendCatalogproductController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\Inventory\ProdinController;
 use App\Http\Controllers\Inventory\ProdoutController;
-
-
-
-
+use App\Http\Controllers\InventoryProductoutTransactionController;
 use App\Http\Controllers\PsvMasterData\PdfController;
 use App\Http\Controllers\ScanProductController;
 use App\Models\Eproc\Catalog;
@@ -363,6 +361,20 @@ Route::prefix('inventory/prodout')
         Route::get('show/dropdown', 'showOnDropdown')->name('show.dropdown');
         Route::get('show/datatable', 'showDatatable')->name('main.table');
         Route::get('loadprofile/product_name', 'loadprofilefromproduct_name')->name('loadprofile.product_name');
+    });
+
+Route::prefix('inventory/product/out')
+    ->controller(InventoryProductoutTransactionController::class)
+    ->name('inventory.product.out.')
+    ->group(function () {
+        Route::resource('/',InventoryProductoutTransactionController::class)->parameters(['' => 'productout']);
+    });
+
+Route::prefix('employee')
+    ->controller(EmployeeController::class)
+    ->name('employee.')
+    ->group(function () {
+        Route::get('show/dropdown', 'showOnDropdown')->name('show.dropdown');
     });
 
 // Route::resource('inventory/prodout', ProdoutController::class)->names([

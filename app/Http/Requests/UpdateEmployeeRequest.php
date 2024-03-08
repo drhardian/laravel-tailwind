@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreInventoryProductoutTransactionRequest extends FormRequest
+class UpdateEmployeeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,11 +22,7 @@ class StoreInventoryProductoutTransactionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date_request' => 'required|date_format:d/m/Y',
-            'date_out' => 'required|date_format:d/m/Y',
-            'requested_by' => 'required|exists:employees,id',
-            'approved_by' => 'required|exists:employees,id',
-            'product_id' => 'required|array'
+            //
         ];
     }
 }
