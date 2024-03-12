@@ -69,8 +69,8 @@
                                                 <input datepicker id="date_request" datepicker-format="dd/mm/yyyy"
                                                     name="date_request" type="text"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="Select date"
-                                                    autocomplete="off">
+                                                    placeholder="Select date" autocomplete="off"
+                                                    value="{{ \Carbon\Carbon::now()->format('d/m/Y') }}">
                                             </div>
                                         </div>
                                         <div class="sm:w-1/2 w-full sm:pr-2">
@@ -90,8 +90,8 @@
                                                 <input datepicker id="date_out" datepicker-format="dd/mm/yyyy"
                                                     name="date_out" type="text"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="Select date"
-                                                    autocomplete="off">
+                                                    placeholder="Select date" autocomplete="off"
+                                                    value="{{ \Carbon\Carbon::now()->format('d/m/Y') }}">
                                             </div>
                                         </div>
                                     </div>
@@ -103,8 +103,7 @@
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Requested
                                                 By</label>
                                             <select id="requested_by" name="requested_by" class="select2-general-dropdown"
-                                                data-show="{{ route('employee.show.dropdown') }}"
-                                                data-change="false">
+                                                data-show="{{ route('employee.show.dropdown') }}" data-change="false">
                                             </select>
                                         </div>
                                         <div class="sm:w-1/2 w-full sm:pr-2">
@@ -112,8 +111,7 @@
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Approved
                                                 By</label>
                                             <select id="approved_by" name="approved_by" class="select2-general-dropdown"
-                                                data-show="{{ route('employee.show.dropdown') }}"
-                                                data-change="false">
+                                                data-show="{{ route('employee.show.dropdown') }}" data-change="false">
                                             </select>
                                         </div>
                                     </div>
@@ -314,7 +312,8 @@
                 selectedText +
                 '</th>' +
                 '<td class="px-6 py-2">' +
-                '<input type="number" id="qty_out" name="qty_out_' + selectedId + '" class="bg-gray-50 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full">' +
+                '<input type="number" id="qty_out" name="qty_out_' + selectedId +
+                '" class="bg-gray-50 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full">' +
                 '</td>' +
                 '<td class="px-6 py-2"><i class="fa-solid fa-trash-can fa-lg cursor-pointer" onclick="removeMyRow(this)"></i></i></td>' +
                 '</tr>');
@@ -438,7 +437,7 @@
             }
             // Assign buffer to file input
             document.getElementById("photo_devices").files = fileBuffer
-            .files; // <-- according to your file input reference
+                .files; // <-- according to your file input reference
         }
     </script>
 @endsection

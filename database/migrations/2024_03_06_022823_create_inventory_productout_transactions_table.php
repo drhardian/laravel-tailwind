@@ -21,8 +21,8 @@ return new class extends Migration
             $table->boolean('status');
             $table->timestamps();
 
-            $table->foreign('requested_by')->references('id')->on('users');
-            $table->foreign('approved_by')->references('id')->on('users');
+            $table->foreign('requested_by')->references('id')->on('employees');
+            $table->foreign('approved_by')->references('id')->on('employees');
         });
     }
 

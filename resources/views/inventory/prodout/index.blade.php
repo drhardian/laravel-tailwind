@@ -42,7 +42,7 @@
                             <th>Date Out</th>
                             <th>Requested By</th>
                             <th>Approved By</th>
-                            <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -340,69 +340,20 @@
                 serverSide: true,
                 deferRender: true,
                 ajax: {
-                    url: "{{ route('inventory.prodout.main.table') }}",
+                    url: "{{ route('inventory.product.out.main.table') }}",
                 },
                 columns: [
+                    { data: 'expanded', name: 'expanded' },
                     { data: 'document_number', name: 'document_number' },
                     { data: 'request_date', name: 'request_date' },
                     { data: 'productout_date', name: 'productout_date' },
-                    { data: 'requestedBy.name', name: 'requestedBy.name' },
-                    { data: 'approvedBy.name', name: 'approvedBy.name' },
-                    { data: 'status', name: 'status' },
-
-                    //     className: ['text-center', 'min-tablet']
-                    // }
-                    // { data: 'prodout_image', name: 'prodout_image',
-                    //     className: ['text-center', 'min-tablet']
-                    // },
-                    // {
-                    //     data: 'prodout_name',
-                    //     name: 'prodout_name',
-                    //     class: 'all'
-                    // },
-                    // {
-                    //     data: 'prodout_price',
-                    //     name: 'prodout_price',
-                    //     className: 'all'
-                    // },
-                    // {
-                    //     data: 'prodout_stock',
-                    //     name: 'prodout_stock',
-                    //     className: 'all'
-                    // },
-                    // {
-                    //     data: 'date_out',
-                    //     name: 'date_out',
-                    //     className: 'all'
-                    // },
-                    // {
-                    //     data: 'prodout_category',
-                    //     name: 'prodout_category',
-                    //     className: 'all'
-                    // },
-                    // {
-                    //     data: 'prodout_status',
-                    //     name: 'prodout_status',
-                    //     className: 'all'
-                    // },
-                    // {
-                    //     data: 'updated_at',
-                    //     name: 'updated_at',
-                    //     class: ['text-center', 'min-tablet']
-                    // },
-                    // {
-                    //     data: 'actions',
-                    //     name: 'actions',
-                    //     class: ['text-center', 'min-tablet'],
-                    //     orderable: false,
-                    //     sortable: false,
-                    // },
+                    { data: 'requested_by', name: 'requested_by' },
+                    { data: 'approved_by', name: 'approved_by' },
+                    { data: 'actions', name: 'actions' },
                 ],
                 columnDefs: [
-                    // {
-                    //     target: [0, 1, 2, 3, 4, 5],
-                    //     className: "dt-head-center",
-                    // },
+                    { sortable: false, orderable: false, targets: [0] },
+                    { className: "dt-center", target: [0,2,3,6] },
                     // {
                     //     target: [5],
                     //     width: "5%",
@@ -411,7 +362,8 @@
                     //     target: [0, 1, 3, 5],
                     //     className: "dt-center",
                     // },
-                ]
+                ],
+                order: []
             });
 
             $('.select2-general-dropdown').select2({

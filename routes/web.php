@@ -36,6 +36,7 @@ use App\Http\Controllers\Catalog\Admin\CatalogproductController as AdminCatalogp
 use App\Http\Controllers\Catalog\Admin\CatalogDropdownProductController;
 use App\Http\Controllers\Catalog\Frontend\CatalogproductController as FrontendCatalogproductController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\FiregasAssetController;
 use App\Http\Controllers\Inventory\ProdinController;
 use App\Http\Controllers\Inventory\ProdoutController;
 use App\Http\Controllers\InventoryProductoutTransactionController;
@@ -367,7 +368,8 @@ Route::prefix('inventory/product/out')
     ->controller(InventoryProductoutTransactionController::class)
     ->name('inventory.product.out.')
     ->group(function () {
-        Route::resource('/',InventoryProductoutTransactionController::class)->parameters(['' => 'productout']);
+        Route::resource('/',InventoryProductoutTransactionController::class)->parameters(['' => 'inventoryProductoutTransaction']);
+        Route::get('show/datatable', 'showDatatable')->name('main.table');
     });
 
 Route::prefix('employee')
@@ -465,5 +467,13 @@ Route::prefix('valverepair/optionalservices')
 
         Route::get('valvepretest/materialverification/{scopeofworkid}', 'getMaterialverification')->name('get.materialverification');
         Route::put('valvepretest/materialverification/{optionalservice}', 'updateMaterialverification')->name('update.materialverification');
+    });
 
+# Fire Gas Asset
+Route::prefix('firegas')
+    ->controller(FiregasAssetController::class)
+    ->name('firegas.')
+    ->group(function () {
+        Route::resource('/', FiregasAssetController::class)->parameters(['' => 'firegasAsset']);
+        Route::get('/show/datatable', 'showDatatable')->name('main.table');
     });

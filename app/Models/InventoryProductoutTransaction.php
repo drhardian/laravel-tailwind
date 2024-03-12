@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class InventoryProductoutTransaction extends Model
 {
     use HasFactory;
-    protected $fillable = ['document_number','request_date','productout_date'];
+    protected $fillable = ['document_number','request_date','productout_date','requested_by','approved_by','status'];
 
     /**
      * Get the requestedBy that owns the InventoryProductoutTransaction
@@ -18,7 +19,7 @@ class InventoryProductoutTransaction extends Model
      */
     public function requestedBy(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'requested_by', 'id');
+        return $this->belongsTo(Employee::class, 'requested_by', 'id');
     }
 
     /**
@@ -28,6 +29,6 @@ class InventoryProductoutTransaction extends Model
      */
     public function approvedBy(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'approved_by', 'id');
+        return $this->belongsTo(Employee::class, 'approved_by', 'id');
     }
 }

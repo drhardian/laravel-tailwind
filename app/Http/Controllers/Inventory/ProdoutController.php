@@ -359,6 +359,15 @@ class ProdoutController extends Controller
 
                 return $actions;
             })
+            ->addColumn('expanded', function($model) { return ''; })
+            ->editColumn('request_date', function($model) {
+                return Carbon::parse($model->request_date)->format('d/m/Y');
+            })
+            ->editColumn('productout_date', function($model) {
+                return Carbon::parse($model->productout_date)->format('d/m/Y');
+            })
+            ->addColumn('requested_by', function($model) { return $model->requestedBy->name; })
+            ->addColumn('approved_by', function($model) { return $model->approvedBy->name; })
             ->rawColumns(['actions'])
             ->make(true);
     }
