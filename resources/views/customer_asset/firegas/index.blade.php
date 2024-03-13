@@ -15,19 +15,14 @@
                 @endunless
 
                 <div class="flex space-x-3"> <!-- Container untuk tombol-tombol -->
-                    <button type="button" onclick="openUploadForm()"
-                        class="text-white bg-green-700 sm:block hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                        <i class="fa-solid fa-file-import"></i> Import
+                    <button type="button" onclick="openUploadModalForm()"
+                        class="text-white bg-green-500 sm:block hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-md text-sm px-3 py-2 text-center md:mr-0">
+                        <i class="fa-solid fa-file-import mr-1"></i> Import
                     </button>
 
-                    <a id="newBtn" {{-- <a id="newBtn" href="{{ route('psvdatamaster.export') }}" download="exported-data.csv" --}}
-                        class="text-white bg-yellow-400 sm:block hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
-                        <i class="fa-solid fa-file-export"></i> Export
-                    </a>
-
-                    <a href="{{ route('inventory.prodout.create') }}" id="newBtn"
-                        class="text-white bg-blue-700 sm:block hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        <i class="fa-solid fa-plus"></i> New
+                    <a href="{{ route('firegas.create') }}" id="newBtn"
+                        class="text-white bg-blue-600 sm:block hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-3 py-2 text-center md:mr-0">
+                        <i class="fa-solid fa-plus-circle mr-2"></i> New
                     </a>
                 </div>
             </div>
@@ -76,7 +71,7 @@
                 <!-- Modal header -->
                 <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Upload File</h3>
-                    <button type="button" id="closeUploadXlsIco"
+                    <button type="button" onclick="uploadExcelModal.hide()"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -108,8 +103,8 @@
                                 onclick="$('#warning-alert-activity').removeClass('flex').addClass('hidden')"
                                 aria-label="Close">
                                 <span class="sr-only">Close</span>
-                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 14 14">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 14 14">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                 </svg>
@@ -122,7 +117,7 @@
                         <div class="mb-6">
                             <label for="name"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">File</label>
-                            <input type="file" id="filexls" name="filexls"
+                            <input type="file" id="file" name="file"
                                 accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
@@ -133,7 +128,7 @@
                     <button id="saveFormBtn" type="button"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         onClick="uploadFile()">Upload</button>
-                    <button type="button" id="cancelUploadBtn"
+                    <button type="button" onclick="uploadExcelModal.hide()"
                         class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
                 </div>
             </div>
@@ -143,7 +138,8 @@
 
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/datepicker.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js">
+    </script>
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
@@ -159,38 +155,155 @@
                 ajax: {
                     url: "{{ route('firegas.main.table') }}",
                 },
-                columns: [
-                    { data: 'area', name: 'area' },
-                    { data: 'subarea', name: 'subarea', },
-                    { data: 'platform', name: 'platform', },
-                    { data: 'tagnumber', name: 'tagnumber', },
-                    { data: 'sensorlocation', name: 'sensorlocation', },
-                    { data: 'equipment_type', name: 'equipment_type', },
-                    { data: 'integritystatus', name: 'integritystatus', },
-                    { data: 'asset_type', name: 'asset_type', },
-                    { data: 'manufacturer', name: 'manufacturer', },
-                    { data: 'modelnumber', name: 'modelnumber', },
-                    { data: 'partnumber', name: 'partnumber', },
-                    { data: 'serialnumber', name: 'serialnumber', },
-                    { data: 'startup', name: 'startup', },
-                    { data: 'lastexecution', name: 'lastexecution', },
-                    { data: 'totalhours', name: 'totalhours', },
-                    { data: 'numberoftagfailures', name: 'numberoftagfailures', },
-                    { data: 'numberofserialfailures', name: 'numberofserialfailures', },
-                    { data: 'testinterval', name: 'testinterval', },
-                    { data: 'failurerate', name: 'failurerate', },
-                    { data: 'pfd', name: 'pfd', },
-                    { data: 'defecthighlight', name: 'defecthighlight', },
-                    { data: 'remarks', name: 'remarks', },
+                columns: [{
+                        data: 'area',
+                        name: 'area'
+                    },
+                    {
+                        data: 'subarea',
+                        name: 'subarea',
+                    },
+                    {
+                        data: 'platform',
+                        name: 'platform',
+                    },
+                    {
+                        data: 'tagnumber',
+                        name: 'tagnumber',
+                    },
+                    {
+                        data: 'sensorlocation',
+                        name: 'sensorlocation',
+                    },
+                    {
+                        data: 'equipment_type',
+                        name: 'equipment_type',
+                    },
+                    {
+                        data: 'integritystatus',
+                        name: 'integritystatus',
+                    },
+                    {
+                        data: 'asset_type',
+                        name: 'asset_type',
+                    },
+                    {
+                        data: 'manufacturer',
+                        name: 'manufacturer',
+                    },
+                    {
+                        data: 'modelnumber',
+                        name: 'modelnumber',
+                    },
+                    {
+                        data: 'partnumber',
+                        name: 'partnumber',
+                    },
+                    {
+                        data: 'serialnumber',
+                        name: 'serialnumber',
+                    },
+                    {
+                        data: 'startup',
+                        name: 'startup',
+                    },
+                    {
+                        data: 'lastexecution',
+                        name: 'lastexecution',
+                    },
+                    {
+                        data: 'totalhours',
+                        name: 'totalhours',
+                    },
+                    {
+                        data: 'numberoftagfailures',
+                        name: 'numberoftagfailures',
+                    },
+                    {
+                        data: 'numberofserialfailures',
+                        name: 'numberofserialfailures',
+                    },
+                    {
+                        data: 'testinterval',
+                        name: 'testinterval',
+                    },
+                    {
+                        data: 'failurerate',
+                        name: 'failurerate',
+                    },
+                    {
+                        data: 'pfd',
+                        name: 'pfd',
+                    },
+                    {
+                        data: 'defecthighlight',
+                        name: 'defecthighlight',
+                    },
+                    {
+                        data: 'remarks',
+                        name: 'remarks',
+                    },
 
                 ],
-                columnDefs: [
-                    { sortable: false, orderable: false, targets: [0] },
-                    { className: "dt-center", target: [0,2,3,6] },
-                    { className: "tablet-1", target: [7,8,9,10,11,12,13,14,15,16,17,18,19,20,21] },
+                columnDefs: [{
+                        sortable: false,
+                        orderable: false,
+                        targets: [0]
+                    },
+                    {
+                        className: "dt-center",
+                        target: [0, 2, 3, 6]
+                    },
+                    {
+                        className: "tablet-1",
+                        target: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+                    },
                 ],
                 order: []
             });
         });
+
+        const $uploadExcelModal = document.getElementById('uploadExcelModal');
+        const uploadExcelModal = new Modal($uploadExcelModal);
+
+        openUploadModalForm = () => {
+            uploadExcelModal.show();
+        }
+
+        function uploadFile() {
+            var formData = new FormData();
+            formData.append('file', $('#file')[0].files[0]);
+            formData.append('_token', CSRF_TOKEN);
+
+            $.ajax({
+                type: "post",
+                url: "{{ route('firegas.data.import') }}",
+                data: formData,
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                enctype: "multipart/form-data",
+                beforeSend: function() {
+                    Swal.fire({
+                        title: 'Please wait...',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        },
+                    })
+                },
+                success: function(response) {
+                    Swal.close();
+                    toastr.success(response.message);
+                    closeUploadXlsIco.click();
+                    $('#main-table').DataTable().ajax.reload();
+                },
+                error: function(xhr) {
+                    Swal.close();
+                    toastr.error(xhr.responseJSON.message);
+                }
+            });
+        }
     </script>
 @endsection
