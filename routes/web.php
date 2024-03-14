@@ -42,6 +42,7 @@ use App\Http\Controllers\Inventory\ProdoutController;
 
 
 use App\Http\Controllers\PsvMasterData\PdfController;
+use App\Http\Controllers\SiteWalkdown\DashboardSiteWalkdownController;
 use App\Models\Eproc\Catalog;
 use App\Http\Controllers\ValveRepair\CalibrationValveRepairController;
 use App\Http\Controllers\ValveRepair\OptionalServicesController;
@@ -300,7 +301,6 @@ Route::prefix('admin/catalogproduct')->controller(AdminCatalogproductController:
     Route::get('show/dropdown', 'showOnDropdown')->name('admin.catalogproduct.show.dropddown');
     Route::get('show/datatable', 'showDatatable')->name('admin.catalogproduct.main.table');
     Route::post('catalogproduct/import', 'importExcel')->name('catalogproduct.import');
-
 });
 
 
@@ -428,5 +428,11 @@ Route::prefix('valverepair/optionalservices')
 
         Route::get('valvepretest/materialverification/{scopeofworkid}', 'getMaterialverification')->name('get.materialverification');
         Route::put('valvepretest/materialverification/{optionalservice}', 'updateMaterialverification')->name('update.materialverification');
+    });
 
+Route::prefix('sitewalkdown')
+    ->controller(DashboardSiteWalkdownController::class)
+    ->name('sitewalkdown.')
+    ->group(function () {
+        Route::get('/', [DashboardSiteWalkdownController::class, 'index'])->name('index');
     });
