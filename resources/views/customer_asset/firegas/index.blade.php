@@ -296,7 +296,8 @@
                 success: function(response) {
                     Swal.close();
                     toastr.success(response.message);
-                    closeUploadXlsIco.click();
+                    uploadExcelModal.hide();
+
                     $('#main-table').DataTable().ajax.reload();
                 },
                 error: function(xhr) {

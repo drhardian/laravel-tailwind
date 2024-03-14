@@ -27,6 +27,10 @@ class FiregasAsset extends Model
         'numberofserialfailures',
         'testinterval',
         'failurerate',
-        'pfd'
+        'pfd',
+        'integritystatus',
+        'defecthighlight',
+        'remarks',
+        'pm_activity_schedule'
     ];
 }

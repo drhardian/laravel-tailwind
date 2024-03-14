@@ -32,7 +32,7 @@ class FiregasAssetController extends Controller
             [
                 'title' => 'Dashboard',
                 'status' => 'active',
-                'url' => 'dashboard',
+                'url' => route('firegas.dashboard'),
                 'icon' => 'fa-solid fa-house fa-sm',
             ],
             [
@@ -58,7 +58,7 @@ class FiregasAssetController extends Controller
             [
                 'title' => 'Dashboard',
                 'status' => 'active',
-                'url' => 'dashboard',
+                'url' => route('firegas.dashboard'),
                 'icon' => 'fa-solid fa-house fa-sm',
             ],
             [
@@ -130,24 +130,88 @@ class FiregasAssetController extends Controller
 
     public function import(Request $request)
     {
-        // try {
+        try {
             Excel::import(new FiregasDataImport, $request->file('file'));
 
             return response()->json([
                 'message' => 'Data imported successfully'
             ], 200);
-        // } catch (ParseError $e) {
-        //     Log::error($e->getMessage());
+        } catch (ParseError $e) {
+            Log::error($e->getMessage());
 
-        //     return response()->json([
-        //         'message' => $e->getMessage()
-        //     ], 500);
-        // } catch (Exception $e) {
-        //     Log::error($e->getMessage());
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
 
-        //     return response()->json([
-        //         'message' => $e->getMessage()
-        //     ], 500);
-        // }
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function dashboard()
+    {
+        $breadcrumbs = [
+            [
+                'title' => 'Dashboard',
+                'status' => '',
+                'url' => '',
+                'icon' => 'fa-solid fa-house fa-sm',
+            ]
+        ];
+
+        $detailPerArea = [];
+        $areas = FiregasAsset::select('area')
+            ->groupBy('area')
+            ->orderBy('area')
+            ->get();
+
+        foreach ($areas as $area) {
+            $integrityPerAreas = FiregasAsset::select('area','integritystatus')
+                ->selectRaw('COUNT(integritystatus) AS totalStatus')
+                ->where('area',$area->area)
+                ->groupBy('area','integritystatus')
+                ->orderBy('area')
+                ->get();
+
+            $integrityData = [];
+            foreach ($integrityPerAreas as $integrityPerArea) {
+                switch ($integrityPerArea->integritystatus) {
+                    case 'Green':
+                        $color = "#7ab317";
+                        break;
+
+                    case 'Yellow':
+                        $color = "#ffff00";
+                        break;
+
+                    default:
+                        $color = "#d31900";
+                        break;
+                }
+
+                $integrityData[] = (object)[
+                    'name' => $integrityPerArea->integritystatus,
+                    'y' => $integrityPerArea->totalStatus,
+                    'color' => $color
+                ];
+            }
+
+            $detailPerArea[] = [
+                'title' => $area->area,
+                'data' => $integrityData
+            ];
+
+            $integrityData = [];
+        }
+
+        // dd($detailPerArea);
+
+        return view('customer_asset.firegas.dashboard', [
+            'breadcrumbs' => $breadcrumbs,
+            'title' => 'Dashboard'
+        ],compact('areas','detailPerArea'));
     }
 }

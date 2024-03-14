@@ -32,10 +32,10 @@ return new class extends Migration
             $table->double('testinterval')->nullable();
             $table->double('failurerate')->nullable();
             $table->double('pfd')->nullable();
-            $table->string('integritystatus');
+            $table->string('integritystatus')->nullable();
             $table->text('defecthighlight')->nullable();
             $table->text('remarks')->nullable();
-            $table->integer('pm_activity_schedule');
+            $table->integer('pm_activity_schedule')->nullable();
             $table->timestamps();
         });
     }

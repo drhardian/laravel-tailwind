@@ -477,4 +477,5 @@ Route::prefix('firegas')
         Route::resource('/', FiregasAssetController::class)->parameters(['' => 'firegasAsset']);
         Route::get('show/datatable', 'showDatatable')->name('main.table');
         Route::post('file/import', 'import')->name('data.import');
+        Route::get('show/dashboard', 'dashboard')->name('dashboard');
     });

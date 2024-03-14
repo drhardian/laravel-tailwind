@@ -311,7 +311,7 @@
                                                         class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                                                         <ul class="text-sm text-gray-700 dark:text-gray-200">
                                                             <li>
-                                                                <a href="{{ route('psvdashboard') }}"
+                                                                <a href="{{ route('firegas.dashboard') }}"
                                                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Dashboard</a>
                                                             </li>
                                                         </ul>
