@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Area;
+use App\Models\SiteWalkDown\Area;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
@@ -77,7 +77,7 @@ class AreaController extends Controller
     public function storefromselectbox()
     {
         try {
-            $companyId = request('companyId'); 
+            $companyId = request('companyId');
             $newOption = request('newoption');
 
             $areas = Area::select('id','title')

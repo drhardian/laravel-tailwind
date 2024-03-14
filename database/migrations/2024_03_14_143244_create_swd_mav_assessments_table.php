@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mav_assessments', function (Blueprint $table) {
+        Schema::create('swd_mav_assessments', function (Blueprint $table) {
             $table->id();
             $table->foreignUuid('assessment_id')->constrained()->cascadeOnDelete();
             $table->foreignUuid('product_id')->constrained()->cascadeOnDelete();
@@ -60,6 +60,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mav_assessments');
+        Schema::dropIfExists('swd_mav_assessments');
     }
 };

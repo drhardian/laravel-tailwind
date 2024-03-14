@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('location_types', function (Blueprint $table) {
+        Schema::create('swd_location_types', function (Blueprint $table) {
             $table->id();
             $table->string('title')->unique();
             $table->timestamps();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('location_types');
+        Schema::dropIfExists('swd_location_types');
     }
 };

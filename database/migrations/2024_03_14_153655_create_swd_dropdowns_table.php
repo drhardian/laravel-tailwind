@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dropdowns', function (Blueprint $table) {
+        Schema::create('swd_dropdowns', function (Blueprint $table) {
             $table->id();
             $table->string('title')->index('IDX_Title');
             $table->string('alias')->index('IDX_Alias');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dropdowns');
+        Schema::dropIfExists('swd_dropdowns');
     }
 };
