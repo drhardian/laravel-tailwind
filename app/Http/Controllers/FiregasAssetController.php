@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Imports\FiregasDataImport;
 use App\Models\FiregasAsset;
+use App\Models\FiregasSummaryDetector;
+use App\Models\FiregasSummaryIntegrity;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 use Maatwebsite\Excel\Facades\Excel;
 use Exception;
+use Illuminate\Support\Facades\DB;
 use ParseError;
 
 class FiregasAssetController extends Controller
@@ -162,7 +165,7 @@ class FiregasAssetController extends Controller
             ]
         ];
 
-        $detailPerArea = [];
+        $detailPerAreas = [];
         $areas = FiregasAsset::select('area')
             ->groupBy('area')
             ->orderBy('area')
@@ -199,7 +202,7 @@ class FiregasAssetController extends Controller
                 ];
             }
 
-            $detailPerArea[] = [
+            $detailPerAreas[] = [
                 'title' => $area->area,
                 'data' => $integrityData
             ];
@@ -207,11 +210,42 @@ class FiregasAssetController extends Controller
             $integrityData = [];
         }
 
-        // dd($detailPerArea);
+        # Delete all data on table firegas_summary_integrity
+        FiregasSummaryIntegrity::truncate();
+
+        # insert total equipment on table firegas_summary_integrity
+        FiregasSummaryIntegrity::create([
+            'code' => 'TE',
+            'description' => 'TOTAL EQUIPMENT',
+            'total' => FiregasAsset::count()
+        ]);
+
+        # insert equipment defect on table firegas_summary_integrity
+        FiregasSummaryIntegrity::create([
+            'code' => 'ED',
+            'description' => 'EQUIPMENT DEFECT',
+            'total' => FiregasAsset::where('integritystatus','Red')->orWhere('integritystatus','Yellow')->count()
+        ]);
+
+        # insert equipment good on table firegas_summary_integrity
+        FiregasSummaryIntegrity::create([
+            'code' => 'EG',
+            'description' => 'EQUIPMENT GOOD',
+            'total' => FiregasAsset::where('integritystatus','Green')->count()
+        ]);
+
+        # insert integrity on table firegas_summary_integrity
+        FiregasSummaryIntegrity::create([
+            'code' => 'IG',
+            'description' => 'INTEGRITY',
+            'total' => round((FiregasAsset::where('integritystatus','Green')->count() / FiregasAsset::count()) * 100, 2)
+        ]);
+
+        DB::select('CALL SP_FireGas_Summ_Detector');
 
         return view('customer_asset.firegas.dashboard', [
             'breadcrumbs' => $breadcrumbs,
             'title' => 'Dashboard'
-        ],compact('areas','detailPerArea'));
+        ],compact('areas','detailPerAreas'));
     }
 }

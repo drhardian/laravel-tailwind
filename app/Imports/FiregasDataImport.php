@@ -6,9 +6,10 @@ use App\Models\FiregasAsset;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class FiregasDataImport implements ToModel, WithHeadingRow
+class FiregasDataImport implements ToModel, WithHeadingRow, WithChunkReading
 {
     public function model(array $row)
     {
@@ -89,5 +90,10 @@ class FiregasDataImport implements ToModel, WithHeadingRow
         ]);
 
         // print_r($row['integrity_status'].'<br>');
+    }
+
+    public function chunkSize(): int
+    {
+        return 1000;
     }
 }

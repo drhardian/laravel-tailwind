@@ -6,12 +6,45 @@
 
 @section('content')
     <div class="min-h-screen w-full mx-auto max-w-4xl lg:max-w-7xl space-y-2 p-5">
+
+        <div class="relative overflow-x-auto">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 space-x-1">
+                <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                    ASSET INTEGRITY FIRE & GAS SYSTEM
+                    <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse a list of Flowbite products designed to help you work and play, stay organized, get answers, keep in touch, grow your business, and more.</p>
+                </caption>
+                <thead class="text-xs text-gray-700 uppercase bg-gray-100 text-center">
+                    <tr class="divide-x-2 divide-white">
+                        <th scope="col" class="w-1/3 px-6 py-3 rounded-t-lg" style="background-color: #7ab317; color: white">
+                            GREEN
+                        </th>
+                        <th scope="col" class="w-1/3 px-6 py-3 rounded-t-lg" style="background-color: #ffff00;">
+                            YELLOW
+                        </th>
+                        <th scope="col" class="w-1/3 px-6 py-3 rounded-t-lg" style="background-color: #d31900; color: white">
+                            RED
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-white text-center">
+                        <td class="px-4 py-4">
+                            Dapat dioperasikan sesuai Spesifikasi
+                        </td>
+                        <td class="px-4 py-4">
+                            Dapat diOperasikan, Low Performance, ORA, terdapat deffect yang perlu di follow-up
+                        </td>
+                        <td class="px-4 py-4">
+                            Kondisi Rusak, sedang dalam perbaikan
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <!-- General Information -->
         <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow">
-            {{-- <a href="#">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">General Information</h5>
-            </a> --}}
-            <div class="grid grid-cols-2">
+            <div class="grid grid-cols-2 gap-3">
                 @foreach ($areas as $area)
                     <div class="w-full bg-white">
                         <div class="flex flex-col items-center">
@@ -21,69 +54,32 @@
                         </div>
                         <div>
                             <div class="relative overflow-x-auto">
-                                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                <table class="w-full text-sm text-gray-500 border shadow rounded-lg">
                                     <thead
-                                        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                        class="text-xs text-gray-700 uppercase bg-gray-200 ">
                                         <tr>
-                                            <th scope="col" class="px-6 py-3">
-                                                &nbsp;
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                Green
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                Yellow
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                Red
-                                            </th>
+                                            @foreach ($detailPerAreas as $detailPerArea)
+                                                @if ($detailPerArea['title'] === $area->area)
+                                                    @foreach ($detailPerArea['data'] as $totalPerArea)
+                                                        <th scope="col" class="px-6 py-3 text-center">
+                                                            {{$totalPerArea->name}}
+                                                        </th>
+                                                    @endforeach
+                                                @endif
+                                            @endforeach
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                            <th scope="row"
-                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                Apple MacBook Pro 17"
-                                            </th>
-                                            <td class="px-6 py-4">
-                                                Silver
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                Laptop
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                $2999
-                                            </td>
-                                        </tr>
-                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                            <th scope="row"
-                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                Microsoft Surface Pro
-                                            </th>
-                                            <td class="px-6 py-4">
-                                                White
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                Laptop PC
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                $1999
-                                            </td>
-                                        </tr>
-                                        <tr class="bg-white dark:bg-gray-800">
-                                            <th scope="row"
-                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                Magic Mouse 2
-                                            </th>
-                                            <td class="px-6 py-4">
-                                                Black
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                Accessories
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                $99
-                                            </td>
+                                            @foreach ($detailPerAreas as $detailPerArea)
+                                                @if ($detailPerArea['title'] === $area->area)
+                                                    @foreach ($detailPerArea['data'] as $totalPerArea)
+                                                        <td class="px-6 py-4 text-center text-lg">
+                                                            {{$totalPerArea->y}}
+                                                        </td>
+                                                    @endforeach
+                                                @endif
+                                            @endforeach
                                         </tr>
                                     </tbody>
                                 </table>
@@ -101,8 +97,9 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-3d.js"></script>
     <script>
-        var areas = @json($areas);
-        var detailPerAreas = @json($detailPerArea);
+        var detailPerAreas = @json($detailPerAreas);
+
+        console.log(detailPerAreas);
 
         $.each(detailPerAreas, function(index, value) {
             Highcharts.chart(value['title'] + 'Chart', {

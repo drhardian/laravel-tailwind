@@ -37,6 +37,18 @@ return new class extends Migration
             $table->text('remarks')->nullable();
             $table->integer('pm_activity_schedule')->nullable();
             $table->timestamps();
+
+            $table->index('area','idx_area');
+            $table->index('subarea','idx_subarea');
+            $table->index('platform','idx_platform');
+            $table->index('tagnumber','idx_tagnumber');
+            $table->index('sensorlocation','idx_sensorlocation');
+            $table->index('equipment_type','idx_equipmenttype');
+            $table->index('asset_type','idx_assettype');
+            $table->index('manufacturer','idx_manufacturer');
+            $table->index('startup','idx_startup');
+            $table->index('lastexecution','idx_lastexecution');
+            $table->index('integritystatus','idx_integritystatus');
         });
     }
 
