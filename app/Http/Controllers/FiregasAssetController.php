@@ -183,7 +183,7 @@ class FiregasAssetController extends Controller
             foreach ($integrityPerAreas as $integrityPerArea) {
                 switch ($integrityPerArea->integritystatus) {
                     case 'Green':
-                        $color = "#7ab317";
+                        $color = "#00B050";
                         break;
 
                     case 'Yellow':
@@ -243,9 +243,28 @@ class FiregasAssetController extends Controller
 
         DB::select('CALL SP_FireGas_Summ_Detector');
 
+        # Integrity Chart
+        $firegasIntegrityChartData = [];
+        $firegasIntegrities = FiregasSummaryIntegrity::select('code','description','total')
+            ->where('code','ED')
+            ->orWhere('code','EG')
+            ->get();
+
+        foreach ($firegasIntegrities as $firegasIntegrity) {
+            $color = $firegasIntegrity->code === "ED" ? "#d31900" : "#00B050";
+
+            $firegasIntegrityChartData[] = (object)[
+                'name' => $firegasIntegrity->description,
+                'y' => $firegasIntegrity->total,
+                'color' => $color
+            ];
+
+            $color = "";
+        }
+
         return view('customer_asset.firegas.dashboard', [
             'breadcrumbs' => $breadcrumbs,
             'title' => 'Dashboard'
-        ],compact('areas','detailPerAreas'));
+        ],compact('areas','detailPerAreas','firegasIntegrityChartData'));
     }
 }
