@@ -21,16 +21,17 @@ class AuthController extends Controller
     public function authProcess(AuthRequest $request)
     {
         $this->checkTooManyAttempts();
-        
+
         if(Auth::attempt([
-            'username' => $request->username,
+            'email' => $request->email,
             'password' => $request->password
         ])) {
             RateLimiter::clear($this->throttleKey());
-            
+
             $request->session()->regenerate();
 
-            return redirect()->intended('/request_order/dashboard/internal');
+            // return redirect()->intended('/request_order/dashboard/internal');
+            return redirect()->intended('home');
         }
 
         RateLimiter::hit($this->throttleKey(), 60);
@@ -60,10 +61,10 @@ class AuthController extends Controller
     {
         try {
             Auth::logout();
-    
+
             $request->session()->invalidate();
             $request->session()->regenerate();
-    
+
             return redirect('/');
         } catch (\Throwable $th) {
             abort(500);
