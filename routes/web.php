@@ -66,6 +66,7 @@ Route::prefix('auth')
     ->controller(AuthController::class)
     ->group(function () {
         Route::post('process', 'authProcess')->name('auth.process');
+        Route::get('login', 'authLogin')->name('auth.login');
         Route::get('logout', 'authLogout')->name('auth.logout');
     });
 
