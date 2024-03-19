@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Imports\FiregasDataImport;
 use App\Models\FiregasAsset;
 use App\Models\FiregasSummaryDetector;
+use App\Models\FiregasSummaryFlow;
 use App\Models\FiregasSummaryIntegrity;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -242,6 +243,7 @@ class FiregasAssetController extends Controller
         ]);
 
         DB::select('CALL SP_FireGas_Summ_Detector');
+        DB::select('CALL SP_FireGas_Summ_Flow');
 
         # Integrity Chart
         $firegasIntegrityChartData = [];
@@ -262,9 +264,18 @@ class FiregasAssetController extends Controller
             $color = "";
         }
 
+        $firegasIntegrityResumes = FiregasSummaryIntegrity::select('code','description','total')
+            ->where('code','TE')
+            ->orWhere('code','IG')
+            ->orderBy('code','desc')
+            ->get();
+
+        $firegasSummDetectors = FiregasSummaryDetector::get();
+        $firegasSummFlows = FiregasSummaryFlow::orderBy('flow_location')->get();
+
         return view('customer_asset.firegas.dashboard', [
             'breadcrumbs' => $breadcrumbs,
             'title' => 'Dashboard'
-        ],compact('areas','detailPerAreas','firegasIntegrityChartData'));
+        ],compact('areas','detailPerAreas','firegasIntegrityChartData','firegasIntegrityResumes','firegasSummDetectors','firegasSummFlows'));
     }
 }
