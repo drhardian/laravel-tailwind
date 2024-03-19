@@ -58,7 +58,7 @@ use App\Http\Controllers\ValveRepair\OptionalServicesController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::prefix('auth')
