@@ -33,9 +33,9 @@ class CatalogproductController extends Controller
         //             ->where('is_filterable', 1);
         //     }
         // )->orderBy('group_code', 'asc')->get();
-    //     $catalogproducts = Catalogproduct::parentCatalogproducts()
-    //         ->orderBy('productgroup_code', 'asc')
-    //         ->get();
+        // $catalogproducts = Catalogproduct::parentCatalogproducts()
+        //     ->orderBy('productgroup_code', 'asc')
+        //     ->get();
 
     //     $selectedSort = url('catalogproducts');
     //     $sorts = [

@@ -24,10 +24,11 @@
                         class="text-white bg-yellow-400 sm:block hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
                         <i class="fa-solid fa-file-export"></i> Export
                     </a>
-                    <button type="button" id="newBtn" onclick="openForm(`{{ route('inventory.prodout.store') }}`)"
+
+                    <a href="{{ route('inventory.prodout.create') }}" id="newBtn"
                         class="text-white bg-blue-700 sm:block hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 text-center md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <i class="fa-solid fa-plus"></i> New
-                    </button>
+                    </a>
                 </div>
             </div>
 
@@ -35,15 +36,13 @@
                 <table id="main-table" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Image</th>
-                            <th>Products Name</th>
-                            <th>Price</th>
-                            <th>Stock Out</th>
-                            <th>Date Out</th>
-                            <th>Categories</th>
-                            <th>Status</th>
-                            <th>Updated At</th>
                             <th></th>
+                            <th>#Document</th>
+                            <th>Date Request</th>
+                            <th>Date Out</th>
+                            <th>Requested By</th>
+                            <th>Approved By</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -105,119 +104,68 @@
                     <!-- Form Area -->
                     <form id="mainForm" method="post" enctype="multipart/form-data">
                         @csrf
-                        <!-- Tab Panel -->
-                        {{-- <div class="mb-4 border-b border-gray-200 dark:border-gray-700"> --}}
-                        {{-- <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
-                                data-tabs-toggle="#myTabContent" role="tablist"> --}}
-                        {{-- <li class="mr-2" role="presentation">
-                                    <button
-                                        class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                        id="fbo-tab" data-tabs-target="#fbo" type="button" role="tab"
-                                        aria-controls="eproc" aria-selected="false">FBO INFORMATION</button>
-                                </li> --}}
-                        {{-- <li class="mr-2" role="presentation">
-                                    <button
-                                        class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                        id="valve-tab" data-tabs-target="#valve" type="button" role="tab"
-                                        aria-controls="valve" aria-selected="false">VALVE INFORMATION</button>
-                                </li>
-                                <li class="mr-2" role="presentation">
-                                    <button
-                                        class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                        id="process-tab" data-tabs-target="#process" type="button" role="tab"
-                                        aria-controls="process" aria-selected="false">PROCESS CONDITION</button>
-                                </li>
-                                <li class="mr-2" role="presentation">
-                                    <button
-                                        class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                        id="condi-tab" data-tabs-target="#condi" type="button" role="tab"
-                                        aria-controls="condi" aria-selected="false">CONDITION REPLACEMENT</button>
-                                </li> --}}
-                        {{-- </ul> --}}
-                        {{-- </div> --}}
-
                         <div id="myTabContent">
                             <div class id="prodout" role="tab" aria-labelledby="prodout-tab">
                                 <div class="space-y-6">
-                                    <div class="row justify-content-center align-items-center">
-                                        <div class="col-xl-4">
-                                            <!-- Product image card-->
-                                            <div class="card mb-4 mb-xl-0 text-center">
-                                                <div class="card-header"><b>Image Product Out</b></div>
-                                                <div class="card-body">
-                                                    <!-- Product image -->
-                                                    <img class="img-account-profile mb-3 mx-auto"
-                                                        src="{{ asset('storage/assets/img/catalogproducts/default.webp') }}"
-                                                        alt="" id="image-preview" style="max-width: 10%;" />
-                                                    <!-- Product image help block -->
-                                                    <div class="small font-italic text-muted mb-2">JPG or PNG no larger than
-                                                        2
-                                                        MB</div>
-                                                    <!-- Product image input -->
-                                                    <input
-                                                        class="form-control form-control-solid mb-3 @error('prodout_image') is-invalid @enderror"
-                                                        type="file" id="image" name="prodout_image" accept="image/*">
-                                                    {{-- @error('prodout_image')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
+                                    <div class="mb-6">
+                                        <div class="row sm:flex">
+                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                                <label for="date_out"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date Request</label>
+                                                <div class="relative">
+                                                    <div
+                                                        class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                            fill="currentColor" viewBox="0 0 20 20">
+                                                            <path
+                                                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                                        </svg>
                                                     </div>
-                                                @enderror --}}
+                                                    <input datepicker id="date_out" datepicker-format="dd/mm/yyyy"
+                                                        name="date_out" type="text"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        placeholder="Select date">
+                                                </div>
+                                            </div>
+                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                                <label for="date_out"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date Out</label>
+                                                <div class="relative">
+                                                    <div
+                                                        class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                            fill="currentColor" viewBox="0 0 20 20">
+                                                            <path
+                                                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                                        </svg>
+                                                    </div>
+                                                    <input datepicker id="date_out" datepicker-format="dd/mm/yyyy"
+                                                        name="date_out" type="text"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        placeholder="Select date">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="space-y-6">
                                     <div class="mb-6">
-                                        {{-- <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LOCATION INFORMATION</label> --}}
                                         <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w- full sm:pr-2">
-                                                <label for="prodout_name"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
-                                                    Name</label>
-                                                <select id="prodout_name" name="prodout_name"
-                                                    class="select2-catalog-dropdown"
-                                                    data-show="{{ route('catalog.options.showondropdown') }}"
-                                                    data-store="{{ route('catalog.options.storefromdropdown') }}"
-                                                    data-alias="catalog-name" data-change="true"
-                                                    data-form="product name">
-                                                    {{-- data-form="product name" onblur="autoRecord($(this).val(),'{{ route('prodin.loadprofile.productname') }}')"> --}}
+                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                                <label for="requested_by"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Requested By</label>
+                                                <select id="requested_by" name="requested_by"
+                                                    class="select2-general-dropdown"
+                                                    data-show="{{ route('general.options.showondropdown') }}"
+                                                    data-store="{{ route('general.options.storefromdropdown') }}"
+                                                    data-alias="prodout-owner" data-change="true"
+                                                    data-form="Enter Owner">
                                                 </select>
                                             </div>
-                                            <div class="sm:w-1/2 w- full sm:pr-2">
-                                                <label for="prodout_noref"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No.
-                                                    Ref</label>
-                                                <input type="text" id="prodout_noref" name="prodout_noref"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Enter No. Ref">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-6">
-                                        {{-- <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LOCATION INFORMATION</label> --}}
-                                        <div class="row sm:flex">
-
-                                            <div class="sm:w-1/2 w- full sm:pr-2">
-                                                <label for="prodout_origin"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
-                                                    Origin</label>
-                                                <input type="text" id="prodout_origin" name="prodout_origin"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Enter Product Origin">
-                                            </div>
-                                            {{-- <div class="sm:w-1/2 w-full sm:pr-2">
-                                                <label for="prodout_code"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
-                                                    Code</label>
-                                                <input type="text" id="prodout_code" name="prodout_code"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Enter Product Code">
-                                            </div> --}}
-                                            <div class="sm:w-1/2 w- full sm:pr-2">
-                                                <label for="prodout_owner"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Owner</label>
-                                                <select id="prodout_owner" name="prodout_owner"
+                                            <div class="sm:w-1/2 w-full sm:pr-2">
+                                                <label for="approved_by"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Approved By</label>
+                                                <select id="approved_by" name="approved_by"
                                                     class="select2-general-dropdown"
                                                     data-show="{{ route('general.options.showondropdown') }}"
                                                     data-store="{{ route('general.options.storefromdropdown') }}"
@@ -228,139 +176,62 @@
                                         </div>
                                     </div>
                                     <div class="mb-6">
-                                        {{-- <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LOCATION INFORMATION</label> --}}
                                         <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w- full sm:pr-2">
-                                                <label for="prodout_code"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
-                                                    Code</label>
-                                                <input type="text" id="prodout_code" name="prodout_code"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Enter Product Name">
-                                            </div>
-                                            <div class="sm:w-1/2 w- full sm:pr-2">
-                                                <label for="prodout_supplier"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Supplier</label>
-                                                <input type="text" id="prodout_supplier" name="prodout_supplier"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Enter Supplier">
+                                            <div class="w-full sm:pr-2">
+                                                <label for="selected_product"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Search Products</label>
+                                                <div class="flex">
+                                                    <select id="selected_product" name="selected_product"
+                                                        class="select2-general-dropdown"
+                                                        data-show="{{ route('catalog.product.details') }}"
+                                                        data-alias="selected_product">
+                                                        <option value="">Search here..</option>
+                                                    </select>
+                                                    <button type="button" class="ml-2 bg-transparent" onclick="addItemToRow()">
+                                                        <i class="fa-solid fa-square-plus fa-2xl"></i>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-6">
-                                        {{-- <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LOCATION INFORMATION</label> --}}
                                         <div class="row sm:flex">
-                                            <div class="sm:w-1/2 w- full sm:pr-2">
-                                                <label for="prodout_brand"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
-                                                <input type="text" id="prodout_brand" name="prodout_brand"
-                                                    class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required placeholder="Enter Brand">
+                                            <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
+                                                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                                    <thead class="text-xs text-white uppercase bg-gray-800">
+                                                        <tr>
+                                                            <th scope="col" class="px-6 py-3">
+                                                                Product name
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3">
+                                                                Quantity
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="stockout_product_rows">
+                                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                            <td class="px-6 py-3 text-center" colspan="2">
+                                                                Data not available
+                                                            </td>
+                                                        </tr>
+                                                        {{-- <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                Apple MacBook Pro 17"
+                                                            </th>
+                                                            <td class="px-6 py-4">
+                                                                Silver
+                                                            </td>
+                                                        </tr> --}}
+                                                    </tbody>
+                                                </table>
                                             </div>
-                                            <div class="sm:w-1/2 w- full sm:pr-2">
-                                                <label for="prodoutstock_loc"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock
-                                                    Location</label>
-                                                <select id="prodoutstock_loc" name="prodoutstock_loc"
-                                                    class="select2-general-dropdown"
-                                                    data-show="{{ route('general.options.showondropdown') }}"
-                                                    data-store="{{ route('general.options.storefromdropdown') }}"
-                                                    data-alias="prodout-stockloc" data-change="true"
-                                                    data-form="Enter Stock Location">
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row sm:flex">
-                                        <div class="sm:w-1/2 w- full sm:pr-2">
-                                            <label for="prodout_category"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                                            <input type="text" id="prodout_category" name="prodout_category"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="Enter Category">
-                                        </div>
-                                        <div class="sm:w-1/2 w- full sm:pr-2">
-                                            <label for="prodout_remstock"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Remaining
-                                                Stock</label>
-                                            <input type="number" id="prodout_remstock" name="prodout_remstock"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="row sm:flex">
-                                        <div class="sm:w-1/2 w-full sm:pr-2">
-                                            <label for="prodout_uom"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                                UOM</label>
-                                            <select id="prodout_uom" name="prodout_uom" class="select2-general-dropdown"
-                                                data-show="{{ route('general.options.showondropdown') }}"
-                                                data-store="{{ route('general.options.storefromdropdown') }}"
-                                                data-alias="prodout-uom" data-change="true" data-form="uom">
-                                            </select>
-                                        </div>
-                                        <div class="sm:w-1/2 w- full sm:pr-2">
-                                            <label for="prodout_stock"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock
-                                                Out</label>
-                                            <input type="text" id="prodout_stock" name="prodout_stock"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="Enter Stok Out">
-                                        </div>
-                                    </div>
-                                    <div class="row sm:flex">
-                                        <div class="sm:w-1/2 w- full sm:pr-2">
-                                            <label for="prodout_spec"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Specification</label>
-                                            <textarea
-                                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Write specification here..." id="prodout_spec" name="Enter Specification"></textarea>
-                                        </div>
-                                        <div class="sm:w-1/2 w- full sm:pr-2">
-                                            <label for="date_out"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date
-                                                In</label>
-                                            <div class="relative max-w-sm">
-                                                <div
-                                                    class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                        fill="currentColor" viewBox="0 0 20 20">
-                                                        <path
-                                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                    </svg>
-                                                </div>
-                                                <input datepicker id="date_out" datepicker-format="dd/mm/yyyy"
-                                                    name="date_out" type="text"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="Select date">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row sm:flex">
-                                        <div class="sm:w-1/2 w- full sm:pr-2">
-                                            <label for="prodout_status"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                            <select id="prodout_status" name="prodout_status"
-                                                class="select2-general-dropdown"
-                                                data-show="{{ route('general.options.showondropdown') }}"
-                                                data-store="{{ route('general.options.storefromdropdown') }}"
-                                                data-alias="prodout-status" data-change="true" data-form="status">
-                                            </select>
-                                        </div>
-                                        <div class="sm:w-1/2 w- full sm:pr-2">
-                                            <label for="prodout_price"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-                                            <input type="number" id="prodout_price" name="prodout_price"
-                                                class="bg-gray-50 sm:p-2 p-1.5 border border-gray-300 text-gray-900 sm:text-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required placeholder="Enter Price">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- Modal footer -->
                             <div
-                                class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600 py-4">
+                                class="flex items-center space-x-2 border-t mt-4 border-gray-200 rounded-b dark:border-gray-600 py-4">
                                 <button type="button"
                                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                     onClick="saveRecord()">Save</button>
@@ -368,11 +239,13 @@
                                     class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
                             </div>
                         </div>
+                    </form>
                 </div>
             </div>
             </form>
         </div>
     </div>
+
     </div>
     <!-- Upload Excel modal -->
     <div id="uploadExcelModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" role="dialog"
@@ -467,69 +340,30 @@
                 serverSide: true,
                 deferRender: true,
                 ajax: {
-                    url: "{{ route('prodout.main.table') }}",
+                    url: "{{ route('inventory.product.out.main.table') }}",
                 },
-                columns: [{
-                        data: 'prodout_image',
-                        name: 'prodout_image',
-                        className: ['text-center', 'min-tablet']
-                    },
-                    {
-                        data: 'prodout_name',
-                        name: 'prodout_name',
-                        class: 'all'
-                    },
-                    {
-                        data: 'prodout_price',
-                        name: 'prodout_price',
-                        className: 'all'
-                    },
-                    {
-                        data: 'prodout_stock',
-                        name: 'prodout_stock',
-                        className: 'all'
-                    },
-                    {
-                        data: 'date_out',
-                        name: 'date_out',
-                        className: 'all'
-                    },
-                    {
-                        data: 'prodout_category',
-                        name: 'prodout_category',
-                        className: 'all'
-                    },
-                    {
-                        data: 'prodout_status',
-                        name: 'prodout_status',
-                        className: 'all'
-                    },
-                    {
-                        data: 'updated_at',
-                        name: 'updated_at',
-                        class: ['text-center', 'min-tablet']
-                    },
-                    {
-                        data: 'actions',
-                        name: 'actions',
-                        class: ['text-center', 'min-tablet'],
-                        orderable: false,
-                        sortable: false,
-                    },
+                columns: [
+                    { data: 'expanded', name: 'expanded' },
+                    { data: 'document_number', name: 'document_number' },
+                    { data: 'request_date', name: 'request_date' },
+                    { data: 'productout_date', name: 'productout_date' },
+                    { data: 'requested_by', name: 'requested_by' },
+                    { data: 'approved_by', name: 'approved_by' },
+                    { data: 'actions', name: 'actions' },
                 ],
-                columnDefs: [{
-                        target: [0, 1, 2, 3, 4, 5],
-                        className: "dt-head-center",
-                    },
-                    {
-                        target: [5],
-                        width: "5%",
-                    },
-                    {
-                        target: [0, 1, 3, 5],
-                        className: "dt-center",
-                    },
-                ]
+                columnDefs: [
+                    { sortable: false, orderable: false, targets: [0] },
+                    { className: "dt-center", target: [0,2,3,6] },
+                    // {
+                    //     target: [5],
+                    //     width: "5%",
+                    // },
+                    // {
+                    //     target: [0, 1, 3, 5],
+                    //     className: "dt-center",
+                    // },
+                ],
+                order: []
             });
 
             $('.select2-general-dropdown').select2({
@@ -667,20 +501,23 @@
                 }
 
             });
-
-            // $('#status').on('select2:close', function(e) {
-            //     if ($(this).val() == 'ACTIVE') {
-            //         $('#operational').val('YES');
-            //     } else {
-            //         $('#operational').val('NO');
-            //     }
-            // });
-
-            $('#newBtn').on('click', function(e) {
-                e.preventDefault();
-
-                $('.modal-title').text('New FBO');
-            });
         });
+
+        // addItemToRow = () => {
+        //     var selectedId = $('#selected_product').val();
+        //     var selectedText = $('#selected_product option:selected').text();
+
+        //     console.log([selectedId,selectedText]);
+
+        //     $('#stockout_product_rows').html('');
+        //     $('#stockout_product_rows').prepend('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">'+
+        //                                             '<input type="text" value="'+selectedId+'">'
+        //                                             '<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">'+
+        //                                                 selectedText
+        //                                             '</th>'+
+        //                                             '<td class="px-6 py-4">'+
+        //                                             '</td>'+
+        //                                         '</tr>');
+        // }
     </script>
 @endsection
