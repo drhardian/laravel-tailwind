@@ -21,3 +21,4 @@ yarn-error.log
 # tailwind.config.js
 package-lock.json
 public/images/ValveRepair/*
+composer.lock
