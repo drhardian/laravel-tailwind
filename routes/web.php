@@ -42,7 +42,22 @@ use App\Http\Controllers\Inventory\ProdoutController;
 
 
 use App\Http\Controllers\PsvMasterData\PdfController;
+use App\Http\Controllers\SiteWalkdown\AreaController;
+use App\Http\Controllers\SiteWalkdown\AssessmentController;
+use App\Http\Controllers\SiteWalkdown\AssessmentImageController;
+use App\Http\Controllers\SiteWalkdown\CompanyController;
+use App\Http\Controllers\SiteWalkdown\CriticalityLevelController;
 use App\Http\Controllers\SiteWalkdown\DashboardSiteWalkdownController;
+use App\Http\Controllers\SiteWalkdown\DeviceTypeController;
+use App\Http\Controllers\SiteWalkdown\DropdownController;
+use App\Http\Controllers\SiteWalkdown\HealthRatingController;
+use App\Http\Controllers\SiteWalkDown\InstructionController;
+use App\Http\Controllers\SiteWalkdown\LocationDetailController;
+use App\Http\Controllers\SiteWalkdown\LocationTypeController;
+use App\Http\Controllers\SiteWalkdown\OtherareaController;
+use App\Http\Controllers\SiteWalkdown\ProductController as SiteWalkdownProductController;
+use App\Http\Controllers\SiteWalkdown\SwdReportController;
+use App\Http\Controllers\SiteWalkdown\UploadDownloadController;
 use App\Models\Eproc\Catalog;
 use App\Http\Controllers\ValveRepair\CalibrationValveRepairController;
 use App\Http\Controllers\ValveRepair\OptionalServicesController;
@@ -429,10 +444,98 @@ Route::prefix('valverepair/optionalservices')
         Route::get('valvepretest/materialverification/{scopeofworkid}', 'getMaterialverification')->name('get.materialverification');
         Route::put('valvepretest/materialverification/{optionalservice}', 'updateMaterialverification')->name('update.materialverification');
     });
-
+// SiteWalkDown
 Route::prefix('sitewalkdown')
     ->controller(DashboardSiteWalkdownController::class)
     ->name('sitewalkdown.')
     ->group(function () {
         Route::get('/', [DashboardSiteWalkdownController::class, 'index'])->name('index');
+    });
+
+    Route::resource('sitewalkdown/instructions', InstructionController::class)->names('swd.instructions');
+    Route::prefix('sitewalkdown/instructions')->controller(InstructionController::class)->group(function () {
+        Route::get('show/table', 'showRowsOnTable')->name('swd.instructions.instructionDatatable');
+        Route::get('instruction/user/selectbox/show', 'usersOnSelectbox')->name('swd.instructions.usersonselectbox');
+
+    });
+
+    Route::resource('sitewalkdown/assessments', AssessmentController::class)->names('swd.assessments');
+    Route::prefix('assessments')->controller(AssessmentController::class)->group(function () {
+        Route::get('subject/list', 'showSubjects')->name('swd.assessments.getSubjects');
+        Route::get('show/table', 'showRowsOnTable')->name('swd.assessments.assessmentDatatable');
+    });
+
+    Route::resource('sitewalkdown/companies', CompanyController::class)->names('swd.companies');
+    Route::prefix('sitewalkdown/companies')->controller(CompanyController::class)->group(function () {
+        Route::get('selectbox/show', 'indexonselectbox')->name('swd.companies.indexonselectbox');
+        Route::post('selectbox/new', 'storefromselectbox')->name('swd.companies.storefromselectbox');
+    });
+
+    Route::resource('sitewalkdown/areas', AreaController::class)->names('swd.areas');
+    Route::prefix('sitewalkdown/areas')->controller(AreaController::class)->group(function () {
+        Route::get('selectbox/show', 'indexonselectbox')->name('swd.areas.indexonselectbox');
+        Route::post('selectbox/new', 'storefromselectbox')->name('swd.areas.storefromselectbox');
+    });
+
+    Route::resource('sitewalkdown/otherareas', OtherareaController::class)->names('swd.otherareas');
+    Route::prefix('sitewalkdown/otherareas')->controller(OtherareaController::class)->group(function () {
+        Route::get('selectbox/show', 'indexonselectbox')->name('swd.otherareas.indexonselectbox');
+        Route::post('selectbox/new', 'storefromselectbox')->name('swd.otherareas.storefromselectbox');
+    });
+
+    Route::resource('sitewalkdown/products', SiteWalkdownProductController::class)->names('swd.products');
+    Route::prefix('sitewalkdown/products')->controller(SiteWalkdownProductController::class)->group(function () {
+        Route::get('selectbox/show', 'tagsOnSelectbox')->name('swd.products.tagsonselectbox');
+        Route::get('instruction/list', 'tagsByInstruction')->name('swd.products.tagsbyinstruction');
+        Route::get('assessment/list', 'tagsByProduct')->name('swd.products.tagsbyproduct');
+    });
+
+
+    Route::prefix('sitewalkdown/devicetypes')->controller(DeviceTypeController::class)->group(function () {
+        Route::get('selectbox/show', 'showonselectbox')->name('swd.devicetypes.devicetypeonselectbox');
+        Route::get('show/alias', 'showalias')->name('swd.devicetypes.getalias');
+    });
+
+    Route::resource('sitewalkdown/dropdowns', DropdownController::class)->names('swd.dropdowns');
+    Route::prefix('sitewalkdown/dropdowns')->controller(DropdownController::class)->group(function () {
+        Route::get('show/list', 'showOnDropdown')->name('swd.dropdowns.showdropdowns');
+        Route::get('show/valvecondition/list', 'showValveConditionOnDropdown')->name('swd.dropdowns.showvalveconditiondropdowns');
+        Route::get('show/potensialcause/list', 'showPotensialCauseOnDropdown')->name('swd.dropdowns.showpotensialcausedropdowns');
+        Route::get('show/recommendation/list', 'showRecommendationOnDropdown')->name('swd.dropdowns.showrecommendationdropdowns');
+        Route::post('list/new', 'storeFromDropdown')->name('swd.dropdowns.storenewdropdown');
+        Route::post('list/valvecondition/new', 'storeValveConditionFromDropdown')->name('swd.dropdowns.storenewvalveconditiondropdown');
+        Route::post('list/potensialcause/new', 'storePotensialCauseFromDropdown')->name('swd.dropdowns.storenewpotensialcausedropdown');
+        Route::post('list/recommendation/new', 'storeRecommendationFromDropdown')->name('swd.dropdowns.storenewrecommendationdropdown');
+    });
+
+    Route::prefix('sitewalkdown/criticalitylevels')->controller(CriticalityLevelController::class)->group(function () {
+        Route::get('show/list', 'showOnDropdown')->name('swd.criticalitylevels.showdropdowns');
+    });
+
+    Route::prefix('sitewalkdown/healthratings')->controller(HealthRatingController::class)->group(function () {
+        Route::get('show/list', 'showOnDropdown')->name('swd.healthratings.showdropdowns');
+    });
+
+    Route::prefix('sitewalkdown/file/images')->controller(UploadDownloadController::class)->group(function () {
+        Route::post('upload','uploadFile')->name('swd.file.upload');
+        Route::get('download','downloadFile')->name('swd.file.download');
+        Route::delete('remove/{image}','removeFile')->name('swd.file.remove');
+    });
+
+    Route::prefix('sitewalkdown/reporting')->controller(SwdReportController::class)->group(function () {
+        Route::get('pdf/{id}', 'index')->name('swd.reporting.pdf');
+    });
+
+    Route::prefix('sitewalkdown/locationtype')->controller(LocationTypeController::class)->group(function () {
+        Route::get('/', 'showOnDropdown')->name('swd.locationtype.list');
+    });
+
+    Route::prefix('sitewalkdown/locationdetail')->controller(LocationDetailController::class)->group(function () {
+        Route::get('/', 'showOnDropdown')->name('swd.locationdetail.list');
+        Route::post('new', 'storeFromDropdown')->name('swd.locationdetail.new');
+    });
+
+
+    Route::prefix('sitewalkdown/images')->controller(AssessmentImageController::class)->group(function () {
+        Route::get('show', 'getAssessmentImages')->name('swd.assessmentimages.show');
     });

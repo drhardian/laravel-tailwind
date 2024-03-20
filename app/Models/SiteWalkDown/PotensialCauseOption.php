@@ -9,6 +9,6 @@ class PotensialCauseOption extends Model
 {
     use HasFactory;
     protected $fillable = ['device_type_id','valve_condition_subject_id','title'];
-    protected $table = 'swd_potensial_cause_option';
+    protected $table = 'swd_potensial_cause_options';
 
 }

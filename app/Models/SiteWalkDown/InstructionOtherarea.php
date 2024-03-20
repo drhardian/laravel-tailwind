@@ -10,7 +10,7 @@ class InstructionOtherarea extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = 'swd_instruction_other_areas';
+    protected $table = 'swd_instruction_otherareas';
 
     /**
      * Get the otherarea that owns the InstructionOtherarea

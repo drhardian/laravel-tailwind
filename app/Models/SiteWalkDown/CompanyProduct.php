@@ -10,7 +10,7 @@ class CompanyProduct extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = 'swd_company_product';
+    protected $table = 'swd_company_products';
 
     /**
      * Get the company that owns the CompanyProduct

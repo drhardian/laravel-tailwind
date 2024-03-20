@@ -10,6 +10,6 @@ class HealthRating extends Model
     use HasFactory;
 
     protected $fillable = ['title'];
-    protected $table = 'swd_health_rating';
+    protected $table = 'swd_health_ratings';
 
 }

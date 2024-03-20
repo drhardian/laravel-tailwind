@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('swd_cov_assessments', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('assessment_id')->constrained()->cascadeOnDelete();
-            $table->foreignUuid('product_id')->constrained()->cascadeOnDelete();
+            $table->foreignUuid('assessment_id')->references('id')->on('swd_assessments')->constrained()->cascadeOnDelete();
+            $table->foreignUuid('product_id')->references('id')->on('swd_products')->constrained()->cascadeOnDelete();
             $table->string('packing_condition')->nullable();
             $table->string('packing_condition_level')->nullable();
             $table->longText('packing_cause')->nullable();

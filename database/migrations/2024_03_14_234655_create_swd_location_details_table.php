@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('swd_location_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('location_type_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('location_type_id')->references('id')->on('swd_priority_ratings')->constrained()->cascadeOnDelete();
             $table->string('title')->unique()->index('IDX_location_title');
             $table->timestamps();
         });

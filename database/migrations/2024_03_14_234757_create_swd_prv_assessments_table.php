@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('swd_prv_assessments', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('assessment_id')->constrained()->cascadeOnDelete();
-            $table->foreignUuid('product_id')->constrained()->cascadeOnDelete();
+            $table->foreignUuid('assessment_id')->references('id')->on('swd_assessments')->constrained()->cascadeOnDelete();
+            $table->foreignUuid('product_id')->references('id')->on('swd_products')->constrained()->cascadeOnDelete();
             $table->string('body_condition')->nullable();
             $table->string('body_condition_level')->nullable();
             $table->longText('body_cause')->nullable();

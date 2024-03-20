@@ -9,6 +9,6 @@ class LocationType extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = 'swd_location_type';
+    protected $table = 'swd_location_types';
 
 }

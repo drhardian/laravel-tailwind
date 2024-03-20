@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('product_uom')->nullable();
             $table->decimal('product_price', 15, 2)->nullable();
             $table->timestamps();
-            $table->unique(['productmain_code','product_code','productsub_code','productgroup_code','product_name'],'unique_code');
+            $table->unique(['itemcode','product_name'],'unique_code');
         });
     }
 

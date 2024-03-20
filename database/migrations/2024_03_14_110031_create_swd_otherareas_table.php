@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('swd_otherareas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('area_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('company_id')->references('id')->on('swd_companies')->constrained()->cascadeOnDelete();
+            $table->foreignId('area_id')->references('id')->on('swd_areas')->constrained()->cascadeOnDelete();
             $table->string('title')->index('idx_subarea');
             $table->timestamps();
         });

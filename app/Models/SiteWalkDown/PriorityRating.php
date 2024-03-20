@@ -9,6 +9,6 @@ class PriorityRating extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = 'swd_priority_rating';
+    protected $table = 'swd_priority_ratings';
 
 }

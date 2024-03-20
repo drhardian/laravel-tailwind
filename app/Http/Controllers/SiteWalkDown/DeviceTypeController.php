@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\SiteWalkdown;
+
+use App\Http\Controllers\Controller;
 
 use App\Interfaces\DeviceTypeRepositoryInterface;
 use App\Models\SiteWalkDown\DeviceType;
@@ -95,61 +97,61 @@ class DeviceTypeController extends Controller
         if($request->formId == "valve-info") {
             switch ($deviceType) {
                 case 'COV':
-                    return view('assessment.valveinformation.create-cov');
+                    return view('sitewalkdown.assessment.valveinformation.create-cov');
                     break;
 
                 case 'REG':
-                    return view('assessment.valveinformation.create-reg');
+                    return view('sitewalkdown.assessment.valveinformation.create-reg');
                     break;
 
                 case 'CKV':
-                    return view('assessment.valveinformation.create-ckv');
+                    return view('sitewalkdown.assessment.valveinformation.create-ckv');
                     break;
 
                 case 'ISV':
-                    return view('assessment.valveinformation.create-isv');
+                    return view('sitewalkdown.assessment.valveinformation.create-isv');
                     break;
 
                 case 'PRV':
-                    return view('assessment.valveinformation.create-prv');
+                    return view('sitewalkdown.assessment.valveinformation.create-prv');
                     break;
 
                 case 'MAV':
-                    return view('assessment.valveinformation.create-mav');
+                    return view('sitewalkdown.assessment.valveinformation.create-mav');
                     break;
 
                 default:
-                    return view('assessment.valveinformation.create-tnk');
+                    return view('sitewalkdown.assessment.valveinformation.create-tnk');
                     break;
             }
         } elseif($request->formId == "assessment-form") {
             switch ($deviceType) {
                 case 'COV':
-                    return view('assessment.create-cond-cov');
+                    return view('sitewalkdown.assessment.create-cond-cov');
                     break;
 
                 case 'REG':
-                    return view('assessment.create-cond-reg');
+                    return view('sitewalkdown.assessment.create-cond-reg');
                     break;
 
                 case 'CKV':
-                    return view('assessment.create-cond-ckv');
+                    return view('sitewalkdown.assessment.create-cond-ckv');
                     break;
 
                 case 'ISV':
-                    return view('assessment.create-cond-isv');
+                    return view('sitewalkdown.assessment.create-cond-isv');
                     break;
 
                 case 'PRV':
-                    return view('assessment.create-cond-prv');
+                    return view('sitewalkdown.assessment.create-cond-prv');
                     break;
 
                 case 'MAV':
-                    return view('assessment.create-cond-mav');
+                    return view('sitewalkdown.assessment.create-cond-mav');
                     break;
 
                 default:
-                    return view('assessment.create-cond-cov');
+                    return view('sitewalkdown.assessment.create-cond-cov');
                     break;
             }
         }

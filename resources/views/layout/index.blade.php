@@ -116,8 +116,12 @@
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><i class="fa-solid fa-gauge-high mr-2"></i> Dashboard</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('sitewalkdown.index')}}"
+                                    <a href="{{route('swd.instructions.index')}}"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><i class="fa-solid fa-clipboard mr-2"></i> Instruction</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('swd.assessments.index')}}"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><i class="fa-solid fa-person-hiking mr-2"></i> Site Walkdowns</a>
                                 </li>
                             </ul>
                         </div>

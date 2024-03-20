@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\SiteWalkdown;
+
+use App\Http\Controllers\Controller;
 
 use App\Models\SiteWalkDown\InstructionTagnum;
 use App\Models\SiteWalkDown\Product;
@@ -62,12 +64,12 @@ class ProductController extends Controller
     public function tagsOnSelectbox()
     {
         $queries = DB::table('swd_products')
-            ->select('products.id','products.tagnum')
-            ->leftJoin('companies', 'products.company_id', '=', 'companies.id')
+            ->select('swd_products.id','swd_products.tagnum')
+            ->leftJoin('swd_companies', 'swd_products.company_id', '=', 'swd_companies.id')
             ->when(request('area'), function ($query) {
-                return $query->leftJoin('areas', 'products.area_id', '=', 'areas.id');
+                return $query->leftJoin('swd_areas', 'swd_products.area_id', '=', 'swd_areas.id');
             })
-            ->where('products.company_id', request('company'))
+            ->where('swd_products.company_id', request('company'))
             // ->when(request('otherarea'), function ($query) {
             //     return $query->whereIn('products.otherareas', request('otherarea'));
             // })

@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('swd_products', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignId('device_type_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('criticality_level_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('health_rating_id')->constrained()->cascadeOnDelete(); // column id from table health_ratings
-            $table->foreignId('priority_rating_id')->constrained()->cascadeOnDelete(); // column id from table health_ratings
+            $table->foreignId('device_type_id')->references('id')->on('swd_device_types')->constrained()->cascadeOnDelete();
+            $table->foreignId('criticality_level_id')->references('id')->on('swd_criticality_levels')->constrained()->cascadeOnDelete();
+            $table->foreignId('health_rating_id')->references('id')->on('swd_health_ratings')->constrained()->cascadeOnDelete(); // column id from table health_ratings // column id from table health_ratings
+            $table->foreignId('priority_rating_id')->references('id')->on('swd_priority_ratings')->constrained()->cascadeOnDelete(); // column id from table health_ratings // column id from table health_ratings
             $table->string('health_level_color')->nullable();
             $table->string('tagnum')->unique()->index('idx_tagnum');
             $table->string('serial_number')->index('idx_serialnumber');
@@ -32,8 +32,8 @@ return new class extends Migration
             $table->string('class_rating')->index('idx_classrating')->nullable();
             $table->string('manual_override')->nullable();
             $table->string('end_connection')->nullable();
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('area_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('company_id')->references('id')->on('swd_companies')->constrained()->cascadeOnDelete();
+            $table->foreignId('area_id')->references('id')->on('swd_areas')->constrained()->cascadeOnDelete();
             $table->mediumText('otherareas');
             $table->timestamps();
         });

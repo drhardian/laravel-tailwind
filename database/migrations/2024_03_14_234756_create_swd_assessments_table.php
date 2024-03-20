@@ -15,16 +15,15 @@ return new class extends Migration
     {
         Schema::create('swd_assessments', function (Blueprint $table) {
             $table->uuid('id')->primary(); // assessmentId
-            $table->foreignId('instruction_id')->constrained()->cascadeOnDelete(); // column id from table instructions
-            $table->foreignUuid('product_id')->constrained()->cascadeOnDelete(); // column id from table products
-            $table->foreignId('device_type_id')->constrained()->cascadeOnDelete(); // column id from table device_types
-            $table->foreignId('criticality_level_id')->constrained()->cascadeOnDelete(); // column id from table criticality_levels
-            $table->foreignId('health_rating_id')->constrained()->cascadeOnDelete(); // column id from table health_ratings
-            $table->foreignId('priority_rating_id')->constrained()->cascadeOnDelete(); // column id from table health_ratings
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete(); // column id from table companies
-            $table->foreignId('location_type_id')->constrained()->cascadeOnDelete(); // column id from table location_types
-            $table->foreignId('location_detail_id')->constrained()->cascadeOnDelete(); // column id from table location_details
-            $table->foreignId('area_id')->constrained()->cascadeOnDelete(); // column id from table areas
+            $table->foreignId('instruction_id')->references('id')->on('swd_instructions')->constrained()->cascadeOnDelete(); // column id from table instructions
+            $table->foreignId('device_type_id')->references('id')->on('swd_device_types')->constrained()->cascadeOnDelete();
+            $table->foreignId('criticality_level_id')->references('id')->on('swd_criticality_levels')->constrained()->cascadeOnDelete(); // column id from table criticality_levels
+            $table->foreignId('health_rating_id')->references('id')->on('swd_health_ratings')->constrained()->cascadeOnDelete(); // column id from table health_ratings // column id from table health_ratings
+            $table->foreignId('priority_rating_id')->references('id')->on('swd_priority_ratings')->constrained()->cascadeOnDelete(); // column id from table health_ratings // column id from table health_ratings
+            $table->foreignId('company_id')->references('id')->on('swd_companies')->constrained()->cascadeOnDelete(); // column id from table companies
+            $table->foreignId('location_type_id')->references('id')->on('swd_location_types')->constrained()->cascadeOnDelete(); // column id from table location_types
+            $table->foreignId('location_detail_id')->references('id')->on('swd_location_details')->constrained()->cascadeOnDelete(); // column id from table location_details
+            $table->foreignId('area_id')->references('id')->on('swd_areas')->constrained()->cascadeOnDelete(); // column id from table areas
             $table->mediumText('otherareas');
             $table->mediumText('responsible_people')->nullable();
             $table->date('activity_date'); // date_activity

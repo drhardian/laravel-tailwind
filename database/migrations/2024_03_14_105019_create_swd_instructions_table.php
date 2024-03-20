@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('instruction_num')->index('idx_number')->unique();
             $table->date('date_activity_start')->index('idx_startdate');
             $table->date('date_activity_end')->index('idx_enddate');
-            $table->foreignId('company_id')->constrained();
-            $table->foreignId('area_id')->constrained();
+            $table->foreignId('company_id')->references('id')->on('swd_companies')->constrained();
+            $table->foreignId('area_id')->references('id')->on('swd_areas')->constrained();
             $table->longText('notes');
             $table->boolean('status')->default(true);
             $table->timestamps();

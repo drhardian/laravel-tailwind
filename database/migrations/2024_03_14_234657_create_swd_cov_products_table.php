@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('swd_cov_products', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('product_id')->constrained()->cascadeOnDelete();
+            $table->foreignUuid('product_id')->references('id')->on('swd_products')->constrained()->cascadeOnDelete();
             $table->string('insulation')->nullable();
             $table->string('leakage_class')->nullable();
             $table->string('flow_direction')->nullable();

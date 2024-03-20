@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\SiteWalkdown;
+
+use App\Http\Controllers\Controller;
 
 use App\Models\SiteWalkDown\LocationDetail;
 use Illuminate\Support\Facades\DB;

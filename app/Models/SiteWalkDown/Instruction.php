@@ -11,7 +11,7 @@ class Instruction extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = 'swd_instruction';
+    protected $table = 'swd_instructions';
 
     protected static function boot()
     {

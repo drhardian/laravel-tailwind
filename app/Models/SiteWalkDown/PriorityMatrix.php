@@ -10,7 +10,7 @@ class PriorityMatrix extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = 'swd_priority_matrix';
+    protected $table = 'swd_priority_matrices';
 
 
     /**

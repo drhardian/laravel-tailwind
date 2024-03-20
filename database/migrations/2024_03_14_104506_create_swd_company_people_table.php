@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('swd_company_people', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('company_id')->references('id')->on('swd_companies')->constrained()->cascadeOnDelete();
             $table->string('name')->index('idx_name');
             $table->string('title');
             $table->string('email')->nullable();

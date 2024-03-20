@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('swd_prv_products', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('product_id')->constrained()->cascadeOnDelete();
+            $table->foreignUuid('product_id')->references('id')->on('swd_products')->constrained()->cascadeOnDelete();
             $table->string('code')->nullable();
             $table->string('inlet')->nullable();
             $table->string('inlet_choose')->nullable();

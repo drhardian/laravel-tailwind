@@ -10,7 +10,7 @@ class Otherarea extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = 'swd_other_areas';
+    protected $table = 'swd_otherareas';
 
 
     /**
