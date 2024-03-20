@@ -239,7 +239,7 @@ class FiregasAssetController extends Controller
         FiregasSummaryIntegrity::create([
             'code' => 'IG',
             'description' => 'INTEGRITY',
-            'total' => round((FiregasAsset::where('integritystatus','Green')->count() / FiregasAsset::count()) * 100, 2)
+            'total' => (FiregasAsset::where('integritystatus','Green')->count() > 0) ? round((FiregasAsset::where('integritystatus','Green')->count() / FiregasAsset::count()) * 100, 2) : 0
         ]);
 
         DB::select('CALL SP_FireGas_Summ_Detector');
