@@ -41,6 +41,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Inventory\ProdinController;
 use App\Http\Controllers\Inventory\ProdoutController;
 use App\Http\Controllers\InventoryProductoutTransactionController;
+use App\Http\Controllers\OnwjPintarAssetController;
 use App\Http\Controllers\PsvMasterData\PdfController;
 use App\Http\Controllers\ScanProductController;
 use App\Models\Eproc\Catalog;
@@ -475,12 +476,24 @@ Route::middleware('auth')->group(function () {
             Route::put('valvepretest/materialverification/{optionalservice}', 'updateMaterialverification')->name('update.materialverification');
         });
 
+    #====================== PHE ONWJ PROJECT ========================
     # Fire Gas Asset
-    Route::prefix('firegas')
+    Route::prefix('onwj/firegas')
         ->controller(FiregasAssetController::class)
         ->name('firegas.')
         ->group(function () {
             Route::resource('/', FiregasAssetController::class)->parameters(['' => 'firegasAsset']);
+            Route::get('show/datatable', 'showDatatable')->name('main.table');
+            Route::post('file/import', 'import')->name('data.import');
+            Route::get('show/dashboard', 'dashboard')->name('dashboard');
+        });
+
+    # PINTAR Asset
+    Route::prefix('onwj/pintar')
+        ->controller(OnwjPintarAssetController::class)
+        ->name('onwj.pintar.')
+        ->group(function () {
+            Route::resource('/', OnwjPintarAssetController::class)->parameters(['' => 'onwjPintarAsset']);
             Route::get('show/datatable', 'showDatatable')->name('main.table');
             Route::post('file/import', 'import')->name('data.import');
             Route::get('show/dashboard', 'dashboard')->name('dashboard');
