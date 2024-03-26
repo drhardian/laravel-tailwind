@@ -121,7 +121,7 @@
                     class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                     <!-- Home -->
                     <li>
-                        <a href="home"
+                        <a href="{{ route('home') }}"
                             class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
                     </li>
                     <!-- Asset Manager -->
@@ -149,7 +149,7 @@
                             </svg>
                         </button>
                         <div id="dropdownNavbarCM"
-                            class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                            class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-48 dark:bg-gray-700 dark:divide-gray-600">
                             <ul class="py-2 text-sm text-gray-700 dark:text-gray-400"
                                 aria-labelledby="dropdownLargeButton">
                                 <!-- Request Order -->
@@ -268,7 +268,7 @@
                                         </svg>
                                     </button>
                                     <div id="customerAssetDropdown"
-                                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-48 dark:bg-gray-700">
                                         <div>
                                             <ul class="text-sm text-gray-700 dark:text-gray-200">
                                                 <li>
@@ -276,7 +276,7 @@
                                                         data-dropdown-toggle="customerInventoryDropdown"
                                                         data-dropdown-placement="right-start" type="button"
                                                         class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Inventory
-                                                        Asset<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
+                                                        Data<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
                                                             xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 10 6">
                                                             <path stroke="currentColor" stroke-linecap="round"
@@ -305,7 +305,7 @@
                                                         data-dropdown-toggle="customerAssetPSVDropdown"
                                                         data-dropdown-placement="right-start" type="button"
                                                         class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">PSV
-                                                        Data Master<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
+                                                        Data<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
                                                             xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 10 6">
                                                             <path stroke="currentColor" stroke-linecap="round"
@@ -331,7 +331,7 @@
                                                     <button id="customerAssetFiregasDropdownButton"
                                                         data-dropdown-toggle="customerAssetFiregasDropdown"
                                                         data-dropdown-placement="right-start" type="button"
-                                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100">Fire Gas Assets<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
+                                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100">Fire Gas<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
                                                             xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 10 6">
                                                             <path stroke="currentColor" stroke-linecap="round"
@@ -357,7 +357,7 @@
                                                     <button id="customerAssetPintarDropdownButton"
                                                         data-dropdown-toggle="customerAssetPintarDropdown"
                                                         data-dropdown-placement="right-start" type="button"
-                                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100">PINTAR Assets<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
+                                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100">PINTAR<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
                                                             xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 10 6">
                                                             <path stroke="currentColor" stroke-linecap="round"
@@ -375,6 +375,32 @@
                                                         <ul class="text-sm text-gray-700 dark:text-gray-200">
                                                             <li>
                                                                 <a href="{{ route('onwj.pintar.index') }}" class="block px-4 py-2 hover:bg-gray-100">Overview</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <button id="customerAssetAutocontrolDropdownButton"
+                                                        data-dropdown-toggle="customerAssetAutocontrolDropdown"
+                                                        data-dropdown-placement="right-start" type="button"
+                                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100">Automation Control<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
+                                                            xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 10 6">
+                                                            <path stroke="currentColor" stroke-linecap="round"
+                                                                stroke-linejoin="round" stroke-width="2"
+                                                                d="m1 1 4 4 4-4" />
+                                                        </svg></button>
+                                                    <div id="customerAssetAutocontrolDropdown"
+                                                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                                        <ul class="text-sm text-gray-700 dark:text-gray-200">
+                                                            <li>
+                                                                <a href="{{ route('onwj.automationcontrol.dashboard') }}"
+                                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Dashboard</a>
+                                                            </li>
+                                                        </ul>
+                                                        <ul class="text-sm text-gray-700 dark:text-gray-200">
+                                                            <li>
+                                                                <a href="{{ route('onwj.automationcontrol.index') }}" class="block px-4 py-2 hover:bg-gray-100">Overview</a>
                                                             </li>
                                                         </ul>
                                                     </div>

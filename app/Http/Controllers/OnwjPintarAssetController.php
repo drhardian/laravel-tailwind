@@ -322,71 +322,10 @@ class OnwjPintarAssetController extends Controller
             $integrityData = [];
         }
 
-        // # Delete all data on table firegas_summary_integrity
-        // FiregasSummaryIntegrity::truncate();
-
-        // # insert total equipment on table firegas_summary_integrity
-        // FiregasSummaryIntegrity::create([
-        //     'code' => 'TE',
-        //     'description' => 'TOTAL EQUIPMENT',
-        //     'total' => FiregasAsset::count()
-        // ]);
-
-        // # insert equipment defect on table firegas_summary_integrity
-        // FiregasSummaryIntegrity::create([
-        //     'code' => 'ED',
-        //     'description' => 'EQUIPMENT DEFECT',
-        //     'total' => FiregasAsset::where('integritystatus','Red')->orWhere('integritystatus','Yellow')->count()
-        // ]);
-
-        // # insert equipment good on table firegas_summary_integrity
-        // FiregasSummaryIntegrity::create([
-        //     'code' => 'EG',
-        //     'description' => 'EQUIPMENT GOOD',
-        //     'total' => FiregasAsset::where('integritystatus','Green')->count()
-        // ]);
-
-        // # insert integrity on table firegas_summary_integrity
-        // FiregasSummaryIntegrity::create([
-        //     'code' => 'IG',
-        //     'description' => 'INTEGRITY',
-        //     'total' => (FiregasAsset::where('integritystatus','Green')->count() > 0) ? round((FiregasAsset::where('integritystatus','Green')->count() / FiregasAsset::count()) * 100, 2) : 0
-        // ]);
-
-        // DB::select('CALL SP_FireGas_Summ_Detector');
-        // DB::select('CALL SP_FireGas_Summ_Flow');
-
-        // # Integrity Chart
-        // $firegasIntegrityChartData = [];
-        // $firegasIntegrities = FiregasSummaryIntegrity::select('code','description','total')
-        //     ->where('code','ED')
-        //     ->orWhere('code','EG')
-        //     ->get();
-
-        // foreach ($firegasIntegrities as $firegasIntegrity) {
-        //     $color = $firegasIntegrity->code === "ED" ? "#d31900" : "#00B050";
-
-        //     $firegasIntegrityChartData[] = (object)[
-        //         'name' => $firegasIntegrity->description,
-        //         'y' => $firegasIntegrity->total,
-        //         'color' => $color
-        //     ];
-
-        //     $color = "";
-        // }
-
         $allAreaIntegrityResumes = OnwjPintarAsset::select('integritystatus')
             ->selectRaw('COUNT(integritystatus) AS totalStatus')
             ->groupBy('integritystatus')
             ->get();
-
-        // $firegasSummDetectors = FiregasSummaryDetector::get();
-        // $firegasSummFlows = FiregasSummaryFlow::orderBy('flow_location')->get();
-
-        // return view('customer_asset.onwj.pintar.dashboard', [
-        //     'breadcrumbs' => $breadcrumbs,
-        //     'title' => 'Dashboard'
-        // ],compact('areas','detailPerAreas','firegasIntegrityChartData','firegasIntegrityResumes','firegasSummDetectors','firegasSummFlows'));
 
         return view('customer_asset.onwj.pintar.dashboard', [
             'breadcrumbs' => $breadcrumbs,
@@ -396,6 +335,128 @@ class OnwjPintarAssetController extends Controller
             'detailPerAreas',
             'allAreas',
             'allAreaIntegrityResumes'
+        ));
+    }
+
+    public function dashboardActive()
+    {
+        $breadcrumbs = [
+            [
+                'title' => 'Dashboard',
+                'status' => '',
+                'url' => '',
+                'icon' => 'fa-solid fa-house fa-sm',
+            ]
+        ];
+
+        $areas = OnwjPintarAsset::select('area')
+            ->groupBy('area')
+            ->orderBy('area')
+            ->get();
+
+        # Get integrity chart data for all areas
+        $allAreas = [];
+        $integrityPerAreas = OnwjPintarAsset::select('integritystatus')
+            ->selectRaw('COUNT(integritystatus) AS totalStatus')
+            ->where([['remotesystem','YES'],['integritystatus','!=','Black']])
+            ->groupBy('integritystatus')
+            ->get();
+
+        $integrityData = [];
+        foreach ($integrityPerAreas as $integrityPerArea) {
+            switch ($integrityPerArea->integritystatus) {
+                case 'Green':
+                    $color = "#00B050";
+                    break;
+
+                case 'Yellow':
+                    $color = "#ffff00";
+                    break;
+
+                case 'Red':
+                    $color = "#d31900";
+                    break;
+
+                default:
+                    $color = "#000000";
+                    break;
+            }
+
+            $integrityData[] = (object)[
+                'name' => $integrityPerArea->integritystatus,
+                'y' => $integrityPerArea->totalStatus,
+                'color' => $color
+            ];
+        }
+
+        $allAreas[] = [
+            'title' => 'All Areas',
+            'data' => $integrityData
+        ];
+
+        # Get integrity chart data for all areas
+        $detailPerAreas = [];
+        foreach ($areas as $area) {
+            $integrityPerAreas = OnwjPintarAsset::select('area', 'integritystatus')
+                ->selectRaw('COUNT(integritystatus) AS totalStatus')
+                ->where('area', $area->area)
+                ->where([['remotesystem','YES'],['integritystatus','!=','Black']])
+                ->groupBy('area', 'integritystatus')
+                ->orderBy('area')
+                ->get();
+
+            $integrityData = [];
+            foreach ($integrityPerAreas as $integrityPerArea) {
+                switch ($integrityPerArea->integritystatus) {
+                    case 'Green':
+                        $color = "#00B050";
+                        break;
+
+                    case 'Yellow':
+                        $color = "#ffff00";
+                        break;
+
+                    case 'Red':
+                        $color = "#d31900";
+                        break;
+
+                    default:
+                        $color = "#000000";
+                        break;
+                }
+
+                $integrityData[] = (object)[
+                    'name' => $integrityPerArea->integritystatus,
+                    'y' => $integrityPerArea->totalStatus,
+                    'color' => $color
+                ];
+            }
+
+            $detailPerAreas[] = [
+                'title' => $area->area,
+                'data' => $integrityData
+            ];
+
+            $integrityData = [];
+        }
+
+        $allAreaIntegrityResumes = OnwjPintarAsset::select('integritystatus')
+            ->selectRaw('COUNT(integritystatus) AS totalStatus')
+            ->where([['remotesystem','YES'],['integritystatus','!=','Black']])
+            ->groupBy('integritystatus')
+            ->get();
+
+        $active = 1;
+
+        return view('customer_asset.onwj.pintar.dashboard', [
+            'breadcrumbs' => $breadcrumbs,
+            'title' => 'Dashboard'
+        ], compact(
+            'areas',
+            'detailPerAreas',
+            'allAreas',
+            'allAreaIntegrityResumes',
+            'active'
         ));
     }
 }

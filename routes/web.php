@@ -41,6 +41,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Inventory\ProdinController;
 use App\Http\Controllers\Inventory\ProdoutController;
 use App\Http\Controllers\InventoryProductoutTransactionController;
+use App\Http\Controllers\OnwjAutomationcontrolAssetController;
 use App\Http\Controllers\OnwjPintarAssetController;
 use App\Http\Controllers\PsvMasterData\PdfController;
 use App\Http\Controllers\ScanProductController;
@@ -72,7 +73,7 @@ Route::prefix('auth')
     });
 
 Route::middleware('auth')->group(function () {
-    Route::get('home',[HomeController::class, 'index']);
+    Route::get('home',[HomeController::class, 'index'])->name('home');
 
     Route::prefix('request_order')->group(function () {
         Route::prefix('dashboard')
@@ -497,5 +498,18 @@ Route::middleware('auth')->group(function () {
             Route::get('show/datatable', 'showDatatable')->name('main.table');
             Route::post('file/import', 'import')->name('data.import');
             Route::get('show/dashboard', 'dashboard')->name('dashboard');
+            Route::get('show/active/dashboard', 'dashboardActive')->name('dashboard.active');
+        });
+
+    # Automation Control Asset
+    Route::prefix('onwj/automationcontrol')
+        ->controller(OnwjAutomationcontrolAssetController::class)
+        ->name('onwj.automationcontrol.')
+        ->group(function () {
+            Route::resource('/', OnwjAutomationcontrolAssetController::class)->parameters(['' => 'onwjAutomationcontrolAsset']);
+            Route::get('show/datatable', 'showDatatable')->name('main.table');
+            Route::post('file/import', 'import')->name('data.import');
+            Route::get('show/dashboard', 'dashboard')->name('dashboard');
+            Route::get('show/active/dashboard', 'dashboardActive')->name('dashboard.active');
         });
 });

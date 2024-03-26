@@ -19,8 +19,7 @@
                                 <img src="{{ asset('theme/assets/images/ptcs.png') }}" alt="PTCS Logo">
                             </div>
                         </div>
-                        <h1 class="md:text-5xl/snug text-3xl font-semibold text-white mt-10">Integrate
-                            Salesforce with The Apps You Use.</h1>
+                        <h1 class="md:text-3xl/snug text-xl font-semibold text-white mt-10">Simplify Valve and Instrument Asset Management: Streamline, Track, and Ensure Safety</h1>
                         <p class="text-base font-normal text-white/50 mt-5">At vero eos et accusamus et iusto
                             odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atqued
                             corrupti quos dolores et quas molestias excepturi sintoccaecati cupiditate.</p>
@@ -39,8 +38,7 @@
                                 <img src="{{ asset('theme/assets/images/ptcs.png') }}" alt="PTCS Logo">
                             </div>
                         </div>
-                        <h1 class="md:text-5xl/snug text-3xl font-semibold text-white mt-10">Make Your
-                            Transactions even easier with Appexy</h1>
+                        <h1 class="md:text-3xl/snug text-xl font-semibold text-white mt-10">Redefine Valve and Instrument Tracking: Efficiency, Transparency, and Safety</h1>
                         <p class="text-base font-normal text-white/50 mt-5">At vero eos et accusamus et iusto
                             odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atqued
                             corrupti quos dolores et quas molestias excepturi sintoccaecati cupiditate.</p>
@@ -59,7 +57,8 @@
                                 <img src="{{ asset('theme/assets/images/ptcs.png') }}" alt="PTCS Logo">
                             </div>
                         </div>
-                        <h1 class="md:text-5xl/snug text-3xl font-semibold text-white mt-10">Take Control of Your Assets</h1>
+                        <h1 class="md:text-3xl/snug text-xl font-semibold text-white mt-10">Empower Your Facility: Effortless Valve and Instrument Asset Oversight
+                        </h1>
                         <p class="text-base font-normal text-white/50 mt-5">At vero eos et accusamus et iusto
                             odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atqued
                             corrupti quos dolores et quas molestias excepturi sintoccaecati cupiditate.</p>
@@ -78,8 +77,8 @@
                                 <img src="{{ asset('theme/assets/images/ptcs.png') }}" alt="PTCS Logo">
                             </div>
                         </div>
-                        <h1 class="md:text-5xl/snug text-3xl font-semibold text-white mt-10">Manage all Your
-                            Finances Easily with Appexy</h1>
+                        <h1 class="md:text-3xl/snug text-xl font-semibold text-white mt-10">Master Asset Management: Enhance Performance, Ensure Safety
+                        </h1>
                         <p class="text-base font-normal text-white/50 mt-5">At vero eos et accusamus et iusto
                             odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atqued
                             corrupti quos dolores et quas molestias excepturi sintoccaecati cupiditate.</p>
@@ -98,8 +97,7 @@
                                 <img src="{{ asset('theme/assets/images/ptcs.png') }}" alt="PTCS Logo">
                             </div>
                         </div>
-                        <h1 class="md:text-5xl/snug text-3xl font-semibold text-white mt-10">Manage all Your
-                            Finances Easily with Appexy</h1>
+                        <h1 class="md:text-3xl/snug text-xl font-semibold text-white mt-10">Simplify your valve and instrument management: Effortlessly track, maintain, and monitor your assets.</h1>
                         <p class="text-base font-normal text-white/50 mt-5">At vero eos et accusamus et iusto
                             odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atqued
                             corrupti quos dolores et quas molestias excepturi sintoccaecati cupiditate.</p>
