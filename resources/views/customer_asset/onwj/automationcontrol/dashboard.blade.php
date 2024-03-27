@@ -11,7 +11,7 @@
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 space-x-1">
                 <caption
                     class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                    INTEGRITY STATUS PINTAR SYSTEM
+                    INTEGRITY STATUS AUTOMATION EQUIPMENT
                     <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse a list of Flowbite products
                         designed to help you work and play, stay organized, get answers, keep in touch, grow your business,
                         and more.</p>
@@ -104,7 +104,7 @@
                     <div class="w-full bg-white">
                         <div class="flex flex-col items-center">
                             <h5 class="mb-1 text-xl font-medium text-gray-900">{{ $area->area }}</h5>
-                            <span class="text-sm text-gray-500">Integrity Status PINTAR</span>
+                            <span class="text-sm text-gray-500">Integrity Status Automation Equipment</span>
                             <div id="{{ $area->area }}Chart"></div>
                         </div>
                         <div>
@@ -154,9 +154,9 @@
         $(document).ready(function() {
             $('#chkActiveView').change(function() {
                 if ($(this).prop('checked')) {
-                    window.location.href = "{{ route('onwj.pintar.dashboard.active') }}";
+                    window.location.href = "{{ route('onwj.automationcontrol.dashboard.active') }}";
                 } else {
-                    window.location.href = "{{ route('onwj.pintar.dashboard') }}";
+                    window.location.href = "{{ route('onwj.automationcontrol.dashboard') }}";
                 }
             });
         });

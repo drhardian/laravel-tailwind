@@ -19,10 +19,8 @@
                                 <img src="{{ asset('theme/assets/images/ptcs.png') }}" alt="PTCS Logo">
                             </div>
                         </div>
-                        <h1 class="md:text-3xl/snug text-xl font-semibold text-white mt-10">Simplify Valve and Instrument Asset Management: Streamline, Track, and Ensure Safety</h1>
-                        <p class="text-base font-normal text-white/50 mt-5">At vero eos et accusamus et iusto
-                            odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atqued
-                            corrupti quos dolores et quas molestias excepturi sintoccaecati cupiditate.</p>
+                        <h1 class="md:text-3xl/snug text-xl font-semibold text-white mt-10">Simplify Valve and Instrument Asset Management</h1>
+                        <p class="text-lg font-normal text-white/50 mt-5">Streamline, Track, and Ensure Safety</p>
                     </div>
                 </div>
             </div>

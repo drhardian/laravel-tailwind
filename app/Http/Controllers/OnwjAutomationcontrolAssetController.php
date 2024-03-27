@@ -104,23 +104,148 @@ class OnwjAutomationcontrolAssetController extends Controller
             ->editColumn('integritystatus', function ($query) {
                 switch ($query->integritystatus) {
                     case 'Green':
-                        $integrityBadge = '<span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:bg-green-900 dark:text-green-300">Green</span>';
+                        $integrityBadge = '<span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-1 rounded">Green</span>';
+                        break;
+
+                    case 'Yellow':
+                        $integrityBadge = '<span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-1 rounded">Yellow</span>';
+                        # code...
                         break;
 
                     case 'Red':
-                        $integrityBadge = '<span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:bg-red-900 dark:text-red-300">Red</span>';
+                        $integrityBadge = '<span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-1 rounded">Red</span>';
                         # code...
                         break;
 
                     default:
-                        $integrityBadge = '<span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:bg-gray-700 dark:text-gray-300">Black</span>';
+                        $integrityBadge = '<span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-1 rounded">Black</span>';
                         # code...
                         break;
                 }
 
                 return $integrityBadge;
             })
-            ->rawColumns(['integritystatus'])
+            ->editColumn('plc_status', function ($query) {
+                switch ($query->plc_status) {
+                    case 'Green':
+                        $plcStatusBadge = '<span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:bg-green-900 dark:text-green-300">Green</span>';
+                        break;
+
+                    case 'Yellow':
+                        $plcStatusBadge = '<span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-1 rounded">Yellow</span>';
+                        # code...
+                        break;
+
+                    case 'Red':
+                        $plcStatusBadge = '<span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:bg-red-900 dark:text-red-300">Red</span>';
+                        # code...
+                        break;
+
+                    default:
+                        $plcStatusBadge = '<span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:bg-gray-700 dark:text-gray-300">Black</span>';
+                        # code...
+                        break;
+                }
+
+                return $plcStatusBadge;
+            })
+            ->editColumn('hmi_status', function ($query) {
+                switch ($query->hmi_status) {
+                    case 'Green':
+                        $hmiStatusBadge = '<span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:bg-green-900 dark:text-green-300">Green</span>';
+                        break;
+
+                    case 'Yellow':
+                        $hmiStatusBadge = '<span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-1 rounded">Yellow</span>';
+                        # code...
+                        break;
+
+                    case 'Red':
+                        $hmiStatusBadge = '<span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:bg-red-900 dark:text-red-300">Red</span>';
+                        # code...
+                        break;
+
+                    default:
+                        $hmiStatusBadge = '<span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:bg-gray-700 dark:text-gray-300">Black</span>';
+                        # code...
+                        break;
+                }
+
+                return $hmiStatusBadge;
+            })
+            ->editColumn('ews_server_status', function ($query) {
+                switch ($query->ews_server_status) {
+                    case 'Green':
+                        $ewsServerStatusBadge = '<span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:bg-green-900 dark:text-green-300">Green</span>';
+                        break;
+
+                    case 'Yellow':
+                        $ewsServerStatusBadge = '<span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-1 rounded">Yellow</span>';
+                        # code...
+                        break;
+
+                    case 'Red':
+                        $ewsServerStatusBadge = '<span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:bg-red-900 dark:text-red-300">Red</span>';
+                        # code...
+                        break;
+
+                    default:
+                        $ewsServerStatusBadge = '<span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:bg-gray-700 dark:text-gray-300">Black</span>';
+                        # code...
+                        break;
+                }
+
+                return $ewsServerStatusBadge;
+            })
+            ->editColumn('ups_status', function ($query) {
+                switch ($query->ups_status) {
+                    case 'Green':
+                        $upsStatusBadge = '<span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:bg-green-900 dark:text-green-300">Green</span>';
+                        break;
+
+                    case 'Yellow':
+                        $upsStatusBadge = '<span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-1 rounded">Yellow</span>';
+                        # code...
+                        break;
+
+                    case 'Red':
+                        $upsStatusBadge = '<span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:bg-red-900 dark:text-red-300">Red</span>';
+                        # code...
+                        break;
+
+                    default:
+                        $upsStatusBadge = '<span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:bg-gray-700 dark:text-gray-300">Black</span>';
+                        # code...
+                        break;
+                }
+
+                return $upsStatusBadge;
+            })
+            ->editColumn('environment_status', function ($query) {
+                switch ($query->environment_status) {
+                    case 'Green':
+                        $environmentStatusBadge = '<span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:bg-green-900 dark:text-green-300">Green</span>';
+                        break;
+
+                    case 'Yellow':
+                        $environmentStatusBadge = '<span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-1 rounded">Yellow</span>';
+                        # code...
+                        break;
+
+                    case 'Red':
+                        $environmentStatusBadge = '<span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:bg-red-900 dark:text-red-300">Red</span>';
+                        # code...
+                        break;
+
+                    default:
+                        $environmentStatusBadge = '<span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:bg-gray-700 dark:text-gray-300">Black</span>';
+                        # code...
+                        break;
+                }
+
+                return $environmentStatusBadge;
+            })
+            ->rawColumns(['integritystatus','plc_status','hmi_status','ews_server_status','ups_status','environment_status'])
             ->make(true);
     }
 
@@ -253,7 +378,7 @@ class OnwjAutomationcontrolAssetController extends Controller
             ->groupBy('integritystatus')
             ->get();
 
-        return view('customer_asset.onwj.pintar.dashboard', [
+        return view('customer_asset.onwj.automationcontrol.dashboard', [
             'breadcrumbs' => $breadcrumbs,
             'title' => 'Dashboard'
         ], compact(
@@ -264,4 +389,125 @@ class OnwjAutomationcontrolAssetController extends Controller
         ));
     }
 
+    public function dashboardActive()
+    {
+        $breadcrumbs = [
+            [
+                'title' => 'Dashboard',
+                'status' => '',
+                'url' => '',
+                'icon' => 'fa-solid fa-house fa-sm',
+            ]
+        ];
+
+        $areas = OnwjAutomationcontrolAsset::select('area')
+            ->groupBy('area')
+            ->orderBy('area')
+            ->get();
+
+        # Get integrity chart data for all areas
+        $allAreas = [];
+        $integrityPerAreas = OnwjAutomationcontrolAsset::select('integritystatus')
+            ->selectRaw('COUNT(integritystatus) AS totalStatus')
+            ->where([['operation_type','YES'],['integritystatus','!=','Black']])
+            ->groupBy('integritystatus')
+            ->get();
+
+        $integrityData = [];
+        foreach ($integrityPerAreas as $integrityPerArea) {
+            switch ($integrityPerArea->integritystatus) {
+                case 'Green':
+                    $color = "#00B050";
+                    break;
+
+                case 'Yellow':
+                    $color = "#ffff00";
+                    break;
+
+                case 'Red':
+                    $color = "#d31900";
+                    break;
+
+                default:
+                    $color = "#000000";
+                    break;
+            }
+
+            $integrityData[] = (object)[
+                'name' => $integrityPerArea->integritystatus,
+                'y' => $integrityPerArea->totalStatus,
+                'color' => $color
+            ];
+        }
+
+        $allAreas[] = [
+            'title' => 'All Areas',
+            'data' => $integrityData
+        ];
+
+        # Get integrity chart data for all areas
+        $detailPerAreas = [];
+        foreach ($areas as $area) {
+            $integrityPerAreas = OnwjAutomationcontrolAsset::select('area', 'integritystatus')
+                ->selectRaw('COUNT(integritystatus) AS totalStatus')
+                ->where('area', $area->area)
+                ->where([['operation_type','YES'],['integritystatus','!=','Black']])
+                ->groupBy('area', 'integritystatus')
+                ->orderBy('area')
+                ->get();
+
+            $integrityData = [];
+            foreach ($integrityPerAreas as $integrityPerArea) {
+                switch ($integrityPerArea->integritystatus) {
+                    case 'Green':
+                        $color = "#00B050";
+                        break;
+
+                    case 'Yellow':
+                        $color = "#ffff00";
+                        break;
+
+                    case 'Red':
+                        $color = "#d31900";
+                        break;
+
+                    default:
+                        $color = "#000000";
+                        break;
+                }
+
+                $integrityData[] = (object)[
+                    'name' => $integrityPerArea->integritystatus,
+                    'y' => $integrityPerArea->totalStatus,
+                    'color' => $color
+                ];
+            }
+
+            $detailPerAreas[] = [
+                'title' => $area->area,
+                'data' => $integrityData
+            ];
+
+            $integrityData = [];
+        }
+
+        $allAreaIntegrityResumes = OnwjAutomationcontrolAsset::select('integritystatus')
+            ->selectRaw('COUNT(integritystatus) AS totalStatus')
+            ->where([['operation_type','YES'],['integritystatus','!=','Black']])
+            ->groupBy('integritystatus')
+            ->get();
+
+        $active = 1;
+
+        return view('customer_asset.onwj.automationcontrol.dashboard', [
+            'breadcrumbs' => $breadcrumbs,
+            'title' => 'Dashboard'
+        ], compact(
+            'areas',
+            'detailPerAreas',
+            'allAreas',
+            'allAreaIntegrityResumes',
+            'active'
+        ));
+    }
 }

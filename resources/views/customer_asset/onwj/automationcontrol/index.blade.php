@@ -31,25 +31,25 @@
                 <table id="main-table" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <!--0--><th>{{ ucwords(str_replace("_"," ","area")) }}<th>
-                            <!--1--><th>{{ ucwords(str_replace("_"," ","subarea")) }}<th>
-                            <!--2--><th>{{ ucwords(str_replace("_"," ","platform")) }}<th>
-                            <!--3--><th>{{ ucwords(str_replace("_"," ","description")) }}<th>
-                            <!--4--><th>{{ ucwords(str_replace("_"," ","tagnumber")) }}<th>
-                            <!--5--><th>{{ ucwords(str_replace("_"," ","asset_type")) }}<th>
-                            <!--6--><th>{{ ucwords(str_replace("_"," ","plc_brand")) }}<th>
-                            <!--7--><th>{{ ucwords(str_replace("_"," ","plc_controller")) }}<th>
-                            <!--8--><th>{{ ucwords(str_replace("_"," ","software_hmi")) }}<th>
-                            <!--9--><th>{{ ucwords(str_replace("_"," ","software_config")) }}<th>
-                            <!--10--><th>{{ ucwords(str_replace("_"," ","installation_date")) }}<th>
-                            <!--11--><th>{{ ucwords(str_replace("_"," ","operation_type")) }}<th>
-                            <!--12--><th>{{ ucwords(str_replace("_"," ","integritystatus")) }}<th>
-                            <!--13--><th>{{ ucwords(str_replace("_"," ","plc_status")) }}<th>
-                            <!--14--><th>{{ ucwords(str_replace("_"," ","hmi_status")) }}<th>
-                            <!--15--><th>{{ ucwords(str_replace("_"," ","ews_server_status")) }}<th>
-                            <!--16--><th>{{ ucwords(str_replace("_"," ","ups_status")) }}<th>
-                            <!--17--><th>{{ ucwords(str_replace("_"," ","environment_status")) }}<th>
-                            <!--18--><th>{{ ucwords(str_replace("_"," ","notes")) }}<th>
+                            <!--0--><th>{{ ucwords(str_replace("_"," ","area")) }}</th>
+                            <!--1--><th>{{ ucwords(str_replace("_"," ","subarea")) }}</th>
+                            <!--2--><th>{{ ucwords(str_replace("_"," ","platform")) }}</th>
+                            <!--3--><th>{{ ucwords(str_replace("_"," ","description")) }}</th>
+                            <!--4--><th>{{ ucwords(str_replace("_"," ","tagnumber")) }}</th>
+                            <!--5--><th>{{ ucwords(str_replace("_"," ","asset_type")) }}</th>
+                            <!--6--><th>{{ ucwords(str_replace("_"," ","plc_brand")) }}</th>
+                            <!--7--><th>{{ ucwords(str_replace("_"," ","plc_controller")) }}</th>
+                            <!--8--><th>{{ ucwords(str_replace("_"," ","software_hmi")) }}</th>
+                            <!--9--><th>{{ ucwords(str_replace("_"," ","software_config")) }}</th>
+                            <!--10--><th>{{ ucwords(str_replace("_"," ","installation_date")) }}</th>
+                            <!--11--><th>{{ ucwords(str_replace("_"," ","operation_type")) }}</th>
+                            <!--12--><th>{{ ucwords(str_replace("_"," ","integritystatus")) }}</th>
+                            <!--13--><th>{{ ucwords(str_replace("_"," ","plc_status")) }}</th>
+                            <!--14--><th>{{ ucwords(str_replace("_"," ","hmi_status")) }}</th>
+                            <!--15--><th>{{ ucwords(str_replace("_"," ","ews_server_status")) }}</th>
+                            <!--16--><th>{{ ucwords(str_replace("_"," ","ups_status")) }}</th>
+                            <!--17--><th>{{ ucwords(str_replace("_"," ","environment_status")) }}</th>
+                            <!--18--><th>{{ ucwords(str_replace("_"," ","notes")) }}</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -174,9 +174,8 @@
                     /*18*/{ data: 'notes', name: 'notes' },
                 ],
                 columnDefs: [
-                    // { className: "dt-center", target: [0,1,2,3,4,5] },
-                    // { className: "desktop", targets: [0,1,2,3,4,5] },
-                    // { className: "tablet-p", targets: [6,7,8,9,10,11,12,13,14,15,16,17,18] },
+                    { className: "dt-center", target: [0,1,2,5,12,13,14,15,16,17] },
+                    { className: "tablet-p", targets: [3,4,6,7,8,9,10,11,18] },
                 ],
                 order: []
             });
