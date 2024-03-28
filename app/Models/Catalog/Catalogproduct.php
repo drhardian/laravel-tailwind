@@ -2,11 +2,12 @@
 
 namespace App\Models\Catalog;
 
+use App\Models\Inventory\Prodin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 // use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Catalogproduct extends Model
 {
@@ -52,6 +53,16 @@ class Catalogproduct extends Model
         public function Catalogproduct()
         {
             return $this->belongsToMany(Catalogproduct::class, 'product_name');
+        }
+
+        /**
+         * Get all of the productInStocks for the Catalogproduct
+         *
+         * @return \Illuminate\Database\Eloquent\Relations\HasMany
+         */
+        public function productInStocks(): HasMany
+        {
+            return $this->hasMany(Prodin::class, 'foreign_key', 'local_key');
         }
     }
     

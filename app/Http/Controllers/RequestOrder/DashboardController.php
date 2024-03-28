@@ -131,26 +131,31 @@ class DashboardController extends Controller
     {
         $customer = Client::first();
 
+        $customerId = $customer ? $customer->id:0;
+
         $contract = Contract::with('contractactivities')
-            ->where('client_id', $customer->id)
+            ->where('client_id', $customerId)
             ->orderBy('id', 'desc')
             ->offset(0)
             ->limit(1)
             ->first();
 
-        $requestOrderCommitted = RequestOrder::where('contract_id', $contract->id)->get();
+        $contractId = $contract ? $contract->id:0;
+        $contractActivitiesValue = $contract ? $contract->contractactivities->sum('value'):0;
 
-        $requestOrderInvoiced = RequestOrder::where('contract_id', $contract->id)
+        $requestOrderCommitted = RequestOrder::where('contract_id', $contractId)->get();
+
+        $requestOrderInvoiced = RequestOrder::where('contract_id', $contractId)
             ->where('status', 4)
             ->get();
 
-        $requestOrderPaid = RequestOrder::where('contract_id', $contract->id)
+        $requestOrderPaid = RequestOrder::where('contract_id', $contractId)
             ->where('status', 9)
             ->get();
 
         $requestOrderInProgress = $requestOrderCommitted->sum('sub_total') - $requestOrderInvoiced->sum('sub_total');
 
-        $remainingContractValue = $contract->contractactivities->sum('value') - ($requestOrderCommitted->sum('sub_total') + $requestOrderInvoiced->sum('sub_total') + $requestOrderPaid->sum('sub_total'));
+        $remainingContractValue = $contractActivitiesValue - ($requestOrderCommitted->sum('sub_total') + $requestOrderInvoiced->sum('sub_total') + $requestOrderPaid->sum('sub_total'));
 
         $activities = DB::table('request_order_activity')
             ->select(
@@ -162,7 +167,7 @@ class DashboardController extends Controller
             ->leftJoin('request_order', 'request_order_activity.request_order_id', '=', 'request_order.id')
             ->leftJoin('master_activity', 'request_order_activity.activity_code', '=', 'master_activity.id')
             ->leftJoin('contract_activity_value', 'request_order_activity.activity_code', '=', 'contract_activity_value.activity_id')
-            ->where('request_order.contract_id', $contract->id)
+            ->where('request_order.contract_id', $contractId)
             ->groupBy('request_order_activity.activity_code', 'master_activity.activity_name', 'contract_activity_value.value')
             ->orderBy('contract_activity_value.value', 'DESC')
             ->get();

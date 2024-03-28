@@ -729,7 +729,7 @@ class ProductController extends Controller
         $locationPTCS = CinaProductLocation::select('id')->where('title','PTCS')->first();
 
         $totalIncoming = CinaProduct::count();
-        $totalAtWorkshop = CinaProduct::where('cina_product_location_id',$locationPTCS->id)->count();
+        $totalAtWorkshop = $locationPTCS ? CinaProduct::where('cina_product_location_id',$locationPTCS->id)->count() : 0;
         $totalOutgoing = CinaProduct::whereNot('out_date',null)->count();
 
         $assetTypes = CinaAssetType::select('id','title')->get();
@@ -757,7 +757,7 @@ class ProductController extends Controller
 
         for ($i=1; $i <= 12; $i++) { 
             $totalIncomingPerMonth[] = CinaProduct::whereRaw('MONTH(in_date) = '.$i.' AND YEAR(in_date) = YEAR(NOW())')->count();
-            $totalAtworkshopPerMonth[] = CinaProduct::where('cina_product_location_id',$locationPTCS->id)->whereRaw('MONTH(in_date) = '.$i.' AND YEAR(in_date) = YEAR(NOW())')->count();
+            $totalAtworkshopPerMonth[] = $locationPTCS ? CinaProduct::where('cina_product_location_id',$locationPTCS->id)->whereRaw('MONTH(in_date) = '.$i.' AND YEAR(in_date) = YEAR(NOW())')->count() : 0;
             $totalOutgoingPerMonth[] = CinaProduct::whereNot('out_date',null)->whereRaw('MONTH(out_date) = '.$i.' AND YEAR(out_date) = YEAR(NOW())')->count();
         }
 

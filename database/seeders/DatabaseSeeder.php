@@ -35,7 +35,8 @@ class DatabaseSeeder extends Seeder
             EndConnectionSeeder::class,
             LeakageclassSeeder::class,
             LocationSeeder::class,
-            UserSeeder::class,
+            // UserSeeder::class,
+            EmployeeSeeder::class
         ]);
     }
 }

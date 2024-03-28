@@ -200,6 +200,7 @@
         },
         {
             "name": "barryvdh/laravel-dompdf",
+<<<<<<< HEAD
             "version": "v2.1.0",
             "source": {
                 "type": "git",
@@ -210,6 +211,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/barryvdh/laravel-dompdf/zipball/c8b8a8490e5f7348cf99054821fb248f103e7d24",
                 "reference": "c8b8a8490e5f7348cf99054821fb248f103e7d24",
+=======
+            "version": "v2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-dompdf.git",
+                "reference": "cb37868365f9b937039d316727a1fced1e87b31c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryvdh/laravel-dompdf/zipball/cb37868365f9b937039d316727a1fced1e87b31c",
+                "reference": "cb37868365f9b937039d316727a1fced1e87b31c",
+>>>>>>> main
                 "shasum": ""
             },
             "require": {
@@ -261,7 +274,11 @@
             ],
             "support": {
                 "issues": "https://github.com/barryvdh/laravel-dompdf/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/barryvdh/laravel-dompdf/tree/v2.1.0"
+=======
+                "source": "https://github.com/barryvdh/laravel-dompdf/tree/v2.1.1"
+>>>>>>> main
             },
             "funding": [
                 {
@@ -273,7 +290,11 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2024-03-04T08:18:20+00:00"
+=======
+            "time": "2024-03-15T12:48:39+00:00"
+>>>>>>> main
         },
         {
             "name": "brick/math",
@@ -623,22 +644,22 @@
         },
         {
             "name": "consoletvs/charts",
-            "version": "6.6.0",
+            "version": "6.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ConsoleTVs/Charts.git",
-                "reference": "2bfd2c624fc68b9679b4b1c61c4de50fdae1b5f9"
+                "reference": "408b62609d79be06d229181d3b4c3a4cf6e27a1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/2bfd2c624fc68b9679b4b1c61c4de50fdae1b5f9",
-                "reference": "2bfd2c624fc68b9679b4b1c61c4de50fdae1b5f9",
+                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/408b62609d79be06d229181d3b4c3a4cf6e27a1b",
+                "reference": "408b62609d79be06d229181d3b4c3a4cf6e27a1b",
                 "shasum": ""
             },
             "require": {
                 "balping/json-raw-encoder": "^1.0",
-                "illuminate/console": "^5.0|^6.0|^7.0|^8.0|^9.0|^10.0",
-                "illuminate/support": "^5.0|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "illuminate/console": "^5.0|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
+                "illuminate/support": "^5.0|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
                 "php": ">=7.0"
             },
             "type": "library",
@@ -667,7 +688,7 @@
             "description": "The laravel charting package",
             "support": {
                 "issues": "https://github.com/ConsoleTVs/Charts/issues",
-                "source": "https://github.com/ConsoleTVs/Charts/tree/6.6.0"
+                "source": "https://github.com/ConsoleTVs/Charts/tree/6.7.0"
             },
             "funding": [
                 {
@@ -675,7 +696,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-02-01T06:52:41+00:00"
+            "time": "2024-03-13T10:55:51+00:00"
         },
         {
             "name": "cviebrock/eloquent-sluggable",
@@ -1836,6 +1857,7 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
             "version": "v10.48.2",
             "source": {
                 "type": "git",
@@ -1846,6 +1868,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/32a8bb151d748b579c3794dea53b56bd40dfbbd3",
                 "reference": "32a8bb151d748b579c3794dea53b56bd40dfbbd3",
+=======
+            "version": "v10.48.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "5791c052b41c6b593556adc687076bfbdd13c501"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/5791c052b41c6b593556adc687076bfbdd13c501",
+                "reference": "5791c052b41c6b593556adc687076bfbdd13c501",
+>>>>>>> main
                 "shasum": ""
             },
             "require": {
@@ -2039,7 +2073,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< HEAD
             "time": "2024-03-12T16:35:43+00:00"
+=======
+            "time": "2024-03-15T10:17:07+00:00"
+>>>>>>> main
         },
         {
             "name": "laravel/prompts",
@@ -2480,6 +2518,7 @@
         },
         {
             "name": "league/flysystem",
+<<<<<<< HEAD
             "version": "3.25.0",
             "source": {
                 "type": "git",
@@ -2490,6 +2529,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/4c44347133618cccd9b3df1729647a1577b4ad99",
                 "reference": "4c44347133618cccd9b3df1729647a1577b4ad99",
+=======
+            "version": "3.25.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "abbd664eb4381102c559d358420989f835208f18"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/abbd664eb4381102c559d358420989f835208f18",
+                "reference": "abbd664eb4381102c559d358420989f835208f18",
+>>>>>>> main
                 "shasum": ""
             },
             "require": {
@@ -2554,7 +2605,11 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/thephpleague/flysystem/tree/3.25.0"
+=======
+                "source": "https://github.com/thephpleague/flysystem/tree/3.25.1"
+>>>>>>> main
             },
             "funding": [
                 {
@@ -2566,6 +2621,7 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2024-03-09T17:06:45+00:00"
         },
         {
@@ -2636,6 +2692,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/flysystem-local/zipball/b884d2bf9b53bb4804a56d2df4902bb51e253f00",
                 "reference": "b884d2bf9b53bb4804a56d2df4902bb51e253f00",
+=======
+            "time": "2024-03-16T12:53:19+00:00"
+        },
+        {
+            "name": "league/flysystem-local",
+            "version": "3.25.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem-local.git",
+                "reference": "61a6a90d6e999e4ddd9ce5adb356de0939060b92"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-local/zipball/61a6a90d6e999e4ddd9ce5adb356de0939060b92",
+                "reference": "61a6a90d6e999e4ddd9ce5adb356de0939060b92",
+>>>>>>> main
                 "shasum": ""
             },
             "require": {
@@ -2669,8 +2741,12 @@
                 "local"
             ],
             "support": {
+<<<<<<< HEAD
                 "issues": "https://github.com/thephpleague/flysystem-local/issues",
                 "source": "https://github.com/thephpleague/flysystem-local/tree/3.23.1"
+=======
+                "source": "https://github.com/thephpleague/flysystem-local/tree/3.25.1"
+>>>>>>> main
             },
             "funding": [
                 {
@@ -2682,7 +2758,11 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2024-01-26T18:25:23+00:00"
+=======
+            "time": "2024-03-15T19:58:44+00:00"
+>>>>>>> main
         },
         {
             "name": "league/fractal",
@@ -2812,6 +2892,7 @@
         },
         {
             "name": "livewire/livewire",
+<<<<<<< HEAD
             "version": "v3.4.8",
             "source": {
                 "type": "git",
@@ -2822,6 +2903,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/livewire/livewire/zipball/0335b8f022ac535fc3cf29fd8a8fcb275353a470",
                 "reference": "0335b8f022ac535fc3cf29fd8a8fcb275353a470",
+=======
+            "version": "v3.4.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/livewire/livewire.git",
+                "reference": "c65b3f0798ab2c9338213ede3588c3cdf4e6fcc0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/c65b3f0798ab2c9338213ede3588c3cdf4e6fcc0",
+                "reference": "c65b3f0798ab2c9338213ede3588c3cdf4e6fcc0",
+>>>>>>> main
                 "shasum": ""
             },
             "require": {
@@ -2875,7 +2968,11 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/livewire/livewire/tree/v3.4.8"
+=======
+                "source": "https://github.com/livewire/livewire/tree/v3.4.9"
+>>>>>>> main
             },
             "funding": [
                 {
@@ -2883,7 +2980,11 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2024-03-08T13:01:50+00:00"
+=======
+            "time": "2024-03-14T14:03:32+00:00"
+>>>>>>> main
         },
         {
             "name": "maatwebsite/excel",
@@ -3323,6 +3424,7 @@
             "time": "2023-10-27T15:32:31+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "mtdowling/jmespath.php",
             "version": "2.7.0",
             "source": {
@@ -3398,6 +3500,17 @@
             },
             "dist": {
                 "type": "zip",
+=======
+            "name": "nesbot/carbon",
+            "version": "2.72.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/briannesbitt/Carbon.git",
+                "reference": "0c6fd108360c562f6e4fd1dedb8233b423e91c83"
+            },
+            "dist": {
+                "type": "zip",
+>>>>>>> main
                 "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/0c6fd108360c562f6e4fd1dedb8233b423e91c83",
                 "reference": "0c6fd108360c562f6e4fd1dedb8233b423e91c83",
                 "shasum": ""
@@ -3926,6 +4039,7 @@
         },
         {
             "name": "phenx/php-svg-lib",
+<<<<<<< HEAD
             "version": "0.5.2",
             "source": {
                 "type": "git",
@@ -3936,6 +4050,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/dompdf/php-svg-lib/zipball/732faa9fb4309221e2bd9b2fda5de44f947133aa",
                 "reference": "732faa9fb4309221e2bd9b2fda5de44f947133aa",
+=======
+            "version": "0.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dompdf/php-svg-lib.git",
+                "reference": "0e46722c154726a5f9ac218197ccc28adba16fcf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dompdf/php-svg-lib/zipball/0e46722c154726a5f9ac218197ccc28adba16fcf",
+                "reference": "0e46722c154726a5f9ac218197ccc28adba16fcf",
+>>>>>>> main
                 "shasum": ""
             },
             "require": {
@@ -3954,7 +4080,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "LGPL-3.0"
+                "LGPL-3.0-or-later"
             ],
             "authors": [
                 {
@@ -3966,9 +4092,15 @@
             "homepage": "https://github.com/PhenX/php-svg-lib",
             "support": {
                 "issues": "https://github.com/dompdf/php-svg-lib/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/dompdf/php-svg-lib/tree/0.5.2"
             },
             "time": "2024-02-07T12:49:40+00:00"
+=======
+                "source": "https://github.com/dompdf/php-svg-lib/tree/0.5.3"
+            },
+            "time": "2024-02-23T20:39:24+00:00"
+>>>>>>> main
         },
         {
             "name": "phpoffice/phpspreadsheet",
@@ -4651,6 +4783,7 @@
         },
         {
             "name": "psy/psysh",
+<<<<<<< HEAD
             "version": "v0.12.0",
             "source": {
                 "type": "git",
@@ -4661,6 +4794,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/bobthecow/psysh/zipball/750bf031a48fd07c673dbe3f11f72362ea306d0d",
                 "reference": "750bf031a48fd07c673dbe3f11f72362ea306d0d",
+=======
+            "version": "v0.12.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bobthecow/psysh.git",
+                "reference": "9185c66c2165bbf4d71de78a69dccf4974f9538d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/9185c66c2165bbf4d71de78a69dccf4974f9538d",
+                "reference": "9185c66c2165bbf4d71de78a69dccf4974f9538d",
+>>>>>>> main
                 "shasum": ""
             },
             "require": {
@@ -4724,9 +4869,15 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/bobthecow/psysh/tree/v0.12.0"
             },
             "time": "2023-12-20T15:28:09+00:00"
+=======
+                "source": "https://github.com/bobthecow/psysh/tree/v0.12.2"
+            },
+            "time": "2024-03-17T01:53:00+00:00"
+>>>>>>> main
         },
         {
             "name": "ralouphie/getallheaders",
@@ -8220,26 +8371,26 @@
         },
         {
             "name": "kyslik/column-sortable",
-            "version": "6.5.0",
+            "version": "6.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kyslik/column-sortable.git",
-                "reference": "80a7f053cf8e457be06d5fe59371f1b2b5cd8d03"
+                "reference": "0f753dfd34338e87a8964a3fb2cd10fa86174b3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kyslik/column-sortable/zipball/80a7f053cf8e457be06d5fe59371f1b2b5cd8d03",
-                "reference": "80a7f053cf8e457be06d5fe59371f1b2b5cd8d03",
+                "url": "https://api.github.com/repos/Kyslik/column-sortable/zipball/0f753dfd34338e87a8964a3fb2cd10fa86174b3c",
+                "reference": "0f753dfd34338e87a8964a3fb2cd10fa86174b3c",
                 "shasum": ""
             },
             "require": {
-                "illuminate/database": "5.8.*|^6.0|^7.0|^8.0|^9.0|^10.0",
-                "illuminate/support": "5.8.*|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "illuminate/database": "5.8.*|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
+                "illuminate/support": "5.8.*|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
                 "php": ">=7.2"
             },
             "require-dev": {
-                "orchestra/testbench": "^5.0|^7.0|^8.0",
-                "phpunit/phpunit": "^8.5|^9.5.10"
+                "orchestra/testbench": "^5.0|^7.0|^8.0|^9.0",
+                "phpunit/phpunit": "^8.5|^9.5.10|^10.5"
             },
             "type": "package",
             "extra": {
@@ -8275,9 +8426,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Kyslik/column-sortable/issues",
-                "source": "https://github.com/Kyslik/column-sortable/tree/6.5.0"
+                "source": "https://github.com/Kyslik/column-sortable/tree/6.6.0"
             },
-            "time": "2023-02-17T09:46:34+00:00"
+            "time": "2024-03-14T08:22:23+00:00"
         },
         {
             "name": "laravel/pint",
@@ -8409,16 +8560,20 @@
         },
         {
             "name": "mockery/mockery",
+<<<<<<< HEAD
             "version": "1.6.9",
+=======
+            "version": "1.6.10",
+>>>>>>> main
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "0cc058854b3195ba21dc6b1f7b1f60f4ef3a9c06"
+                "reference": "47065d1be1fa05def58dc14c03cf831d3884ef0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/0cc058854b3195ba21dc6b1f7b1f60f4ef3a9c06",
-                "reference": "0cc058854b3195ba21dc6b1f7b1f60f4ef3a9c06",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/47065d1be1fa05def58dc14c03cf831d3884ef0b",
+                "reference": "47065d1be1fa05def58dc14c03cf831d3884ef0b",
                 "shasum": ""
             },
             "require": {
@@ -8430,8 +8585,8 @@
                 "phpunit/phpunit": "<8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^8.5 || ^9.6.10",
-                "symplify/easy-coding-standard": "^12.0.8"
+                "phpunit/phpunit": "^8.5 || ^9.6.17",
+                "symplify/easy-coding-standard": "^12.1.14"
             },
             "type": "library",
             "autoload": {
@@ -8488,7 +8643,7 @@
                 "security": "https://github.com/mockery/mockery/security/advisories",
                 "source": "https://github.com/mockery/mockery"
             },
-            "time": "2023-12-10T02:24:34+00:00"
+            "time": "2024-03-19T16:15:45+00:00"
         },
         {
             "name": "myclabs/deep-copy",

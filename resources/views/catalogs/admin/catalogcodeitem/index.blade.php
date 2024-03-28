@@ -535,40 +535,40 @@
             });
         });
 
-        // function uploadFile() {
-        //     var formData = new FormData();
-        //     formData.append('filexls', $('#filexls')[0].files[0]);
-        //     formData.append('_token', CSRF_TOKEN);
+        function uploadFile() {
+            var formData = new FormData();
+            formData.append('filexls', $('#filexls')[0].files[0]);
+            formData.append('_token', CSRF_TOKEN);
 
-        //     $.ajax({
-        //         type: "post",
-        //         url: "{{ route('psvdatamaster.import') }}",
-        //         data: formData,
-        //         dataType: "json",
-        //         contentType: false,
-        //         processData: false,
-        //         enctype: "multipart/form-data",
-        //         beforeSend: function() {
-        //             Swal.fire({
-        //                 title: 'Please wait...',
-        //                 allowOutsideClick: false,
-        //                 allowEscapeKey: false,
-        //                 didOpen: () => {
-        //                     Swal.showLoading()
-        //                 },
-        //             })
-        //         },
-        //         success: function(response) {
-        //             Swal.close();
-        //             toastr.success(response.message);
-        //             closeUploadXlsIco.click();
-        //             $('#main-table').DataTable().ajax.reload();
-        //         },
-        //         error: function(xhr) {
-        //             Swal.close();
-        //             toastr.error(xhr.responseJSON.message);
-        //         }
-        //     });
-        // }
+            $.ajax({
+                type: "post",
+                url: "{{ route('catalogcodeitem.import') }}",
+                data: formData,
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                enctype: "multipart/form-data",
+                beforeSend: function() {
+                    Swal.fire({
+                        title: 'Please wait...',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        },
+                    })
+                },
+                success: function(response) {
+                    Swal.close();
+                    toastr.success(response.message);
+                    closeUploadXlsIco.click();
+                    $('#main-table').DataTable().ajax.reload();
+                },
+                error: function(xhr) {
+                    Swal.close();
+                    toastr.error(xhr.responseJSON.message);
+                }
+            });
+        }
     </script>
 @endsection

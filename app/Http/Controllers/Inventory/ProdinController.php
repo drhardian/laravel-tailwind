@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\PsvdatamasterImport;
+use App\Imports\ProdinImport;
 use App\Exports\PsvdatamasterExport;
 
 class ProdinController extends Controller
@@ -81,7 +81,7 @@ class ProdinController extends Controller
                         // 'prodin_image' => $fileName,
                         'prodin_datein' => Carbon::createFromFormat('d/m/Y', $request->prodin_datein)->format('Y-m-d'),
                     ],
-                $request->only('catalog_product_id','prodin_origin','prodin_budgetorigin','prodin_noref','prodin_stockin','prodin_owner','prodin_supplier', 'prodin_stockloc','prodin_detailloc')
+                $request->only('catalog_product_id','asset_code','prodin_actual','prodin_origin','prodin_budgetorigin','prodin_noref','prodin_stockin','prodin_owner','prodin_supplier', 'prodin_stockloc','prodin_detailloc')
                 )
             ); 
             
@@ -135,6 +135,8 @@ class ProdinController extends Controller
                 'icon' => '',
             ],
         ];
+
+        $prodin = $prodin->load('catalogProduct');
 
         return view('inventory.prodin.profile', [
             'breadcrumbs' => $breadcrumbs,
@@ -216,6 +218,8 @@ class ProdinController extends Controller
                 'prodin_owner' => $prodin->prodin_owner,
             ],
             'form' => [
+                ['asset_code', $prodin->asset_code],
+                ['prodin_actual', $prodin->prodin_actual],
                 ['prodin_noref', $prodin->prodin_noref],
                 ['prodin_datein', Carbon::parse($prodin->prodin_datein)->format('d/m/Y')],
                 ['prodin_owner', $prodin->prodin_owner],
@@ -263,7 +267,7 @@ class ProdinController extends Controller
                     'prodin_datein' => Carbon::createFromFormat('d/m/Y', $request->prodin_datein)->format('Y-m-d'),
 
                 ],
-            $request->only('catalog_product_id', 'prodin_origin', 'prodin_budgetorigin', 'prodin_noref', 'prodin_stockin', 'prodin_owner', 'prodin_supplier', 'prodin_stockloc', 'prodin_detailloc')
+            $request->only('catalog_product_id', 'asset_code', 'prodin_actual', 'prodin_origin', 'prodin_budgetorigin', 'prodin_noref', 'prodin_stockin', 'prodin_owner', 'prodin_supplier', 'prodin_stockloc', 'prodin_detailloc')
             )
         ); 
 
@@ -394,24 +398,40 @@ class ProdinController extends Controller
     // //  /**
     // //  * IMPORT EXCEL 
     // //  */
-    // public function importExcel(Request $request)
-    // {
-    //     try {
-    //         Excel::import(new CatalogproductImport, $request->file('filexls'));
+    public function importExcel(Request $request)
+    {
+        try {
+            Excel::import(new ProdinImport, $request->file('filexls'));
 
-    //         return response()->json([
-    //             'message' => 'Data imported successfully'
-    //         ], 200);
-    //     } catch (ParseError $e) {
-    //         return response()->json([
-    //             'message' => $e->getMessage()
-    //         ], 500);
-    //     } catch (Exception $e) {
-    //         return response()->json([
-    //             'message' => $e->getMessage()
-    //         ], 500);
-    //     }
-    // }
+            return response()->json([
+                'message' => 'Data imported successfully'
+            ], 200);
+        } catch (\ParseError $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        } catch (\Exception $e) {
+            $errorMessage = "";
+
+            if ($e instanceof \Maatwebsite\Excel\Validators\ValidationException) {
+                // Handle validation exception
+                $errorMessage = $e->getMessage();
+            } else if (strpos($e->getMessage(), 'array key') > 0) {
+                // return back()->withError($e->getMessage() . ', please check your file format');
+                $errorMessage = $e->getMessage();
+            } else {
+                // return back()->withError('Something went wrong, check your file');
+                $errorMessage = $e->getMessage();
+            }
+
+            Log::error($errorMessage);
+
+            return response()->json([
+                'message' => $errorMessage
+            ], 500);
+
+        }
+    }
 
     public function showDatatable()
     {
@@ -448,4 +468,56 @@ class ProdinController extends Controller
             ->make(true);
     }
 
+    public function showDashboard()
+    {
+        $productGroupTitle = [];
+        $catalogs = Catalogproduct::select('productgroup_code')
+            ->selectRaw('COUNT(productgroup_code) AS total_group')
+            ->groupBy('productgroup_code')
+            ->orderBy('total_group','DESC')
+            ->take(10)
+            ->get();
+
+        foreach ($catalogs as $catalog) {
+            $productGroupTitle[] = [
+                $catalog->total_group, 
+                $catalog->productgroup_code
+            ];
+        }
+
+        $lowStockList = [];
+        $getMinStock = Catalogproduct::select('product_minstock','product_name','productgroup_code','product_image')
+            ->whereNot('product_minstock','')
+            ->orderBy('product_minstock','DESC')
+            ->take(3)
+            ->get();
+
+        foreach ($getMinStock as $minStock) {
+            $lowStockList[] = [
+                'productName' => $minStock->product_name,
+                'productGroup' => $minStock->productgroup_code,
+                'productImage' => $minStock->product_image
+            ];
+        }
+
+        $stockList = [];
+        $stockinproducts = Prodin::with('catalogProduct')
+            ->select('catalog_product_id')
+            ->selectRaw('SUM(prodin_stockin) AS stockin')
+            ->whereNot('prodin_stockin','')
+            ->groupBy('catalog_product_id')
+            ->take(3)
+            ->get();
+
+        foreach ($stockinproducts as $stockin) {
+            $stockList[] = [
+                'productName' => $stockin->catalogProduct->product_name,
+                'qty' => $stockin->stockin,
+                'initialPrice' => $stockin->catalogProduct->product_price,
+                'price' => number_format($stockin->catalogProduct->product_price)
+            ];
+        }
+
+        return view('inventory.prodin.dashboard', compact('productGroupTitle','lowStockList','stockList'));
+    }
 }

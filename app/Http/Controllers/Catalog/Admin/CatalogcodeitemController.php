@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\CatalogcodeitemImport;
 
 class CatalogcodeitemController extends Controller
 {
@@ -324,25 +326,25 @@ class CatalogcodeitemController extends Controller
      /**
      * IMPORT EXCEL 
      */
-    // public function importExcel(Request $request)
-    // {
-    //     try {
-    //         Excel::import(new PsvdatamasterImport, $request->file('filexls'));
+    public function importExcel(Request $request)
+    {
+        try {
+            Excel::import(new CatalogcodeitemImport, $request->file('filexls'));
 
-    //         return response()->json([
-    //             'message' => 'Data imported successfully'
-    //         ], 200);
-    //     } catch (ParseError $e) {
-    //         return response()->json([
-    //             'message' => $e->getMessage()
-    //         ], 500);
-    //     } catch (Exception $e) {
-    //         return response()->json([
-    //             'message' => $e->getMessage()
-    //         ], 500);
-    //     }
+            return response()->json([
+                'message' => 'Data imported successfully'
+            ], 200);
+        } catch (ParseError $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
 
-    // }
+    }
 
     public function showDatatable()
     {
@@ -365,7 +367,7 @@ class CatalogcodeitemController extends Controller
                 $edit = '<a href="#" class="px-2" onclick="editRecord(\'' . route('catalogcodeitem.edit', ['catalogcodeitem' => $model->id]) . '\')"><i class="fa-solid fa-pen-to-square cursor-pointer"></i></a>';
                 $delete = '<a href="#" class="" onclick="deleteRecord(\'' . route('catalogcodeitem.destroy', ['catalogcodeitem' => $model->id]) . '\')"><i class="fa-solid fa-trash cursor-pointer"></i></a>';
                 $actions = '<div class="row flex">'.
-                    $show.$edit.$delete.
+                    $show . $edit . $delete .
                     '</div>';
 
                 return $actions;

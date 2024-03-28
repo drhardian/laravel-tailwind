@@ -631,7 +631,7 @@
             $('#newBtn').on('click', function(e) {
                 e.preventDefault();
 
-                $('.modal-title').text('New e-Proc Item Code');
+                $('.modal-title').text('New Catalog Product');
             });
         });
 
