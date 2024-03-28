@@ -87,7 +87,7 @@ Route::prefix('auth')
     });
 
 Route::middleware('auth')->group(function () {
-    Route::get('home',[HomeController::class, 'index']);
+    Route::get('home', [HomeController::class, 'index']);
 
     Route::prefix('request_order')->group(function () {
         Route::prefix('dashboard')
@@ -353,15 +353,15 @@ Route::middleware('auth')->group(function () {
         ->controller(ProdinController::class)
         ->name('prodin.')
         ->group(function () {
-            Route::get('show/dashboard','showDashboard')->name('dashboard');
+            Route::get('show/dashboard', 'showDashboard')->name('dashboard');
         });
 
     Route::prefix('inventory/product/scan')
         ->controller(ScanProductController::class)
         ->name('inv.qrcode.')
         ->group(function () {
-            Route::get('/','index')->name('index');
-            Route::get('detail','getProductDetail')->name('product.details');
+            Route::get('/', 'index')->name('index');
+            Route::get('detail', 'getProductDetail')->name('product.details');
         });
 
     Route::resource('prodin', ProdinController::class);
@@ -380,7 +380,7 @@ Route::middleware('auth')->group(function () {
         ->controller(ProdoutController::class)
         ->name('inventory.prodout.')
         ->group(function () {
-            Route::resource('/',ProdoutController::class)->parameters(['' => 'prodout']);
+            Route::resource('/', ProdoutController::class)->parameters(['' => 'prodout']);
             Route::get('show/dropdown', 'showOnDropdown')->name('show.dropdown');
             Route::get('show/datatable', 'showDatatable')->name('main.table');
             Route::get('loadprofile/product_name', 'loadprofilefromproduct_name')->name('loadprofile.product_name');
@@ -390,7 +390,7 @@ Route::middleware('auth')->group(function () {
         ->controller(InventoryProductoutTransactionController::class)
         ->name('inventory.product.out.')
         ->group(function () {
-            Route::resource('/',InventoryProductoutTransactionController::class)->parameters(['' => 'inventoryProductoutTransaction']);
+            Route::resource('/', InventoryProductoutTransactionController::class)->parameters(['' => 'inventoryProductoutTransaction']);
             Route::get('show/datatable', 'showDatatable')->name('main.table');
         });
 
@@ -418,10 +418,10 @@ Route::middleware('auth')->group(function () {
     //     Route::get('show/datatable', 'showDatatable')->name('prodout.main.table');
     //     Route::get('loadprofile/product_name', 'loadprofilefromproduct_name')->name('prodout.loadprofile.product_name');
 
-        // Route::get('eproccodeitem/export', 'exportExcel')->name('eproccodeitem.export');
-        // Route::post('eproccodeitem/import', 'importExcel')->name('eproccodeitem.import');
-        // Route::get('/eproccodeitem/{id}', 'cetakPdf')->name('eproccodeitem.pdf');
-        // Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
+    // Route::get('eproccodeitem/export', 'exportExcel')->name('eproccodeitem.export');
+    // Route::post('eproccodeitem/import', 'importExcel')->name('eproccodeitem.import');
+    // Route::get('/eproccodeitem/{id}', 'cetakPdf')->name('eproccodeitem.pdf');
+    // Route::post('/upload-cert-doc', 'uploadCertDoc')->name('upload.cert.doc');
 
     // });
 
@@ -615,11 +615,11 @@ Route::resource('admin/catalogproduct', AdminCatalogproductController::class)->n
     'destroy' => 'admin.catalogproduct.destroy',
 ]);
 
-    Route::prefix('admin/catalogproduct')->controller(AdminCatalogproductController::class)->group(function () {
-        Route::get('show/dropdown', 'showOnDropdown')->name('admin.catalogproduct.show.dropdown');
-        Route::get('show/datatable', 'showDatatable')->name('admin.catalogproduct.main.table');
-        Route::post('catalogproduct/import', 'importExcel')->name('catalogproduct.import');
-    });
+Route::prefix('admin/catalogproduct')->controller(AdminCatalogproductController::class)->group(function () {
+    Route::get('show/dropdown', 'showOnDropdown')->name('admin.catalogproduct.show.dropdown');
+    Route::get('show/datatable', 'showDatatable')->name('admin.catalogproduct.main.table');
+    Route::post('catalogproduct/import', 'importExcel')->name('catalogproduct.import');
+});
 
 Route::resource('frontend/catalogproduct', FrontendCatalogproductController::class)->names([
     'index' => 'frontend.catalogproduct.index',
@@ -690,73 +690,73 @@ Route::prefix('catalog')
 
 
 
-    Route::resource('valverepair', RepairReportController::class)->except('create');
-    Route::prefix('valverepair')
-        ->controller(RepairReportController::class)
-        ->group(function () {
-            Route::get('show/datatable', 'showDatatable')->name('valverepair.main.table');
-            Route::post('construction/deleteimage', 'destroyImage')->name('valverepair.delete.image');
-        });
-    Route::resource('valverepair/scopeofwork', ScopeOfWorkController::class)->names([
-        'show' => 'valverepair.scopeofwork.show',
-        'store' => 'valverepair.scopeofwork.store',
-    ]);
-    Route::prefix('scopeofwork')
-        ->controller(ScopeOfWorkController::class)
-        ->group(function () {
-            Route::get('show/datatable', 'showDatatable')->name('scopeofwork.main.table');
-        });
+Route::resource('valverepair', RepairReportController::class)->except('create');
+Route::prefix('valverepair')
+    ->controller(RepairReportController::class)
+    ->group(function () {
+        Route::get('show/datatable', 'showDatatable')->name('valverepair.main.table');
+        Route::post('construction/deleteimage', 'destroyImage')->name('valverepair.delete.image');
+    });
+Route::resource('valverepair/scopeofwork', ScopeOfWorkController::class)->names([
+    'show' => 'valverepair.scopeofwork.show',
+    'store' => 'valverepair.scopeofwork.store',
+]);
+Route::prefix('scopeofwork')
+    ->controller(ScopeOfWorkController::class)
+    ->group(function () {
+        Route::get('show/datatable', 'showDatatable')->name('scopeofwork.main.table');
+    });
 
-    Route::prefix('cvrepair')
-        ->controller(ConstructionValveRepairController::class)
-        ->group(function () {
-            Route::post('scopeofwork/constructionbody', 'storeConstructionBody')->name('valverepair.scopeofwork.store.constructionbody');
-            Route::get('scopeofwork/constructionbody/{id}', 'editConstructionBody')->name('valverepair.scopeofwork.get.constructionbody');
-            Route::put('scopeofwork/constructionbody/{consIsolValve}', 'updateConstructionBody')->name('valverepair.scopeofwork.update.constructionbody');
-            Route::get('scopeofwork/constructionactuatorwheel/{consIsolValve}', 'editConstructionActuatorWheel')->name('valverepair.scopeofwork.get.constructionactuatorwheel');
-            Route::put('scopeofwork/constructionactuatorwheel/{consIsolValve}', 'storeConstructionActuatorWheel')->name('valverepair.scopeofwork.store.constructionactuatorwheel');
-            Route::get('scopeofwork/constructionactuatorautomation/{consIsolValve}', 'editConstructionActuatorAutomation')->name('valverepair.scopeofwork.get.constructionactuatorautomation');
-            Route::get('scopeofwork/constructionactuatorautomation/{consIsolValve}', 'editConstructionActuatorAutomation')->name('valverepair.scopeofwork.get.constructionactuatorautomation');
-            Route::put('scopeofwork/constructionactuatorautomation/{consIsolValve}', 'storeConstructionActuatorAutomation')->name('valverepair.scopeofwork.store.constructionactuatorautomation');
-            Route::get('scopeofwork/constructionpositionerisolation/{consIsolValve}', 'editConstructionPositionerIsolation')->name('valverepair.scopeofwork.get.constructionpositionerisolation');
-            Route::put('scopeofwork/constructionpositionerisolation/{consIsolValve}', 'storeConstructionPositionerIsolation')->name('valverepair.scopeofwork.store.constructionpositionerisolation');
-            Route::get('scopeofwork/constructionaccesoriesisolation/{consIsolValve}', 'editConstructionAccessoriesIsolation')->name('valverepair.scopeofwork.get.constructionaccesoriesisolation');
-            Route::put('scopeofwork/constructionaccesoriesisolation/{consIsolValve}', 'storeConstructionAccessoriesIsolation')->name('valverepair.scopeofwork.store.constructionaccesoriesisolation');
-        });
+Route::prefix('cvrepair')
+    ->controller(ConstructionValveRepairController::class)
+    ->group(function () {
+        Route::post('scopeofwork/constructionbody', 'storeConstructionBody')->name('valverepair.scopeofwork.store.constructionbody');
+        Route::get('scopeofwork/constructionbody/{id}', 'editConstructionBody')->name('valverepair.scopeofwork.get.constructionbody');
+        Route::put('scopeofwork/constructionbody/{consIsolValve}', 'updateConstructionBody')->name('valverepair.scopeofwork.update.constructionbody');
+        Route::get('scopeofwork/constructionactuatorwheel/{consIsolValve}', 'editConstructionActuatorWheel')->name('valverepair.scopeofwork.get.constructionactuatorwheel');
+        Route::put('scopeofwork/constructionactuatorwheel/{consIsolValve}', 'storeConstructionActuatorWheel')->name('valverepair.scopeofwork.store.constructionactuatorwheel');
+        Route::get('scopeofwork/constructionactuatorautomation/{consIsolValve}', 'editConstructionActuatorAutomation')->name('valverepair.scopeofwork.get.constructionactuatorautomation');
+        Route::get('scopeofwork/constructionactuatorautomation/{consIsolValve}', 'editConstructionActuatorAutomation')->name('valverepair.scopeofwork.get.constructionactuatorautomation');
+        Route::put('scopeofwork/constructionactuatorautomation/{consIsolValve}', 'storeConstructionActuatorAutomation')->name('valverepair.scopeofwork.store.constructionactuatorautomation');
+        Route::get('scopeofwork/constructionpositionerisolation/{consIsolValve}', 'editConstructionPositionerIsolation')->name('valverepair.scopeofwork.get.constructionpositionerisolation');
+        Route::put('scopeofwork/constructionpositionerisolation/{consIsolValve}', 'storeConstructionPositionerIsolation')->name('valverepair.scopeofwork.store.constructionpositionerisolation');
+        Route::get('scopeofwork/constructionaccesoriesisolation/{consIsolValve}', 'editConstructionAccessoriesIsolation')->name('valverepair.scopeofwork.get.constructionaccesoriesisolation');
+        Route::put('scopeofwork/constructionaccesoriesisolation/{consIsolValve}', 'storeConstructionAccessoriesIsolation')->name('valverepair.scopeofwork.store.constructionaccesoriesisolation');
+    });
 
-    # calibration
-    Route::prefix('valverepair/calibration')
-        ->controller(CalibrationValveRepairController::class)
-        ->name('valverepair.calibration.')
-        ->group(function () {
-            Route::resource('/', CalibrationValveRepairController::class)->parameters(['' => 'calibration']);
-            Route::get('calibration/getdata', 'getData')->name('getdata');
-        });
+# calibration
+Route::prefix('valverepair/calibration')
+    ->controller(CalibrationValveRepairController::class)
+    ->name('valverepair.calibration.')
+    ->group(function () {
+        Route::resource('/', CalibrationValveRepairController::class)->parameters(['' => 'calibration']);
+        Route::get('calibration/getdata', 'getData')->name('getdata');
+    });
 
-    # Optional Services
-    Route::prefix('valverepair/optionalservices')
-        ->controller(OptionalServicesController::class)
-        ->name('valverepair.optionalservices.')
-        ->group(function () {
-            // Route::resource('/', OptionalServicesController::class)->parameters(['' => 'optionalservices']);
-            Route::get('/valvepretest/{id}', 'getOptionalServiceValvePreTest')->name('get.valvepretest');
-            Route::post('/valvepretest', 'storeOptionalServiceValvePreTest')->name('store.valvepretest');
-            Route::put('valvepretest/{optionalservice}', 'updateOptionalServiceValvePreTest')->name('update.valvepretest');
+# Optional Services
+Route::prefix('valverepair/optionalservices')
+    ->controller(OptionalServicesController::class)
+    ->name('valverepair.optionalservices.')
+    ->group(function () {
+        // Route::resource('/', OptionalServicesController::class)->parameters(['' => 'optionalservices']);
+        Route::get('/valvepretest/{id}', 'getOptionalServiceValvePreTest')->name('get.valvepretest');
+        Route::post('/valvepretest', 'storeOptionalServiceValvePreTest')->name('store.valvepretest');
+        Route::put('valvepretest/{optionalservice}', 'updateOptionalServiceValvePreTest')->name('update.valvepretest');
 
-            Route::get('valvepretest/materialverification/{scopeofworkid}', 'getMaterialverification')->name('get.materialverification');
-            Route::put('valvepretest/materialverification/{optionalservice}', 'updateMaterialverification')->name('update.materialverification');
-        });
+        Route::get('valvepretest/materialverification/{scopeofworkid}', 'getMaterialverification')->name('get.materialverification');
+        Route::put('valvepretest/materialverification/{optionalservice}', 'updateMaterialverification')->name('update.materialverification');
+    });
 
-    # Fire Gas Asset
-    Route::prefix('firegas')
-        ->controller(FiregasAssetController::class)
-        ->name('firegas.')
-        ->group(function () {
-            Route::resource('/', FiregasAssetController::class)->parameters(['' => 'firegasAsset']);
-            Route::get('show/datatable', 'showDatatable')->name('main.table');
-            Route::post('file/import', 'import')->name('data.import');
-            Route::get('show/dashboard', 'dashboard')->name('dashboard');
-        });
+# Fire Gas Asset
+Route::prefix('firegas')
+    ->controller(FiregasAssetController::class)
+    ->name('firegas.')
+    ->group(function () {
+        Route::resource('/', FiregasAssetController::class)->parameters(['' => 'firegasAsset']);
+        Route::get('show/datatable', 'showDatatable')->name('main.table');
+        Route::post('file/import', 'import')->name('data.import');
+        Route::get('show/dashboard', 'dashboard')->name('dashboard');
+    });
 // SiteWalkDown
 Route::prefix('sitewalkdown')
     ->controller(DashboardSiteWalkdownController::class)
@@ -765,90 +765,81 @@ Route::prefix('sitewalkdown')
         Route::get('/', [DashboardSiteWalkdownController::class, 'index'])->name('index');
     });
 
-    Route::resource('sitewalkdown/instructions', InstructionController::class)->names('swd.instructions');
-    Route::prefix('sitewalkdown/instructions')->controller(InstructionController::class)->group(function () {
-        Route::get('show/table', 'showRowsOnTable')->name('swd.instructions.instructionDatatable');
-        Route::get('instruction/user/selectbox/show', 'usersOnSelectbox')->name('swd.instructions.usersonselectbox');
+Route::resource('sitewalkdown/instructions', InstructionController::class)->names('swd.instructions');
+Route::prefix('sitewalkdown/instructions')->controller(InstructionController::class)->group(function () {
+    Route::get('show/table', 'showRowsOnTable')->name('swd.instructions.instructionDatatable');
+    Route::get('instruction/user/selectbox/show', 'usersOnSelectbox')->name('swd.instructions.usersonselectbox');
+});
 
-    });
+Route::resource('sitewalkdown/assessments', AssessmentController::class)->names('swd.assessments');
+Route::prefix('assessments')->controller(AssessmentController::class)->group(function () {
+    Route::get('subject/list', 'showSubjects')->name('swd.assessments.getSubjects');
+    Route::get('show/table', 'showRowsOnTable')->name('swd.assessments.assessmentDatatable');
+});
 
-    Route::resource('sitewalkdown/assessments', AssessmentController::class)->names('swd.assessments');
-    Route::prefix('assessments')->controller(AssessmentController::class)->group(function () {
-        Route::get('subject/list', 'showSubjects')->name('swd.assessments.getSubjects');
-        Route::get('show/table', 'showRowsOnTable')->name('swd.assessments.assessmentDatatable');
-    });
+Route::resource('sitewalkdown/companies', CompanyController::class)->names('swd.companies');
+Route::prefix('sitewalkdown/companies')->controller(CompanyController::class)->group(function () {
+    Route::get('selectbox/show', 'indexonselectbox')->name('swd.companies.indexonselectbox');
+    Route::post('selectbox/new', 'storefromselectbox')->name('swd.companies.storefromselectbox');
+});
 
-    Route::resource('sitewalkdown/companies', CompanyController::class)->names('swd.companies');
-    Route::prefix('sitewalkdown/companies')->controller(CompanyController::class)->group(function () {
-        Route::get('selectbox/show', 'indexonselectbox')->name('swd.companies.indexonselectbox');
-        Route::post('selectbox/new', 'storefromselectbox')->name('swd.companies.storefromselectbox');
-    });
+Route::resource('sitewalkdown/areas', AreaController::class)->names('swd.areas');
+Route::prefix('sitewalkdown/areas')->controller(AreaController::class)->group(function () {
+    Route::get('selectbox/show', 'indexonselectbox')->name('swd.areas.indexonselectbox');
+    Route::post('selectbox/new', 'storefromselectbox')->name('swd.areas.storefromselectbox');
+});
 
-    Route::resource('sitewalkdown/areas', AreaController::class)->names('swd.areas');
-    Route::prefix('sitewalkdown/areas')->controller(AreaController::class)->group(function () {
-        Route::get('selectbox/show', 'indexonselectbox')->name('swd.areas.indexonselectbox');
-        Route::post('selectbox/new', 'storefromselectbox')->name('swd.areas.storefromselectbox');
-    });
+Route::resource('sitewalkdown/otherareas', OtherareaController::class)->names('swd.otherareas');
+Route::prefix('sitewalkdown/otherareas')->controller(OtherareaController::class)->group(function () {
+    Route::get('selectbox/show', 'indexonselectbox')->name('swd.otherareas.indexonselectbox');
+    Route::post('selectbox/new', 'storefromselectbox')->name('swd.otherareas.storefromselectbox');
+});
 
-    Route::resource('sitewalkdown/otherareas', OtherareaController::class)->names('swd.otherareas');
-    Route::prefix('sitewalkdown/otherareas')->controller(OtherareaController::class)->group(function () {
-        Route::get('selectbox/show', 'indexonselectbox')->name('swd.otherareas.indexonselectbox');
-        Route::post('selectbox/new', 'storefromselectbox')->name('swd.otherareas.storefromselectbox');
-    });
-
-    Route::resource('sitewalkdown/products', SiteWalkdownProductController::class)->names('swd.products');
-    Route::prefix('sitewalkdown/products')->controller(SiteWalkdownProductController::class)->group(function () {
-        Route::get('selectbox/show', 'tagsOnSelectbox')->name('swd.products.tagsonselectbox');
-        Route::get('instruction/list', 'tagsByInstruction')->name('swd.products.tagsbyinstruction');
-        Route::get('assessment/list', 'tagsByProduct')->name('swd.products.tagsbyproduct');
-    });
-
-
-    Route::prefix('sitewalkdown/devicetypes')->controller(DeviceTypeController::class)->group(function () {
-        Route::get('selectbox/show', 'showonselectbox')->name('swd.devicetypes.devicetypeonselectbox');
-        Route::get('show/alias', 'showalias')->name('swd.devicetypes.getalias');
-    });
-
-    Route::resource('sitewalkdown/dropdowns', DropdownController::class)->names('swd.dropdowns');
-    Route::prefix('sitewalkdown/dropdowns')->controller(DropdownController::class)->group(function () {
-        Route::get('show/list', 'showOnDropdown')->name('swd.dropdowns.showdropdowns');
-        Route::get('show/valvecondition/list', 'showValveConditionOnDropdown')->name('swd.dropdowns.showvalveconditiondropdowns');
-        Route::get('show/potensialcause/list', 'showPotensialCauseOnDropdown')->name('swd.dropdowns.showpotensialcausedropdowns');
-        Route::get('show/recommendation/list', 'showRecommendationOnDropdown')->name('swd.dropdowns.showrecommendationdropdowns');
-        Route::post('list/new', 'storeFromDropdown')->name('swd.dropdowns.storenewdropdown');
-        Route::post('list/valvecondition/new', 'storeValveConditionFromDropdown')->name('swd.dropdowns.storenewvalveconditiondropdown');
-        Route::post('list/potensialcause/new', 'storePotensialCauseFromDropdown')->name('swd.dropdowns.storenewpotensialcausedropdown');
-        Route::post('list/recommendation/new', 'storeRecommendationFromDropdown')->name('swd.dropdowns.storenewrecommendationdropdown');
-    });
-
-    Route::prefix('sitewalkdown/criticalitylevels')->controller(CriticalityLevelController::class)->group(function () {
-        Route::get('show/list', 'showOnDropdown')->name('swd.criticalitylevels.showdropdowns');
-    });
-
-    Route::prefix('sitewalkdown/healthratings')->controller(HealthRatingController::class)->group(function () {
-        Route::get('show/list', 'showOnDropdown')->name('swd.healthratings.showdropdowns');
-    });
-
-    Route::prefix('sitewalkdown/file/images')->controller(UploadDownloadController::class)->group(function () {
-        Route::post('upload','uploadFile')->name('swd.file.upload');
-        Route::get('download','downloadFile')->name('swd.file.download');
-        Route::delete('remove/{image}','removeFile')->name('swd.file.remove');
-    });
-
-    Route::prefix('sitewalkdown/reporting')->controller(SwdReportController::class)->group(function () {
-        Route::get('pdf/{id}', 'index')->name('swd.reporting.pdf');
-    });
-
-    Route::prefix('sitewalkdown/locationtype')->controller(LocationTypeController::class)->group(function () {
-        Route::get('/', 'showOnDropdown')->name('swd.locationtype.list');
-    });
-
-    Route::prefix('sitewalkdown/locationdetail')->controller(LocationDetailController::class)->group(function () {
-        Route::get('/', 'showOnDropdown')->name('swd.locationdetail.list');
-        Route::post('new', 'storeFromDropdown')->name('swd.locationdetail.new');
-    });
+Route::resource('sitewalkdown/products', SiteWalkdownProductController::class)->names('swd.products');
+Route::prefix('sitewalkdown/products')->controller(SiteWalkdownProductController::class)->group(function () {
+    Route::get('selectbox/show', 'tagsOnSelectbox')->name('swd.products.tagsonselectbox');
+    Route::get('instruction/list', 'tagsByInstruction')->name('swd.products.tagsbyinstruction');
+    Route::get('assessment/list', 'tagsByProduct')->name('swd.products.tagsbyproduct');
+});
 
 
-    Route::prefix('sitewalkdown/images')->controller(AssessmentImageController::class)->group(function () {
-        Route::get('show', 'getAssessmentImages')->name('swd.assessmentimages.show');
+Route::prefix('sitewalkdown/devicetypes')->controller(DeviceTypeController::class)->group(function () {
+    Route::get('selectbox/show', 'showonselectbox')->name('swd.devicetypes.devicetypeonselectbox');
+    Route::get('show/alias', 'showalias')->name('swd.devicetypes.getalias');
+});
+
+Route::resource('sitewalkdown/dropdowns', DropdownController::class)->names('swd.dropdowns');
+Route::prefix('sitewalkdown/dropdowns')->controller(DropdownController::class)->group(function () {
+    Route::get('show/list', 'showOnDropdown')->name('swd.dropdowns.showdropdowns');
+    Route::get('show/valvecondition/list', 'showValveConditionOnDropdown')->name('swd.dropdowns.showvalveconditiondropdowns');
+    Route::get('show/potensialcause/list', 'showPotensialCauseOnDropdown')->name('swd.dropdowns.showpotensialcausedropdowns');
+    Route::get('show/recommendation/list', 'showRecommendationOnDropdown')->name('swd.dropdowns.showrecommendationdropdowns');
+    Route::post('list/new', 'storeFromDropdown')->name('swd.dropdowns.storenewdropdown');
+    Route::post('list/valvecondition/new', 'storeValveConditionFromDropdown')->name('swd.dropdowns.storenewvalveconditiondropdown');
+    Route::post('list/potensialcause/new', 'storePotensialCauseFromDropdown')->name('swd.dropdowns.storenewpotensialcausedropdown');
+    Route::post('list/recommendation/new', 'storeRecommendationFromDropdown')->name('swd.dropdowns.storenewrecommendationdropdown');
+});
+Route::prefix('sitewalkdown/criticalitylevels')->controller(CriticalityLevelController::class)->group(function () {
+    Route::get('show/list', 'showOnDropdown')->name('swd.criticalitylevels.showdropdowns');
+});
+Route::prefix('sitewalkdown/healthratings')->controller(HealthRatingController::class)->group(function () {
+    Route::get('show/list', 'showOnDropdown')->name('swd.healthratings.showdropdowns');
+});
+Route::prefix('sitewalkdown/file/images')->controller(UploadDownloadController::class)->group(function () {
+    Route::post('upload', 'uploadFile')->name('swd.file.upload');
+    Route::get('download', 'downloadFile')->name('swd.file.download');
+    Route::delete('remove/{image}', 'removeFile')->name('swd.file.remove');
+});
+Route::prefix('sitewalkdown/reporting')->controller(SwdReportController::class)->group(function () {
+    Route::get('pdf/{id}', 'index')->name('swd.reporting.pdf');
+});
+Route::prefix('sitewalkdown/locationtype')->controller(LocationTypeController::class)->group(function () {
+    Route::get('/', 'showOnDropdown')->name('swd.locationtype.list');
+});
+Route::prefix('sitewalkdown/locationdetail')->controller(LocationDetailController::class)->group(function () {
+    Route::get('/', 'showOnDropdown')->name('swd.locationdetail.list');
+    Route::post('new', 'storeFromDropdown')->name('swd.locationdetail.new');
+});
+Route::prefix('sitewalkdown/images')->controller(AssessmentImageController::class)->group(function () {
+    Route::get('show', 'getAssessmentImages')->name('swd.assessmentimages.show');
 });
