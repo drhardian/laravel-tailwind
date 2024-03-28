@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     $(".select2").select2({
         allowClear: true,
@@ -64,7 +65,7 @@ $(document).ready(function () {
 
             if (dataForm == "device_type_id") {
                 showAssessmentForm($(this).attr("data-alias"), dataForm);
-                // showValveInformationForm($(this).attr("data-alias"), dataForm);
+                showValveInformationForm($(this).attr("data-alias"), dataForm);
             }
 
             if (url) {
@@ -175,7 +176,9 @@ function showValveInformationForm(url, dataForm) {
 }
 
 function showAssessmentForm(url, dataForm) {
-    $(".tab2menu").addClass("hidden");
+    // $(".tab2menu").addClass("hidden");
+    $(".tab2menu, .tab3menu, .tab4menu").removeClass("inline-block");
+    $(".tab2menu, .tab3menu, .tab4menu").addClass("hidden");
     $.ajax({
         type: "get",
         url: url,
@@ -185,13 +188,19 @@ function showAssessmentForm(url, dataForm) {
         },
         success: function (response) {
             $("#assessmentFormByDeviceType").html("");
-            // $('#assessmentFormByDeviceType').html(response);
+            $('#assessmentFormByDeviceType').html(response);
 
             setTimeout(() => {
                 selectDropdownAjax();
-                $(".tab3menu, .tab4menu").remove();
-                $(".tab2menu").removeClass("hidden");
-                $(".tab2menu").addClass("inline-block");
+                // $(".tab3menu, .tab4menu").remove();
+                $(".tab2menu, .tab3menu, .tab4menu").removeClass("hidden");
+                $(".tab2menu, .tab3menu, .tab4menu").addClass("inline-block");
+                // $(".assessment-panels").append(
+                //     '<li class="me-2" role="presentation">' +
+                //         '<button class="tab2menu  text-white p-4 border-b-2 rounded-t-lg hover:text-blue-600 hover:border-gray-300 dark:hover:text-blue-300"' +
+                //         'id="tabMenu2" data-tabs-target="#tab2" type="button" role="tab" ' +
+                //         'aria-controls="dashboard" aria-selected="false">General Information</button></li>'
+                // );
                 Swal.close();
             }, 1500);
 

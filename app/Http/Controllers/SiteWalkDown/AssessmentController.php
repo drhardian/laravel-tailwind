@@ -141,7 +141,7 @@ class AssessmentController extends Controller
     # Store a newly created resource in storage.
     public function store(AssessmentStoreRequest $request)
     {
-        abort_unless(Gate::allows('assessment_create'), 403);
+        // abort_unless(Gate::allows('assessment_create'), 403);
 
         DB::beginTransaction();
 
@@ -505,7 +505,7 @@ class AssessmentController extends Controller
     # Display the specified resource.
     public function show($id)
     {
-        abort_unless(Gate::allows('assessment_view'), 403);
+        // abort_unless(Gate::allows('assessment_view'), 403);
     }
 
     # Get valve condition subject list based on device type
@@ -519,7 +519,24 @@ class AssessmentController extends Controller
     # Show the form for editing the specified resource.
     public function edit(Assessment $assessment)
     {
-        abort_unless(Gate::allows('assessment_edit'), 403);
+        // abort_unless(Gate::allows('assessment_edit'), 403);
+
+        $title = $this->pageTitle;
+
+        $breadcrumbs = [
+            [
+                'title' => 'Assessment',
+                'status' => '',
+                'url' => route('swd.assessments.index'),
+                'icon' => 'fa-solid fa-house fa-sm',
+            ],
+            [
+                'title' => 'Edit Assessment',
+                'status' => 'active',
+                'url' => '',
+                'icon' => '',
+            ],
+        ];
 
         $attributes = (object) [
             'title' => 'Site Walkdown',
@@ -668,13 +685,13 @@ class AssessmentController extends Controller
         session()->put('priority_rating_id', $assessment->priority_rating_id);
         session()->put('health_level_color', $assessment->health_level_color);
 
-        return view('assessment.edit', compact('attributes', 'assessment', 'selectBoxData', 'dateActivity', 'responsiblePeople', 'assessmentDetail', 'productDetail', 'deviceTypeInitial', 'healthRatingByDevice'));
+        return view('sitewalkdown.assessment.edit', compact('title','breadcrumbs','attributes', 'assessment', 'selectBoxData', 'dateActivity', 'responsiblePeople', 'assessmentDetail', 'productDetail', 'deviceTypeInitial', 'healthRatingByDevice'));
     }
 
     # Update the specified resource in storage.
     public function update(Request $request, Assessment $assessment)
     {
-        abort_unless(Gate::allows('assessment_edit'), 403);
+        // abort_unless(Gate::allows('assessment_edit'), 403);
 
         DB::beginTransaction();
 
@@ -1054,7 +1071,7 @@ class AssessmentController extends Controller
     # Remove the specified resource from storage.
     public function destroy($id)
     {
-        abort_unless(Gate::allows('assessment_delete'), 403);
+        // abort_unless(Gate::allows('assessment_delete'), 403);
     }
 
     # Display a listing of the resource on datatable
@@ -1083,7 +1100,7 @@ class AssessmentController extends Controller
                 return $query->locationDetail->title;
             })
             ->addColumn('healthstatus', function ($query) {
-                return '<span class="badge text-white" style="background-color:' . $query->priorityRating->color . '; font-size:0.9em; font-weight:500">' . $query->priorityRating->title . '</span>';
+                return '<span class="badge text-white rounded-md shadow p-1" style="background-color:' . $query->priorityRating->color . '; font-size:0.9em; font-weight:500">' . $query->priorityRating->title . '</span>';
             })
             ->addColumn('inspectedby', function ($query) {
                 return 'unknown';
@@ -1092,7 +1109,7 @@ class AssessmentController extends Controller
                 if ($actionBtn == 1) {
                     return '';
                 } else {
-                    return '<a href="' . route('swd.assessments.edit', $query->id) . '">' . '<i class="fa-solid fa-pen-to-square text-gray cursor-pointer mr-2" title="Edit"></i>' . '</a>' . '<i class="fa-solid fa-trash-can text-gray cursor-pointer mr-2" title="Delete" onclick="deleteInstruction(\'' . route('swd.assessments.destroy', $query->id) . '\')"></i>' . '<a href="' . route('reporting.pdf', ['id' => $query->id, 'companyid' => null, 'productid' => $query->product_id]) . '" target="_blank">' . '<i class="fa-solid fa-folder-open text-gray cursor-pointer" title="Show">Report</i>' . '</a>';
+                    return '<a href="' . route('swd.assessments.edit', $query->id) . '">' . '<i class="fa-solid fa-pen-to-square text-gray cursor-pointer mr-2" title="Edit"></i>' . '</a>' . '<i class="fa-solid fa-trash-can text-gray cursor-pointer mr-2" title="Delete" onclick="deleteInstruction(\'' . route('swd.assessments.destroy', $query->id) . '\')"></i>' . '<a href="' . route('swd.reporting.pdf', ['id' => $query->id, 'companyid' => null, 'productid' => $query->product_id]) . '" target="_blank">' . '<i class="fa-solid fa-folder-open text-gray cursor-pointer" title="Show"></i>' . '</a>';
                 }
             })
             ->rawColumns(['actions', 'healthstatus'])

@@ -96,7 +96,9 @@ class ProductController extends Controller
 
         return DataTables::of($query)
             ->editColumn('tagnumber', function ($query) {
-                return '<a class="btn btn-sm btn-orange mr-2" href="#" onclick="$(\'#tagnum\').val(\'' . $query->tagnumber . '\'); $(\'#taglistmodal\').modal(\'toggle\');"><i class="fa-solid fa-right-to-bracket"></i></a>'.$query->tagnumber;
+                return '<a class="btn btn-sm btn-orange mr-2" href="#" onclick="$(\'#tagnum\').val(\'' . $query->tagnumber . '\'); modaltag.toggle();"><i class="fa-solid fa-right-to-bracket"></i></a>'.$query->tagnumber;
+
+                // return '<a class="btn btn-sm btn-orange mr-2" href="#" onclick="$(\'#tagnum\').val(\'' . $query->tagnumber . '\'); $(\'#taglistmodal\').modal(\'toggle\');"><i class="fa-solid fa-right-to-bracket"></i></a>'.$query->tagnumber;
             })
             ->rawColumns(['tagnumber'])
             ->make(true);

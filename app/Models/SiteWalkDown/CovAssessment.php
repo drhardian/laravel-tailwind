@@ -9,6 +9,6 @@ class CovAssessment extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = 'swd_cov_asessments';
+    protected $table = 'swd_cov_assessments';
 
 }

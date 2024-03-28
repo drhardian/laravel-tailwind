@@ -1,7 +1,8 @@
 const $targetEl = document.getElementById("modalEl");
 const modal = new Modal($targetEl);
 
-
+const $targetTag = document.getElementById("taglistmodal");
+const modaltag = new Modal($targetTag);
 
 $(document).ready(function () {
     $("#tags-instruction-table").DataTable({
@@ -41,18 +42,17 @@ $(document).ready(function () {
 });
 
 function openTitleList(id) {
-    // $("#browsetitlemodal").modal("toggle");
     $("#selected-person-id").val(id);
-    console.log(id);
-
     modal.toggle();
 }
 
 function openTagList(instructionId) {
-    $("#taglistmodal").modal("toggle");
     $("#instruction-id").val(instructionId);
+    modaltag.toggle();
+    $('#tags-instruction-table').DataTable().ajax.reload();
+    // $("#taglistmodal").modal("toggle");
 
-    $("#tags-table").DataTable().ajax.reload();
+    // $("#tags-table").DataTable().ajax.reload();
 }
 
 function setSelectedPerson(title) {
@@ -67,9 +67,9 @@ function setSelectedPerson(title) {
 
 function goToNextPage(event, prev, next, flow) {
     event.preventDefault();
-    console.log('Masuk');
+    console.log("Masuk");
     if (flow == "forward") {
-    console.log("#tabMenu" + next);
+        console.log("#tabMenu" + next);
 
         $("#tabMenu" + next).click();
     } else if (flow == "backward") {
@@ -80,7 +80,6 @@ function goToNextPage(event, prev, next, flow) {
 function addMorePerson(event, id) {
     event.preventDefault();
     nextOtherAreaNum = parseInt(id) + 1;
-    console.log($(".persons_ico_" + id).hasClass("fa-trash-can"));
     if (
         $("#persons_name_" + id).val() !== "" &&
         $("#persons_title_" + id).val() !== "" &&
@@ -89,8 +88,7 @@ function addMorePerson(event, id) {
         if ($(".persons_ico_" + id).hasClass("fa-trash-can")) {
             $("#persons_group_" + id).remove();
         } else {
-            console.log(".persons_btn_" + id);
-            console.log(nextOtherAreaNum);
+
 
             $(".persons_btn_" + id)
                 .removeClass("btn-primary")
@@ -454,7 +452,7 @@ deleteImage = (imageId, subjectID, event) => {
 
 saveAssessment = (recordStatus) => {
     Swal.fire({
-        template: "#my-template",
+        template: "#create-template",
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({

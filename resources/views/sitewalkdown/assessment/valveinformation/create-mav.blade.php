@@ -1,13 +1,13 @@
-<div class="row">
+<div class="flex flex-wrap ">
     <!-- Body Manufacturer -->
-    <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="form-group">
+    <div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 sm:w-full pr-4 pl-4">
+        <div class="mb-4">
             <label class="form-label">Body Manufacturer</label>
-            <select id="body_mfc" name="body_mfc" class="form-control select2-dropdown-ajax"
-                data-show="{{ route('dropdowns.showdropdowns') }}" 
-                data-store="{{ route('dropdowns.storenewdropdown') }}"
-                data-form="body_mfc" 
-                data-alias="BDYMFC" 
+            <select id="body_mfc" name="body_mfc" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded select2-dropdown-ajax"
+                data-show="{{ route('swd.dropdowns.showdropdowns') }}"
+                data-store="{{ route('swd.dropdowns.storenewdropdown') }}"
+                data-form="body_mfc"
+                data-alias="BDYMFC"
                 data-scope="specific"
                 data-change="false">
                 <option value="" disabled selected></option>
@@ -15,14 +15,14 @@
         </div>
     </div>
     <!-- Body Serial Number -->
-    <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="form-group">
+    <div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 sm:w-full pr-4 pl-4">
+        <div class="mb-4">
             <label class="form-label">Body Serial Number</label>
-            <select id="body_sn" name="body_sn" class="form-control select2-dropdown-ajax"
-                data-show="{{ route('dropdowns.showdropdowns') }}" 
-                data-store="{{ route('dropdowns.storenewdropdown') }}"
-                data-form="body_sn" 
-                data-alias="BDYSNM" 
+            <select id="body_sn" name="body_sn" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded select2-dropdown-ajax"
+                data-show="{{ route('swd.dropdowns.showdropdowns') }}"
+                data-store="{{ route('swd.dropdowns.storenewdropdown') }}"
+                data-form="body_sn"
+                data-alias="BDYSNM"
                 data-scope="specific"
                 data-change="false">
                 <option value="" disabled selected></option>
@@ -30,14 +30,14 @@
         </div>
     </div>
     <!-- Body Model -->
-    <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="form-group">
+    <div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 sm:w-full pr-4 pl-4">
+        <div class="mb-4">
             <label class="form-label">Body Model</label>
-            <select id="body_model" name="body_model" class="form-control select2-dropdown-ajax"
-                data-show="{{ route('dropdowns.showdropdowns') }}" 
-                data-store="{{ route('dropdowns.storenewdropdown') }}"
-                data-form="body_model" 
-                data-alias="BDYMDL" 
+            <select id="body_model" name="body_model" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded select2-dropdown-ajax"
+                data-show="{{ route('swd.dropdowns.showdropdowns') }}"
+                data-store="{{ route('swd.dropdowns.storenewdropdown') }}"
+                data-form="body_model"
+                data-alias="BDYMDL"
                 data-scope="specific"
                 data-change="false">
                 <option value="" disabled selected></option>
@@ -45,14 +45,14 @@
         </div>
     </div>
     <!-- Body Size -->
-    <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="form-group">
+    <div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 sm:w-full pr-4 pl-4">
+        <div class="mb-4">
             <label class="form-label">Body Size</label>
-            <select id="body_size" name="body_size" class="form-control select2-dropdown-ajax"
-                data-show="{{ route('dropdowns.showdropdowns') }}" 
-                data-store="{{ route('dropdowns.storenewdropdown') }}"
-                data-form="body_size" 
-                data-alias="BDYSZE" 
+            <select id="body_size" name="body_size" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded select2-dropdown-ajax"
+                data-show="{{ route('swd.dropdowns.showdropdowns') }}"
+                data-store="{{ route('swd.dropdowns.storenewdropdown') }}"
+                data-form="body_size"
+                data-alias="BDYSZE"
                 data-scope=""
                 data-change="false">
                 <option value="" disabled selected></option>
@@ -60,14 +60,14 @@
         </div>
     </div>
     <!-- Body Material -->
-    <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="form-group">
+    <div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 sm:w-full pr-4 pl-4">
+        <div class="mb-4">
             <label class="form-label">Body Material</label>
-            <select id="body_material" name="body_material" class="form-control select2-dropdown-ajax"
-                data-show="{{ route('dropdowns.showdropdowns') }}" 
-                data-store="{{ route('dropdowns.storenewdropdown') }}"
-                data-form="body_material" 
-                data-alias="BDYMTR" 
+            <select id="body_material" name="body_material" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded select2-dropdown-ajax"
+                data-show="{{ route('swd.dropdowns.showdropdowns') }}"
+                data-store="{{ route('swd.dropdowns.storenewdropdown') }}"
+                data-form="body_material"
+                data-alias="BDYMTR"
                 data-scope="specific"
                 data-change="false">
                 <option value="" disabled selected></option>
@@ -75,14 +75,14 @@
         </div>
     </div>
     <!-- Class Rating -->
-    <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="form-group">
+    <div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 sm:w-full pr-4 pl-4">
+        <div class="mb-4">
             <label class="form-label">Class Rating</label>
-            <select id="class_rating" name="class_rating" class="form-control select2-dropdown-ajax"
-                data-show="{{ route('dropdowns.showdropdowns') }}" 
-                data-store="{{ route('dropdowns.storenewdropdown') }}"
-                data-form="class_rating" 
-                data-alias="CLSRTG" 
+            <select id="class_rating" name="class_rating" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded select2-dropdown-ajax"
+                data-show="{{ route('swd.dropdowns.showdropdowns') }}"
+                data-store="{{ route('swd.dropdowns.storenewdropdown') }}"
+                data-form="class_rating"
+                data-alias="CLSRTG"
                 data-scope="specific"
                 data-change="false">
                 <option value="" disabled selected></option>
@@ -90,14 +90,14 @@
         </div>
     </div>
     <!-- End Connection -->
-    <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="form-group">
+    <div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 sm:w-full pr-4 pl-4">
+        <div class="mb-4">
             <label class="form-label">End Connection</label>
-            <select id="end_connection" name="end_connection" class="form-control select2-dropdown-ajax"
-                data-show="{{ route('dropdowns.showdropdowns') }}" 
-                data-store="{{ route('dropdowns.storenewdropdown') }}"
-                data-form="end_connection" 
-                data-alias="ENDCON" 
+            <select id="end_connection" name="end_connection" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded select2-dropdown-ajax"
+                data-show="{{ route('swd.dropdowns.showdropdowns') }}"
+                data-store="{{ route('swd.dropdowns.storenewdropdown') }}"
+                data-form="end_connection"
+                data-alias="ENDCON"
                 data-scope=""
                 data-change="false">
                 <option value="" disabled selected></option>
@@ -105,14 +105,14 @@
         </div>
     </div>
     <!-- Leakage Class -->
-    <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="form-group">
+    <div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 sm:w-full pr-4 pl-4">
+        <div class="mb-4">
             <label class="form-label">Leakage Class</label>
-            <select id="leakage_class" name="leakage_class" class="form-control select2-dropdown-ajax"
-                data-show="{{ route('dropdowns.showdropdowns') }}" 
-                data-store="{{ route('dropdowns.storenewdropdown') }}"
-                data-form="leakage_class" 
-                data-alias="LKGCLS" 
+            <select id="leakage_class" name="leakage_class" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded select2-dropdown-ajax"
+                data-show="{{ route('swd.dropdowns.showdropdowns') }}"
+                data-store="{{ route('swd.dropdowns.storenewdropdown') }}"
+                data-form="leakage_class"
+                data-alias="LKGCLS"
                 data-scope="specific"
                 data-change="false">
                 <option value="" disabled selected></option>
@@ -120,14 +120,14 @@
         </div>
     </div>
     <!-- Plug/Wegde/Gate Material -->
-    <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="form-group">
+    <div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 sm:w-full pr-4 pl-4">
+        <div class="mb-4">
             <label class="form-label">Plug/Wegde/Gate Material</label>
-            <select id="plug_material" name="plug_material" class="form-control select2-dropdown-ajax"
-                data-show="{{ route('dropdowns.showdropdowns') }}" 
-                data-store="{{ route('dropdowns.storenewdropdown') }}"
-                data-form="plug_material" 
-                data-alias="PLGMTR" 
+            <select id="plug_material" name="plug_material" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded select2-dropdown-ajax"
+                data-show="{{ route('swd.dropdowns.showdropdowns') }}"
+                data-store="{{ route('swd.dropdowns.storenewdropdown') }}"
+                data-form="plug_material"
+                data-alias="PLGMTR"
                 data-scope=""
                 data-change="false">
                 <option value="" disabled selected></option>
@@ -135,14 +135,14 @@
         </div>
     </div>
     <!-- Seat Material -->
-    <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="form-group">
+    <div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 sm:w-full pr-4 pl-4">
+        <div class="mb-4">
             <label class="form-label">Seat Material</label>
-            <select id="seat_material" name="seat_material" class="form-control select2-dropdown-ajax"
-                data-show="{{ route('dropdowns.showdropdowns') }}" 
-                data-store="{{ route('dropdowns.storenewdropdown') }}"
-                data-form="seat_material" 
-                data-alias="SETMTR" 
+            <select id="seat_material" name="seat_material" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded select2-dropdown-ajax"
+                data-show="{{ route('swd.dropdowns.showdropdowns') }}"
+                data-store="{{ route('swd.dropdowns.storenewdropdown') }}"
+                data-form="seat_material"
+                data-alias="SETMTR"
                 data-scope="specific"
                 data-change="false">
                 <option value="" disabled selected></option>
@@ -150,14 +150,14 @@
         </div>
     </div>
     <!-- Stem Material -->
-    <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="form-group">
+    <div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 sm:w-full pr-4 pl-4">
+        <div class="mb-4">
             <label class="form-label">Stem Material</label>
-            <select id="stem_material" name="stem_material" class="form-control select2-dropdown-ajax"
-                data-show="{{ route('dropdowns.showdropdowns') }}" 
-                data-store="{{ route('dropdowns.storenewdropdown') }}"
-                data-form="stem_material" 
-                data-alias="STMMTR" 
+            <select id="stem_material" name="stem_material" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded select2-dropdown-ajax"
+                data-show="{{ route('swd.dropdowns.showdropdowns') }}"
+                data-store="{{ route('swd.dropdowns.storenewdropdown') }}"
+                data-form="stem_material"
+                data-alias="STMMTR"
                 data-scope="specific"
                 data-change="false">
                 <option value="" disabled selected></option>
@@ -165,10 +165,10 @@
         </div>
     </div>
     <!-- Operator -->
-    <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="form-group">
+    <div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 sm:w-full pr-4 pl-4">
+        <div class="mb-4">
             <label class="form-label">Operator</label>
-            <select id="operator" name="operator" class="form-control select2-static">
+            <select id="operator" name="operator" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded select2-static">
                 <option value="" selected></option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
@@ -176,10 +176,10 @@
         </div>
     </div>
     <!-- Manual Override -->
-    <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="form-group">
+    <div class="lg:w-1/3 pr-4 pl-4 md:w-1/2 pr-4 pl-4 sm:w-full pr-4 pl-4">
+        <div class="mb-4">
             <label class="form-label">Manual Override</label>
-            <select id="manual_override" name="manual_override" class="form-control select2-static">
+            <select id="manual_override" name="manual_override" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded select2-static">
                 <option value="" selected></option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>

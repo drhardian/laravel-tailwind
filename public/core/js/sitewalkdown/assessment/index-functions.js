@@ -6,7 +6,7 @@ browseInstructions = () => {
 
 function deleteInstruction(url) {
     Swal.fire({
-        template: '#my-template',
+        template: '#delete-template',
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({

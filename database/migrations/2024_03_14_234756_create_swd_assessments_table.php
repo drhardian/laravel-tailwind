@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('swd_assessments', function (Blueprint $table) {
             $table->uuid('id')->primary(); // assessmentId
             $table->foreignId('instruction_id')->references('id')->on('swd_instructions')->constrained()->cascadeOnDelete(); // column id from table instructions
+            $table->foreignUuid('product_id')->references('id')->on('swd_products')->constrained()->cascadeOnDelete(); // column id from table products
             $table->foreignId('device_type_id')->references('id')->on('swd_device_types')->constrained()->cascadeOnDelete();
             $table->foreignId('criticality_level_id')->references('id')->on('swd_criticality_levels')->constrained()->cascadeOnDelete(); // column id from table criticality_levels
             $table->foreignId('health_rating_id')->references('id')->on('swd_health_ratings')->constrained()->cascadeOnDelete(); // column id from table health_ratings // column id from table health_ratings
